@@ -20,14 +20,12 @@ FetchContent_Declare(protobuf
     GIT_TAG aa938dd9588cc242584da6dfd545859fb56985b3)
 FetchContent_MakeAvailable(protobuf)
 
-target_include_directories(${PROJECT_NAME} PUBLIC test/cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE protobuf::libprotobuf)
+target_include_directories(${PROJECT_NAME} INTERFACE test/cpp)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
-set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER test/cpp/test.pb.h)
 
 install(TARGETS ${PROJECT_NAME}
     EXPORT ${PROJECT_NAME}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
