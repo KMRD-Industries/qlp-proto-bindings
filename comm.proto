@@ -1,6 +1,6 @@
 syntax = "proto3";
 package comm;
-option go_package = "github.com/kmrd-industries/qlp-proto-bindings/test/go";
+option go_package = "github.com/kmrd-industries/qlp-proto-bindings/gen/go";
 
 enum State {
     STATE_UNSPECIFIED = 0;
