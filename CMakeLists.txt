@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 add_library(${PROJECT_NAME} STATIC
-    test/cpp/test.pb.cc
-    test/cpp/test.pb.h
+    gen/cpp/comm.pb.cc
+    gen/cpp/comm.pb.h
 )
 
 include(FetchContent)
@@ -21,7 +21,7 @@ FetchContent_Declare(protobuf
 FetchContent_MakeAvailable(protobuf)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE protobuf::libprotobuf)
-target_include_directories(${PROJECT_NAME} INTERFACE test/cpp)
+target_include_directories(${PROJECT_NAME} INTERFACE gen/cpp)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 

@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.33.0
 // 	protoc        v5.27.0--dev
-// source: test.proto
+// source: comm.proto
 
 package _go
 
@@ -53,11 +53,11 @@ func (x State) String() string {
 }
 
 func (State) Descriptor() protoreflect.EnumDescriptor {
-	return file_test_proto_enumTypes[0].Descriptor()
+	return file_comm_proto_enumTypes[0].Descriptor()
 }
 
 func (State) Type() protoreflect.EnumType {
-	return &file_test_proto_enumTypes[0]
+	return &file_comm_proto_enumTypes[0]
 }
 
 func (x State) Number() protoreflect.EnumNumber {
@@ -66,7 +66,7 @@ func (x State) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use State.Descriptor instead.
 func (State) EnumDescriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{0}
+	return file_comm_proto_rawDescGZIP(), []int{0}
 }
 
 type Data struct {
@@ -83,7 +83,7 @@ type Data struct {
 func (x *Data) Reset() {
 	*x = Data{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_proto_msgTypes[0]
+		mi := &file_comm_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -96,7 +96,7 @@ func (x *Data) String() string {
 func (*Data) ProtoMessage() {}
 
 func (x *Data) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[0]
+	mi := &file_comm_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -109,7 +109,7 @@ func (x *Data) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Data.ProtoReflect.Descriptor instead.
 func (*Data) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{0}
+	return file_comm_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Data) GetI() int32 {
@@ -140,10 +140,10 @@ func (x *Data) GetMsgList() []string {
 	return nil
 }
 
-var File_test_proto protoreflect.FileDescriptor
+var File_comm_proto protoreflect.FileDescriptor
 
-var file_test_proto_rawDesc = []byte{
-	0x0a, 0x0a, 0x74, 0x65, 0x73, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x04, 0x63, 0x6f,
+var file_comm_proto_rawDesc = []byte{
+	0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x6d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x04, 0x63, 0x6f,
 	0x6d, 0x6d, 0x22, 0x76, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x12, 0x11, 0x0a, 0x01, 0x69, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x05, 0x48, 0x00, 0x52, 0x01, 0x69, 0x88, 0x01, 0x01, 0x12, 0x11, 0x0a,
 	0x01, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x48, 0x01, 0x52, 0x01, 0x61, 0x88, 0x01, 0x01,
@@ -163,24 +163,24 @@ var file_test_proto_rawDesc = []byte{
 }
 
 var (
-	file_test_proto_rawDescOnce sync.Once
-	file_test_proto_rawDescData = file_test_proto_rawDesc
+	file_comm_proto_rawDescOnce sync.Once
+	file_comm_proto_rawDescData = file_comm_proto_rawDesc
 )
 
-func file_test_proto_rawDescGZIP() []byte {
-	file_test_proto_rawDescOnce.Do(func() {
-		file_test_proto_rawDescData = protoimpl.X.CompressGZIP(file_test_proto_rawDescData)
+func file_comm_proto_rawDescGZIP() []byte {
+	file_comm_proto_rawDescOnce.Do(func() {
+		file_comm_proto_rawDescData = protoimpl.X.CompressGZIP(file_comm_proto_rawDescData)
 	})
-	return file_test_proto_rawDescData
+	return file_comm_proto_rawDescData
 }
 
-var file_test_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_test_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_test_proto_goTypes = []interface{}{
+var file_comm_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_comm_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_comm_proto_goTypes = []interface{}{
 	(State)(0),   // 0: comm.State
 	(*Data)(nil), // 1: comm.Data
 }
-var file_test_proto_depIdxs = []int32{
+var file_comm_proto_depIdxs = []int32{
 	0, // 0: comm.Data.state:type_name -> comm.State
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
@@ -189,13 +189,13 @@ var file_test_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_test_proto_init() }
-func file_test_proto_init() {
-	if File_test_proto != nil {
+func init() { file_comm_proto_init() }
+func file_comm_proto_init() {
+	if File_comm_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_test_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_comm_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Data); i {
 			case 0:
 				return &v.state
@@ -208,24 +208,24 @@ func file_test_proto_init() {
 			}
 		}
 	}
-	file_test_proto_msgTypes[0].OneofWrappers = []interface{}{}
+	file_comm_proto_msgTypes[0].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_test_proto_rawDesc,
+			RawDescriptor: file_comm_proto_rawDesc,
 			NumEnums:      1,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_test_proto_goTypes,
-		DependencyIndexes: file_test_proto_depIdxs,
-		EnumInfos:         file_test_proto_enumTypes,
-		MessageInfos:      file_test_proto_msgTypes,
+		GoTypes:           file_comm_proto_goTypes,
+		DependencyIndexes: file_comm_proto_depIdxs,
+		EnumInfos:         file_comm_proto_enumTypes,
+		MessageInfos:      file_comm_proto_msgTypes,
 	}.Build()
-	File_test_proto = out.File
-	file_test_proto_rawDesc = nil
-	file_test_proto_goTypes = nil
-	file_test_proto_depIdxs = nil
+	File_comm_proto = out.File
+	file_comm_proto_rawDesc = nil
+	file_comm_proto_goTypes = nil
+	file_comm_proto_depIdxs = nil
 }
