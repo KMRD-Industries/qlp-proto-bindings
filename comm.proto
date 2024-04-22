@@ -8,7 +8,6 @@ message PositionUpdate {
     uint32 y = 3;
 }
 
-message ConnectionRequest {}
 message ConnectionReply {
     uint32 id = 1;
 }

@@ -24,7 +24,7 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace comm {
 
-inline constexpr Position::Impl_::Impl_(
+inline constexpr PositionUpdate::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : entity_id_{0u},
         x_{0u},
@@ -32,139 +32,95 @@ inline constexpr Position::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR Position::Position(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR PositionUpdate::PositionUpdate(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct PositionDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PositionDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PositionDefaultTypeInternal() {}
+struct PositionUpdateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PositionUpdateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PositionUpdateDefaultTypeInternal() {}
   union {
-    Position _instance;
+    PositionUpdate _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PositionDefaultTypeInternal _Position_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PositionUpdateDefaultTypeInternal _PositionUpdate_default_instance_;
 
-inline constexpr ServerMessage::Impl_::Impl_(
+inline constexpr ConnectionReply::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        pos_{nullptr},
-        variant_{static_cast< ::comm::ServerMessage_MessageVariant >(0)} {}
+      : id_{0u},
+        _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR ServerMessage::ServerMessage(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR ConnectionReply::ConnectionReply(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct ServerMessageDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ServerMessageDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ServerMessageDefaultTypeInternal() {}
+struct ConnectionReplyDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ConnectionReplyDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ConnectionReplyDefaultTypeInternal() {}
   union {
-    ServerMessage _instance;
+    ConnectionReply _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServerMessageDefaultTypeInternal _ServerMessage_default_instance_;
-
-inline constexpr ClientMessage::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        pos_{nullptr},
-        variant_{static_cast< ::comm::ClientMessage_MessageVariant >(0)} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR ClientMessage::ClientMessage(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct ClientMessageDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ClientMessageDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ClientMessageDefaultTypeInternal() {}
-  union {
-    ClientMessage _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientMessageDefaultTypeInternal _ClientMessage_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectionReplyDefaultTypeInternal _ConnectionReply_default_instance_;
 }  // namespace comm
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_comm_2eproto[2];
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_comm_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_comm_2eproto = nullptr;
 const ::uint32_t
     TableStruct_comm_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::comm::Position, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::comm::Position, _impl_.entity_id_),
-        PROTOBUF_FIELD_OFFSET(::comm::Position, _impl_.x_),
-        PROTOBUF_FIELD_OFFSET(::comm::Position, _impl_.y_),
-        PROTOBUF_FIELD_OFFSET(::comm::ClientMessage, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::comm::ClientMessage, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.entity_id_),
+        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.x_),
+        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.y_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::comm::ConnectionReply, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::comm::ClientMessage, _impl_.variant_),
-        PROTOBUF_FIELD_OFFSET(::comm::ClientMessage, _impl_.pos_),
-        ~0u,
-        0,
-        PROTOBUF_FIELD_OFFSET(::comm::ServerMessage, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::comm::ServerMessage, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::comm::ServerMessage, _impl_.variant_),
-        PROTOBUF_FIELD_OFFSET(::comm::ServerMessage, _impl_.pos_),
-        ~0u,
-        0,
+        PROTOBUF_FIELD_OFFSET(::comm::ConnectionReply, _impl_.id_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::comm::Position)},
-        {11, 21, -1, sizeof(::comm::ClientMessage)},
-        {23, 33, -1, sizeof(::comm::ServerMessage)},
+        {0, -1, -1, sizeof(::comm::PositionUpdate)},
+        {11, -1, -1, sizeof(::comm::ConnectionReply)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
-    &::comm::_Position_default_instance_._instance,
-    &::comm::_ClientMessage_default_instance_._instance,
-    &::comm::_ServerMessage_default_instance_._instance,
+    &::comm::_PositionUpdate_default_instance_._instance,
+    &::comm::_ConnectionReply_default_instance_._instance,
 };
 const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\ncomm.proto\022\004comm\"3\n\010Position\022\021\n\tentity"
-    "_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001(\r\"\242\001\n\rClie"
-    "ntMessage\0223\n\007variant\030\001 \001(\0162\".comm.Client"
-    "Message.MessageVariant\022 \n\003pos\030\002 \001(\0132\016.co"
-    "mm.PositionH\000\210\001\001\"2\n\016MessageVariant\022\016\n\nID"
-    "_REQUEST\020\000\022\020\n\014STATE_UPDATE\020\001B\006\n\004_pos\"\240\001\n"
-    "\rServerMessage\0223\n\007variant\030\001 \001(\0162\".comm.S"
-    "erverMessage.MessageVariant\022 \n\003pos\030\002 \001(\013"
-    "2\016.comm.PositionH\000\210\001\001\"0\n\016MessageVariant\022"
-    "\014\n\010ID_REPLY\020\000\022\020\n\014STATE_UPDATE\020\001B\006\n\004_posB"
-    "6Z4github.com/kmrd-industries/qlp-proto-"
-    "bindings/gen/gob\006proto3"
+    "\n\ncomm.proto\022\004comm\"9\n\016PositionUpdate\022\021\n\t"
+    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001(\r\"\035\n"
+    "\017ConnectionReply\022\n\n\002id\030\001 \001(\rB6Z4github.c"
+    "om/kmrd-industries/qlp-proto-bindings/ge"
+    "n/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    463,
+    172,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
     nullptr,
     0,
-    3,
+    2,
     schemas,
     file_default_instances,
     TableStruct_comm_2eproto::offsets,
@@ -172,68 +128,28 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto =
     file_level_service_descriptors_comm_2eproto,
 };
 namespace comm {
-const ::google::protobuf::EnumDescriptor* ClientMessage_MessageVariant_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_comm_2eproto);
-  return file_level_enum_descriptors_comm_2eproto[0];
-}
-PROTOBUF_CONSTINIT const uint32_t ClientMessage_MessageVariant_internal_data_[] = {
-    131072u, 0u, };
-bool ClientMessage_MessageVariant_IsValid(int value) {
-  return 0 <= value && value <= 1;
-}
-#if (__cplusplus < 201703) && \
-  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-
-constexpr ClientMessage_MessageVariant ClientMessage::ID_REQUEST;
-constexpr ClientMessage_MessageVariant ClientMessage::STATE_UPDATE;
-constexpr ClientMessage_MessageVariant ClientMessage::MessageVariant_MIN;
-constexpr ClientMessage_MessageVariant ClientMessage::MessageVariant_MAX;
-constexpr int ClientMessage::MessageVariant_ARRAYSIZE;
-
-#endif  // (__cplusplus < 201703) &&
-        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::google::protobuf::EnumDescriptor* ServerMessage_MessageVariant_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_comm_2eproto);
-  return file_level_enum_descriptors_comm_2eproto[1];
-}
-PROTOBUF_CONSTINIT const uint32_t ServerMessage_MessageVariant_internal_data_[] = {
-    131072u, 0u, };
-bool ServerMessage_MessageVariant_IsValid(int value) {
-  return 0 <= value && value <= 1;
-}
-#if (__cplusplus < 201703) && \
-  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-
-constexpr ServerMessage_MessageVariant ServerMessage::ID_REPLY;
-constexpr ServerMessage_MessageVariant ServerMessage::STATE_UPDATE;
-constexpr ServerMessage_MessageVariant ServerMessage::MessageVariant_MIN;
-constexpr ServerMessage_MessageVariant ServerMessage::MessageVariant_MAX;
-constexpr int ServerMessage::MessageVariant_ARRAYSIZE;
-
-#endif  // (__cplusplus < 201703) &&
-        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 // ===================================================================
 
-class Position::_Internal {
+class PositionUpdate::_Internal {
  public:
 };
 
-Position::Position(::google::protobuf::Arena* arena)
+PositionUpdate::PositionUpdate(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:comm.Position)
+  // @@protoc_insertion_point(arena_constructor:comm.PositionUpdate)
 }
-Position::Position(
-    ::google::protobuf::Arena* arena, const Position& from)
-    : Position(arena) {
+PositionUpdate::PositionUpdate(
+    ::google::protobuf::Arena* arena, const PositionUpdate& from)
+    : PositionUpdate(arena) {
   MergeFrom(from);
 }
-inline PROTOBUF_NDEBUG_INLINE Position::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE PositionUpdate::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0} {}
 
-inline void Position::SharedCtor(::_pb::Arena* arena) {
+inline void PositionUpdate::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, entity_id_),
@@ -242,34 +158,34 @@ inline void Position::SharedCtor(::_pb::Arena* arena) {
                offsetof(Impl_, entity_id_) +
                sizeof(Impl_::y_));
 }
-Position::~Position() {
-  // @@protoc_insertion_point(destructor:comm.Position)
+PositionUpdate::~PositionUpdate() {
+  // @@protoc_insertion_point(destructor:comm.PositionUpdate)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void Position::SharedDtor() {
+inline void PositionUpdate::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.~Impl_();
 }
 
 const ::google::protobuf::MessageLite::ClassData*
-Position::GetClassData() const {
+PositionUpdate::GetClassData() const {
   PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
       ClassDataFull _data_ = {
           {
               nullptr,  // OnDemandRegisterArenaDtor
-              PROTOBUF_FIELD_OFFSET(Position, _impl_._cached_size_),
+              PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_._cached_size_),
               false,
           },
-          &Position::MergeImpl,
-          &Position::kDescriptorMethods,
+          &PositionUpdate::MergeImpl,
+          &PositionUpdate::kDescriptorMethods,
           &descriptor_table_comm_2eproto,
           nullptr,  // tracker
       };
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 0, 2> Position::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> PositionUpdate::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -280,34 +196,34 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> Position::_table_ = {
     3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_Position_default_instance_._instance,
+    &_PositionUpdate_default_instance_._instance,
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::comm::Position>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::comm::PositionUpdate>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
     // uint32 entity_id = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Position, _impl_.entity_id_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Position, _impl_.entity_id_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PositionUpdate, _impl_.entity_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.entity_id_)}},
     // uint32 x = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Position, _impl_.x_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Position, _impl_.x_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PositionUpdate, _impl_.x_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.x_)}},
     // uint32 y = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Position, _impl_.y_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(Position, _impl_.y_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PositionUpdate, _impl_.y_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_)}},
   }}, {{
     65535, 65535
   }}, {{
     // uint32 entity_id = 1;
-    {PROTOBUF_FIELD_OFFSET(Position, _impl_.entity_id_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.entity_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // uint32 x = 2;
-    {PROTOBUF_FIELD_OFFSET(Position, _impl_.x_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.x_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // uint32 y = 3;
-    {PROTOBUF_FIELD_OFFSET(Position, _impl_.y_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
   }},
   // no aux_entries
@@ -315,8 +231,8 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> Position::_table_ = {
   }},
 };
 
-PROTOBUF_NOINLINE void Position::Clear() {
-// @@protoc_insertion_point(message_clear_start:comm.Position)
+PROTOBUF_NOINLINE void PositionUpdate::Clear() {
+// @@protoc_insertion_point(message_clear_start:comm.PositionUpdate)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -328,15 +244,15 @@ PROTOBUF_NOINLINE void Position::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* Position::_InternalParse(const char* ptr,
+const char* PositionUpdate::_InternalParse(const char* ptr,
                                         ::_pbi::ParseContext* ctx) {
   return ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
 }
 
-::uint8_t* Position::_InternalSerialize(
+::uint8_t* PositionUpdate::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:comm.Position)
+  // @@protoc_insertion_point(serialize_to_array_start:comm.PositionUpdate)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -366,12 +282,12 @@ const char* Position::_InternalParse(const char* ptr,
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:comm.Position)
+  // @@protoc_insertion_point(serialize_to_array_end:comm.PositionUpdate)
   return target;
 }
 
-::size_t Position::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:comm.Position)
+::size_t PositionUpdate::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:comm.PositionUpdate)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -401,10 +317,10 @@ const char* Position::_InternalParse(const char* ptr,
 }
 
 
-void Position::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<Position*>(&to_msg);
-  auto& from = static_cast<const Position&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:comm.Position)
+void PositionUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PositionUpdate*>(&to_msg);
+  auto& from = static_cast<const PositionUpdate&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:comm.PositionUpdate)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -421,190 +337,144 @@ void Position::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void Position::CopyFrom(const Position& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:comm.Position)
+void PositionUpdate::CopyFrom(const PositionUpdate& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:comm.PositionUpdate)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool Position::IsInitialized() const {
+PROTOBUF_NOINLINE bool PositionUpdate::IsInitialized() const {
   return true;
 }
 
-void Position::InternalSwap(Position* PROTOBUF_RESTRICT other) {
+void PositionUpdate::InternalSwap(PositionUpdate* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Position, _impl_.y_)
-      + sizeof(Position::_impl_.y_)
-      - PROTOBUF_FIELD_OFFSET(Position, _impl_.entity_id_)>(
+      PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_)
+      + sizeof(PositionUpdate::_impl_.y_)
+      - PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.entity_id_)>(
           reinterpret_cast<char*>(&_impl_.entity_id_),
           reinterpret_cast<char*>(&other->_impl_.entity_id_));
 }
 
-::google::protobuf::Metadata Position::GetMetadata() const {
+::google::protobuf::Metadata PositionUpdate::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class ClientMessage::_Internal {
+class ConnectionReply::_Internal {
  public:
-  using HasBits = decltype(std::declval<ClientMessage>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(ClientMessage, _impl_._has_bits_);
 };
 
-ClientMessage::ClientMessage(::google::protobuf::Arena* arena)
+ConnectionReply::ConnectionReply(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:comm.ClientMessage)
+  // @@protoc_insertion_point(arena_constructor:comm.ConnectionReply)
 }
-inline PROTOBUF_NDEBUG_INLINE ClientMessage::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0} {}
-
-ClientMessage::ClientMessage(
-    ::google::protobuf::Arena* arena,
-    const ClientMessage& from)
-    : ::google::protobuf::Message(arena) {
-  ClientMessage* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.pos_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::comm::Position>(
-                              arena, *from._impl_.pos_)
-                        : nullptr;
-  _impl_.variant_ = from._impl_.variant_;
-
-  // @@protoc_insertion_point(copy_constructor:comm.ClientMessage)
+ConnectionReply::ConnectionReply(
+    ::google::protobuf::Arena* arena, const ConnectionReply& from)
+    : ConnectionReply(arena) {
+  MergeFrom(from);
 }
-inline PROTOBUF_NDEBUG_INLINE ClientMessage::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ConnectionReply::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0} {}
 
-inline void ClientMessage::SharedCtor(::_pb::Arena* arena) {
+inline void ConnectionReply::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, pos_),
-           0,
-           offsetof(Impl_, variant_) -
-               offsetof(Impl_, pos_) +
-               sizeof(Impl_::variant_));
+  _impl_.id_ = {};
 }
-ClientMessage::~ClientMessage() {
-  // @@protoc_insertion_point(destructor:comm.ClientMessage)
+ConnectionReply::~ConnectionReply() {
+  // @@protoc_insertion_point(destructor:comm.ConnectionReply)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void ClientMessage::SharedDtor() {
+inline void ConnectionReply::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  delete _impl_.pos_;
   _impl_.~Impl_();
 }
 
 const ::google::protobuf::MessageLite::ClassData*
-ClientMessage::GetClassData() const {
+ConnectionReply::GetClassData() const {
   PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
       ClassDataFull _data_ = {
           {
               nullptr,  // OnDemandRegisterArenaDtor
-              PROTOBUF_FIELD_OFFSET(ClientMessage, _impl_._cached_size_),
+              PROTOBUF_FIELD_OFFSET(ConnectionReply, _impl_._cached_size_),
               false,
           },
-          &ClientMessage::MergeImpl,
-          &ClientMessage::kDescriptorMethods,
+          &ConnectionReply::MergeImpl,
+          &ConnectionReply::kDescriptorMethods,
           &descriptor_table_comm_2eproto,
           nullptr,  // tracker
       };
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 1, 0, 2> ClientMessage::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ConnectionReply::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(ClientMessage, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967294,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_ClientMessage_default_instance_._instance,
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ConnectionReply_default_instance_._instance,
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::comm::ClientMessage>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::comm::ConnectionReply>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // optional .comm.Position pos = 2;
-    {::_pbi::TcParser::FastMtS1,
-     {18, 0, 0, PROTOBUF_FIELD_OFFSET(ClientMessage, _impl_.pos_)}},
-    // .comm.ClientMessage.MessageVariant variant = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ClientMessage, _impl_.variant_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ClientMessage, _impl_.variant_)}},
+    // uint32 id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ConnectionReply, _impl_.id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectionReply, _impl_.id_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .comm.ClientMessage.MessageVariant variant = 1;
-    {PROTOBUF_FIELD_OFFSET(ClientMessage, _impl_.variant_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // optional .comm.Position pos = 2;
-    {PROTOBUF_FIELD_OFFSET(ClientMessage, _impl_.pos_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::comm::Position>()},
-  }}, {{
+    // uint32 id = 1;
+    {PROTOBUF_FIELD_OFFSET(ConnectionReply, _impl_.id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+  }},
+  // no aux_entries
+  {{
   }},
 };
 
-PROTOBUF_NOINLINE void ClientMessage::Clear() {
-// @@protoc_insertion_point(message_clear_start:comm.ClientMessage)
+PROTOBUF_NOINLINE void ConnectionReply::Clear() {
+// @@protoc_insertion_point(message_clear_start:comm.ConnectionReply)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.pos_ != nullptr);
-    _impl_.pos_->Clear();
-  }
-  _impl_.variant_ = 0;
-  _impl_._has_bits_.Clear();
+  _impl_.id_ = 0u;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ClientMessage::_InternalParse(const char* ptr,
+const char* ConnectionReply::_InternalParse(const char* ptr,
                                         ::_pbi::ParseContext* ctx) {
   return ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
 }
 
-::uint8_t* ClientMessage::_InternalSerialize(
+::uint8_t* ConnectionReply::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:comm.ClientMessage)
+  // @@protoc_insertion_point(serialize_to_array_start:comm.ConnectionReply)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // .comm.ClientMessage.MessageVariant variant = 1;
-  if (this->_internal_variant() != 0) {
+  // uint32 id = 1;
+  if (this->_internal_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-        1, this->_internal_variant(), target);
-  }
-
-  cached_has_bits = _impl_._has_bits_[0];
-  // optional .comm.Position pos = 2;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        2, *_impl_.pos_, _impl_.pos_->GetCachedSize(), target, stream);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_id(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -612,334 +482,60 @@ const char* ClientMessage::_InternalParse(const char* ptr,
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:comm.ClientMessage)
+  // @@protoc_insertion_point(serialize_to_array_end:comm.ConnectionReply)
   return target;
 }
 
-::size_t ClientMessage::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:comm.ClientMessage)
+::size_t ConnectionReply::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:comm.ConnectionReply)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
-  // optional .comm.Position pos = 2;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.pos_);
-  }
-
-  // .comm.ClientMessage.MessageVariant variant = 1;
-  if (this->_internal_variant() != 0) {
-    total_size += 1 +
-                  ::_pbi::WireFormatLite::EnumSize(this->_internal_variant());
+  // uint32 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_id());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 
-void ClientMessage::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<ClientMessage*>(&to_msg);
-  auto& from = static_cast<const ClientMessage&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:comm.ClientMessage)
+void ConnectionReply::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<ConnectionReply*>(&to_msg);
+  auto& from = static_cast<const ConnectionReply&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:comm.ConnectionReply)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.pos_ != nullptr);
-    if (_this->_impl_.pos_ == nullptr) {
-      _this->_impl_.pos_ =
-          ::google::protobuf::Message::CopyConstruct<::comm::Position>(arena, *from._impl_.pos_);
-    } else {
-      _this->_impl_.pos_->MergeFrom(*from._impl_.pos_);
-    }
+  if (from._internal_id() != 0) {
+    _this->_impl_.id_ = from._impl_.id_;
   }
-  if (from._internal_variant() != 0) {
-    _this->_impl_.variant_ = from._impl_.variant_;
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ClientMessage::CopyFrom(const ClientMessage& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:comm.ClientMessage)
+void ConnectionReply::CopyFrom(const ConnectionReply& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:comm.ConnectionReply)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool ClientMessage::IsInitialized() const {
+PROTOBUF_NOINLINE bool ConnectionReply::IsInitialized() const {
   return true;
 }
 
-void ClientMessage::InternalSwap(ClientMessage* PROTOBUF_RESTRICT other) {
+void ConnectionReply::InternalSwap(ConnectionReply* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ClientMessage, _impl_.variant_)
-      + sizeof(ClientMessage::_impl_.variant_)
-      - PROTOBUF_FIELD_OFFSET(ClientMessage, _impl_.pos_)>(
-          reinterpret_cast<char*>(&_impl_.pos_),
-          reinterpret_cast<char*>(&other->_impl_.pos_));
+        swap(_impl_.id_, other->_impl_.id_);
 }
 
-::google::protobuf::Metadata ClientMessage::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
-class ServerMessage::_Internal {
- public:
-  using HasBits = decltype(std::declval<ServerMessage>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-    8 * PROTOBUF_FIELD_OFFSET(ServerMessage, _impl_._has_bits_);
-};
-
-ServerMessage::ServerMessage(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:comm.ServerMessage)
-}
-inline PROTOBUF_NDEBUG_INLINE ServerMessage::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0} {}
-
-ServerMessage::ServerMessage(
-    ::google::protobuf::Arena* arena,
-    const ServerMessage& from)
-    : ::google::protobuf::Message(arena) {
-  ServerMessage* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.pos_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::comm::Position>(
-                              arena, *from._impl_.pos_)
-                        : nullptr;
-  _impl_.variant_ = from._impl_.variant_;
-
-  // @@protoc_insertion_point(copy_constructor:comm.ServerMessage)
-}
-inline PROTOBUF_NDEBUG_INLINE ServerMessage::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
-
-inline void ServerMessage::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, pos_),
-           0,
-           offsetof(Impl_, variant_) -
-               offsetof(Impl_, pos_) +
-               sizeof(Impl_::variant_));
-}
-ServerMessage::~ServerMessage() {
-  // @@protoc_insertion_point(destructor:comm.ServerMessage)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void ServerMessage::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  delete _impl_.pos_;
-  _impl_.~Impl_();
-}
-
-const ::google::protobuf::MessageLite::ClassData*
-ServerMessage::GetClassData() const {
-  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
-      ClassDataFull _data_ = {
-          {
-              nullptr,  // OnDemandRegisterArenaDtor
-              PROTOBUF_FIELD_OFFSET(ServerMessage, _impl_._cached_size_),
-              false,
-          },
-          &ServerMessage::MergeImpl,
-          &ServerMessage::kDescriptorMethods,
-          &descriptor_table_comm_2eproto,
-          nullptr,  // tracker
-      };
-  return _data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 1, 0, 2> ServerMessage::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(ServerMessage, _impl_._has_bits_),
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_ServerMessage_default_instance_._instance,
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::comm::ServerMessage>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // optional .comm.Position pos = 2;
-    {::_pbi::TcParser::FastMtS1,
-     {18, 0, 0, PROTOBUF_FIELD_OFFSET(ServerMessage, _impl_.pos_)}},
-    // .comm.ServerMessage.MessageVariant variant = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ServerMessage, _impl_.variant_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ServerMessage, _impl_.variant_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // .comm.ServerMessage.MessageVariant variant = 1;
-    {PROTOBUF_FIELD_OFFSET(ServerMessage, _impl_.variant_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // optional .comm.Position pos = 2;
-    {PROTOBUF_FIELD_OFFSET(ServerMessage, _impl_.pos_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::comm::Position>()},
-  }}, {{
-  }},
-};
-
-PROTOBUF_NOINLINE void ServerMessage::Clear() {
-// @@protoc_insertion_point(message_clear_start:comm.ServerMessage)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.pos_ != nullptr);
-    _impl_.pos_->Clear();
-  }
-  _impl_.variant_ = 0;
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-const char* ServerMessage::_InternalParse(const char* ptr,
-                                        ::_pbi::ParseContext* ctx) {
-  return ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
-}
-
-::uint8_t* ServerMessage::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:comm.ServerMessage)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  // .comm.ServerMessage.MessageVariant variant = 1;
-  if (this->_internal_variant() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-        1, this->_internal_variant(), target);
-  }
-
-  cached_has_bits = _impl_._has_bits_[0];
-  // optional .comm.Position pos = 2;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        2, *_impl_.pos_, _impl_.pos_->GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:comm.ServerMessage)
-  return target;
-}
-
-::size_t ServerMessage::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:comm.ServerMessage)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
-  // optional .comm.Position pos = 2;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.pos_);
-  }
-
-  // .comm.ServerMessage.MessageVariant variant = 1;
-  if (this->_internal_variant() != 0) {
-    total_size += 1 +
-                  ::_pbi::WireFormatLite::EnumSize(this->_internal_variant());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-
-void ServerMessage::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<ServerMessage*>(&to_msg);
-  auto& from = static_cast<const ServerMessage&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:comm.ServerMessage)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.pos_ != nullptr);
-    if (_this->_impl_.pos_ == nullptr) {
-      _this->_impl_.pos_ =
-          ::google::protobuf::Message::CopyConstruct<::comm::Position>(arena, *from._impl_.pos_);
-    } else {
-      _this->_impl_.pos_->MergeFrom(*from._impl_.pos_);
-    }
-  }
-  if (from._internal_variant() != 0) {
-    _this->_impl_.variant_ = from._impl_.variant_;
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void ServerMessage::CopyFrom(const ServerMessage& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:comm.ServerMessage)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-PROTOBUF_NOINLINE bool ServerMessage::IsInitialized() const {
-  return true;
-}
-
-void ServerMessage::InternalSwap(ServerMessage* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ServerMessage, _impl_.variant_)
-      + sizeof(ServerMessage::_impl_.variant_)
-      - PROTOBUF_FIELD_OFFSET(ServerMessage, _impl_.pos_)>(
-          reinterpret_cast<char*>(&_impl_.pos_),
-          reinterpret_cast<char*>(&other->_impl_.pos_));
-}
-
-::google::protobuf::Metadata ServerMessage::GetMetadata() const {
+::google::protobuf::Metadata ConnectionReply::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)
