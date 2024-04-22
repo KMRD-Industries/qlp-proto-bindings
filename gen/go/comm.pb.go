@@ -20,68 +20,110 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type State int32
+type ClientMessage_MessageVariant int32
 
 const (
-	State_STATE_UNSPECIFIED State = 0
-	State_STATE_ALIVE       State = 1
-	State_STATE_DEAD        State = 2
+	ClientMessage_ID_REQUEST   ClientMessage_MessageVariant = 0
+	ClientMessage_STATE_UPDATE ClientMessage_MessageVariant = 1
 )
 
-// Enum value maps for State.
+// Enum value maps for ClientMessage_MessageVariant.
 var (
-	State_name = map[int32]string{
-		0: "STATE_UNSPECIFIED",
-		1: "STATE_ALIVE",
-		2: "STATE_DEAD",
+	ClientMessage_MessageVariant_name = map[int32]string{
+		0: "ID_REQUEST",
+		1: "STATE_UPDATE",
 	}
-	State_value = map[string]int32{
-		"STATE_UNSPECIFIED": 0,
-		"STATE_ALIVE":       1,
-		"STATE_DEAD":        2,
+	ClientMessage_MessageVariant_value = map[string]int32{
+		"ID_REQUEST":   0,
+		"STATE_UPDATE": 1,
 	}
 )
 
-func (x State) Enum() *State {
-	p := new(State)
+func (x ClientMessage_MessageVariant) Enum() *ClientMessage_MessageVariant {
+	p := new(ClientMessage_MessageVariant)
 	*p = x
 	return p
 }
 
-func (x State) String() string {
+func (x ClientMessage_MessageVariant) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (State) Descriptor() protoreflect.EnumDescriptor {
+func (ClientMessage_MessageVariant) Descriptor() protoreflect.EnumDescriptor {
 	return file_comm_proto_enumTypes[0].Descriptor()
 }
 
-func (State) Type() protoreflect.EnumType {
+func (ClientMessage_MessageVariant) Type() protoreflect.EnumType {
 	return &file_comm_proto_enumTypes[0]
 }
 
-func (x State) Number() protoreflect.EnumNumber {
+func (x ClientMessage_MessageVariant) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use State.Descriptor instead.
-func (State) EnumDescriptor() ([]byte, []int) {
-	return file_comm_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use ClientMessage_MessageVariant.Descriptor instead.
+func (ClientMessage_MessageVariant) EnumDescriptor() ([]byte, []int) {
+	return file_comm_proto_rawDescGZIP(), []int{1, 0}
 }
 
-type Data struct {
+type ServerMessage_MessageVariant int32
+
+const (
+	ServerMessage_ID_REPLY     ServerMessage_MessageVariant = 0
+	ServerMessage_STATE_UPDATE ServerMessage_MessageVariant = 1
+)
+
+// Enum value maps for ServerMessage_MessageVariant.
+var (
+	ServerMessage_MessageVariant_name = map[int32]string{
+		0: "ID_REPLY",
+		1: "STATE_UPDATE",
+	}
+	ServerMessage_MessageVariant_value = map[string]int32{
+		"ID_REPLY":     0,
+		"STATE_UPDATE": 1,
+	}
+)
+
+func (x ServerMessage_MessageVariant) Enum() *ServerMessage_MessageVariant {
+	p := new(ServerMessage_MessageVariant)
+	*p = x
+	return p
+}
+
+func (x ServerMessage_MessageVariant) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ServerMessage_MessageVariant) Descriptor() protoreflect.EnumDescriptor {
+	return file_comm_proto_enumTypes[1].Descriptor()
+}
+
+func (ServerMessage_MessageVariant) Type() protoreflect.EnumType {
+	return &file_comm_proto_enumTypes[1]
+}
+
+func (x ServerMessage_MessageVariant) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ServerMessage_MessageVariant.Descriptor instead.
+func (ServerMessage_MessageVariant) EnumDescriptor() ([]byte, []int) {
+	return file_comm_proto_rawDescGZIP(), []int{2, 0}
+}
+
+type Position struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	I       *int32   `protobuf:"varint,1,opt,name=i,proto3,oneof" json:"i,omitempty"`
-	A       *string  `protobuf:"bytes,2,opt,name=a,proto3,oneof" json:"a,omitempty"`
-	State   State    `protobuf:"varint,3,opt,name=state,proto3,enum=comm.State" json:"state,omitempty"`
-	MsgList []string `protobuf:"bytes,4,rep,name=msg_list,json=msgList,proto3" json:"msg_list,omitempty"`
+	EntityId uint32 `protobuf:"varint,1,opt,name=entity_id,json=entityId,proto3" json:"entity_id,omitempty"`
+	X        uint32 `protobuf:"varint,2,opt,name=x,proto3" json:"x,omitempty"`
+	Y        uint32 `protobuf:"varint,3,opt,name=y,proto3" json:"y,omitempty"`
 }
 
-func (x *Data) Reset() {
-	*x = Data{}
+func (x *Position) Reset() {
+	*x = Position{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_comm_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -89,13 +131,13 @@ func (x *Data) Reset() {
 	}
 }
 
-func (x *Data) String() string {
+func (x *Position) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Data) ProtoMessage() {}
+func (*Position) ProtoMessage() {}
 
-func (x *Data) ProtoReflect() protoreflect.Message {
+func (x *Position) ProtoReflect() protoreflect.Message {
 	mi := &file_comm_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -107,35 +149,138 @@ func (x *Data) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Data.ProtoReflect.Descriptor instead.
-func (*Data) Descriptor() ([]byte, []int) {
+// Deprecated: Use Position.ProtoReflect.Descriptor instead.
+func (*Position) Descriptor() ([]byte, []int) {
 	return file_comm_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Data) GetI() int32 {
-	if x != nil && x.I != nil {
-		return *x.I
+func (x *Position) GetEntityId() uint32 {
+	if x != nil {
+		return x.EntityId
 	}
 	return 0
 }
 
-func (x *Data) GetA() string {
-	if x != nil && x.A != nil {
-		return *x.A
+func (x *Position) GetX() uint32 {
+	if x != nil {
+		return x.X
 	}
-	return ""
+	return 0
 }
 
-func (x *Data) GetState() State {
+func (x *Position) GetY() uint32 {
 	if x != nil {
-		return x.State
+		return x.Y
 	}
-	return State_STATE_UNSPECIFIED
+	return 0
 }
 
-func (x *Data) GetMsgList() []string {
+type ClientMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Variant ClientMessage_MessageVariant `protobuf:"varint,1,opt,name=variant,proto3,enum=comm.ClientMessage_MessageVariant" json:"variant,omitempty"`
+	Pos     *Position                    `protobuf:"bytes,2,opt,name=pos,proto3,oneof" json:"pos,omitempty"`
+}
+
+func (x *ClientMessage) Reset() {
+	*x = ClientMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_comm_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ClientMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ClientMessage) ProtoMessage() {}
+
+func (x *ClientMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_comm_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ClientMessage.ProtoReflect.Descriptor instead.
+func (*ClientMessage) Descriptor() ([]byte, []int) {
+	return file_comm_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *ClientMessage) GetVariant() ClientMessage_MessageVariant {
 	if x != nil {
-		return x.MsgList
+		return x.Variant
+	}
+	return ClientMessage_ID_REQUEST
+}
+
+func (x *ClientMessage) GetPos() *Position {
+	if x != nil {
+		return x.Pos
+	}
+	return nil
+}
+
+type ServerMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Variant ServerMessage_MessageVariant `protobuf:"varint,1,opt,name=variant,proto3,enum=comm.ServerMessage_MessageVariant" json:"variant,omitempty"`
+	Pos     *Position                    `protobuf:"bytes,2,opt,name=pos,proto3,oneof" json:"pos,omitempty"`
+}
+
+func (x *ServerMessage) Reset() {
+	*x = ServerMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_comm_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ServerMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServerMessage) ProtoMessage() {}
+
+func (x *ServerMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_comm_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServerMessage.ProtoReflect.Descriptor instead.
+func (*ServerMessage) Descriptor() ([]byte, []int) {
+	return file_comm_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ServerMessage) GetVariant() ServerMessage_MessageVariant {
+	if x != nil {
+		return x.Variant
+	}
+	return ServerMessage_ID_REPLY
+}
+
+func (x *ServerMessage) GetPos() *Position {
+	if x != nil {
+		return x.Pos
 	}
 	return nil
 }
@@ -144,22 +289,37 @@ var File_comm_proto protoreflect.FileDescriptor
 
 var file_comm_proto_rawDesc = []byte{
 	0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x6d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x04, 0x63, 0x6f,
-	0x6d, 0x6d, 0x22, 0x76, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x12, 0x11, 0x0a, 0x01, 0x69, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x05, 0x48, 0x00, 0x52, 0x01, 0x69, 0x88, 0x01, 0x01, 0x12, 0x11, 0x0a,
-	0x01, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x48, 0x01, 0x52, 0x01, 0x61, 0x88, 0x01, 0x01,
-	0x12, 0x21, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32,
-	0x0b, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x65, 0x52, 0x05, 0x73, 0x74,
-	0x61, 0x74, 0x65, 0x12, 0x19, 0x0a, 0x08, 0x6d, 0x73, 0x67, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18,
-	0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x73, 0x67, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x04,
-	0x0a, 0x02, 0x5f, 0x69, 0x42, 0x04, 0x0a, 0x02, 0x5f, 0x61, 0x2a, 0x3f, 0x0a, 0x05, 0x53, 0x74,
-	0x61, 0x74, 0x65, 0x12, 0x15, 0x0a, 0x11, 0x53, 0x54, 0x41, 0x54, 0x45, 0x5f, 0x55, 0x4e, 0x53,
-	0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x0f, 0x0a, 0x0b, 0x53, 0x54,
-	0x41, 0x54, 0x45, 0x5f, 0x41, 0x4c, 0x49, 0x56, 0x45, 0x10, 0x01, 0x12, 0x0e, 0x0a, 0x0a, 0x53,
-	0x54, 0x41, 0x54, 0x45, 0x5f, 0x44, 0x45, 0x41, 0x44, 0x10, 0x02, 0x42, 0x37, 0x5a, 0x35, 0x67,
+	0x6d, 0x6d, 0x22, 0x43, 0x0a, 0x08, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1b,
+	0x0a, 0x09, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0d, 0x52, 0x08, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x49, 0x64, 0x12, 0x0c, 0x0a, 0x01, 0x78,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x01, 0x78, 0x12, 0x0c, 0x0a, 0x01, 0x79, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x0d, 0x52, 0x01, 0x79, 0x22, 0xb0, 0x01, 0x0a, 0x0d, 0x43, 0x6c, 0x69, 0x65,
+	0x6e, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x3c, 0x0a, 0x07, 0x76, 0x61, 0x72,
+	0x69, 0x61, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x22, 0x2e, 0x63, 0x6f, 0x6d,
+	0x6d, 0x2e, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e,
+	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x56, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x74, 0x52, 0x07,
+	0x76, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x74, 0x12, 0x25, 0x0a, 0x03, 0x70, 0x6f, 0x73, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x2e, 0x50, 0x6f, 0x73, 0x69,
+	0x74, 0x69, 0x6f, 0x6e, 0x48, 0x00, 0x52, 0x03, 0x70, 0x6f, 0x73, 0x88, 0x01, 0x01, 0x22, 0x32,
+	0x0a, 0x0e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x56, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x74,
+	0x12, 0x0e, 0x0a, 0x0a, 0x49, 0x44, 0x5f, 0x52, 0x45, 0x51, 0x55, 0x45, 0x53, 0x54, 0x10, 0x00,
+	0x12, 0x10, 0x0a, 0x0c, 0x53, 0x54, 0x41, 0x54, 0x45, 0x5f, 0x55, 0x50, 0x44, 0x41, 0x54, 0x45,
+	0x10, 0x01, 0x42, 0x06, 0x0a, 0x04, 0x5f, 0x70, 0x6f, 0x73, 0x22, 0xae, 0x01, 0x0a, 0x0d, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x3c, 0x0a, 0x07,
+	0x76, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x22, 0x2e,
+	0x63, 0x6f, 0x6d, 0x6d, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x56, 0x61, 0x72, 0x69, 0x61, 0x6e,
+	0x74, 0x52, 0x07, 0x76, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x74, 0x12, 0x25, 0x0a, 0x03, 0x70, 0x6f,
+	0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x2e, 0x50,
+	0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x48, 0x00, 0x52, 0x03, 0x70, 0x6f, 0x73, 0x88, 0x01,
+	0x01, 0x22, 0x30, 0x0a, 0x0e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x56, 0x61, 0x72, 0x69,
+	0x61, 0x6e, 0x74, 0x12, 0x0c, 0x0a, 0x08, 0x49, 0x44, 0x5f, 0x52, 0x45, 0x50, 0x4c, 0x59, 0x10,
+	0x00, 0x12, 0x10, 0x0a, 0x0c, 0x53, 0x54, 0x41, 0x54, 0x45, 0x5f, 0x55, 0x50, 0x44, 0x41, 0x54,
+	0x45, 0x10, 0x01, 0x42, 0x06, 0x0a, 0x04, 0x5f, 0x70, 0x6f, 0x73, 0x42, 0x36, 0x5a, 0x34, 0x67,
 	0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6b, 0x6d, 0x72, 0x64, 0x2d, 0x69,
 	0x6e, 0x64, 0x75, 0x73, 0x74, 0x72, 0x69, 0x65, 0x73, 0x2f, 0x71, 0x6c, 0x70, 0x2d, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x2d, 0x62, 0x69, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x73, 0x2f, 0x74, 0x65, 0x73,
-	0x74, 0x2f, 0x67, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x74, 0x6f, 0x2d, 0x62, 0x69, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x73, 0x2f, 0x67, 0x65, 0x6e,
+	0x2f, 0x67, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -174,19 +334,25 @@ func file_comm_proto_rawDescGZIP() []byte {
 	return file_comm_proto_rawDescData
 }
 
-var file_comm_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_comm_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_comm_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_comm_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_comm_proto_goTypes = []interface{}{
-	(State)(0),   // 0: comm.State
-	(*Data)(nil), // 1: comm.Data
+	(ClientMessage_MessageVariant)(0), // 0: comm.ClientMessage.MessageVariant
+	(ServerMessage_MessageVariant)(0), // 1: comm.ServerMessage.MessageVariant
+	(*Position)(nil),                  // 2: comm.Position
+	(*ClientMessage)(nil),             // 3: comm.ClientMessage
+	(*ServerMessage)(nil),             // 4: comm.ServerMessage
 }
 var file_comm_proto_depIdxs = []int32{
-	0, // 0: comm.Data.state:type_name -> comm.State
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0, // 0: comm.ClientMessage.variant:type_name -> comm.ClientMessage.MessageVariant
+	2, // 1: comm.ClientMessage.pos:type_name -> comm.Position
+	1, // 2: comm.ServerMessage.variant:type_name -> comm.ServerMessage.MessageVariant
+	2, // 3: comm.ServerMessage.pos:type_name -> comm.Position
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_comm_proto_init() }
@@ -196,7 +362,31 @@ func file_comm_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_comm_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Data); i {
+			switch v := v.(*Position); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_comm_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ClientMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_comm_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ServerMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -208,14 +398,15 @@ func file_comm_proto_init() {
 			}
 		}
 	}
-	file_comm_proto_msgTypes[0].OneofWrappers = []interface{}{}
+	file_comm_proto_msgTypes[1].OneofWrappers = []interface{}{}
+	file_comm_proto_msgTypes[2].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_comm_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   1,
+			NumEnums:      2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

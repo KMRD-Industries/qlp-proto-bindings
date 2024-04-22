@@ -2,16 +2,28 @@ syntax = "proto3";
 package comm;
 option go_package = "github.com/kmrd-industries/qlp-proto-bindings/gen/go";
 
-enum State {
-    STATE_UNSPECIFIED = 0;
-    STATE_ALIVE = 1;
-    STATE_DEAD = 2;
+message Position {
+    uint32 entity_id = 1;
+    uint32 x = 2;
+    uint32 y = 3;
 }
 
-message Data {
-    optional int32 i = 1;
-    optional string a = 2;
-    State state = 3;
-    repeated string msg_list = 4;
+message ClientMessage {
+    MessageVariant variant = 1;
+    optional Position pos = 2;
+
+    enum MessageVariant {
+        ID_REQUEST = 0;
+        STATE_UPDATE = 1;
+    }
 }
 
+message ServerMessage {
+    MessageVariant variant = 1;
+    optional Position pos = 2;
+
+    enum MessageVariant {
+        ID_REPLY = 0;
+        STATE_UPDATE = 1;
+    }
+}
