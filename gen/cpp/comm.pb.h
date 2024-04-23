@@ -207,24 +207,24 @@ class PositionUpdate final : public ::google::protobuf::Message
   void _internal_set_entity_id(::uint32_t value);
 
   public:
-  // int32 x = 2;
+  // float x = 2;
   void clear_x() ;
-  ::int32_t x() const;
-  void set_x(::int32_t value);
+  float x() const;
+  void set_x(float value);
 
   private:
-  ::int32_t _internal_x() const;
-  void _internal_set_x(::int32_t value);
+  float _internal_x() const;
+  void _internal_set_x(float value);
 
   public:
-  // int32 y = 3;
+  // float y = 3;
   void clear_y() ;
-  ::int32_t y() const;
-  void set_y(::int32_t value);
+  float y() const;
+  void set_y(float value);
 
   private:
-  ::int32_t _internal_y() const;
-  void _internal_set_y(::int32_t value);
+  float _internal_y() const;
+  void _internal_set_y(float value);
 
   public:
   // @@protoc_insertion_point(class_scope:comm.PositionUpdate)
@@ -253,8 +253,8 @@ class PositionUpdate final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from);
     ::uint32_t entity_id_;
-    ::int32_t x_;
-    ::int32_t y_;
+    float x_;
+    float y_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -470,46 +470,46 @@ inline void PositionUpdate::_internal_set_entity_id(::uint32_t value) {
   _impl_.entity_id_ = value;
 }
 
-// int32 x = 2;
+// float x = 2;
 inline void PositionUpdate::clear_x() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.x_ = 0;
 }
-inline ::int32_t PositionUpdate::x() const {
+inline float PositionUpdate::x() const {
   // @@protoc_insertion_point(field_get:comm.PositionUpdate.x)
   return _internal_x();
 }
-inline void PositionUpdate::set_x(::int32_t value) {
+inline void PositionUpdate::set_x(float value) {
   _internal_set_x(value);
   // @@protoc_insertion_point(field_set:comm.PositionUpdate.x)
 }
-inline ::int32_t PositionUpdate::_internal_x() const {
+inline float PositionUpdate::_internal_x() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.x_;
 }
-inline void PositionUpdate::_internal_set_x(::int32_t value) {
+inline void PositionUpdate::_internal_set_x(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.x_ = value;
 }
 
-// int32 y = 3;
+// float y = 3;
 inline void PositionUpdate::clear_y() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.y_ = 0;
 }
-inline ::int32_t PositionUpdate::y() const {
+inline float PositionUpdate::y() const {
   // @@protoc_insertion_point(field_get:comm.PositionUpdate.y)
   return _internal_y();
 }
-inline void PositionUpdate::set_y(::int32_t value) {
+inline void PositionUpdate::set_y(float value) {
   _internal_set_y(value);
   // @@protoc_insertion_point(field_set:comm.PositionUpdate.y)
 }
-inline ::int32_t PositionUpdate::_internal_y() const {
+inline float PositionUpdate::_internal_y() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.y_;
 }
-inline void PositionUpdate::_internal_set_y(::int32_t value) {
+inline void PositionUpdate::_internal_set_y(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.y_ = value;
 }

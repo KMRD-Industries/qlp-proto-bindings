@@ -4,8 +4,8 @@ option go_package = "github.com/kmrd-industries/qlp-proto-bindings/gen/go";
 
 message PositionUpdate {
     uint32 entity_id = 1;
-    int32 x = 2;
-    int32 y = 3;
+    float x = 2;
+    float y = 3;
 }
 
 message ConnectionReply {

@@ -105,7 +105,7 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\ncomm.proto\022\004comm\"9\n\016PositionUpdate\022\021\n\t"
-    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\"\035\n"
+    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\"\035\n"
     "\017ConnectionReply\022\n\n\002id\030\001 \001(\rB6Z4github.c"
     "om/kmrd-industries/qlp-proto-bindings/ge"
     "n/gob\006proto3"
@@ -207,24 +207,24 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> PositionUpdate::_table_ = {
     // uint32 entity_id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PositionUpdate, _impl_.entity_id_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.entity_id_)}},
-    // int32 x = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PositionUpdate, _impl_.x_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.x_)}},
-    // int32 y = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PositionUpdate, _impl_.y_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_)}},
+    // float x = 2;
+    {::_pbi::TcParser::FastF32S1,
+     {21, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.x_)}},
+    // float y = 3;
+    {::_pbi::TcParser::FastF32S1,
+     {29, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_)}},
   }}, {{
     65535, 65535
   }}, {{
     // uint32 entity_id = 1;
     {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.entity_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // int32 x = 2;
+    // float x = 2;
     {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.x_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 y = 3;
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // float y = 3;
     {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
   }},
   // no aux_entries
   {{
@@ -263,18 +263,28 @@ const char* PositionUpdate::_InternalParse(const char* ptr,
         1, this->_internal_entity_id(), target);
   }
 
-  // int32 x = 2;
-  if (this->_internal_x() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<2>(
-            stream, this->_internal_x(), target);
+  // float x = 2;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_x = this->_internal_x();
+  ::uint32_t raw_x;
+  memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
+  if (raw_x != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        2, this->_internal_x(), target);
   }
 
-  // int32 y = 3;
-  if (this->_internal_y() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<3>(
-            stream, this->_internal_y(), target);
+  // float y = 3;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_y = this->_internal_y();
+  ::uint32_t raw_y;
+  memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
+  if (raw_y != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        3, this->_internal_y(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -301,16 +311,24 @@ const char* PositionUpdate::_InternalParse(const char* ptr,
         this->_internal_entity_id());
   }
 
-  // int32 x = 2;
-  if (this->_internal_x() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_x());
+  // float x = 2;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_x = this->_internal_x();
+  ::uint32_t raw_x;
+  memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
+  if (raw_x != 0) {
+    total_size += 5;
   }
 
-  // int32 y = 3;
-  if (this->_internal_y() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_y());
+  // float y = 3;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_y = this->_internal_y();
+  ::uint32_t raw_y;
+  memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
+  if (raw_y != 0) {
+    total_size += 5;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -328,10 +346,20 @@ void PositionUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::
   if (from._internal_entity_id() != 0) {
     _this->_impl_.entity_id_ = from._impl_.entity_id_;
   }
-  if (from._internal_x() != 0) {
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_x = from._internal_x();
+  ::uint32_t raw_x;
+  memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
+  if (raw_x != 0) {
     _this->_impl_.x_ = from._impl_.x_;
   }
-  if (from._internal_y() != 0) {
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_y = from._internal_y();
+  ::uint32_t raw_y;
+  memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
+  if (raw_y != 0) {
     _this->_impl_.y_ = from._impl_.y_;
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
