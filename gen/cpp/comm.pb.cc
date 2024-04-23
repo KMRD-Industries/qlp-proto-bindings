@@ -27,8 +27,8 @@ namespace comm {
 inline constexpr PositionUpdate::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : entity_id_{0u},
-        x_{0u},
-        y_{0u},
+        x_{0},
+        y_{0},
         _cached_size_{0} {}
 
 template <typename>
@@ -105,7 +105,7 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\ncomm.proto\022\004comm\"9\n\016PositionUpdate\022\021\n\t"
-    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001(\r\"\035\n"
+    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\"\035\n"
     "\017ConnectionReply\022\n\n\002id\030\001 \001(\rB6Z4github.c"
     "om/kmrd-industries/qlp-proto-bindings/ge"
     "n/gob\006proto3"
@@ -207,10 +207,10 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> PositionUpdate::_table_ = {
     // uint32 entity_id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PositionUpdate, _impl_.entity_id_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.entity_id_)}},
-    // uint32 x = 2;
+    // int32 x = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PositionUpdate, _impl_.x_), 63>(),
      {16, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.x_)}},
-    // uint32 y = 3;
+    // int32 y = 3;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PositionUpdate, _impl_.y_), 63>(),
      {24, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_)}},
   }}, {{
@@ -219,12 +219,12 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> PositionUpdate::_table_ = {
     // uint32 entity_id = 1;
     {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.entity_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // uint32 x = 2;
+    // int32 x = 2;
     {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.x_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // uint32 y = 3;
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 y = 3;
     {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
   }},
   // no aux_entries
   {{
@@ -263,18 +263,18 @@ const char* PositionUpdate::_InternalParse(const char* ptr,
         1, this->_internal_entity_id(), target);
   }
 
-  // uint32 x = 2;
+  // int32 x = 2;
   if (this->_internal_x() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        2, this->_internal_x(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_x(), target);
   }
 
-  // uint32 y = 3;
+  // int32 y = 3;
   if (this->_internal_y() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        3, this->_internal_y(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_y(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -301,15 +301,15 @@ const char* PositionUpdate::_InternalParse(const char* ptr,
         this->_internal_entity_id());
   }
 
-  // uint32 x = 2;
+  // int32 x = 2;
   if (this->_internal_x() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
         this->_internal_x());
   }
 
-  // uint32 y = 3;
+  // int32 y = 3;
   if (this->_internal_y() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
         this->_internal_y());
   }
 
