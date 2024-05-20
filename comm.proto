@@ -8,6 +8,11 @@ message PositionUpdate {
     float y = 3;
 }
 
-message ConnectionReply {
+enum StateVariant {
+    CONNECTED = 0;
+    DISCONNECTED = 1;
+}
+message StateUpdate {
     uint32 id = 1;
+    StateVariant variant = 2;
 }

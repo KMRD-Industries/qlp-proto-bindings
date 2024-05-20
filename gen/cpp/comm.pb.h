@@ -27,6 +27,7 @@
 #include "google/protobuf/message.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 // @@protoc_insertion_point(includes)
 
@@ -50,12 +51,12 @@ struct TableStruct_comm_2eproto {
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_comm_2eproto;
 namespace comm {
-class ConnectionReply;
-struct ConnectionReplyDefaultTypeInternal;
-extern ConnectionReplyDefaultTypeInternal _ConnectionReply_default_instance_;
 class PositionUpdate;
 struct PositionUpdateDefaultTypeInternal;
 extern PositionUpdateDefaultTypeInternal _PositionUpdate_default_instance_;
+class StateUpdate;
+struct StateUpdateDefaultTypeInternal;
+extern StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
 }  // namespace comm
 namespace google {
 namespace protobuf {
@@ -63,10 +64,225 @@ namespace protobuf {
 }  // namespace google
 
 namespace comm {
+enum StateVariant : int {
+  CONNECTED = 0,
+  DISCONNECTED = 1,
+  StateVariant_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  StateVariant_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool StateVariant_IsValid(int value);
+extern const uint32_t StateVariant_internal_data_[];
+constexpr StateVariant StateVariant_MIN = static_cast<StateVariant>(0);
+constexpr StateVariant StateVariant_MAX = static_cast<StateVariant>(1);
+constexpr int StateVariant_ARRAYSIZE = 1 + 1;
+const ::google::protobuf::EnumDescriptor*
+StateVariant_descriptor();
+template <typename T>
+const std::string& StateVariant_Name(T value) {
+  static_assert(std::is_same<T, StateVariant>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to StateVariant_Name().");
+  return StateVariant_Name(static_cast<StateVariant>(value));
+}
+template <>
+inline const std::string& StateVariant_Name(StateVariant value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<StateVariant_descriptor,
+                                                 0, 1>(
+      static_cast<int>(value));
+}
+inline bool StateVariant_Parse(absl::string_view name, StateVariant* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<StateVariant>(
+      StateVariant_descriptor(), name, value);
+}
 
 // ===================================================================
 
 
+// -------------------------------------------------------------------
+
+class StateUpdate final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:comm.StateUpdate) */ {
+ public:
+  inline StateUpdate() : StateUpdate(nullptr) {}
+  ~StateUpdate() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR StateUpdate(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline StateUpdate(const StateUpdate& from) : StateUpdate(nullptr, from) {}
+  inline StateUpdate(StateUpdate&& from) noexcept
+      : StateUpdate(nullptr, std::move(from)) {}
+  inline StateUpdate& operator=(const StateUpdate& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StateUpdate& operator=(StateUpdate&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StateUpdate& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StateUpdate* internal_default_instance() {
+    return reinterpret_cast<const StateUpdate*>(
+        &_StateUpdate_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 1;
+  friend void swap(StateUpdate& a, StateUpdate& b) { a.Swap(&b); }
+  inline void Swap(StateUpdate* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StateUpdate* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StateUpdate* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<StateUpdate>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const StateUpdate& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const StateUpdate& from) { StateUpdate::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(StateUpdate* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "comm.StateUpdate"; }
+
+ protected:
+  explicit StateUpdate(::google::protobuf::Arena* arena);
+  StateUpdate(::google::protobuf::Arena* arena, const StateUpdate& from);
+  StateUpdate(::google::protobuf::Arena* arena, StateUpdate&& from) noexcept
+      : StateUpdate(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kIdFieldNumber = 1,
+    kVariantFieldNumber = 2,
+  };
+  // uint32 id = 1;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
+
+  public:
+  // .comm.StateVariant variant = 2;
+  void clear_variant() ;
+  ::comm::StateVariant variant() const;
+  void set_variant(::comm::StateVariant value);
+
+  private:
+  ::comm::StateVariant _internal_variant() const;
+  void _internal_set_variant(::comm::StateVariant value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:comm.StateUpdate)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_StateUpdate_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    ::uint32_t id_;
+    int variant_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_comm_2eproto;
+};
 // -------------------------------------------------------------------
 
 class PositionUpdate final : public ::google::protobuf::Message
@@ -261,176 +477,6 @@ class PositionUpdate final : public ::google::protobuf::Message
   union { Impl_ _impl_; };
   friend struct ::TableStruct_comm_2eproto;
 };
-// -------------------------------------------------------------------
-
-class ConnectionReply final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:comm.ConnectionReply) */ {
- public:
-  inline ConnectionReply() : ConnectionReply(nullptr) {}
-  ~ConnectionReply() override;
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR ConnectionReply(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline ConnectionReply(const ConnectionReply& from) : ConnectionReply(nullptr, from) {}
-  inline ConnectionReply(ConnectionReply&& from) noexcept
-      : ConnectionReply(nullptr, std::move(from)) {}
-  inline ConnectionReply& operator=(const ConnectionReply& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ConnectionReply& operator=(ConnectionReply&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ConnectionReply& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ConnectionReply* internal_default_instance() {
-    return reinterpret_cast<const ConnectionReply*>(
-        &_ConnectionReply_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 1;
-  friend void swap(ConnectionReply& a, ConnectionReply& b) { a.Swap(&b); }
-  inline void Swap(ConnectionReply* other) {
-    if (other == this) return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ConnectionReply* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ConnectionReply* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return ::google::protobuf::Message::DefaultConstruct<ConnectionReply>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ConnectionReply& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const ConnectionReply& from) { ConnectionReply::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(ConnectionReply* other);
- private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "comm.ConnectionReply"; }
-
- protected:
-  explicit ConnectionReply(::google::protobuf::Arena* arena);
-  ConnectionReply(::google::protobuf::Arena* arena, const ConnectionReply& from);
-  ConnectionReply(::google::protobuf::Arena* arena, ConnectionReply&& from) noexcept
-      : ConnectionReply(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kIdFieldNumber = 1,
-  };
-  // uint32 id = 1;
-  void clear_id() ;
-  ::uint32_t id() const;
-  void set_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_id() const;
-  void _internal_set_id(::uint32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:comm.ConnectionReply)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      0, 2>
-      _table_;
-
-  static constexpr const void* _raw_default_instance_ =
-      &_ConnectionReply_default_instance_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from);
-    ::uint32_t id_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_comm_2eproto;
-};
 
 // ===================================================================
 
@@ -516,28 +562,50 @@ inline void PositionUpdate::_internal_set_y(float value) {
 
 // -------------------------------------------------------------------
 
-// ConnectionReply
+// StateUpdate
 
 // uint32 id = 1;
-inline void ConnectionReply::clear_id() {
+inline void StateUpdate::clear_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.id_ = 0u;
 }
-inline ::uint32_t ConnectionReply::id() const {
-  // @@protoc_insertion_point(field_get:comm.ConnectionReply.id)
+inline ::uint32_t StateUpdate::id() const {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.id)
   return _internal_id();
 }
-inline void ConnectionReply::set_id(::uint32_t value) {
+inline void StateUpdate::set_id(::uint32_t value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:comm.ConnectionReply.id)
+  // @@protoc_insertion_point(field_set:comm.StateUpdate.id)
 }
-inline ::uint32_t ConnectionReply::_internal_id() const {
+inline ::uint32_t StateUpdate::_internal_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.id_;
 }
-inline void ConnectionReply::_internal_set_id(::uint32_t value) {
+inline void StateUpdate::_internal_set_id(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.id_ = value;
+}
+
+// .comm.StateVariant variant = 2;
+inline void StateUpdate::clear_variant() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.variant_ = 0;
+}
+inline ::comm::StateVariant StateUpdate::variant() const {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.variant)
+  return _internal_variant();
+}
+inline void StateUpdate::set_variant(::comm::StateVariant value) {
+  _internal_set_variant(value);
+  // @@protoc_insertion_point(field_set:comm.StateUpdate.variant)
+}
+inline ::comm::StateVariant StateUpdate::_internal_variant() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::comm::StateVariant>(_impl_.variant_);
+}
+inline void StateUpdate::_internal_set_variant(::comm::StateVariant value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.variant_ = value;
 }
 
 #ifdef __GNUC__
@@ -547,6 +615,19 @@ inline void ConnectionReply::_internal_set_id(::uint32_t value) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace comm
 
+
+namespace google {
+namespace protobuf {
+
+template <>
+struct is_proto_enum<::comm::StateVariant> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::comm::StateVariant>() {
+  return ::comm::StateVariant_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 

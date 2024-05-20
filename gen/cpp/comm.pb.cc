@@ -24,6 +24,26 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace comm {
 
+inline constexpr StateUpdate::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : id_{0u},
+        variant_{static_cast< ::comm::StateVariant >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR StateUpdate::StateUpdate(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct StateUpdateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR StateUpdateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~StateUpdateDefaultTypeInternal() {}
+  union {
+    StateUpdate _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
+
 inline constexpr PositionUpdate::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : entity_id_{0u},
@@ -44,28 +64,8 @@ struct PositionUpdateDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PositionUpdateDefaultTypeInternal _PositionUpdate_default_instance_;
-
-inline constexpr ConnectionReply::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : id_{0u},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR ConnectionReply::ConnectionReply(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct ConnectionReplyDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ConnectionReplyDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ConnectionReplyDefaultTypeInternal() {}
-  union {
-    ConnectionReply _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectionReplyDefaultTypeInternal _ConnectionReply_default_instance_;
 }  // namespace comm
-static constexpr const ::_pb::EnumDescriptor**
-    file_level_enum_descriptors_comm_2eproto = nullptr;
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_comm_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_comm_2eproto = nullptr;
 const ::uint32_t
@@ -83,38 +83,41 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.x_),
         PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.y_),
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::comm::ConnectionReply, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::comm::ConnectionReply, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.variant_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::comm::PositionUpdate)},
-        {11, -1, -1, sizeof(::comm::ConnectionReply)},
+        {11, -1, -1, sizeof(::comm::StateUpdate)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::comm::_PositionUpdate_default_instance_._instance,
-    &::comm::_ConnectionReply_default_instance_._instance,
+    &::comm::_StateUpdate_default_instance_._instance,
 };
 const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\ncomm.proto\022\004comm\"9\n\016PositionUpdate\022\021\n\t"
-    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\"\035\n"
-    "\017ConnectionReply\022\n\n\002id\030\001 \001(\rB6Z4github.c"
-    "om/kmrd-industries/qlp-proto-bindings/ge"
-    "n/gob\006proto3"
+    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\">\n"
+    "\013StateUpdate\022\n\n\002id\030\001 \001(\r\022#\n\007variant\030\002 \001("
+    "\0162\022.comm.StateVariant*/\n\014StateVariant\022\r\n"
+    "\tCONNECTED\020\000\022\020\n\014DISCONNECTED\020\001B6Z4github"
+    ".com/kmrd-industries/qlp-proto-bindings/"
+    "gen/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    172,
+    254,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -128,6 +131,15 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto =
     file_level_service_descriptors_comm_2eproto,
 };
 namespace comm {
+const ::google::protobuf::EnumDescriptor* StateVariant_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_comm_2eproto);
+  return file_level_enum_descriptors_comm_2eproto[0];
+}
+PROTOBUF_CONSTINIT const uint32_t StateVariant_internal_data_[] = {
+    131072u, 0u, };
+bool StateVariant_IsValid(int value) {
+  return 0 <= value && value <= 1;
+}
 // ===================================================================
 
 class PositionUpdate::_Internal {
@@ -392,109 +404,122 @@ void PositionUpdate::InternalSwap(PositionUpdate* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
-class ConnectionReply::_Internal {
+class StateUpdate::_Internal {
  public:
 };
 
-ConnectionReply::ConnectionReply(::google::protobuf::Arena* arena)
+StateUpdate::StateUpdate(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:comm.ConnectionReply)
+  // @@protoc_insertion_point(arena_constructor:comm.StateUpdate)
 }
-ConnectionReply::ConnectionReply(
-    ::google::protobuf::Arena* arena, const ConnectionReply& from)
-    : ConnectionReply(arena) {
+StateUpdate::StateUpdate(
+    ::google::protobuf::Arena* arena, const StateUpdate& from)
+    : StateUpdate(arena) {
   MergeFrom(from);
 }
-inline PROTOBUF_NDEBUG_INLINE ConnectionReply::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE StateUpdate::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0} {}
 
-inline void ConnectionReply::SharedCtor(::_pb::Arena* arena) {
+inline void StateUpdate::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.id_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, id_),
+           0,
+           offsetof(Impl_, variant_) -
+               offsetof(Impl_, id_) +
+               sizeof(Impl_::variant_));
 }
-ConnectionReply::~ConnectionReply() {
-  // @@protoc_insertion_point(destructor:comm.ConnectionReply)
+StateUpdate::~StateUpdate() {
+  // @@protoc_insertion_point(destructor:comm.StateUpdate)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void ConnectionReply::SharedDtor() {
+inline void StateUpdate::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.~Impl_();
 }
 
 const ::google::protobuf::MessageLite::ClassData*
-ConnectionReply::GetClassData() const {
+StateUpdate::GetClassData() const {
   PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
       ClassDataFull _data_ = {
           {
               nullptr,  // OnDemandRegisterArenaDtor
-              PROTOBUF_FIELD_OFFSET(ConnectionReply, _impl_._cached_size_),
+              PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_._cached_size_),
               false,
           },
-          &ConnectionReply::MergeImpl,
-          &ConnectionReply::kDescriptorMethods,
+          &StateUpdate::MergeImpl,
+          &StateUpdate::kDescriptorMethods,
           &descriptor_table_comm_2eproto,
           nullptr,  // tracker
       };
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ConnectionReply::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> StateUpdate::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
+    2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_ConnectionReply_default_instance_._instance,
+    &_StateUpdate_default_instance_._instance,
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::comm::ConnectionReply>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::comm::StateUpdate>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
+    // .comm.StateVariant variant = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(StateUpdate, _impl_.variant_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.variant_)}},
     // uint32 id = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ConnectionReply, _impl_.id_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectionReply, _impl_.id_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(StateUpdate, _impl_.id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.id_)}},
   }}, {{
     65535, 65535
   }}, {{
     // uint32 id = 1;
-    {PROTOBUF_FIELD_OFFSET(ConnectionReply, _impl_.id_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // .comm.StateVariant variant = 2;
+    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.variant_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
   }},
   // no aux_entries
   {{
   }},
 };
 
-PROTOBUF_NOINLINE void ConnectionReply::Clear() {
-// @@protoc_insertion_point(message_clear_start:comm.ConnectionReply)
+PROTOBUF_NOINLINE void StateUpdate::Clear() {
+// @@protoc_insertion_point(message_clear_start:comm.StateUpdate)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.id_ = 0u;
+  ::memset(&_impl_.id_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.variant_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.variant_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ConnectionReply::_InternalParse(const char* ptr,
+const char* StateUpdate::_InternalParse(const char* ptr,
                                         ::_pbi::ParseContext* ctx) {
   return ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
 }
 
-::uint8_t* ConnectionReply::_InternalSerialize(
+::uint8_t* StateUpdate::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:comm.ConnectionReply)
+  // @@protoc_insertion_point(serialize_to_array_start:comm.StateUpdate)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -505,37 +530,51 @@ const char* ConnectionReply::_InternalParse(const char* ptr,
         1, this->_internal_id(), target);
   }
 
+  // .comm.StateVariant variant = 2;
+  if (this->_internal_variant() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        2, this->_internal_variant(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:comm.ConnectionReply)
+  // @@protoc_insertion_point(serialize_to_array_end:comm.StateUpdate)
   return target;
 }
 
-::size_t ConnectionReply::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:comm.ConnectionReply)
+::size_t StateUpdate::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:comm.StateUpdate)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
   // uint32 id = 1;
   if (this->_internal_id() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
         this->_internal_id());
   }
 
+  // .comm.StateVariant variant = 2;
+  if (this->_internal_variant() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_variant());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
 
-void ConnectionReply::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<ConnectionReply*>(&to_msg);
-  auto& from = static_cast<const ConnectionReply&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:comm.ConnectionReply)
+void StateUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<StateUpdate*>(&to_msg);
+  auto& from = static_cast<const StateUpdate&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:comm.StateUpdate)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -543,27 +582,35 @@ void ConnectionReply::MergeImpl(::google::protobuf::MessageLite& to_msg, const :
   if (from._internal_id() != 0) {
     _this->_impl_.id_ = from._impl_.id_;
   }
+  if (from._internal_variant() != 0) {
+    _this->_impl_.variant_ = from._impl_.variant_;
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ConnectionReply::CopyFrom(const ConnectionReply& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:comm.ConnectionReply)
+void StateUpdate::CopyFrom(const StateUpdate& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:comm.StateUpdate)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool ConnectionReply::IsInitialized() const {
+PROTOBUF_NOINLINE bool StateUpdate::IsInitialized() const {
   return true;
 }
 
-void ConnectionReply::InternalSwap(ConnectionReply* PROTOBUF_RESTRICT other) {
+void StateUpdate::InternalSwap(StateUpdate* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-        swap(_impl_.id_, other->_impl_.id_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.variant_)
+      + sizeof(StateUpdate::_impl_.variant_)
+      - PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.id_)>(
+          reinterpret_cast<char*>(&_impl_.id_),
+          reinterpret_cast<char*>(&other->_impl_.id_));
 }
 
-::google::protobuf::Metadata ConnectionReply::GetMetadata() const {
+::google::protobuf::Metadata StateUpdate::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)
