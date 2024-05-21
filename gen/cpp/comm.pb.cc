@@ -108,16 +108,16 @@ const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "\n\ncomm.proto\022\004comm\"9\n\016PositionUpdate\022\021\n\t"
     "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\">\n"
     "\013StateUpdate\022\n\n\002id\030\001 \001(\r\022#\n\007variant\030\002 \001("
-    "\0162\022.comm.StateVariant*/\n\014StateVariant\022\r\n"
-    "\tCONNECTED\020\000\022\020\n\014DISCONNECTED\020\001B6Z4github"
-    ".com/kmrd-industries/qlp-proto-bindings/"
-    "gen/gob\006proto3"
+    "\0162\022.comm.StateVariant*9\n\014StateVariant\022\010\n"
+    "\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002"
+    "B6Z4github.com/kmrd-industries/qlp-proto"
+    "-bindings/gen/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    254,
+    264,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -136,9 +136,9 @@ const ::google::protobuf::EnumDescriptor* StateVariant_descriptor() {
   return file_level_enum_descriptors_comm_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t StateVariant_internal_data_[] = {
-    131072u, 0u, };
+    196608u, 0u, };
 bool StateVariant_IsValid(int value) {
-  return 0 <= value && value <= 1;
+  return 0 <= value && value <= 2;
 }
 // ===================================================================
 
