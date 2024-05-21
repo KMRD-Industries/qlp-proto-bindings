@@ -9,9 +9,8 @@ message PositionUpdate {
 }
 
 enum StateVariant {
-    NONE = 0;
-    CONNECTED = 1;
-    DISCONNECTED = 2;
+    CONNECTED = 0;
+    DISCONNECTED = 1;
 }
 message StateUpdate {
     uint32 id = 1;
