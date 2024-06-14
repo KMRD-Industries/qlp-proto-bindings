@@ -20,7 +20,7 @@ FetchContent_Declare(protobuf
     GIT_TAG aa938dd9588cc242584da6dfd545859fb56985b3)
 FetchContent_MakeAvailable(protobuf)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE protobuf::libprotobuf)
+target_link_libraries(${PROJECT_NAME} PUBLIC protobuf::libprotobuf)
 target_include_directories(${PROJECT_NAME} INTERFACE gen/cpp)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
