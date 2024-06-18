@@ -54,6 +54,9 @@ namespace comm {
 class PositionUpdate;
 struct PositionUpdateDefaultTypeInternal;
 extern PositionUpdateDefaultTypeInternal _PositionUpdate_default_instance_;
+class Room;
+struct RoomDefaultTypeInternal;
+extern RoomDefaultTypeInternal _Room_default_instance_;
 class StateUpdate;
 struct StateUpdateDefaultTypeInternal;
 extern StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
@@ -159,7 +162,7 @@ class StateUpdate final : public ::google::protobuf::Message
     return reinterpret_cast<const StateUpdate*>(
         &_StateUpdate_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(StateUpdate& a, StateUpdate& b) { a.Swap(&b); }
   inline void Swap(StateUpdate* other) {
     if (other == this) return;
@@ -286,6 +289,188 @@ class StateUpdate final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class Room final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:comm.Room) */ {
+ public:
+  inline Room() : Room(nullptr) {}
+  ~Room() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Room(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Room(const Room& from) : Room(nullptr, from) {}
+  inline Room(Room&& from) noexcept
+      : Room(nullptr, std::move(from)) {}
+  inline Room& operator=(const Room& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Room& operator=(Room&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Room& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Room* internal_default_instance() {
+    return reinterpret_cast<const Room*>(
+        &_Room_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(Room& a, Room& b) { a.Swap(&b); }
+  inline void Swap(Room* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Room* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Room* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<Room>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Room& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Room& from) { Room::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(Room* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "comm.Room"; }
+
+ protected:
+  explicit Room(::google::protobuf::Arena* arena);
+  Room(::google::protobuf::Arena* arena, const Room& from);
+  Room(::google::protobuf::Arena* arena, Room&& from) noexcept
+      : Room(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kXFieldNumber = 1,
+    kYFieldNumber = 2,
+  };
+  // int32 x = 1;
+  void clear_x() ;
+  ::int32_t x() const;
+  void set_x(::int32_t value);
+
+  private:
+  ::int32_t _internal_x() const;
+  void _internal_set_x(::int32_t value);
+
+  public:
+  // int32 y = 2;
+  void clear_y() ;
+  ::int32_t y() const;
+  void set_y(::int32_t value);
+
+  private:
+  ::int32_t _internal_y() const;
+  void _internal_set_y(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:comm.Room)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_Room_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    ::int32_t x_;
+    ::int32_t y_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_comm_2eproto;
+};
+// -------------------------------------------------------------------
+
 class PositionUpdate final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:comm.PositionUpdate) */ {
  public:
@@ -341,7 +526,7 @@ class PositionUpdate final : public ::google::protobuf::Message
     return reinterpret_cast<const PositionUpdate*>(
         &_PositionUpdate_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 0;
+  static constexpr int kIndexInFileMessages = 1;
   friend void swap(PositionUpdate& a, PositionUpdate& b) { a.Swap(&b); }
   inline void Swap(PositionUpdate* other) {
     if (other == this) return;
@@ -410,10 +595,26 @@ class PositionUpdate final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
+    kRoomFieldNumber = 4,
     kEntityIdFieldNumber = 1,
     kXFieldNumber = 2,
     kYFieldNumber = 3,
   };
+  // .comm.Room room = 4;
+  bool has_room() const;
+  void clear_room() ;
+  const ::comm::Room& room() const;
+  PROTOBUF_NODISCARD ::comm::Room* release_room();
+  ::comm::Room* mutable_room();
+  void set_allocated_room(::comm::Room* value);
+  void unsafe_arena_set_allocated_room(::comm::Room* value);
+  ::comm::Room* unsafe_arena_release_room();
+
+  private:
+  const ::comm::Room& _internal_room() const;
+  ::comm::Room* _internal_mutable_room();
+
+  public:
   // uint32 entity_id = 1;
   void clear_entity_id() ;
   ::uint32_t entity_id() const;
@@ -449,7 +650,7 @@ class PositionUpdate final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
+      2, 4, 1,
       0, 2>
       _table_;
 
@@ -469,10 +670,12 @@ class PositionUpdate final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::comm::Room* room_;
     ::uint32_t entity_id_;
     float x_;
     float y_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -491,6 +694,54 @@ class PositionUpdate final : public ::google::protobuf::Message
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// Room
+
+// int32 x = 1;
+inline void Room::clear_x() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.x_ = 0;
+}
+inline ::int32_t Room::x() const {
+  // @@protoc_insertion_point(field_get:comm.Room.x)
+  return _internal_x();
+}
+inline void Room::set_x(::int32_t value) {
+  _internal_set_x(value);
+  // @@protoc_insertion_point(field_set:comm.Room.x)
+}
+inline ::int32_t Room::_internal_x() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.x_;
+}
+inline void Room::_internal_set_x(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.x_ = value;
+}
+
+// int32 y = 2;
+inline void Room::clear_y() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.y_ = 0;
+}
+inline ::int32_t Room::y() const {
+  // @@protoc_insertion_point(field_get:comm.Room.y)
+  return _internal_y();
+}
+inline void Room::set_y(::int32_t value) {
+  _internal_set_y(value);
+  // @@protoc_insertion_point(field_set:comm.Room.y)
+}
+inline ::int32_t Room::_internal_y() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.y_;
+}
+inline void Room::_internal_set_y(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.y_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // PositionUpdate
@@ -559,6 +810,102 @@ inline float PositionUpdate::_internal_y() const {
 inline void PositionUpdate::_internal_set_y(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.y_ = value;
+}
+
+// .comm.Room room = 4;
+inline bool PositionUpdate::has_room() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.room_ != nullptr);
+  return value;
+}
+inline void PositionUpdate::clear_room() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.room_ != nullptr) _impl_.room_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::comm::Room& PositionUpdate::_internal_room() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::comm::Room* p = _impl_.room_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::Room&>(::comm::_Room_default_instance_);
+}
+inline const ::comm::Room& PositionUpdate::room() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.PositionUpdate.room)
+  return _internal_room();
+}
+inline void PositionUpdate::unsafe_arena_set_allocated_room(::comm::Room* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.room_);
+  }
+  _impl_.room_ = reinterpret_cast<::comm::Room*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.PositionUpdate.room)
+}
+inline ::comm::Room* PositionUpdate::release_room() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::comm::Room* released = _impl_.room_;
+  _impl_.room_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::comm::Room* PositionUpdate::unsafe_arena_release_room() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:comm.PositionUpdate.room)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::comm::Room* temp = _impl_.room_;
+  _impl_.room_ = nullptr;
+  return temp;
+}
+inline ::comm::Room* PositionUpdate::_internal_mutable_room() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.room_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::Room>(GetArena());
+    _impl_.room_ = reinterpret_cast<::comm::Room*>(p);
+  }
+  return _impl_.room_;
+}
+inline ::comm::Room* PositionUpdate::mutable_room() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::comm::Room* _msg = _internal_mutable_room();
+  // @@protoc_insertion_point(field_mutable:comm.PositionUpdate.room)
+  return _msg;
+}
+inline void PositionUpdate::set_allocated_room(::comm::Room* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.room_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.room_ = reinterpret_cast<::comm::Room*>(value);
+  // @@protoc_insertion_point(field_set_allocated:comm.PositionUpdate.room)
 }
 
 // -------------------------------------------------------------------
