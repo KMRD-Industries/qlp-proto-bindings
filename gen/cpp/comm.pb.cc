@@ -24,25 +24,25 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace comm {
 
-inline constexpr StateUpdate::Impl_::Impl_(
+inline constexpr Room::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : id_{0u},
-        variant_{static_cast< ::comm::StateVariant >(0)},
+      : x_{0},
+        y_{0},
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR StateUpdate::StateUpdate(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR Room::Room(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct StateUpdateDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR StateUpdateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~StateUpdateDefaultTypeInternal() {}
+struct RoomDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RoomDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RoomDefaultTypeInternal() {}
   union {
-    StateUpdate _instance;
+    Room _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RoomDefaultTypeInternal _Room_default_instance_;
 
 inline constexpr PositionUpdate::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -64,6 +64,48 @@ struct PositionUpdateDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PositionUpdateDefaultTypeInternal _PositionUpdate_default_instance_;
+
+inline constexpr GameState::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : connected_players_{},
+        _connected_players_cached_byte_size_{0},
+        player_id_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GameState::GameState(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GameStateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GameStateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GameStateDefaultTypeInternal() {}
+  union {
+    GameState _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GameStateDefaultTypeInternal _GameState_default_instance_;
+
+inline constexpr StateUpdate::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        room_{nullptr},
+        id_{0u},
+        variant_{static_cast< ::comm::StateVariant >(0)} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR StateUpdate::StateUpdate(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct StateUpdateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR StateUpdateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~StateUpdateDefaultTypeInternal() {}
+  union {
+    StateUpdate _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
 }  // namespace comm
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_comm_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
@@ -83,6 +125,26 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.x_),
         PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.y_),
         ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::comm::GameState, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::comm::GameState, _impl_.player_id_),
+        PROTOBUF_FIELD_OFFSET(::comm::GameState, _impl_.connected_players_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::comm::Room, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::comm::Room, _impl_.x_),
+        PROTOBUF_FIELD_OFFSET(::comm::Room, _impl_.y_),
+        PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -92,38 +154,49 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.id_),
         PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.variant_),
+        PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.room_),
+        ~0u,
+        ~0u,
+        0,
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::comm::PositionUpdate)},
-        {11, -1, -1, sizeof(::comm::StateUpdate)},
+        {11, -1, -1, sizeof(::comm::GameState)},
+        {21, -1, -1, sizeof(::comm::Room)},
+        {31, 42, -1, sizeof(::comm::StateUpdate)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::comm::_PositionUpdate_default_instance_._instance,
+    &::comm::_GameState_default_instance_._instance,
+    &::comm::_Room_default_instance_._instance,
     &::comm::_StateUpdate_default_instance_._instance,
 };
 const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\ncomm.proto\022\004comm\"9\n\016PositionUpdate\022\021\n\t"
-    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\">\n"
-    "\013StateUpdate\022\n\n\002id\030\001 \001(\r\022#\n\007variant\030\002 \001("
-    "\0162\022.comm.StateVariant*9\n\014StateVariant\022\010\n"
-    "\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002"
-    "B6Z4github.com/kmrd-industries/qlp-proto"
-    "-bindings/gen/gob\006proto3"
+    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\"9\n"
+    "\tGameState\022\021\n\tplayer_id\030\001 \001(\r\022\031\n\021connect"
+    "ed_players\030\002 \003(\r\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y"
+    "\030\002 \001(\005\"X\n\013StateUpdate\022\n\n\002id\030\001 \001(\r\022#\n\007var"
+    "iant\030\002 \001(\0162\022.comm.StateVariant\022\030\n\004room\030\003"
+    " \001(\0132\n.comm.Room*K\n\014StateVariant\022\010\n\004NONE"
+    "\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014R"
+    "OOM_CHANGED\020\003B6Z4github.com/kmrd-industr"
+    "ies/qlp-proto-bindings/gen/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    264,
+    397,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
     nullptr,
     0,
-    2,
+    4,
     schemas,
     file_default_instances,
     TableStruct_comm_2eproto::offsets,
@@ -136,9 +209,9 @@ const ::google::protobuf::EnumDescriptor* StateVariant_descriptor() {
   return file_level_enum_descriptors_comm_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t StateVariant_internal_data_[] = {
-    196608u, 0u, };
+    262144u, 0u, };
 bool StateVariant_IsValid(int value) {
-  return 0 <= value && value <= 2;
+  return 0 <= value && value <= 3;
 }
 // ===================================================================
 
@@ -404,8 +477,447 @@ void PositionUpdate::InternalSwap(PositionUpdate* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class GameState::_Internal {
+ public:
+};
+
+GameState::GameState(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:comm.GameState)
+}
+inline PROTOBUF_NDEBUG_INLINE GameState::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : connected_players_{visibility, arena, from.connected_players_},
+        _connected_players_cached_byte_size_{0},
+        _cached_size_{0} {}
+
+GameState::GameState(
+    ::google::protobuf::Arena* arena,
+    const GameState& from)
+    : ::google::protobuf::Message(arena) {
+  GameState* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.player_id_ = from._impl_.player_id_;
+
+  // @@protoc_insertion_point(copy_constructor:comm.GameState)
+}
+inline PROTOBUF_NDEBUG_INLINE GameState::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : connected_players_{visibility, arena},
+        _connected_players_cached_byte_size_{0},
+        _cached_size_{0} {}
+
+inline void GameState::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.player_id_ = {};
+}
+GameState::~GameState() {
+  // @@protoc_insertion_point(destructor:comm.GameState)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GameState::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+GameState::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              nullptr,  // OnDemandRegisterArenaDtor
+              PROTOBUF_FIELD_OFFSET(GameState, _impl_._cached_size_),
+              false,
+          },
+          &GameState::MergeImpl,
+          &GameState::kDescriptorMethods,
+          &descriptor_table_comm_2eproto,
+          nullptr,  // tracker
+      };
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> GameState::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GameState_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::comm::GameState>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated uint32 connected_players = 2;
+    {::_pbi::TcParser::FastV32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.connected_players_)}},
+    // uint32 player_id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GameState, _impl_.player_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.player_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(GameState, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // repeated uint32 connected_players = 2;
+    {PROTOBUF_FIELD_OFFSET(GameState, _impl_.connected_players_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void GameState::Clear() {
+// @@protoc_insertion_point(message_clear_start:comm.GameState)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.connected_players_.Clear();
+  _impl_.player_id_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* GameState::_InternalParse(const char* ptr,
+                                        ::_pbi::ParseContext* ctx) {
+  return ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+}
+
+::uint8_t* GameState::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:comm.GameState)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 player_id = 1;
+  if (this->_internal_player_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_player_id(), target);
+  }
+
+  // repeated uint32 connected_players = 2;
+  {
+    int byte_size = _impl_._connected_players_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteUInt32Packed(
+          2, _internal_connected_players(), byte_size, target);
+    }
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:comm.GameState)
+  return target;
+}
+
+::size_t GameState::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:comm.GameState)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // repeated uint32 connected_players = 2;
+  {
+    std::size_t data_size = ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_connected_players())
+    ;
+    _impl_._connected_players_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
+  }
+  // uint32 player_id = 1;
+  if (this->_internal_player_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_player_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void GameState::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<GameState*>(&to_msg);
+  auto& from = static_cast<const GameState&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:comm.GameState)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_connected_players()->MergeFrom(from._internal_connected_players());
+  if (from._internal_player_id() != 0) {
+    _this->_impl_.player_id_ = from._impl_.player_id_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GameState::CopyFrom(const GameState& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:comm.GameState)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool GameState::IsInitialized() const {
+  return true;
+}
+
+void GameState::InternalSwap(GameState* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.connected_players_.InternalSwap(&other->_impl_.connected_players_);
+        swap(_impl_.player_id_, other->_impl_.player_id_);
+}
+
+::google::protobuf::Metadata GameState::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Room::_Internal {
+ public:
+};
+
+Room::Room(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:comm.Room)
+}
+Room::Room(
+    ::google::protobuf::Arena* arena, const Room& from)
+    : Room(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE Room::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void Room::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, x_),
+           0,
+           offsetof(Impl_, y_) -
+               offsetof(Impl_, x_) +
+               sizeof(Impl_::y_));
+}
+Room::~Room() {
+  // @@protoc_insertion_point(destructor:comm.Room)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void Room::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+Room::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              nullptr,  // OnDemandRegisterArenaDtor
+              PROTOBUF_FIELD_OFFSET(Room, _impl_._cached_size_),
+              false,
+          },
+          &Room::MergeImpl,
+          &Room::kDescriptorMethods,
+          &descriptor_table_comm_2eproto,
+          nullptr,  // tracker
+      };
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> Room::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_Room_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::comm::Room>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // int32 y = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Room, _impl_.y_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Room, _impl_.y_)}},
+    // int32 x = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Room, _impl_.x_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Room, _impl_.x_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 x = 1;
+    {PROTOBUF_FIELD_OFFSET(Room, _impl_.x_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 y = 2;
+    {PROTOBUF_FIELD_OFFSET(Room, _impl_.y_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void Room::Clear() {
+// @@protoc_insertion_point(message_clear_start:comm.Room)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.x_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.y_) -
+      reinterpret_cast<char*>(&_impl_.x_)) + sizeof(_impl_.y_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* Room::_InternalParse(const char* ptr,
+                                        ::_pbi::ParseContext* ctx) {
+  return ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+}
+
+::uint8_t* Room::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:comm.Room)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int32 x = 1;
+  if (this->_internal_x() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_x(), target);
+  }
+
+  // int32 y = 2;
+  if (this->_internal_y() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_y(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:comm.Room)
+  return target;
+}
+
+::size_t Room::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:comm.Room)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // int32 x = 1;
+  if (this->_internal_x() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_x());
+  }
+
+  // int32 y = 2;
+  if (this->_internal_y() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_y());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void Room::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Room*>(&to_msg);
+  auto& from = static_cast<const Room&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:comm.Room)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_x() != 0) {
+    _this->_impl_.x_ = from._impl_.x_;
+  }
+  if (from._internal_y() != 0) {
+    _this->_impl_.y_ = from._impl_.y_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Room::CopyFrom(const Room& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:comm.Room)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool Room::IsInitialized() const {
+  return true;
+}
+
+void Room::InternalSwap(Room* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Room, _impl_.y_)
+      + sizeof(Room::_impl_.y_)
+      - PROTOBUF_FIELD_OFFSET(Room, _impl_.x_)>(
+          reinterpret_cast<char*>(&_impl_.x_),
+          reinterpret_cast<char*>(&other->_impl_.x_));
+}
+
+::google::protobuf::Metadata Room::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
 class StateUpdate::_Internal {
  public:
+  using HasBits = decltype(std::declval<StateUpdate>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_._has_bits_);
 };
 
 StateUpdate::StateUpdate(::google::protobuf::Arena* arena)
@@ -413,10 +925,34 @@ StateUpdate::StateUpdate(::google::protobuf::Arena* arena)
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:comm.StateUpdate)
 }
+inline PROTOBUF_NDEBUG_INLINE StateUpdate::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
 StateUpdate::StateUpdate(
-    ::google::protobuf::Arena* arena, const StateUpdate& from)
-    : StateUpdate(arena) {
-  MergeFrom(from);
+    ::google::protobuf::Arena* arena,
+    const StateUpdate& from)
+    : ::google::protobuf::Message(arena) {
+  StateUpdate* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.room_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::comm::Room>(
+                              arena, *from._impl_.room_)
+                        : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, id_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, id_),
+           offsetof(Impl_, variant_) -
+               offsetof(Impl_, id_) +
+               sizeof(Impl_::variant_));
+
+  // @@protoc_insertion_point(copy_constructor:comm.StateUpdate)
 }
 inline PROTOBUF_NDEBUG_INLINE StateUpdate::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
@@ -426,10 +962,10 @@ inline PROTOBUF_NDEBUG_INLINE StateUpdate::Impl_::Impl_(
 inline void StateUpdate::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, id_),
+               offsetof(Impl_, room_),
            0,
            offsetof(Impl_, variant_) -
-               offsetof(Impl_, id_) +
+               offsetof(Impl_, room_) +
                sizeof(Impl_::variant_));
 }
 StateUpdate::~StateUpdate() {
@@ -439,6 +975,7 @@ StateUpdate::~StateUpdate() {
 }
 inline void StateUpdate::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.room_;
   _impl_.~Impl_();
 }
 
@@ -459,17 +996,17 @@ StateUpdate::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> StateUpdate::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 1, 0, 2> StateUpdate::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_._has_bits_),
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
     &_StateUpdate_default_instance_._instance,
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -477,24 +1014,31 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> StateUpdate::_table_ = {
     ::_pbi::TcParser::GetTable<::comm::StateUpdate>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .comm.StateVariant variant = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(StateUpdate, _impl_.variant_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.variant_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // uint32 id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(StateUpdate, _impl_.id_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.id_)}},
+    // .comm.StateVariant variant = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(StateUpdate, _impl_.variant_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.variant_)}},
+    // .comm.Room room = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.room_)}},
   }}, {{
     65535, 65535
   }}, {{
     // uint32 id = 1;
-    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.id_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.id_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // .comm.StateVariant variant = 2;
-    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.variant_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.variant_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-  }},
-  // no aux_entries
-  {{
+    // .comm.Room room = 3;
+    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.room_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::comm::Room>()},
+  }}, {{
   }},
 };
 
@@ -505,9 +1049,15 @@ PROTOBUF_NOINLINE void StateUpdate::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.room_ != nullptr);
+    _impl_.room_->Clear();
+  }
   ::memset(&_impl_.id_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.variant_) -
       reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.variant_));
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -537,6 +1087,13 @@ const char* StateUpdate::_InternalParse(const char* ptr,
         2, this->_internal_variant(), target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
+  // .comm.Room room = 3;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        3, *_impl_.room_, _impl_.room_->GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -555,6 +1112,13 @@ const char* StateUpdate::_InternalParse(const char* ptr,
   (void) cached_has_bits;
 
   ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // .comm.Room room = 3;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.room_);
+  }
+
   // uint32 id = 1;
   if (this->_internal_id() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
@@ -574,17 +1138,29 @@ const char* StateUpdate::_InternalParse(const char* ptr,
 void StateUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<StateUpdate*>(&to_msg);
   auto& from = static_cast<const StateUpdate&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:comm.StateUpdate)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.room_ != nullptr);
+    if (_this->_impl_.room_ == nullptr) {
+      _this->_impl_.room_ =
+          ::google::protobuf::Message::CopyConstruct<::comm::Room>(arena, *from._impl_.room_);
+    } else {
+      _this->_impl_.room_->MergeFrom(*from._impl_.room_);
+    }
+  }
   if (from._internal_id() != 0) {
     _this->_impl_.id_ = from._impl_.id_;
   }
   if (from._internal_variant() != 0) {
     _this->_impl_.variant_ = from._impl_.variant_;
   }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -602,12 +1178,13 @@ PROTOBUF_NOINLINE bool StateUpdate::IsInitialized() const {
 void StateUpdate::InternalSwap(StateUpdate* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.variant_)
       + sizeof(StateUpdate::_impl_.variant_)
-      - PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.id_)>(
-          reinterpret_cast<char*>(&_impl_.id_),
-          reinterpret_cast<char*>(&other->_impl_.id_));
+      - PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.room_)>(
+          reinterpret_cast<char*>(&_impl_.room_),
+          reinterpret_cast<char*>(&other->_impl_.room_));
 }
 
 ::google::protobuf::Metadata StateUpdate::GetMetadata() const {
