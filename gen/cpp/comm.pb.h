@@ -611,10 +611,11 @@ class GameState final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kConnectedPlayersFieldNumber = 2,
+    kConnectedPlayersFieldNumber = 3,
+    kSeedFieldNumber = 2,
     kPlayerIdFieldNumber = 1,
   };
-  // repeated uint32 connected_players = 2;
+  // repeated uint32 connected_players = 3;
   int connected_players_size() const;
   private:
   int _internal_connected_players_size() const;
@@ -632,6 +633,16 @@ class GameState final : public ::google::protobuf::Message
   ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_connected_players();
 
   public:
+  // int64 seed = 2;
+  void clear_seed() ;
+  ::int64_t seed() const;
+  void set_seed(::int64_t value);
+
+  private:
+  ::int64_t _internal_seed() const;
+  void _internal_set_seed(::int64_t value);
+
+  public:
   // uint32 player_id = 1;
   void clear_player_id() ;
   ::uint32_t player_id() const;
@@ -647,7 +658,7 @@ class GameState final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
+      2, 3, 0,
       0, 2>
       _table_;
 
@@ -669,6 +680,7 @@ class GameState final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::RepeatedField<::uint32_t> connected_players_;
     mutable ::google::protobuf::internal::CachedSize _connected_players_cached_byte_size_;
+    ::int64_t seed_;
     ::uint32_t player_id_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -985,7 +997,29 @@ inline void GameState::_internal_set_player_id(::uint32_t value) {
   _impl_.player_id_ = value;
 }
 
-// repeated uint32 connected_players = 2;
+// int64 seed = 2;
+inline void GameState::clear_seed() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.seed_ = ::int64_t{0};
+}
+inline ::int64_t GameState::seed() const {
+  // @@protoc_insertion_point(field_get:comm.GameState.seed)
+  return _internal_seed();
+}
+inline void GameState::set_seed(::int64_t value) {
+  _internal_set_seed(value);
+  // @@protoc_insertion_point(field_set:comm.GameState.seed)
+}
+inline ::int64_t GameState::_internal_seed() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.seed_;
+}
+inline void GameState::_internal_set_seed(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.seed_ = value;
+}
+
+// repeated uint32 connected_players = 3;
 inline int GameState::_internal_connected_players_size() const {
   return _internal_connected_players().size();
 }

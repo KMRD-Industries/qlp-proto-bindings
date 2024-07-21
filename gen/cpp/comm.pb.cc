@@ -69,6 +69,7 @@ inline constexpr GameState::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : connected_players_{},
         _connected_players_cached_byte_size_{0},
+        seed_{::int64_t{0}},
         player_id_{0u},
         _cached_size_{0} {}
 
@@ -133,6 +134,7 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::comm::GameState, _impl_.player_id_),
+        PROTOBUF_FIELD_OFFSET(::comm::GameState, _impl_.seed_),
         PROTOBUF_FIELD_OFFSET(::comm::GameState, _impl_.connected_players_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::comm::Room, _internal_metadata_),
@@ -164,8 +166,8 @@ static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::comm::PositionUpdate)},
         {11, -1, -1, sizeof(::comm::GameState)},
-        {21, -1, -1, sizeof(::comm::Room)},
-        {31, 42, -1, sizeof(::comm::StateUpdate)},
+        {22, -1, -1, sizeof(::comm::Room)},
+        {32, 43, -1, sizeof(::comm::StateUpdate)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::comm::_PositionUpdate_default_instance_._instance,
@@ -176,21 +178,22 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\ncomm.proto\022\004comm\"9\n\016PositionUpdate\022\021\n\t"
-    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\"9\n"
-    "\tGameState\022\021\n\tplayer_id\030\001 \001(\r\022\031\n\021connect"
-    "ed_players\030\002 \003(\r\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y"
-    "\030\002 \001(\005\"X\n\013StateUpdate\022\n\n\002id\030\001 \001(\r\022#\n\007var"
-    "iant\030\002 \001(\0162\022.comm.StateVariant\022\030\n\004room\030\003"
-    " \001(\0132\n.comm.Room*K\n\014StateVariant\022\010\n\004NONE"
-    "\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014R"
-    "OOM_CHANGED\020\003B6Z4github.com/kmrd-industr"
-    "ies/qlp-proto-bindings/gen/gob\006proto3"
+    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\"G\n"
+    "\tGameState\022\021\n\tplayer_id\030\001 \001(\r\022\014\n\004seed\030\002 "
+    "\001(\003\022\031\n\021connected_players\030\003 \003(\r\"\034\n\004Room\022\t"
+    "\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"X\n\013StateUpdate\022\n\n\002i"
+    "d\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022.comm.StateVar"
+    "iant\022\030\n\004room\030\003 \001(\0132\n.comm.Room*K\n\014StateV"
+    "ariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCO"
+    "NNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003B6Z4github.co"
+    "m/kmrd-industries/qlp-proto-bindings/gen"
+    "/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    397,
+    411,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -502,7 +505,13 @@ GameState::GameState(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  _impl_.player_id_ = from._impl_.player_id_;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, seed_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, seed_),
+           offsetof(Impl_, player_id_) -
+               offsetof(Impl_, seed_) +
+               sizeof(Impl_::player_id_));
 
   // @@protoc_insertion_point(copy_constructor:comm.GameState)
 }
@@ -515,7 +524,12 @@ inline PROTOBUF_NDEBUG_INLINE GameState::Impl_::Impl_(
 
 inline void GameState::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.player_id_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, seed_),
+           0,
+           offsetof(Impl_, player_id_) -
+               offsetof(Impl_, seed_) +
+               sizeof(Impl_::player_id_));
 }
 GameState::~GameState() {
   // @@protoc_insertion_point(destructor:comm.GameState)
@@ -544,15 +558,15 @@ GameState::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> GameState::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> GameState::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_GameState_default_instance_._instance,
@@ -562,19 +576,26 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> GameState::_table_ = {
     ::_pbi::TcParser::GetTable<::comm::GameState>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // repeated uint32 connected_players = 2;
-    {::_pbi::TcParser::FastV32P1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.connected_players_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // uint32 player_id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GameState, _impl_.player_id_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.player_id_)}},
+    // int64 seed = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(GameState, _impl_.seed_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.seed_)}},
+    // repeated uint32 connected_players = 3;
+    {::_pbi::TcParser::FastV32P1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.connected_players_)}},
   }}, {{
     65535, 65535
   }}, {{
     // uint32 player_id = 1;
     {PROTOBUF_FIELD_OFFSET(GameState, _impl_.player_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // repeated uint32 connected_players = 2;
+    // int64 seed = 2;
+    {PROTOBUF_FIELD_OFFSET(GameState, _impl_.seed_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
+    // repeated uint32 connected_players = 3;
     {PROTOBUF_FIELD_OFFSET(GameState, _impl_.connected_players_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
   }},
@@ -591,7 +612,9 @@ PROTOBUF_NOINLINE void GameState::Clear() {
   (void) cached_has_bits;
 
   _impl_.connected_players_.Clear();
-  _impl_.player_id_ = 0u;
+  ::memset(&_impl_.seed_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.player_id_) -
+      reinterpret_cast<char*>(&_impl_.seed_)) + sizeof(_impl_.player_id_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -614,12 +637,19 @@ const char* GameState::_InternalParse(const char* ptr,
         1, this->_internal_player_id(), target);
   }
 
-  // repeated uint32 connected_players = 2;
+  // int64 seed = 2;
+  if (this->_internal_seed() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<2>(
+            stream, this->_internal_seed(), target);
+  }
+
+  // repeated uint32 connected_players = 3;
   {
     int byte_size = _impl_._connected_players_cached_byte_size_.Get();
     if (byte_size > 0) {
       target = stream->WriteUInt32Packed(
-          2, _internal_connected_players(), byte_size, target);
+          3, _internal_connected_players(), byte_size, target);
     }
   }
 
@@ -641,7 +671,7 @@ const char* GameState::_InternalParse(const char* ptr,
   (void) cached_has_bits;
 
   ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
-  // repeated uint32 connected_players = 2;
+  // repeated uint32 connected_players = 3;
   {
     std::size_t data_size = ::_pbi::WireFormatLite::UInt32Size(
         this->_internal_connected_players())
@@ -654,6 +684,12 @@ const char* GameState::_InternalParse(const char* ptr,
     ;
     total_size += tag_size + data_size;
   }
+  // int64 seed = 2;
+  if (this->_internal_seed() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+        this->_internal_seed());
+  }
+
   // uint32 player_id = 1;
   if (this->_internal_player_id() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
@@ -673,6 +709,9 @@ void GameState::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::googl
   (void) cached_has_bits;
 
   _this->_internal_mutable_connected_players()->MergeFrom(from._internal_connected_players());
+  if (from._internal_seed() != 0) {
+    _this->_impl_.seed_ = from._impl_.seed_;
+  }
   if (from._internal_player_id() != 0) {
     _this->_impl_.player_id_ = from._impl_.player_id_;
   }
@@ -694,7 +733,12 @@ void GameState::InternalSwap(GameState* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.connected_players_.InternalSwap(&other->_impl_.connected_players_);
-        swap(_impl_.player_id_, other->_impl_.player_id_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GameState, _impl_.player_id_)
+      + sizeof(GameState::_impl_.player_id_)
+      - PROTOBUF_FIELD_OFFSET(GameState, _impl_.seed_)>(
+          reinterpret_cast<char*>(&_impl_.seed_),
+          reinterpret_cast<char*>(&other->_impl_.seed_));
 }
 
 ::google::protobuf::Metadata GameState::GetMetadata() const {
