@@ -12,7 +12,8 @@ message PositionUpdate {
 // sent via TCP
 message GameState {
     uint32 player_id = 1;
-    repeated uint32 connected_players = 2;
+    int64 seed = 2;
+    repeated uint32 connected_players = 3;
 }
 
 message Room {
