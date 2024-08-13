@@ -2,6 +2,16 @@ syntax = "proto3";
 package comm;
 option go_package = "github.com/kmrd-industries/qlp-proto-bindings/gen/go";
 
+enum MessageType {
+    MAP_UPDATE = 0;
+    POSITION_UPDATE = 1;
+}
+
+message WrapperMessage {
+    MessageType type = 1;
+    bytes payload = 2;
+}
+
 message PositionUpdate {
     uint32 entity_id = 1;
     float x = 2;
