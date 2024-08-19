@@ -44,27 +44,6 @@ struct RoomDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RoomDefaultTypeInternal _Room_default_instance_;
 
-inline constexpr PositionUpdate::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : entity_id_{0u},
-        x_{0},
-        y_{0},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR PositionUpdate::PositionUpdate(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct PositionUpdateDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PositionUpdateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PositionUpdateDefaultTypeInternal() {}
-  union {
-    PositionUpdate _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PositionUpdateDefaultTypeInternal _PositionUpdate_default_instance_;
-
 inline constexpr GameState::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : connected_players_{},
@@ -107,6 +86,28 @@ struct StateUpdateDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
+
+inline constexpr PositionUpdate::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        curr_room_{nullptr},
+        entity_id_{0u},
+        x_{0},
+        y_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PositionUpdate::PositionUpdate(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PositionUpdateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PositionUpdateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PositionUpdateDefaultTypeInternal() {}
+  union {
+    PositionUpdate _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PositionUpdateDefaultTypeInternal _PositionUpdate_default_instance_;
 }  // namespace comm
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_comm_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
@@ -114,7 +115,7 @@ static constexpr const ::_pb::ServiceDescriptor**
 const ::uint32_t
     TableStruct_comm_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
-        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -125,6 +126,11 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.entity_id_),
         PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.x_),
         PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.y_),
+        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.curr_room_),
+        ~0u,
+        ~0u,
+        ~0u,
+        0,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::comm::GameState, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -164,10 +170,10 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::comm::PositionUpdate)},
-        {11, -1, -1, sizeof(::comm::GameState)},
-        {22, -1, -1, sizeof(::comm::Room)},
-        {32, 43, -1, sizeof(::comm::StateUpdate)},
+        {0, 12, -1, sizeof(::comm::PositionUpdate)},
+        {16, -1, -1, sizeof(::comm::GameState)},
+        {27, -1, -1, sizeof(::comm::Room)},
+        {37, 48, -1, sizeof(::comm::StateUpdate)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::comm::_PositionUpdate_default_instance_._instance,
@@ -177,23 +183,24 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\ncomm.proto\022\004comm\"9\n\016PositionUpdate\022\021\n\t"
-    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\"G\n"
-    "\tGameState\022\021\n\tplayer_id\030\001 \001(\r\022\014\n\004seed\030\002 "
-    "\001(\003\022\031\n\021connected_players\030\003 \003(\r\"\034\n\004Room\022\t"
-    "\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"X\n\013StateUpdate\022\n\n\002i"
-    "d\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022.comm.StateVar"
-    "iant\022\030\n\004room\030\003 \001(\0132\n.comm.Room*K\n\014StateV"
-    "ariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCO"
-    "NNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003B6Z4github.co"
-    "m/kmrd-industries/qlp-proto-bindings/gen"
-    "/gob\006proto3"
+    "\n\ncomm.proto\022\004comm\"X\n\016PositionUpdate\022\021\n\t"
+    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\022\035\n"
+    "\tcurr_room\030\004 \001(\0132\n.comm.Room\"G\n\tGameStat"
+    "e\022\021\n\tplayer_id\030\001 \001(\r\022\014\n\004seed\030\002 \001(\003\022\031\n\021co"
+    "nnected_players\030\003 \003(\r\"\034\n\004Room\022\t\n\001x\030\001 \001(\005"
+    "\022\t\n\001y\030\002 \001(\005\"X\n\013StateUpdate\022\n\n\002id\030\001 \001(\r\022#"
+    "\n\007variant\030\002 \001(\0162\022.comm.StateVariant\022\030\n\004r"
+    "oom\030\003 \001(\0132\n.comm.Room*K\n\014StateVariant\022\010\n"
+    "\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002"
+    "\022\020\n\014ROOM_CHANGED\020\003B6Z4github.com/kmrd-in"
+    "dustries/qlp-proto-bindings/gen/gob\006prot"
+    "o3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    411,
+    442,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -220,6 +227,9 @@ bool StateVariant_IsValid(int value) {
 
 class PositionUpdate::_Internal {
  public:
+  using HasBits = decltype(std::declval<PositionUpdate>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_._has_bits_);
 };
 
 PositionUpdate::PositionUpdate(::google::protobuf::Arena* arena)
@@ -227,10 +237,34 @@ PositionUpdate::PositionUpdate(::google::protobuf::Arena* arena)
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:comm.PositionUpdate)
 }
+inline PROTOBUF_NDEBUG_INLINE PositionUpdate::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
 PositionUpdate::PositionUpdate(
-    ::google::protobuf::Arena* arena, const PositionUpdate& from)
-    : PositionUpdate(arena) {
-  MergeFrom(from);
+    ::google::protobuf::Arena* arena,
+    const PositionUpdate& from)
+    : ::google::protobuf::Message(arena) {
+  PositionUpdate* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.curr_room_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::comm::Room>(
+                              arena, *from._impl_.curr_room_)
+                        : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, entity_id_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, entity_id_),
+           offsetof(Impl_, y_) -
+               offsetof(Impl_, entity_id_) +
+               sizeof(Impl_::y_));
+
+  // @@protoc_insertion_point(copy_constructor:comm.PositionUpdate)
 }
 inline PROTOBUF_NDEBUG_INLINE PositionUpdate::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
@@ -240,10 +274,10 @@ inline PROTOBUF_NDEBUG_INLINE PositionUpdate::Impl_::Impl_(
 inline void PositionUpdate::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, entity_id_),
+               offsetof(Impl_, curr_room_),
            0,
            offsetof(Impl_, y_) -
-               offsetof(Impl_, entity_id_) +
+               offsetof(Impl_, curr_room_) +
                sizeof(Impl_::y_));
 }
 PositionUpdate::~PositionUpdate() {
@@ -253,6 +287,7 @@ PositionUpdate::~PositionUpdate() {
 }
 inline void PositionUpdate::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.curr_room_;
   _impl_.~Impl_();
 }
 
@@ -273,17 +308,17 @@ PositionUpdate::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 0, 2> PositionUpdate::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 1, 0, 2> PositionUpdate::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_._has_bits_),
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    4, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
+    4,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
     &_PositionUpdate_default_instance_._instance,
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -291,7 +326,9 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> PositionUpdate::_table_ = {
     ::_pbi::TcParser::GetTable<::comm::PositionUpdate>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // .comm.Room curr_room = 4;
+    {::_pbi::TcParser::FastMtS1,
+     {34, 0, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.curr_room_)}},
     // uint32 entity_id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PositionUpdate, _impl_.entity_id_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.entity_id_)}},
@@ -305,17 +342,20 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> PositionUpdate::_table_ = {
     65535, 65535
   }}, {{
     // uint32 entity_id = 1;
-    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.entity_id_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.entity_id_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // float x = 2;
-    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.x_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.x_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
     // float y = 3;
-    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-  }},
-  // no aux_entries
-  {{
+    // .comm.Room curr_room = 4;
+    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.curr_room_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::comm::Room>()},
+  }}, {{
   }},
 };
 
@@ -326,9 +366,15 @@ PROTOBUF_NOINLINE void PositionUpdate::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.curr_room_ != nullptr);
+    _impl_.curr_room_->Clear();
+  }
   ::memset(&_impl_.entity_id_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.y_) -
       reinterpret_cast<char*>(&_impl_.entity_id_)) + sizeof(_impl_.y_));
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -375,6 +421,13 @@ const char* PositionUpdate::_InternalParse(const char* ptr,
         3, this->_internal_y(), target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
+  // .comm.Room curr_room = 4;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        4, *_impl_.curr_room_, _impl_.curr_room_->GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -393,6 +446,13 @@ const char* PositionUpdate::_InternalParse(const char* ptr,
   (void) cached_has_bits;
 
   ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // .comm.Room curr_room = 4;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.curr_room_);
+  }
+
   // uint32 entity_id = 1;
   if (this->_internal_entity_id() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
@@ -426,11 +486,22 @@ const char* PositionUpdate::_InternalParse(const char* ptr,
 void PositionUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<PositionUpdate*>(&to_msg);
   auto& from = static_cast<const PositionUpdate&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:comm.PositionUpdate)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.curr_room_ != nullptr);
+    if (_this->_impl_.curr_room_ == nullptr) {
+      _this->_impl_.curr_room_ =
+          ::google::protobuf::Message::CopyConstruct<::comm::Room>(arena, *from._impl_.curr_room_);
+    } else {
+      _this->_impl_.curr_room_->MergeFrom(*from._impl_.curr_room_);
+    }
+  }
   if (from._internal_entity_id() != 0) {
     _this->_impl_.entity_id_ = from._impl_.entity_id_;
   }
@@ -450,6 +521,7 @@ void PositionUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::
   if (raw_y != 0) {
     _this->_impl_.y_ = from._impl_.y_;
   }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -467,12 +539,13 @@ PROTOBUF_NOINLINE bool PositionUpdate::IsInitialized() const {
 void PositionUpdate::InternalSwap(PositionUpdate* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_)
       + sizeof(PositionUpdate::_impl_.y_)
-      - PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.entity_id_)>(
-          reinterpret_cast<char*>(&_impl_.entity_id_),
-          reinterpret_cast<char*>(&other->_impl_.entity_id_));
+      - PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.curr_room_)>(
+          reinterpret_cast<char*>(&_impl_.curr_room_),
+          reinterpret_cast<char*>(&other->_impl_.curr_room_));
 }
 
 ::google::protobuf::Metadata PositionUpdate::GetMetadata() const {
