@@ -16,8 +16,8 @@ set(protobuf_INSTALL OFF)
 set(protobuf_BUILD_PROTOC_BINARIES OFF)
 set(protobuf_BUILD_TESTS OFF)
 FetchContent_Declare(protobuf
-    GIT_REPOSITORY https://github.com/protocolbuffers/protobuf
-    GIT_TAG v3.21.0)
+        GIT_REPOSITORY https://github.com/protocolbuffers/protobuf
+        GIT_TAG v3.21.12)
 FetchContent_MakeAvailable(protobuf)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC protobuf::libprotobuf)
