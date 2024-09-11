@@ -80,25 +80,25 @@ struct ObstacleDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ObstacleDefaultTypeInternal _Obstacle_default_instance_;
-PROTOBUF_CONSTEXPR Enemy::Enemy(
+PROTOBUF_CONSTEXPR PlayerPosition::PlayerPosition(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.id_)*/0u
   , /*decltype(_impl_.x_)*/0u
   , /*decltype(_impl_.y_)*/0u
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct EnemyDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EnemyDefaultTypeInternal()
+struct PlayerPositionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayerPositionDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~EnemyDefaultTypeInternal() {}
+  ~PlayerPositionDefaultTypeInternal() {}
   union {
-    Enemy _instance;
+    PlayerPosition _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EnemyDefaultTypeInternal _Enemy_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerPositionDefaultTypeInternal _PlayerPosition_default_instance_;
 PROTOBUF_CONSTEXPR MapPositionsUpdate::MapPositionsUpdate(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.obstacles_)*/{}
-  , /*decltype(_impl_.enemies_)*/{}
+  , /*decltype(_impl_.players_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct MapPositionsUpdateDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MapPositionsUpdateDefaultTypeInternal()
@@ -151,14 +151,14 @@ const uint32_t TableStruct_comm_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pro
   PROTOBUF_FIELD_OFFSET(::comm::Obstacle, _impl_.left_),
   PROTOBUF_FIELD_OFFSET(::comm::Obstacle, _impl_.top_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::comm::Enemy, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::comm::PlayerPosition, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::comm::Enemy, _impl_.id_),
-  PROTOBUF_FIELD_OFFSET(::comm::Enemy, _impl_.x_),
-  PROTOBUF_FIELD_OFFSET(::comm::Enemy, _impl_.y_),
+  PROTOBUF_FIELD_OFFSET(::comm::PlayerPosition, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::comm::PlayerPosition, _impl_.x_),
+  PROTOBUF_FIELD_OFFSET(::comm::PlayerPosition, _impl_.y_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::comm::MapPositionsUpdate, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -166,14 +166,14 @@ const uint32_t TableStruct_comm_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pro
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::comm::MapPositionsUpdate, _impl_.obstacles_),
-  PROTOBUF_FIELD_OFFSET(::comm::MapPositionsUpdate, _impl_.enemies_),
+  PROTOBUF_FIELD_OFFSET(::comm::MapPositionsUpdate, _impl_.players_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::comm::WrapperMessage)},
   { 8, -1, -1, sizeof(::comm::PositionUpdate)},
   { 17, -1, -1, sizeof(::comm::StateUpdate)},
   { 25, -1, -1, sizeof(::comm::Obstacle)},
-  { 35, -1, -1, sizeof(::comm::Enemy)},
+  { 35, -1, -1, sizeof(::comm::PlayerPosition)},
   { 44, -1, -1, sizeof(::comm::MapPositionsUpdate)},
 };
 
@@ -182,7 +182,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::comm::_PositionUpdate_default_instance_._instance,
   &::comm::_StateUpdate_default_instance_._instance,
   &::comm::_Obstacle_default_instance_._instance,
-  &::comm::_Enemy_default_instance_._instance,
+  &::comm::_PlayerPosition_default_instance_._instance,
   &::comm::_MapPositionsUpdate_default_instance_._instance,
 };
 
@@ -194,18 +194,19 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\022\n\n\002id\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022.comm.Sta"
   "teVariant\"D\n\010Obstacle\022\016\n\006height\030\001 \001(\r\022\r\n"
   "\005width\030\002 \001(\r\022\014\n\004left\030\003 \001(\r\022\013\n\003top\030\004 \001(\r\""
-  ")\n\005Enemy\022\n\n\002id\030\001 \001(\r\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001"
-  "(\r\"U\n\022MapPositionsUpdate\022!\n\tobstacles\030\001 "
-  "\003(\0132\016.comm.Obstacle\022\034\n\007enemies\030\002 \003(\0132\013.c"
-  "omm.Enemy*2\n\013MessageType\022\016\n\nMAP_UPDATE\020\000"
-  "\022\023\n\017POSITION_UPDATE\020\001*9\n\014StateVariant\022\010\n"
-  "\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002"
-  "B6Z4github.com/kmrd-industries/qlp-proto"
-  "-bindings/gen/gob\006proto3"
+  "2\n\016PlayerPosition\022\n\n\002id\030\001 \001(\r\022\t\n\001x\030\002 \001(\r"
+  "\022\t\n\001y\030\003 \001(\r\"^\n\022MapPositionsUpdate\022!\n\tobs"
+  "tacles\030\001 \003(\0132\016.comm.Obstacle\022%\n\007players\030"
+  "\002 \003(\0132\024.comm.PlayerPosition*2\n\013MessageTy"
+  "pe\022\016\n\nMAP_UPDATE\020\000\022\023\n\017POSITION_UPDATE\020\001*"
+  "9\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001"
+  "\022\020\n\014DISCONNECTED\020\002B6Z4github.com/kmrd-in"
+  "dustries/qlp-proto-bindings/gen/gob\006prot"
+  "o3"
   ;
 static ::_pbi::once_flag descriptor_table_comm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
-    false, false, 584, descriptor_table_protodef_comm_2eproto,
+    false, false, 602, descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once, nullptr, 0, 6,
     schemas, file_default_instances, TableStruct_comm_2eproto::offsets,
@@ -1211,19 +1212,19 @@ void Obstacle::InternalSwap(Obstacle* other) {
 
 // ===================================================================
 
-class Enemy::_Internal {
+class PlayerPosition::_Internal {
  public:
 };
 
-Enemy::Enemy(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+PlayerPosition::PlayerPosition(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:comm.Enemy)
+  // @@protoc_insertion_point(arena_constructor:comm.PlayerPosition)
 }
-Enemy::Enemy(const Enemy& from)
+PlayerPosition::PlayerPosition(const PlayerPosition& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Enemy* const _this = this; (void)_this;
+  PlayerPosition* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.id_){}
     , decltype(_impl_.x_){}
@@ -1234,10 +1235,10 @@ Enemy::Enemy(const Enemy& from)
   ::memcpy(&_impl_.id_, &from._impl_.id_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.y_) -
     reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.y_));
-  // @@protoc_insertion_point(copy_constructor:comm.Enemy)
+  // @@protoc_insertion_point(copy_constructor:comm.PlayerPosition)
 }
 
-inline void Enemy::SharedCtor(
+inline void PlayerPosition::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
@@ -1249,8 +1250,8 @@ inline void Enemy::SharedCtor(
   };
 }
 
-Enemy::~Enemy() {
-  // @@protoc_insertion_point(destructor:comm.Enemy)
+PlayerPosition::~PlayerPosition() {
+  // @@protoc_insertion_point(destructor:comm.PlayerPosition)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -1258,16 +1259,16 @@ Enemy::~Enemy() {
   SharedDtor();
 }
 
-inline void Enemy::SharedDtor() {
+inline void PlayerPosition::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
-void Enemy::SetCachedSize(int size) const {
+void PlayerPosition::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void Enemy::Clear() {
-// @@protoc_insertion_point(message_clear_start:comm.Enemy)
+void PlayerPosition::Clear() {
+// @@protoc_insertion_point(message_clear_start:comm.PlayerPosition)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1278,7 +1279,7 @@ void Enemy::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* Enemy::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* PlayerPosition::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -1331,9 +1332,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* Enemy::_InternalSerialize(
+uint8_t* PlayerPosition::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:comm.Enemy)
+  // @@protoc_insertion_point(serialize_to_array_start:comm.PlayerPosition)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1359,12 +1360,12 @@ uint8_t* Enemy::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:comm.Enemy)
+  // @@protoc_insertion_point(serialize_to_array_end:comm.PlayerPosition)
   return target;
 }
 
-size_t Enemy::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:comm.Enemy)
+size_t PlayerPosition::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:comm.PlayerPosition)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -1389,17 +1390,17 @@ size_t Enemy::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Enemy::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PlayerPosition::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    Enemy::MergeImpl
+    PlayerPosition::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Enemy::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PlayerPosition::GetClassData() const { return &_class_data_; }
 
 
-void Enemy::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Enemy*>(&to_msg);
-  auto& from = static_cast<const Enemy&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:comm.Enemy)
+void PlayerPosition::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<PlayerPosition*>(&to_msg);
+  auto& from = static_cast<const PlayerPosition&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:comm.PlayerPosition)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1416,29 +1417,29 @@ void Enemy::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void Enemy::CopyFrom(const Enemy& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:comm.Enemy)
+void PlayerPosition::CopyFrom(const PlayerPosition& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:comm.PlayerPosition)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool Enemy::IsInitialized() const {
+bool PlayerPosition::IsInitialized() const {
   return true;
 }
 
-void Enemy::InternalSwap(Enemy* other) {
+void PlayerPosition::InternalSwap(PlayerPosition* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Enemy, _impl_.y_)
-      + sizeof(Enemy::_impl_.y_)
-      - PROTOBUF_FIELD_OFFSET(Enemy, _impl_.id_)>(
+      PROTOBUF_FIELD_OFFSET(PlayerPosition, _impl_.y_)
+      + sizeof(PlayerPosition::_impl_.y_)
+      - PROTOBUF_FIELD_OFFSET(PlayerPosition, _impl_.id_)>(
           reinterpret_cast<char*>(&_impl_.id_),
           reinterpret_cast<char*>(&other->_impl_.id_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata Enemy::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata PlayerPosition::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_comm_2eproto_getter, &descriptor_table_comm_2eproto_once,
       file_level_metadata_comm_2eproto[4]);
@@ -1461,7 +1462,7 @@ MapPositionsUpdate::MapPositionsUpdate(const MapPositionsUpdate& from)
   MapPositionsUpdate* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.obstacles_){from._impl_.obstacles_}
-    , decltype(_impl_.enemies_){from._impl_.enemies_}
+    , decltype(_impl_.players_){from._impl_.players_}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -1474,7 +1475,7 @@ inline void MapPositionsUpdate::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.obstacles_){arena}
-    , decltype(_impl_.enemies_){arena}
+    , decltype(_impl_.players_){arena}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1491,7 +1492,7 @@ MapPositionsUpdate::~MapPositionsUpdate() {
 inline void MapPositionsUpdate::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.obstacles_.~RepeatedPtrField();
-  _impl_.enemies_.~RepeatedPtrField();
+  _impl_.players_.~RepeatedPtrField();
 }
 
 void MapPositionsUpdate::SetCachedSize(int size) const {
@@ -1505,7 +1506,7 @@ void MapPositionsUpdate::Clear() {
   (void) cached_has_bits;
 
   _impl_.obstacles_.Clear();
-  _impl_.enemies_.Clear();
+  _impl_.players_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1528,13 +1529,13 @@ const char* MapPositionsUpdate::_InternalParse(const char* ptr, ::_pbi::ParseCon
         } else
           goto handle_unusual;
         continue;
-      // repeated .comm.Enemy enemies = 2;
+      // repeated .comm.PlayerPosition players = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_enemies(), ptr);
+            ptr = ctx->ParseMessage(_internal_add_players(), ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
@@ -1578,10 +1579,10 @@ uint8_t* MapPositionsUpdate::_InternalSerialize(
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
-  // repeated .comm.Enemy enemies = 2;
+  // repeated .comm.PlayerPosition players = 2;
   for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_enemies_size()); i < n; i++) {
-    const auto& repfield = this->_internal_enemies(i);
+      n = static_cast<unsigned>(this->_internal_players_size()); i < n; i++) {
+    const auto& repfield = this->_internal_players(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
         InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
@@ -1609,9 +1610,9 @@ size_t MapPositionsUpdate::ByteSizeLong() const {
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  // repeated .comm.Enemy enemies = 2;
-  total_size += 1UL * this->_internal_enemies_size();
-  for (const auto& msg : this->_impl_.enemies_) {
+  // repeated .comm.PlayerPosition players = 2;
+  total_size += 1UL * this->_internal_players_size();
+  for (const auto& msg : this->_impl_.players_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -1635,7 +1636,7 @@ void MapPositionsUpdate::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, con
   (void) cached_has_bits;
 
   _this->_impl_.obstacles_.MergeFrom(from._impl_.obstacles_);
-  _this->_impl_.enemies_.MergeFrom(from._impl_.enemies_);
+  _this->_impl_.players_.MergeFrom(from._impl_.players_);
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1654,7 +1655,7 @@ void MapPositionsUpdate::InternalSwap(MapPositionsUpdate* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.obstacles_.InternalSwap(&other->_impl_.obstacles_);
-  _impl_.enemies_.InternalSwap(&other->_impl_.enemies_);
+  _impl_.players_.InternalSwap(&other->_impl_.players_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata MapPositionsUpdate::GetMetadata() const {
@@ -1682,9 +1683,9 @@ template<> PROTOBUF_NOINLINE ::comm::Obstacle*
 Arena::CreateMaybeMessage< ::comm::Obstacle >(Arena* arena) {
   return Arena::CreateMessageInternal< ::comm::Obstacle >(arena);
 }
-template<> PROTOBUF_NOINLINE ::comm::Enemy*
-Arena::CreateMaybeMessage< ::comm::Enemy >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::comm::Enemy >(arena);
+template<> PROTOBUF_NOINLINE ::comm::PlayerPosition*
+Arena::CreateMaybeMessage< ::comm::PlayerPosition >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::comm::PlayerPosition >(arena);
 }
 template<> PROTOBUF_NOINLINE ::comm::MapPositionsUpdate*
 Arena::CreateMaybeMessage< ::comm::MapPositionsUpdate >(Arena* arena) {

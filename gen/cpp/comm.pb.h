@@ -46,15 +46,15 @@ struct TableStruct_comm_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_comm_2eproto;
 namespace comm {
-class Enemy;
-struct EnemyDefaultTypeInternal;
-extern EnemyDefaultTypeInternal _Enemy_default_instance_;
 class MapPositionsUpdate;
 struct MapPositionsUpdateDefaultTypeInternal;
 extern MapPositionsUpdateDefaultTypeInternal _MapPositionsUpdate_default_instance_;
 class Obstacle;
 struct ObstacleDefaultTypeInternal;
 extern ObstacleDefaultTypeInternal _Obstacle_default_instance_;
+class PlayerPosition;
+struct PlayerPositionDefaultTypeInternal;
+extern PlayerPositionDefaultTypeInternal _PlayerPosition_default_instance_;
 class PositionUpdate;
 struct PositionUpdateDefaultTypeInternal;
 extern PositionUpdateDefaultTypeInternal _PositionUpdate_default_instance_;
@@ -66,9 +66,9 @@ struct WrapperMessageDefaultTypeInternal;
 extern WrapperMessageDefaultTypeInternal _WrapperMessage_default_instance_;
 }  // namespace comm
 PROTOBUF_NAMESPACE_OPEN
-template<> ::comm::Enemy* Arena::CreateMaybeMessage<::comm::Enemy>(Arena*);
 template<> ::comm::MapPositionsUpdate* Arena::CreateMaybeMessage<::comm::MapPositionsUpdate>(Arena*);
 template<> ::comm::Obstacle* Arena::CreateMaybeMessage<::comm::Obstacle>(Arena*);
+template<> ::comm::PlayerPosition* Arena::CreateMaybeMessage<::comm::PlayerPosition>(Arena*);
 template<> ::comm::PositionUpdate* Arena::CreateMaybeMessage<::comm::PositionUpdate>(Arena*);
 template<> ::comm::StateUpdate* Arena::CreateMaybeMessage<::comm::StateUpdate>(Arena*);
 template<> ::comm::WrapperMessage* Arena::CreateMaybeMessage<::comm::WrapperMessage>(Arena*);
@@ -802,24 +802,24 @@ class Obstacle final :
 };
 // -------------------------------------------------------------------
 
-class Enemy final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.Enemy) */ {
+class PlayerPosition final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.PlayerPosition) */ {
  public:
-  inline Enemy() : Enemy(nullptr) {}
-  ~Enemy() override;
-  explicit PROTOBUF_CONSTEXPR Enemy(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline PlayerPosition() : PlayerPosition(nullptr) {}
+  ~PlayerPosition() override;
+  explicit PROTOBUF_CONSTEXPR PlayerPosition(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  Enemy(const Enemy& from);
-  Enemy(Enemy&& from) noexcept
-    : Enemy() {
+  PlayerPosition(const PlayerPosition& from);
+  PlayerPosition(PlayerPosition&& from) noexcept
+    : PlayerPosition() {
     *this = ::std::move(from);
   }
 
-  inline Enemy& operator=(const Enemy& from) {
+  inline PlayerPosition& operator=(const PlayerPosition& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Enemy& operator=(Enemy&& from) noexcept {
+  inline PlayerPosition& operator=(PlayerPosition&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -842,20 +842,20 @@ class Enemy final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Enemy& default_instance() {
+  static const PlayerPosition& default_instance() {
     return *internal_default_instance();
   }
-  static inline const Enemy* internal_default_instance() {
-    return reinterpret_cast<const Enemy*>(
-               &_Enemy_default_instance_);
+  static inline const PlayerPosition* internal_default_instance() {
+    return reinterpret_cast<const PlayerPosition*>(
+               &_PlayerPosition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     4;
 
-  friend void swap(Enemy& a, Enemy& b) {
+  friend void swap(PlayerPosition& a, PlayerPosition& b) {
     a.Swap(&b);
   }
-  inline void Swap(Enemy* other) {
+  inline void Swap(PlayerPosition* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -868,7 +868,7 @@ class Enemy final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Enemy* other) {
+  void UnsafeArenaSwap(PlayerPosition* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -876,14 +876,14 @@ class Enemy final :
 
   // implements Message ----------------------------------------------
 
-  Enemy* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<Enemy>(arena);
+  PlayerPosition* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<PlayerPosition>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const Enemy& from);
+  void CopyFrom(const PlayerPosition& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const Enemy& from) {
-    Enemy::MergeImpl(*this, from);
+  void MergeFrom( const PlayerPosition& from) {
+    PlayerPosition::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -901,15 +901,15 @@ class Enemy final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(Enemy* other);
+  void InternalSwap(PlayerPosition* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "comm.Enemy";
+    return "comm.PlayerPosition";
   }
   protected:
-  explicit Enemy(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit PlayerPosition(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -954,7 +954,7 @@ class Enemy final :
   void _internal_set_y(uint32_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:comm.Enemy)
+  // @@protoc_insertion_point(class_scope:comm.PlayerPosition)
  private:
   class _Internal;
 
@@ -1094,7 +1094,7 @@ class MapPositionsUpdate final :
 
   enum : int {
     kObstaclesFieldNumber = 1,
-    kEnemiesFieldNumber = 2,
+    kPlayersFieldNumber = 2,
   };
   // repeated .comm.Obstacle obstacles = 1;
   int obstacles_size() const;
@@ -1114,23 +1114,23 @@ class MapPositionsUpdate final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Obstacle >&
       obstacles() const;
 
-  // repeated .comm.Enemy enemies = 2;
-  int enemies_size() const;
+  // repeated .comm.PlayerPosition players = 2;
+  int players_size() const;
   private:
-  int _internal_enemies_size() const;
+  int _internal_players_size() const;
   public:
-  void clear_enemies();
-  ::comm::Enemy* mutable_enemies(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Enemy >*
-      mutable_enemies();
+  void clear_players();
+  ::comm::PlayerPosition* mutable_players(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PlayerPosition >*
+      mutable_players();
   private:
-  const ::comm::Enemy& _internal_enemies(int index) const;
-  ::comm::Enemy* _internal_add_enemies();
+  const ::comm::PlayerPosition& _internal_players(int index) const;
+  ::comm::PlayerPosition* _internal_add_players();
   public:
-  const ::comm::Enemy& enemies(int index) const;
-  ::comm::Enemy* add_enemies();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Enemy >&
-      enemies() const;
+  const ::comm::PlayerPosition& players(int index) const;
+  ::comm::PlayerPosition* add_players();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PlayerPosition >&
+      players() const;
 
   // @@protoc_insertion_point(class_scope:comm.MapPositionsUpdate)
  private:
@@ -1141,7 +1141,7 @@ class MapPositionsUpdate final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Obstacle > obstacles_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Enemy > enemies_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PlayerPosition > players_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1422,66 +1422,66 @@ inline void Obstacle::set_top(uint32_t value) {
 
 // -------------------------------------------------------------------
 
-// Enemy
+// PlayerPosition
 
 // uint32 id = 1;
-inline void Enemy::clear_id() {
+inline void PlayerPosition::clear_id() {
   _impl_.id_ = 0u;
 }
-inline uint32_t Enemy::_internal_id() const {
+inline uint32_t PlayerPosition::_internal_id() const {
   return _impl_.id_;
 }
-inline uint32_t Enemy::id() const {
-  // @@protoc_insertion_point(field_get:comm.Enemy.id)
+inline uint32_t PlayerPosition::id() const {
+  // @@protoc_insertion_point(field_get:comm.PlayerPosition.id)
   return _internal_id();
 }
-inline void Enemy::_internal_set_id(uint32_t value) {
+inline void PlayerPosition::_internal_set_id(uint32_t value) {
   
   _impl_.id_ = value;
 }
-inline void Enemy::set_id(uint32_t value) {
+inline void PlayerPosition::set_id(uint32_t value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:comm.Enemy.id)
+  // @@protoc_insertion_point(field_set:comm.PlayerPosition.id)
 }
 
 // uint32 x = 2;
-inline void Enemy::clear_x() {
+inline void PlayerPosition::clear_x() {
   _impl_.x_ = 0u;
 }
-inline uint32_t Enemy::_internal_x() const {
+inline uint32_t PlayerPosition::_internal_x() const {
   return _impl_.x_;
 }
-inline uint32_t Enemy::x() const {
-  // @@protoc_insertion_point(field_get:comm.Enemy.x)
+inline uint32_t PlayerPosition::x() const {
+  // @@protoc_insertion_point(field_get:comm.PlayerPosition.x)
   return _internal_x();
 }
-inline void Enemy::_internal_set_x(uint32_t value) {
+inline void PlayerPosition::_internal_set_x(uint32_t value) {
   
   _impl_.x_ = value;
 }
-inline void Enemy::set_x(uint32_t value) {
+inline void PlayerPosition::set_x(uint32_t value) {
   _internal_set_x(value);
-  // @@protoc_insertion_point(field_set:comm.Enemy.x)
+  // @@protoc_insertion_point(field_set:comm.PlayerPosition.x)
 }
 
 // uint32 y = 3;
-inline void Enemy::clear_y() {
+inline void PlayerPosition::clear_y() {
   _impl_.y_ = 0u;
 }
-inline uint32_t Enemy::_internal_y() const {
+inline uint32_t PlayerPosition::_internal_y() const {
   return _impl_.y_;
 }
-inline uint32_t Enemy::y() const {
-  // @@protoc_insertion_point(field_get:comm.Enemy.y)
+inline uint32_t PlayerPosition::y() const {
+  // @@protoc_insertion_point(field_get:comm.PlayerPosition.y)
   return _internal_y();
 }
-inline void Enemy::_internal_set_y(uint32_t value) {
+inline void PlayerPosition::_internal_set_y(uint32_t value) {
   
   _impl_.y_ = value;
 }
-inline void Enemy::set_y(uint32_t value) {
+inline void PlayerPosition::set_y(uint32_t value) {
   _internal_set_y(value);
-  // @@protoc_insertion_point(field_set:comm.Enemy.y)
+  // @@protoc_insertion_point(field_set:comm.PlayerPosition.y)
 }
 
 // -------------------------------------------------------------------
@@ -1528,44 +1528,44 @@ MapPositionsUpdate::obstacles() const {
   return _impl_.obstacles_;
 }
 
-// repeated .comm.Enemy enemies = 2;
-inline int MapPositionsUpdate::_internal_enemies_size() const {
-  return _impl_.enemies_.size();
+// repeated .comm.PlayerPosition players = 2;
+inline int MapPositionsUpdate::_internal_players_size() const {
+  return _impl_.players_.size();
 }
-inline int MapPositionsUpdate::enemies_size() const {
-  return _internal_enemies_size();
+inline int MapPositionsUpdate::players_size() const {
+  return _internal_players_size();
 }
-inline void MapPositionsUpdate::clear_enemies() {
-  _impl_.enemies_.Clear();
+inline void MapPositionsUpdate::clear_players() {
+  _impl_.players_.Clear();
 }
-inline ::comm::Enemy* MapPositionsUpdate::mutable_enemies(int index) {
-  // @@protoc_insertion_point(field_mutable:comm.MapPositionsUpdate.enemies)
-  return _impl_.enemies_.Mutable(index);
+inline ::comm::PlayerPosition* MapPositionsUpdate::mutable_players(int index) {
+  // @@protoc_insertion_point(field_mutable:comm.MapPositionsUpdate.players)
+  return _impl_.players_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Enemy >*
-MapPositionsUpdate::mutable_enemies() {
-  // @@protoc_insertion_point(field_mutable_list:comm.MapPositionsUpdate.enemies)
-  return &_impl_.enemies_;
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PlayerPosition >*
+MapPositionsUpdate::mutable_players() {
+  // @@protoc_insertion_point(field_mutable_list:comm.MapPositionsUpdate.players)
+  return &_impl_.players_;
 }
-inline const ::comm::Enemy& MapPositionsUpdate::_internal_enemies(int index) const {
-  return _impl_.enemies_.Get(index);
+inline const ::comm::PlayerPosition& MapPositionsUpdate::_internal_players(int index) const {
+  return _impl_.players_.Get(index);
 }
-inline const ::comm::Enemy& MapPositionsUpdate::enemies(int index) const {
-  // @@protoc_insertion_point(field_get:comm.MapPositionsUpdate.enemies)
-  return _internal_enemies(index);
+inline const ::comm::PlayerPosition& MapPositionsUpdate::players(int index) const {
+  // @@protoc_insertion_point(field_get:comm.MapPositionsUpdate.players)
+  return _internal_players(index);
 }
-inline ::comm::Enemy* MapPositionsUpdate::_internal_add_enemies() {
-  return _impl_.enemies_.Add();
+inline ::comm::PlayerPosition* MapPositionsUpdate::_internal_add_players() {
+  return _impl_.players_.Add();
 }
-inline ::comm::Enemy* MapPositionsUpdate::add_enemies() {
-  ::comm::Enemy* _add = _internal_add_enemies();
-  // @@protoc_insertion_point(field_add:comm.MapPositionsUpdate.enemies)
+inline ::comm::PlayerPosition* MapPositionsUpdate::add_players() {
+  ::comm::PlayerPosition* _add = _internal_add_players();
+  // @@protoc_insertion_point(field_add:comm.MapPositionsUpdate.players)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Enemy >&
-MapPositionsUpdate::enemies() const {
-  // @@protoc_insertion_point(field_list:comm.MapPositionsUpdate.enemies)
-  return _impl_.enemies_;
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PlayerPosition >&
+MapPositionsUpdate::players() const {
+  // @@protoc_insertion_point(field_list:comm.MapPositionsUpdate.players)
+  return _impl_.players_;
 }
 
 #ifdef __GNUC__

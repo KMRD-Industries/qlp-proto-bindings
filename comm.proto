@@ -35,7 +35,7 @@ message Obstacle {
     uint32 top = 4;
 }
 
-message Enemy {
+message PlayerPosition {
     uint32 id = 1;
     uint32 x = 2;
     uint32 y = 3;
@@ -43,5 +43,5 @@ message Enemy {
 
 message MapPositionsUpdate {
     repeated Obstacle obstacles = 1;
-    repeated Enemy enemies = 2;
+    repeated PlayerPosition players = 2;
 }
