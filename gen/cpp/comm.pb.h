@@ -820,12 +820,13 @@ class PositionUpdate final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kCurrRoomFieldNumber = 4,
+    kCurrRoomFieldNumber = 5,
     kEntityIdFieldNumber = 1,
     kXFieldNumber = 2,
     kYFieldNumber = 3,
+    kRotationFieldNumber = 4,
   };
-  // .comm.Room curr_room = 4;
+  // .comm.Room curr_room = 5;
   bool has_curr_room() const;
   void clear_curr_room() ;
   const ::comm::Room& curr_room() const;
@@ -870,12 +871,22 @@ class PositionUpdate final : public ::google::protobuf::Message
   void _internal_set_y(float value);
 
   public:
+  // float rotation = 4;
+  void clear_rotation() ;
+  float rotation() const;
+  void set_rotation(float value);
+
+  private:
+  float _internal_rotation() const;
+  void _internal_set_rotation(float value);
+
+  public:
   // @@protoc_insertion_point(class_scope:comm.PositionUpdate)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 1,
+      3, 5, 1,
       0, 2>
       _table_;
 
@@ -901,6 +912,7 @@ class PositionUpdate final : public ::google::protobuf::Message
     ::uint32_t entity_id_;
     float x_;
     float y_;
+    float rotation_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -989,7 +1001,29 @@ inline void PositionUpdate::_internal_set_y(float value) {
   _impl_.y_ = value;
 }
 
-// .comm.Room curr_room = 4;
+// float rotation = 4;
+inline void PositionUpdate::clear_rotation() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.rotation_ = 0;
+}
+inline float PositionUpdate::rotation() const {
+  // @@protoc_insertion_point(field_get:comm.PositionUpdate.rotation)
+  return _internal_rotation();
+}
+inline void PositionUpdate::set_rotation(float value) {
+  _internal_set_rotation(value);
+  // @@protoc_insertion_point(field_set:comm.PositionUpdate.rotation)
+}
+inline float PositionUpdate::_internal_rotation() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.rotation_;
+}
+inline void PositionUpdate::_internal_set_rotation(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.rotation_ = value;
+}
+
+// .comm.Room curr_room = 5;
 inline bool PositionUpdate::has_curr_room() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.curr_room_ != nullptr);
