@@ -94,7 +94,7 @@ inline constexpr PositionUpdate::Impl_::Impl_(
         entity_id_{0u},
         x_{0},
         y_{0},
-        rotation_{0} {}
+        direction_{0} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR PositionUpdate::PositionUpdate(::_pbi::ConstantInitialized)
@@ -127,7 +127,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.entity_id_),
         PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.x_),
         PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.y_),
-        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.rotation_),
+        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.direction_),
         PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.curr_room_),
         ~0u,
         ~0u,
@@ -186,24 +186,24 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\ncomm.proto\022\004comm\"j\n\016PositionUpdate\022\021\n\t"
-    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\022\020\n"
-    "\010rotation\030\004 \001(\002\022\035\n\tcurr_room\030\005 \001(\0132\n.com"
-    "m.Room\"G\n\tGameState\022\021\n\tplayer_id\030\001 \001(\r\022\014"
-    "\n\004seed\030\002 \001(\003\022\031\n\021connected_players\030\003 \003(\r\""
-    "\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"X\n\013StateUp"
-    "date\022\n\n\002id\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022.comm"
-    ".StateVariant\022\030\n\004room\030\003 \001(\0132\n.comm.Room*"
-    "K\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001"
-    "\022\020\n\014DISCONNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003B6Z4"
-    "github.com/kmrd-industries/qlp-proto-bin"
-    "dings/gen/gob\006proto3"
+    "\n\ncomm.proto\022\004comm\"k\n\016PositionUpdate\022\021\n\t"
+    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\022\021\n"
+    "\tdirection\030\004 \001(\002\022\035\n\tcurr_room\030\005 \001(\0132\n.co"
+    "mm.Room\"G\n\tGameState\022\021\n\tplayer_id\030\001 \001(\r\022"
+    "\014\n\004seed\030\002 \001(\003\022\031\n\021connected_players\030\003 \003(\r"
+    "\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"X\n\013StateU"
+    "pdate\022\n\n\002id\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022.com"
+    "m.StateVariant\022\030\n\004room\030\003 \001(\0132\n.comm.Room"
+    "*K\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020"
+    "\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003B6Z"
+    "4github.com/kmrd-industries/qlp-proto-bi"
+    "ndings/gen/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    460,
+    461,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -263,9 +263,9 @@ PositionUpdate::PositionUpdate(
                offsetof(Impl_, entity_id_),
            reinterpret_cast<const char *>(&from._impl_) +
                offsetof(Impl_, entity_id_),
-           offsetof(Impl_, rotation_) -
+           offsetof(Impl_, direction_) -
                offsetof(Impl_, entity_id_) +
-               sizeof(Impl_::rotation_));
+               sizeof(Impl_::direction_));
 
   // @@protoc_insertion_point(copy_constructor:comm.PositionUpdate)
 }
@@ -279,9 +279,9 @@ inline void PositionUpdate::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, curr_room_),
            0,
-           offsetof(Impl_, rotation_) -
+           offsetof(Impl_, direction_) -
                offsetof(Impl_, curr_room_) +
-               sizeof(Impl_::rotation_));
+               sizeof(Impl_::direction_));
 }
 PositionUpdate::~PositionUpdate() {
   // @@protoc_insertion_point(destructor:comm.PositionUpdate)
@@ -339,9 +339,9 @@ const ::_pbi::TcParseTable<3, 5, 1, 0, 2> PositionUpdate::_table_ = {
     // float y = 3;
     {::_pbi::TcParser::FastF32S1,
      {29, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_)}},
-    // float rotation = 4;
+    // float direction = 4;
     {::_pbi::TcParser::FastF32S1,
-     {37, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.rotation_)}},
+     {37, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.direction_)}},
     // .comm.Room curr_room = 5;
     {::_pbi::TcParser::FastMtS1,
      {42, 0, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.curr_room_)}},
@@ -359,8 +359,8 @@ const ::_pbi::TcParseTable<3, 5, 1, 0, 2> PositionUpdate::_table_ = {
     // float y = 3;
     {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float rotation = 4;
-    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.rotation_), -1, 0,
+    // float direction = 4;
+    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.direction_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
     // .comm.Room curr_room = 5;
     {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.curr_room_), _Internal::kHasBitsOffset + 0, 0,
@@ -384,8 +384,8 @@ PROTOBUF_NOINLINE void PositionUpdate::Clear() {
     _impl_.curr_room_->Clear();
   }
   ::memset(&_impl_.entity_id_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.rotation_) -
-      reinterpret_cast<char*>(&_impl_.entity_id_)) + sizeof(_impl_.rotation_));
+      reinterpret_cast<char*>(&_impl_.direction_) -
+      reinterpret_cast<char*>(&_impl_.entity_id_)) + sizeof(_impl_.direction_));
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -433,16 +433,16 @@ const char* PositionUpdate::_InternalParse(const char* ptr,
         3, this->_internal_y(), target);
   }
 
-  // float rotation = 4;
+  // float direction = 4;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_rotation = this->_internal_rotation();
-  ::uint32_t raw_rotation;
-  memcpy(&raw_rotation, &tmp_rotation, sizeof(tmp_rotation));
-  if (raw_rotation != 0) {
+  float tmp_direction = this->_internal_direction();
+  ::uint32_t raw_direction;
+  memcpy(&raw_direction, &tmp_direction, sizeof(tmp_direction));
+  if (raw_direction != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        4, this->_internal_rotation(), target);
+        4, this->_internal_direction(), target);
   }
 
   cached_has_bits = _impl_._has_bits_[0];
@@ -503,13 +503,13 @@ const char* PositionUpdate::_InternalParse(const char* ptr,
     total_size += 5;
   }
 
-  // float rotation = 4;
+  // float direction = 4;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_rotation = this->_internal_rotation();
-  ::uint32_t raw_rotation;
-  memcpy(&raw_rotation, &tmp_rotation, sizeof(tmp_rotation));
-  if (raw_rotation != 0) {
+  float tmp_direction = this->_internal_direction();
+  ::uint32_t raw_direction;
+  memcpy(&raw_direction, &tmp_direction, sizeof(tmp_direction));
+  if (raw_direction != 0) {
     total_size += 5;
   }
 
@@ -557,11 +557,11 @@ void PositionUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::
   }
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_rotation = from._internal_rotation();
-  ::uint32_t raw_rotation;
-  memcpy(&raw_rotation, &tmp_rotation, sizeof(tmp_rotation));
-  if (raw_rotation != 0) {
-    _this->_impl_.rotation_ = from._impl_.rotation_;
+  float tmp_direction = from._internal_direction();
+  ::uint32_t raw_direction;
+  memcpy(&raw_direction, &tmp_direction, sizeof(tmp_direction));
+  if (raw_direction != 0) {
+    _this->_impl_.direction_ = from._impl_.direction_;
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
@@ -583,8 +583,8 @@ void PositionUpdate::InternalSwap(PositionUpdate* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.rotation_)
-      + sizeof(PositionUpdate::_impl_.rotation_)
+      PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.direction_)
+      + sizeof(PositionUpdate::_impl_.direction_)
       - PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.curr_room_)>(
           reinterpret_cast<char*>(&_impl_.curr_room_),
           reinterpret_cast<char*>(&other->_impl_.curr_room_));

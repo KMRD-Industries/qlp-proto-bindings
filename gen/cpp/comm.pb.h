@@ -824,7 +824,7 @@ class PositionUpdate final : public ::google::protobuf::Message
     kEntityIdFieldNumber = 1,
     kXFieldNumber = 2,
     kYFieldNumber = 3,
-    kRotationFieldNumber = 4,
+    kDirectionFieldNumber = 4,
   };
   // .comm.Room curr_room = 5;
   bool has_curr_room() const;
@@ -871,14 +871,14 @@ class PositionUpdate final : public ::google::protobuf::Message
   void _internal_set_y(float value);
 
   public:
-  // float rotation = 4;
-  void clear_rotation() ;
-  float rotation() const;
-  void set_rotation(float value);
+  // float direction = 4;
+  void clear_direction() ;
+  float direction() const;
+  void set_direction(float value);
 
   private:
-  float _internal_rotation() const;
-  void _internal_set_rotation(float value);
+  float _internal_direction() const;
+  void _internal_set_direction(float value);
 
   public:
   // @@protoc_insertion_point(class_scope:comm.PositionUpdate)
@@ -912,7 +912,7 @@ class PositionUpdate final : public ::google::protobuf::Message
     ::uint32_t entity_id_;
     float x_;
     float y_;
-    float rotation_;
+    float direction_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1001,26 +1001,26 @@ inline void PositionUpdate::_internal_set_y(float value) {
   _impl_.y_ = value;
 }
 
-// float rotation = 4;
-inline void PositionUpdate::clear_rotation() {
+// float direction = 4;
+inline void PositionUpdate::clear_direction() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.rotation_ = 0;
+  _impl_.direction_ = 0;
 }
-inline float PositionUpdate::rotation() const {
-  // @@protoc_insertion_point(field_get:comm.PositionUpdate.rotation)
-  return _internal_rotation();
+inline float PositionUpdate::direction() const {
+  // @@protoc_insertion_point(field_get:comm.PositionUpdate.direction)
+  return _internal_direction();
 }
-inline void PositionUpdate::set_rotation(float value) {
-  _internal_set_rotation(value);
-  // @@protoc_insertion_point(field_set:comm.PositionUpdate.rotation)
+inline void PositionUpdate::set_direction(float value) {
+  _internal_set_direction(value);
+  // @@protoc_insertion_point(field_set:comm.PositionUpdate.direction)
 }
-inline float PositionUpdate::_internal_rotation() const {
+inline float PositionUpdate::_internal_direction() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.rotation_;
+  return _impl_.direction_;
 }
-inline void PositionUpdate::_internal_set_rotation(float value) {
+inline void PositionUpdate::_internal_set_direction(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.rotation_ = value;
+  _impl_.direction_ = value;
 }
 
 // .comm.Room curr_room = 5;
