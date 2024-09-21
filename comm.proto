@@ -5,6 +5,7 @@ option go_package = "github.com/kmrd-industries/qlp-proto-bindings/gen/go";
 enum MessageType {
     MAP_UPDATE = 0;
     POSITION_UPDATE = 1;
+    STATE_VARIANT = 3;
 }
 
 message WrapperMessage {
@@ -23,6 +24,7 @@ enum StateVariant {
     CONNECTED = 1;
     DISCONNECTED = 2;
 }
+
 message StateUpdate {
     uint32 id = 1;
     StateVariant variant = 2;

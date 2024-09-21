@@ -197,16 +197,16 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "2\n\016PlayerPosition\022\n\n\002id\030\001 \001(\r\022\t\n\001x\030\002 \001(\r"
   "\022\t\n\001y\030\003 \001(\r\"^\n\022MapPositionsUpdate\022!\n\tobs"
   "tacles\030\001 \003(\0132\016.comm.Obstacle\022%\n\007players\030"
-  "\002 \003(\0132\024.comm.PlayerPosition*2\n\013MessageTy"
-  "pe\022\016\n\nMAP_UPDATE\020\000\022\023\n\017POSITION_UPDATE\020\001*"
-  "9\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001"
-  "\022\020\n\014DISCONNECTED\020\002B6Z4github.com/kmrd-in"
-  "dustries/qlp-proto-bindings/gen/gob\006prot"
-  "o3"
+  "\002 \003(\0132\024.comm.PlayerPosition*E\n\013MessageTy"
+  "pe\022\016\n\nMAP_UPDATE\020\000\022\023\n\017POSITION_UPDATE\020\001\022"
+  "\021\n\rSTATE_VARIANT\020\003*9\n\014StateVariant\022\010\n\004NO"
+  "NE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002B6Z"
+  "4github.com/kmrd-industries/qlp-proto-bi"
+  "ndings/gen/gob\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_comm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
-    false, false, 602, descriptor_table_protodef_comm_2eproto,
+    false, false, 621, descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once, nullptr, 0, 6,
     schemas, file_default_instances, TableStruct_comm_2eproto::offsets,
@@ -228,6 +228,7 @@ bool MessageType_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
+    case 3:
       return true;
     default:
       return false;

@@ -78,12 +78,13 @@ namespace comm {
 enum MessageType : int {
   MAP_UPDATE = 0,
   POSITION_UPDATE = 1,
+  STATE_VARIANT = 3,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool MessageType_IsValid(int value);
 constexpr MessageType MessageType_MIN = MAP_UPDATE;
-constexpr MessageType MessageType_MAX = POSITION_UPDATE;
+constexpr MessageType MessageType_MAX = STATE_VARIANT;
 constexpr int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_descriptor();
