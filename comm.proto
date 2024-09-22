@@ -2,32 +2,18 @@ syntax = "proto3";
 package comm;
 option go_package = "github.com/kmrd-industries/qlp-proto-bindings/gen/go";
 
-enum MessageType {
-    MAP_UPDATE = 0;
-    POSITION_UPDATE = 1;
-    STATE_VARIANT = 3;
-}
-
-message WrapperMessage {
-    MessageType type = 1;
-    bytes payload = 2;
+enum StateVariant {
+    NONE = 0;
+    CONNECTED = 1;
+    DISCONNECTED = 2;
+    MAP_UPDATE = 3;
+    PLAYER_POSITION_UPDATE = 4;
 }
 
 message PositionUpdate {
     uint32 entity_id = 1;
     float x = 2;
     float y = 3;
-}
-
-enum StateVariant {
-    NONE = 0;
-    CONNECTED = 1;
-    DISCONNECTED = 2;
-}
-
-message StateUpdate {
-    uint32 id = 1;
-    StateVariant variant = 2;
 }
 
 message Obstacle {
@@ -37,13 +23,14 @@ message Obstacle {
     uint32 top = 4;
 }
 
-message PlayerPosition {
-    uint32 id = 1;
-    uint32 x = 2;
-    uint32 y = 3;
-}
-
 message MapPositionsUpdate {
     repeated Obstacle obstacles = 1;
-    repeated PlayerPosition players = 2;
+    repeated PositionUpdate players = 2;
+}
+
+message StateUpdate {
+    uint32 id = 1;
+    StateVariant variant = 2;
+    MapPositionsUpdate mapPositionsUpdate = 3;
+    PositionUpdate positionUpdate = 4;
 }

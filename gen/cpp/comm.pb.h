@@ -52,65 +52,33 @@ extern MapPositionsUpdateDefaultTypeInternal _MapPositionsUpdate_default_instanc
 class Obstacle;
 struct ObstacleDefaultTypeInternal;
 extern ObstacleDefaultTypeInternal _Obstacle_default_instance_;
-class PlayerPosition;
-struct PlayerPositionDefaultTypeInternal;
-extern PlayerPositionDefaultTypeInternal _PlayerPosition_default_instance_;
 class PositionUpdate;
 struct PositionUpdateDefaultTypeInternal;
 extern PositionUpdateDefaultTypeInternal _PositionUpdate_default_instance_;
 class StateUpdate;
 struct StateUpdateDefaultTypeInternal;
 extern StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
-class WrapperMessage;
-struct WrapperMessageDefaultTypeInternal;
-extern WrapperMessageDefaultTypeInternal _WrapperMessage_default_instance_;
 }  // namespace comm
 PROTOBUF_NAMESPACE_OPEN
 template<> ::comm::MapPositionsUpdate* Arena::CreateMaybeMessage<::comm::MapPositionsUpdate>(Arena*);
 template<> ::comm::Obstacle* Arena::CreateMaybeMessage<::comm::Obstacle>(Arena*);
-template<> ::comm::PlayerPosition* Arena::CreateMaybeMessage<::comm::PlayerPosition>(Arena*);
 template<> ::comm::PositionUpdate* Arena::CreateMaybeMessage<::comm::PositionUpdate>(Arena*);
 template<> ::comm::StateUpdate* Arena::CreateMaybeMessage<::comm::StateUpdate>(Arena*);
-template<> ::comm::WrapperMessage* Arena::CreateMaybeMessage<::comm::WrapperMessage>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace comm {
 
-enum MessageType : int {
-  MAP_UPDATE = 0,
-  POSITION_UPDATE = 1,
-  STATE_VARIANT = 3,
-  MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
-};
-bool MessageType_IsValid(int value);
-constexpr MessageType MessageType_MIN = MAP_UPDATE;
-constexpr MessageType MessageType_MAX = STATE_VARIANT;
-constexpr int MessageType_ARRAYSIZE = MessageType_MAX + 1;
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_descriptor();
-template<typename T>
-inline const std::string& MessageType_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, MessageType>::value ||
-    ::std::is_integral<T>::value,
-    "Incorrect type passed to function MessageType_Name.");
-  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    MessageType_descriptor(), enum_t_value);
-}
-inline bool MessageType_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MessageType* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MessageType>(
-    MessageType_descriptor(), name, value);
-}
 enum StateVariant : int {
   NONE = 0,
   CONNECTED = 1,
   DISCONNECTED = 2,
+  MAP_UPDATE = 3,
+  PLAYER_POSITION_UPDATE = 4,
   StateVariant_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   StateVariant_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool StateVariant_IsValid(int value);
 constexpr StateVariant StateVariant_MIN = NONE;
-constexpr StateVariant StateVariant_MAX = DISCONNECTED;
+constexpr StateVariant StateVariant_MAX = PLAYER_POSITION_UPDATE;
 constexpr int StateVariant_ARRAYSIZE = StateVariant_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* StateVariant_descriptor();
@@ -128,170 +96,6 @@ inline bool StateVariant_Parse(
     StateVariant_descriptor(), name, value);
 }
 // ===================================================================
-
-class WrapperMessage final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.WrapperMessage) */ {
- public:
-  inline WrapperMessage() : WrapperMessage(nullptr) {}
-  ~WrapperMessage() override;
-  explicit PROTOBUF_CONSTEXPR WrapperMessage(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  WrapperMessage(const WrapperMessage& from);
-  WrapperMessage(WrapperMessage&& from) noexcept
-    : WrapperMessage() {
-    *this = ::std::move(from);
-  }
-
-  inline WrapperMessage& operator=(const WrapperMessage& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline WrapperMessage& operator=(WrapperMessage&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const WrapperMessage& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const WrapperMessage* internal_default_instance() {
-    return reinterpret_cast<const WrapperMessage*>(
-               &_WrapperMessage_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    0;
-
-  friend void swap(WrapperMessage& a, WrapperMessage& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(WrapperMessage* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(WrapperMessage* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  WrapperMessage* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<WrapperMessage>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const WrapperMessage& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const WrapperMessage& from) {
-    WrapperMessage::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(WrapperMessage* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "comm.WrapperMessage";
-  }
-  protected:
-  explicit WrapperMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kPayloadFieldNumber = 2,
-    kTypeFieldNumber = 1,
-  };
-  // bytes payload = 2;
-  void clear_payload();
-  const std::string& payload() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_payload(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_payload();
-  PROTOBUF_NODISCARD std::string* release_payload();
-  void set_allocated_payload(std::string* payload);
-  private:
-  const std::string& _internal_payload() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_payload(const std::string& value);
-  std::string* _internal_mutable_payload();
-  public:
-
-  // .comm.MessageType type = 1;
-  void clear_type();
-  ::comm::MessageType type() const;
-  void set_type(::comm::MessageType value);
-  private:
-  ::comm::MessageType _internal_type() const;
-  void _internal_set_type(::comm::MessageType value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:comm.WrapperMessage)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr payload_;
-    int type_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_comm_2eproto;
-};
-// -------------------------------------------------------------------
 
 class PositionUpdate final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.PositionUpdate) */ {
@@ -341,7 +145,7 @@ class PositionUpdate final :
                &_PositionUpdate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    0;
 
   friend void swap(PositionUpdate& a, PositionUpdate& b) {
     a.Swap(&b);
@@ -463,165 +267,6 @@ class PositionUpdate final :
 };
 // -------------------------------------------------------------------
 
-class StateUpdate final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.StateUpdate) */ {
- public:
-  inline StateUpdate() : StateUpdate(nullptr) {}
-  ~StateUpdate() override;
-  explicit PROTOBUF_CONSTEXPR StateUpdate(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  StateUpdate(const StateUpdate& from);
-  StateUpdate(StateUpdate&& from) noexcept
-    : StateUpdate() {
-    *this = ::std::move(from);
-  }
-
-  inline StateUpdate& operator=(const StateUpdate& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline StateUpdate& operator=(StateUpdate&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const StateUpdate& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const StateUpdate* internal_default_instance() {
-    return reinterpret_cast<const StateUpdate*>(
-               &_StateUpdate_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    2;
-
-  friend void swap(StateUpdate& a, StateUpdate& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(StateUpdate* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(StateUpdate* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  StateUpdate* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<StateUpdate>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const StateUpdate& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const StateUpdate& from) {
-    StateUpdate::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(StateUpdate* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "comm.StateUpdate";
-  }
-  protected:
-  explicit StateUpdate(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kIdFieldNumber = 1,
-    kVariantFieldNumber = 2,
-  };
-  // uint32 id = 1;
-  void clear_id();
-  uint32_t id() const;
-  void set_id(uint32_t value);
-  private:
-  uint32_t _internal_id() const;
-  void _internal_set_id(uint32_t value);
-  public:
-
-  // .comm.StateVariant variant = 2;
-  void clear_variant();
-  ::comm::StateVariant variant() const;
-  void set_variant(::comm::StateVariant value);
-  private:
-  ::comm::StateVariant _internal_variant() const;
-  void _internal_set_variant(::comm::StateVariant value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:comm.StateUpdate)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    uint32_t id_;
-    int variant_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_comm_2eproto;
-};
-// -------------------------------------------------------------------
-
 class Obstacle final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.Obstacle) */ {
  public:
@@ -670,7 +315,7 @@ class Obstacle final :
                &_Obstacle_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    1;
 
   friend void swap(Obstacle& a, Obstacle& b) {
     a.Swap(&b);
@@ -803,176 +448,6 @@ class Obstacle final :
 };
 // -------------------------------------------------------------------
 
-class PlayerPosition final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.PlayerPosition) */ {
- public:
-  inline PlayerPosition() : PlayerPosition(nullptr) {}
-  ~PlayerPosition() override;
-  explicit PROTOBUF_CONSTEXPR PlayerPosition(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  PlayerPosition(const PlayerPosition& from);
-  PlayerPosition(PlayerPosition&& from) noexcept
-    : PlayerPosition() {
-    *this = ::std::move(from);
-  }
-
-  inline PlayerPosition& operator=(const PlayerPosition& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline PlayerPosition& operator=(PlayerPosition&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const PlayerPosition& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const PlayerPosition* internal_default_instance() {
-    return reinterpret_cast<const PlayerPosition*>(
-               &_PlayerPosition_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    4;
-
-  friend void swap(PlayerPosition& a, PlayerPosition& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(PlayerPosition* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(PlayerPosition* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  PlayerPosition* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<PlayerPosition>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const PlayerPosition& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const PlayerPosition& from) {
-    PlayerPosition::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(PlayerPosition* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "comm.PlayerPosition";
-  }
-  protected:
-  explicit PlayerPosition(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kIdFieldNumber = 1,
-    kXFieldNumber = 2,
-    kYFieldNumber = 3,
-  };
-  // uint32 id = 1;
-  void clear_id();
-  uint32_t id() const;
-  void set_id(uint32_t value);
-  private:
-  uint32_t _internal_id() const;
-  void _internal_set_id(uint32_t value);
-  public:
-
-  // uint32 x = 2;
-  void clear_x();
-  uint32_t x() const;
-  void set_x(uint32_t value);
-  private:
-  uint32_t _internal_x() const;
-  void _internal_set_x(uint32_t value);
-  public:
-
-  // uint32 y = 3;
-  void clear_y();
-  uint32_t y() const;
-  void set_y(uint32_t value);
-  private:
-  uint32_t _internal_y() const;
-  void _internal_set_y(uint32_t value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:comm.PlayerPosition)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    uint32_t id_;
-    uint32_t x_;
-    uint32_t y_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_comm_2eproto;
-};
-// -------------------------------------------------------------------
-
 class MapPositionsUpdate final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.MapPositionsUpdate) */ {
  public:
@@ -1021,7 +496,7 @@ class MapPositionsUpdate final :
                &_MapPositionsUpdate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    2;
 
   friend void swap(MapPositionsUpdate& a, MapPositionsUpdate& b) {
     a.Swap(&b);
@@ -1115,22 +590,22 @@ class MapPositionsUpdate final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Obstacle >&
       obstacles() const;
 
-  // repeated .comm.PlayerPosition players = 2;
+  // repeated .comm.PositionUpdate players = 2;
   int players_size() const;
   private:
   int _internal_players_size() const;
   public:
   void clear_players();
-  ::comm::PlayerPosition* mutable_players(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PlayerPosition >*
+  ::comm::PositionUpdate* mutable_players(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PositionUpdate >*
       mutable_players();
   private:
-  const ::comm::PlayerPosition& _internal_players(int index) const;
-  ::comm::PlayerPosition* _internal_add_players();
+  const ::comm::PositionUpdate& _internal_players(int index) const;
+  ::comm::PositionUpdate* _internal_add_players();
   public:
-  const ::comm::PlayerPosition& players(int index) const;
-  ::comm::PlayerPosition* add_players();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PlayerPosition >&
+  const ::comm::PositionUpdate& players(int index) const;
+  ::comm::PositionUpdate* add_players();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PositionUpdate >&
       players() const;
 
   // @@protoc_insertion_point(class_scope:comm.MapPositionsUpdate)
@@ -1142,7 +617,206 @@ class MapPositionsUpdate final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Obstacle > obstacles_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PlayerPosition > players_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PositionUpdate > players_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_comm_2eproto;
+};
+// -------------------------------------------------------------------
+
+class StateUpdate final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.StateUpdate) */ {
+ public:
+  inline StateUpdate() : StateUpdate(nullptr) {}
+  ~StateUpdate() override;
+  explicit PROTOBUF_CONSTEXPR StateUpdate(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  StateUpdate(const StateUpdate& from);
+  StateUpdate(StateUpdate&& from) noexcept
+    : StateUpdate() {
+    *this = ::std::move(from);
+  }
+
+  inline StateUpdate& operator=(const StateUpdate& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StateUpdate& operator=(StateUpdate&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StateUpdate& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StateUpdate* internal_default_instance() {
+    return reinterpret_cast<const StateUpdate*>(
+               &_StateUpdate_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(StateUpdate& a, StateUpdate& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(StateUpdate* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StateUpdate* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StateUpdate* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<StateUpdate>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const StateUpdate& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const StateUpdate& from) {
+    StateUpdate::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(StateUpdate* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "comm.StateUpdate";
+  }
+  protected:
+  explicit StateUpdate(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMapPositionsUpdateFieldNumber = 3,
+    kPositionUpdateFieldNumber = 4,
+    kIdFieldNumber = 1,
+    kVariantFieldNumber = 2,
+  };
+  // .comm.MapPositionsUpdate mapPositionsUpdate = 3;
+  bool has_mappositionsupdate() const;
+  private:
+  bool _internal_has_mappositionsupdate() const;
+  public:
+  void clear_mappositionsupdate();
+  const ::comm::MapPositionsUpdate& mappositionsupdate() const;
+  PROTOBUF_NODISCARD ::comm::MapPositionsUpdate* release_mappositionsupdate();
+  ::comm::MapPositionsUpdate* mutable_mappositionsupdate();
+  void set_allocated_mappositionsupdate(::comm::MapPositionsUpdate* mappositionsupdate);
+  private:
+  const ::comm::MapPositionsUpdate& _internal_mappositionsupdate() const;
+  ::comm::MapPositionsUpdate* _internal_mutable_mappositionsupdate();
+  public:
+  void unsafe_arena_set_allocated_mappositionsupdate(
+      ::comm::MapPositionsUpdate* mappositionsupdate);
+  ::comm::MapPositionsUpdate* unsafe_arena_release_mappositionsupdate();
+
+  // .comm.PositionUpdate positionUpdate = 4;
+  bool has_positionupdate() const;
+  private:
+  bool _internal_has_positionupdate() const;
+  public:
+  void clear_positionupdate();
+  const ::comm::PositionUpdate& positionupdate() const;
+  PROTOBUF_NODISCARD ::comm::PositionUpdate* release_positionupdate();
+  ::comm::PositionUpdate* mutable_positionupdate();
+  void set_allocated_positionupdate(::comm::PositionUpdate* positionupdate);
+  private:
+  const ::comm::PositionUpdate& _internal_positionupdate() const;
+  ::comm::PositionUpdate* _internal_mutable_positionupdate();
+  public:
+  void unsafe_arena_set_allocated_positionupdate(
+      ::comm::PositionUpdate* positionupdate);
+  ::comm::PositionUpdate* unsafe_arena_release_positionupdate();
+
+  // uint32 id = 1;
+  void clear_id();
+  uint32_t id() const;
+  void set_id(uint32_t value);
+  private:
+  uint32_t _internal_id() const;
+  void _internal_set_id(uint32_t value);
+  public:
+
+  // .comm.StateVariant variant = 2;
+  void clear_variant();
+  ::comm::StateVariant variant() const;
+  void set_variant(::comm::StateVariant value);
+  private:
+  ::comm::StateVariant _internal_variant() const;
+  void _internal_set_variant(::comm::StateVariant value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:comm.StateUpdate)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::comm::MapPositionsUpdate* mappositionsupdate_;
+    ::comm::PositionUpdate* positionupdate_;
+    uint32_t id_;
+    int variant_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1157,80 +831,6 @@ class MapPositionsUpdate final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// WrapperMessage
-
-// .comm.MessageType type = 1;
-inline void WrapperMessage::clear_type() {
-  _impl_.type_ = 0;
-}
-inline ::comm::MessageType WrapperMessage::_internal_type() const {
-  return static_cast< ::comm::MessageType >(_impl_.type_);
-}
-inline ::comm::MessageType WrapperMessage::type() const {
-  // @@protoc_insertion_point(field_get:comm.WrapperMessage.type)
-  return _internal_type();
-}
-inline void WrapperMessage::_internal_set_type(::comm::MessageType value) {
-  
-  _impl_.type_ = value;
-}
-inline void WrapperMessage::set_type(::comm::MessageType value) {
-  _internal_set_type(value);
-  // @@protoc_insertion_point(field_set:comm.WrapperMessage.type)
-}
-
-// bytes payload = 2;
-inline void WrapperMessage::clear_payload() {
-  _impl_.payload_.ClearToEmpty();
-}
-inline const std::string& WrapperMessage::payload() const {
-  // @@protoc_insertion_point(field_get:comm.WrapperMessage.payload)
-  return _internal_payload();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void WrapperMessage::set_payload(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.payload_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:comm.WrapperMessage.payload)
-}
-inline std::string* WrapperMessage::mutable_payload() {
-  std::string* _s = _internal_mutable_payload();
-  // @@protoc_insertion_point(field_mutable:comm.WrapperMessage.payload)
-  return _s;
-}
-inline const std::string& WrapperMessage::_internal_payload() const {
-  return _impl_.payload_.Get();
-}
-inline void WrapperMessage::_internal_set_payload(const std::string& value) {
-  
-  _impl_.payload_.Set(value, GetArenaForAllocation());
-}
-inline std::string* WrapperMessage::_internal_mutable_payload() {
-  
-  return _impl_.payload_.Mutable(GetArenaForAllocation());
-}
-inline std::string* WrapperMessage::release_payload() {
-  // @@protoc_insertion_point(field_release:comm.WrapperMessage.payload)
-  return _impl_.payload_.Release();
-}
-inline void WrapperMessage::set_allocated_payload(std::string* payload) {
-  if (payload != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.payload_.SetAllocated(payload, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.payload_.IsDefault()) {
-    _impl_.payload_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:comm.WrapperMessage.payload)
-}
-
-// -------------------------------------------------------------------
-
 // PositionUpdate
 
 // uint32 entity_id = 1;
@@ -1291,50 +891,6 @@ inline void PositionUpdate::_internal_set_y(float value) {
 inline void PositionUpdate::set_y(float value) {
   _internal_set_y(value);
   // @@protoc_insertion_point(field_set:comm.PositionUpdate.y)
-}
-
-// -------------------------------------------------------------------
-
-// StateUpdate
-
-// uint32 id = 1;
-inline void StateUpdate::clear_id() {
-  _impl_.id_ = 0u;
-}
-inline uint32_t StateUpdate::_internal_id() const {
-  return _impl_.id_;
-}
-inline uint32_t StateUpdate::id() const {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.id)
-  return _internal_id();
-}
-inline void StateUpdate::_internal_set_id(uint32_t value) {
-  
-  _impl_.id_ = value;
-}
-inline void StateUpdate::set_id(uint32_t value) {
-  _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:comm.StateUpdate.id)
-}
-
-// .comm.StateVariant variant = 2;
-inline void StateUpdate::clear_variant() {
-  _impl_.variant_ = 0;
-}
-inline ::comm::StateVariant StateUpdate::_internal_variant() const {
-  return static_cast< ::comm::StateVariant >(_impl_.variant_);
-}
-inline ::comm::StateVariant StateUpdate::variant() const {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.variant)
-  return _internal_variant();
-}
-inline void StateUpdate::_internal_set_variant(::comm::StateVariant value) {
-  
-  _impl_.variant_ = value;
-}
-inline void StateUpdate::set_variant(::comm::StateVariant value) {
-  _internal_set_variant(value);
-  // @@protoc_insertion_point(field_set:comm.StateUpdate.variant)
 }
 
 // -------------------------------------------------------------------
@@ -1423,70 +979,6 @@ inline void Obstacle::set_top(uint32_t value) {
 
 // -------------------------------------------------------------------
 
-// PlayerPosition
-
-// uint32 id = 1;
-inline void PlayerPosition::clear_id() {
-  _impl_.id_ = 0u;
-}
-inline uint32_t PlayerPosition::_internal_id() const {
-  return _impl_.id_;
-}
-inline uint32_t PlayerPosition::id() const {
-  // @@protoc_insertion_point(field_get:comm.PlayerPosition.id)
-  return _internal_id();
-}
-inline void PlayerPosition::_internal_set_id(uint32_t value) {
-  
-  _impl_.id_ = value;
-}
-inline void PlayerPosition::set_id(uint32_t value) {
-  _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:comm.PlayerPosition.id)
-}
-
-// uint32 x = 2;
-inline void PlayerPosition::clear_x() {
-  _impl_.x_ = 0u;
-}
-inline uint32_t PlayerPosition::_internal_x() const {
-  return _impl_.x_;
-}
-inline uint32_t PlayerPosition::x() const {
-  // @@protoc_insertion_point(field_get:comm.PlayerPosition.x)
-  return _internal_x();
-}
-inline void PlayerPosition::_internal_set_x(uint32_t value) {
-  
-  _impl_.x_ = value;
-}
-inline void PlayerPosition::set_x(uint32_t value) {
-  _internal_set_x(value);
-  // @@protoc_insertion_point(field_set:comm.PlayerPosition.x)
-}
-
-// uint32 y = 3;
-inline void PlayerPosition::clear_y() {
-  _impl_.y_ = 0u;
-}
-inline uint32_t PlayerPosition::_internal_y() const {
-  return _impl_.y_;
-}
-inline uint32_t PlayerPosition::y() const {
-  // @@protoc_insertion_point(field_get:comm.PlayerPosition.y)
-  return _internal_y();
-}
-inline void PlayerPosition::_internal_set_y(uint32_t value) {
-  
-  _impl_.y_ = value;
-}
-inline void PlayerPosition::set_y(uint32_t value) {
-  _internal_set_y(value);
-  // @@protoc_insertion_point(field_set:comm.PlayerPosition.y)
-}
-
-// -------------------------------------------------------------------
-
 // MapPositionsUpdate
 
 // repeated .comm.Obstacle obstacles = 1;
@@ -1529,7 +1021,7 @@ MapPositionsUpdate::obstacles() const {
   return _impl_.obstacles_;
 }
 
-// repeated .comm.PlayerPosition players = 2;
+// repeated .comm.PositionUpdate players = 2;
 inline int MapPositionsUpdate::_internal_players_size() const {
   return _impl_.players_.size();
 }
@@ -1539,43 +1031,263 @@ inline int MapPositionsUpdate::players_size() const {
 inline void MapPositionsUpdate::clear_players() {
   _impl_.players_.Clear();
 }
-inline ::comm::PlayerPosition* MapPositionsUpdate::mutable_players(int index) {
+inline ::comm::PositionUpdate* MapPositionsUpdate::mutable_players(int index) {
   // @@protoc_insertion_point(field_mutable:comm.MapPositionsUpdate.players)
   return _impl_.players_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PlayerPosition >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PositionUpdate >*
 MapPositionsUpdate::mutable_players() {
   // @@protoc_insertion_point(field_mutable_list:comm.MapPositionsUpdate.players)
   return &_impl_.players_;
 }
-inline const ::comm::PlayerPosition& MapPositionsUpdate::_internal_players(int index) const {
+inline const ::comm::PositionUpdate& MapPositionsUpdate::_internal_players(int index) const {
   return _impl_.players_.Get(index);
 }
-inline const ::comm::PlayerPosition& MapPositionsUpdate::players(int index) const {
+inline const ::comm::PositionUpdate& MapPositionsUpdate::players(int index) const {
   // @@protoc_insertion_point(field_get:comm.MapPositionsUpdate.players)
   return _internal_players(index);
 }
-inline ::comm::PlayerPosition* MapPositionsUpdate::_internal_add_players() {
+inline ::comm::PositionUpdate* MapPositionsUpdate::_internal_add_players() {
   return _impl_.players_.Add();
 }
-inline ::comm::PlayerPosition* MapPositionsUpdate::add_players() {
-  ::comm::PlayerPosition* _add = _internal_add_players();
+inline ::comm::PositionUpdate* MapPositionsUpdate::add_players() {
+  ::comm::PositionUpdate* _add = _internal_add_players();
   // @@protoc_insertion_point(field_add:comm.MapPositionsUpdate.players)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PlayerPosition >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PositionUpdate >&
 MapPositionsUpdate::players() const {
   // @@protoc_insertion_point(field_list:comm.MapPositionsUpdate.players)
   return _impl_.players_;
 }
 
+// -------------------------------------------------------------------
+
+// StateUpdate
+
+// uint32 id = 1;
+inline void StateUpdate::clear_id() {
+  _impl_.id_ = 0u;
+}
+inline uint32_t StateUpdate::_internal_id() const {
+  return _impl_.id_;
+}
+inline uint32_t StateUpdate::id() const {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.id)
+  return _internal_id();
+}
+inline void StateUpdate::_internal_set_id(uint32_t value) {
+  
+  _impl_.id_ = value;
+}
+inline void StateUpdate::set_id(uint32_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:comm.StateUpdate.id)
+}
+
+// .comm.StateVariant variant = 2;
+inline void StateUpdate::clear_variant() {
+  _impl_.variant_ = 0;
+}
+inline ::comm::StateVariant StateUpdate::_internal_variant() const {
+  return static_cast< ::comm::StateVariant >(_impl_.variant_);
+}
+inline ::comm::StateVariant StateUpdate::variant() const {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.variant)
+  return _internal_variant();
+}
+inline void StateUpdate::_internal_set_variant(::comm::StateVariant value) {
+  
+  _impl_.variant_ = value;
+}
+inline void StateUpdate::set_variant(::comm::StateVariant value) {
+  _internal_set_variant(value);
+  // @@protoc_insertion_point(field_set:comm.StateUpdate.variant)
+}
+
+// .comm.MapPositionsUpdate mapPositionsUpdate = 3;
+inline bool StateUpdate::_internal_has_mappositionsupdate() const {
+  return this != internal_default_instance() && _impl_.mappositionsupdate_ != nullptr;
+}
+inline bool StateUpdate::has_mappositionsupdate() const {
+  return _internal_has_mappositionsupdate();
+}
+inline void StateUpdate::clear_mappositionsupdate() {
+  if (GetArenaForAllocation() == nullptr && _impl_.mappositionsupdate_ != nullptr) {
+    delete _impl_.mappositionsupdate_;
+  }
+  _impl_.mappositionsupdate_ = nullptr;
+}
+inline const ::comm::MapPositionsUpdate& StateUpdate::_internal_mappositionsupdate() const {
+  const ::comm::MapPositionsUpdate* p = _impl_.mappositionsupdate_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::MapPositionsUpdate&>(
+      ::comm::_MapPositionsUpdate_default_instance_);
+}
+inline const ::comm::MapPositionsUpdate& StateUpdate::mappositionsupdate() const {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.mapPositionsUpdate)
+  return _internal_mappositionsupdate();
+}
+inline void StateUpdate::unsafe_arena_set_allocated_mappositionsupdate(
+    ::comm::MapPositionsUpdate* mappositionsupdate) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.mappositionsupdate_);
+  }
+  _impl_.mappositionsupdate_ = mappositionsupdate;
+  if (mappositionsupdate) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.mapPositionsUpdate)
+}
+inline ::comm::MapPositionsUpdate* StateUpdate::release_mappositionsupdate() {
+  
+  ::comm::MapPositionsUpdate* temp = _impl_.mappositionsupdate_;
+  _impl_.mappositionsupdate_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::comm::MapPositionsUpdate* StateUpdate::unsafe_arena_release_mappositionsupdate() {
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.mapPositionsUpdate)
+  
+  ::comm::MapPositionsUpdate* temp = _impl_.mappositionsupdate_;
+  _impl_.mappositionsupdate_ = nullptr;
+  return temp;
+}
+inline ::comm::MapPositionsUpdate* StateUpdate::_internal_mutable_mappositionsupdate() {
+  
+  if (_impl_.mappositionsupdate_ == nullptr) {
+    auto* p = CreateMaybeMessage<::comm::MapPositionsUpdate>(GetArenaForAllocation());
+    _impl_.mappositionsupdate_ = p;
+  }
+  return _impl_.mappositionsupdate_;
+}
+inline ::comm::MapPositionsUpdate* StateUpdate::mutable_mappositionsupdate() {
+  ::comm::MapPositionsUpdate* _msg = _internal_mutable_mappositionsupdate();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.mapPositionsUpdate)
+  return _msg;
+}
+inline void StateUpdate::set_allocated_mappositionsupdate(::comm::MapPositionsUpdate* mappositionsupdate) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.mappositionsupdate_;
+  }
+  if (mappositionsupdate) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(mappositionsupdate);
+    if (message_arena != submessage_arena) {
+      mappositionsupdate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, mappositionsupdate, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.mappositionsupdate_ = mappositionsupdate;
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.mapPositionsUpdate)
+}
+
+// .comm.PositionUpdate positionUpdate = 4;
+inline bool StateUpdate::_internal_has_positionupdate() const {
+  return this != internal_default_instance() && _impl_.positionupdate_ != nullptr;
+}
+inline bool StateUpdate::has_positionupdate() const {
+  return _internal_has_positionupdate();
+}
+inline void StateUpdate::clear_positionupdate() {
+  if (GetArenaForAllocation() == nullptr && _impl_.positionupdate_ != nullptr) {
+    delete _impl_.positionupdate_;
+  }
+  _impl_.positionupdate_ = nullptr;
+}
+inline const ::comm::PositionUpdate& StateUpdate::_internal_positionupdate() const {
+  const ::comm::PositionUpdate* p = _impl_.positionupdate_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::PositionUpdate&>(
+      ::comm::_PositionUpdate_default_instance_);
+}
+inline const ::comm::PositionUpdate& StateUpdate::positionupdate() const {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.positionUpdate)
+  return _internal_positionupdate();
+}
+inline void StateUpdate::unsafe_arena_set_allocated_positionupdate(
+    ::comm::PositionUpdate* positionupdate) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.positionupdate_);
+  }
+  _impl_.positionupdate_ = positionupdate;
+  if (positionupdate) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.positionUpdate)
+}
+inline ::comm::PositionUpdate* StateUpdate::release_positionupdate() {
+  
+  ::comm::PositionUpdate* temp = _impl_.positionupdate_;
+  _impl_.positionupdate_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::comm::PositionUpdate* StateUpdate::unsafe_arena_release_positionupdate() {
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.positionUpdate)
+  
+  ::comm::PositionUpdate* temp = _impl_.positionupdate_;
+  _impl_.positionupdate_ = nullptr;
+  return temp;
+}
+inline ::comm::PositionUpdate* StateUpdate::_internal_mutable_positionupdate() {
+  
+  if (_impl_.positionupdate_ == nullptr) {
+    auto* p = CreateMaybeMessage<::comm::PositionUpdate>(GetArenaForAllocation());
+    _impl_.positionupdate_ = p;
+  }
+  return _impl_.positionupdate_;
+}
+inline ::comm::PositionUpdate* StateUpdate::mutable_positionupdate() {
+  ::comm::PositionUpdate* _msg = _internal_mutable_positionupdate();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.positionUpdate)
+  return _msg;
+}
+inline void StateUpdate::set_allocated_positionupdate(::comm::PositionUpdate* positionupdate) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.positionupdate_;
+  }
+  if (positionupdate) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(positionupdate);
+    if (message_arena != submessage_arena) {
+      positionupdate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, positionupdate, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.positionupdate_ = positionupdate;
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.positionUpdate)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -1589,11 +1301,6 @@ MapPositionsUpdate::players() const {
 
 PROTOBUF_NAMESPACE_OPEN
 
-template <> struct is_proto_enum< ::comm::MessageType> : ::std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::comm::MessageType>() {
-  return ::comm::MessageType_descriptor();
-}
 template <> struct is_proto_enum< ::comm::StateVariant> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::comm::StateVariant>() {
