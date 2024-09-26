@@ -30,6 +30,10 @@ enum StateVariant {
     ROOM_CHANGED = 3;
 }
 
+message BytePrefix {
+    uint32 bytes = 1;
+}
+
 message StateUpdate {
     uint32 id = 1;
     StateVariant variant = 2;
