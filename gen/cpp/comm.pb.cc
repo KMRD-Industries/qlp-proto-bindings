@@ -255,17 +255,17 @@ const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"\033\n\nBytePr"
     "efix\022\r\n\005bytes\030\001 \001(\r\"X\n\013StateUpdate\022\n\n\002id"
     "\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022.comm.StateVari"
-    "ant\022\030\n\004room\030\003 \001(\0132\n.comm.Room*K\n\014StateVa"
-    "riant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCON"
-    "NECTED\020\002\022\020\n\014ROOM_CHANGED\020\003B6Z4github.com"
-    "/kmrd-industries/qlp-proto-bindings/gen/"
-    "gob\006proto3"
+    "ant\022\030\n\004room\030\003 \001(\0132\n.comm.Room*c\n\014StateVa"
+    "riant\022\010\n\004NONE\020\000\022\026\n\022PREVIOUS_PROCESSED\020\001\022"
+    "\r\n\tCONNECTED\020\002\022\020\n\014DISCONNECTED\020\003\022\020\n\014ROOM"
+    "_CHANGED\020\004B6Z4github.com/kmrd-industries"
+    "/qlp-proto-bindings/gen/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    490,
+    514,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -284,9 +284,9 @@ const ::google::protobuf::EnumDescriptor* StateVariant_descriptor() {
   return file_level_enum_descriptors_comm_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t StateVariant_internal_data_[] = {
-    262144u, 0u, };
+    327680u, 0u, };
 bool StateVariant_IsValid(int value) {
-  return 0 <= value && value <= 3;
+  return 0 <= value && value <= 4;
 }
 // ===================================================================
 

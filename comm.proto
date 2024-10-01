@@ -25,9 +25,10 @@ message Room {
 
 enum StateVariant {
     NONE = 0;
-    CONNECTED = 1;
-    DISCONNECTED = 2;
-    ROOM_CHANGED = 3;
+    PREVIOUS_PROCESSED = 1;
+    CONNECTED = 2;
+    DISCONNECTED = 3;
+    ROOM_CHANGED = 4;
 }
 
 message BytePrefix {
