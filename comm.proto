@@ -17,15 +17,22 @@ message PositionUpdate {
 }
 
 message Obstacle {
-    uint32 height = 1;
-    uint32 width = 2;
-    uint32 left = 3;
-    uint32 top = 4;
+    int32 height = 1;
+    int32 width = 2;
+    int32 left = 3;
+    int32 top = 4;
+}
+
+message Enemy {
+    uint32 id = 1;
+    int32 x = 2;
+    int32 y = 3;
 }
 
 message MapPositionsUpdate {
     repeated Obstacle obstacles = 1;
     repeated PositionUpdate players = 2;
+    repeated Enemy enemies = 3;
 }
 
 message StateUpdate {
