@@ -36,6 +36,12 @@ message Enemy {
     int32 y = 3;
 }
 
+message Player {
+    uint32 id = 1;
+    int32 x = 2;
+    int32 y = 3;
+}
+
 enum StateVariant {
     NONE = 0;
     CONNECTED = 1;

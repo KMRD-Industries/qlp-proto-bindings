@@ -58,6 +58,9 @@ extern MapPositionsUpdateDefaultTypeInternal _MapPositionsUpdate_default_instanc
 class Obstacle;
 struct ObstacleDefaultTypeInternal;
 extern ObstacleDefaultTypeInternal _Obstacle_default_instance_;
+class Player;
+struct PlayerDefaultTypeInternal;
+extern PlayerDefaultTypeInternal _Player_default_instance_;
 class PositionUpdate;
 struct PositionUpdateDefaultTypeInternal;
 extern PositionUpdateDefaultTypeInternal _PositionUpdate_default_instance_;
@@ -73,6 +76,7 @@ template<> ::comm::Enemy* Arena::CreateMaybeMessage<::comm::Enemy>(Arena*);
 template<> ::comm::GameState* Arena::CreateMaybeMessage<::comm::GameState>(Arena*);
 template<> ::comm::MapPositionsUpdate* Arena::CreateMaybeMessage<::comm::MapPositionsUpdate>(Arena*);
 template<> ::comm::Obstacle* Arena::CreateMaybeMessage<::comm::Obstacle>(Arena*);
+template<> ::comm::Player* Arena::CreateMaybeMessage<::comm::Player>(Arena*);
 template<> ::comm::PositionUpdate* Arena::CreateMaybeMessage<::comm::PositionUpdate>(Arena*);
 template<> ::comm::Room* Arena::CreateMaybeMessage<::comm::Room>(Arena*);
 template<> ::comm::StateUpdate* Arena::CreateMaybeMessage<::comm::StateUpdate>(Arena*);
@@ -1005,6 +1009,176 @@ class Enemy final :
 };
 // -------------------------------------------------------------------
 
+class Player final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.Player) */ {
+ public:
+  inline Player() : Player(nullptr) {}
+  ~Player() override;
+  explicit PROTOBUF_CONSTEXPR Player(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Player(const Player& from);
+  Player(Player&& from) noexcept
+    : Player() {
+    *this = ::std::move(from);
+  }
+
+  inline Player& operator=(const Player& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Player& operator=(Player&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Player& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Player* internal_default_instance() {
+    return reinterpret_cast<const Player*>(
+               &_Player_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(Player& a, Player& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Player* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Player* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Player* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Player>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Player& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const Player& from) {
+    Player::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Player* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "comm.Player";
+  }
+  protected:
+  explicit Player(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIdFieldNumber = 1,
+    kXFieldNumber = 2,
+    kYFieldNumber = 3,
+  };
+  // uint32 id = 1;
+  void clear_id();
+  uint32_t id() const;
+  void set_id(uint32_t value);
+  private:
+  uint32_t _internal_id() const;
+  void _internal_set_id(uint32_t value);
+  public:
+
+  // int32 x = 2;
+  void clear_x();
+  int32_t x() const;
+  void set_x(int32_t value);
+  private:
+  int32_t _internal_x() const;
+  void _internal_set_x(int32_t value);
+  public:
+
+  // int32 y = 3;
+  void clear_y();
+  int32_t y() const;
+  void set_y(int32_t value);
+  private:
+  int32_t _internal_y() const;
+  void _internal_set_y(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:comm.Player)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    uint32_t id_;
+    int32_t x_;
+    int32_t y_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_comm_2eproto;
+};
+// -------------------------------------------------------------------
+
 class MapPositionsUpdate final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.MapPositionsUpdate) */ {
  public:
@@ -1053,7 +1227,7 @@ class MapPositionsUpdate final :
                &_MapPositionsUpdate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(MapPositionsUpdate& a, MapPositionsUpdate& b) {
     a.Swap(&b);
@@ -1250,7 +1424,7 @@ class StateUpdate final :
                &_StateUpdate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(StateUpdate& a, StateUpdate& b) {
     a.Swap(&b);
@@ -1885,6 +2059,70 @@ inline void Enemy::set_y(int32_t value) {
 
 // -------------------------------------------------------------------
 
+// Player
+
+// uint32 id = 1;
+inline void Player::clear_id() {
+  _impl_.id_ = 0u;
+}
+inline uint32_t Player::_internal_id() const {
+  return _impl_.id_;
+}
+inline uint32_t Player::id() const {
+  // @@protoc_insertion_point(field_get:comm.Player.id)
+  return _internal_id();
+}
+inline void Player::_internal_set_id(uint32_t value) {
+  
+  _impl_.id_ = value;
+}
+inline void Player::set_id(uint32_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:comm.Player.id)
+}
+
+// int32 x = 2;
+inline void Player::clear_x() {
+  _impl_.x_ = 0;
+}
+inline int32_t Player::_internal_x() const {
+  return _impl_.x_;
+}
+inline int32_t Player::x() const {
+  // @@protoc_insertion_point(field_get:comm.Player.x)
+  return _internal_x();
+}
+inline void Player::_internal_set_x(int32_t value) {
+  
+  _impl_.x_ = value;
+}
+inline void Player::set_x(int32_t value) {
+  _internal_set_x(value);
+  // @@protoc_insertion_point(field_set:comm.Player.x)
+}
+
+// int32 y = 3;
+inline void Player::clear_y() {
+  _impl_.y_ = 0;
+}
+inline int32_t Player::_internal_y() const {
+  return _impl_.y_;
+}
+inline int32_t Player::y() const {
+  // @@protoc_insertion_point(field_get:comm.Player.y)
+  return _internal_y();
+}
+inline void Player::_internal_set_y(int32_t value) {
+  
+  _impl_.y_ = value;
+}
+inline void Player::set_y(int32_t value) {
+  _internal_set_y(value);
+  // @@protoc_insertion_point(field_set:comm.Player.y)
+}
+
+// -------------------------------------------------------------------
+
 // MapPositionsUpdate
 
 // repeated .comm.Obstacle obstacles = 1;
@@ -2324,6 +2562,8 @@ inline void StateUpdate::set_allocated_positionupdate(::comm::PositionUpdate* po
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
