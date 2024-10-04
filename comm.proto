@@ -53,7 +53,7 @@ enum StateVariant {
 
 message MapPositionsUpdate {
     repeated Obstacle obstacles = 1;
-    repeated PositionUpdate players = 2;
+    repeated Player players = 2;
     repeated Enemy enemies = 3;
 }
 

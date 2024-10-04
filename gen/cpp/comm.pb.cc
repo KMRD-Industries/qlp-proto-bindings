@@ -261,24 +261,24 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "le\022\016\n\006height\030\001 \001(\005\022\r\n\005width\030\002 \001(\005\022\014\n\004lef"
   "t\030\003 \001(\005\022\013\n\003top\030\004 \001(\005\")\n\005Enemy\022\n\n\002id\030\001 \001("
   "\r\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\"*\n\006Player\022\n\n\002id\030"
-  "\001 \001(\r\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\"|\n\022MapPositi"
+  "\001 \001(\r\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\"t\n\022MapPositi"
   "onsUpdate\022!\n\tobstacles\030\001 \003(\0132\016.comm.Obst"
-  "acle\022%\n\007players\030\002 \003(\0132\024.comm.PositionUpd"
-  "ate\022\034\n\007enemies\030\003 \003(\0132\013.comm.Enemy\"\274\001\n\013St"
-  "ateUpdate\022\n\n\002id\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022"
-  ".comm.StateVariant\022\030\n\004room\030\003 \001(\0132\n.comm."
-  "Room\0224\n\022mapPositionsUpdate\030\004 \001(\0132\030.comm."
-  "MapPositionsUpdate\022,\n\016positionUpdate\030\005 \001"
-  "(\0132\024.comm.PositionUpdate*w\n\014StateVariant"
-  "\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTE"
-  "D\020\002\022\020\n\014ROOM_CHANGED\020\003\022\016\n\nMAP_UPDATE\020\004\022\032\n"
-  "\026PLAYER_POSITION_UPDATE\020\005B6Z4github.com/"
-  "kmrd-industries/qlp-proto-bindings/gen/g"
-  "ob\006proto3"
+  "acle\022\035\n\007players\030\002 \003(\0132\014.comm.Player\022\034\n\007e"
+  "nemies\030\003 \003(\0132\013.comm.Enemy\"\274\001\n\013StateUpdat"
+  "e\022\n\n\002id\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022.comm.St"
+  "ateVariant\022\030\n\004room\030\003 \001(\0132\n.comm.Room\0224\n\022"
+  "mapPositionsUpdate\030\004 \001(\0132\030.comm.MapPosit"
+  "ionsUpdate\022,\n\016positionUpdate\030\005 \001(\0132\024.com"
+  "m.PositionUpdate*w\n\014StateVariant\022\010\n\004NONE"
+  "\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014R"
+  "OOM_CHANGED\020\003\022\016\n\nMAP_UPDATE\020\004\022\032\n\026PLAYER_"
+  "POSITION_UPDATE\020\005B6Z4github.com/kmrd-ind"
+  "ustries/qlp-proto-bindings/gen/gob\006proto"
+  "3"
   ;
 static ::_pbi::once_flag descriptor_table_comm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
-    false, false, 889, descriptor_table_protodef_comm_2eproto,
+    false, false, 881, descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once, nullptr, 0, 8,
     schemas, file_default_instances, TableStruct_comm_2eproto::offsets,
@@ -1928,7 +1928,7 @@ const char* MapPositionsUpdate::_InternalParse(const char* ptr, ::_pbi::ParseCon
         } else
           goto handle_unusual;
         continue;
-      // repeated .comm.PositionUpdate players = 2;
+      // repeated .comm.Player players = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr -= 1;
@@ -1991,7 +1991,7 @@ uint8_t* MapPositionsUpdate::_InternalSerialize(
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
-  // repeated .comm.PositionUpdate players = 2;
+  // repeated .comm.Player players = 2;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_players_size()); i < n; i++) {
     const auto& repfield = this->_internal_players(i);
@@ -2030,7 +2030,7 @@ size_t MapPositionsUpdate::ByteSizeLong() const {
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  // repeated .comm.PositionUpdate players = 2;
+  // repeated .comm.Player players = 2;
   total_size += 1UL * this->_internal_players_size();
   for (const auto& msg : this->_impl_.players_) {
     total_size +=

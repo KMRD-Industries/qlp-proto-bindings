@@ -1322,22 +1322,22 @@ class MapPositionsUpdate final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Obstacle >&
       obstacles() const;
 
-  // repeated .comm.PositionUpdate players = 2;
+  // repeated .comm.Player players = 2;
   int players_size() const;
   private:
   int _internal_players_size() const;
   public:
   void clear_players();
-  ::comm::PositionUpdate* mutable_players(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PositionUpdate >*
+  ::comm::Player* mutable_players(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Player >*
       mutable_players();
   private:
-  const ::comm::PositionUpdate& _internal_players(int index) const;
-  ::comm::PositionUpdate* _internal_add_players();
+  const ::comm::Player& _internal_players(int index) const;
+  ::comm::Player* _internal_add_players();
   public:
-  const ::comm::PositionUpdate& players(int index) const;
-  ::comm::PositionUpdate* add_players();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PositionUpdate >&
+  const ::comm::Player& players(int index) const;
+  ::comm::Player* add_players();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Player >&
       players() const;
 
   // repeated .comm.Enemy enemies = 3;
@@ -1367,7 +1367,7 @@ class MapPositionsUpdate final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Obstacle > obstacles_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PositionUpdate > players_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Player > players_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Enemy > enemies_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -2165,7 +2165,7 @@ MapPositionsUpdate::obstacles() const {
   return _impl_.obstacles_;
 }
 
-// repeated .comm.PositionUpdate players = 2;
+// repeated .comm.Player players = 2;
 inline int MapPositionsUpdate::_internal_players_size() const {
   return _impl_.players_.size();
 }
@@ -2175,31 +2175,31 @@ inline int MapPositionsUpdate::players_size() const {
 inline void MapPositionsUpdate::clear_players() {
   _impl_.players_.Clear();
 }
-inline ::comm::PositionUpdate* MapPositionsUpdate::mutable_players(int index) {
+inline ::comm::Player* MapPositionsUpdate::mutable_players(int index) {
   // @@protoc_insertion_point(field_mutable:comm.MapPositionsUpdate.players)
   return _impl_.players_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PositionUpdate >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Player >*
 MapPositionsUpdate::mutable_players() {
   // @@protoc_insertion_point(field_mutable_list:comm.MapPositionsUpdate.players)
   return &_impl_.players_;
 }
-inline const ::comm::PositionUpdate& MapPositionsUpdate::_internal_players(int index) const {
+inline const ::comm::Player& MapPositionsUpdate::_internal_players(int index) const {
   return _impl_.players_.Get(index);
 }
-inline const ::comm::PositionUpdate& MapPositionsUpdate::players(int index) const {
+inline const ::comm::Player& MapPositionsUpdate::players(int index) const {
   // @@protoc_insertion_point(field_get:comm.MapPositionsUpdate.players)
   return _internal_players(index);
 }
-inline ::comm::PositionUpdate* MapPositionsUpdate::_internal_add_players() {
+inline ::comm::Player* MapPositionsUpdate::_internal_add_players() {
   return _impl_.players_.Add();
 }
-inline ::comm::PositionUpdate* MapPositionsUpdate::add_players() {
-  ::comm::PositionUpdate* _add = _internal_add_players();
+inline ::comm::Player* MapPositionsUpdate::add_players() {
+  ::comm::Player* _add = _internal_add_players();
   // @@protoc_insertion_point(field_add:comm.MapPositionsUpdate.players)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::PositionUpdate >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Player >&
 MapPositionsUpdate::players() const {
   // @@protoc_insertion_point(field_list:comm.MapPositionsUpdate.players)
   return _impl_.players_;
