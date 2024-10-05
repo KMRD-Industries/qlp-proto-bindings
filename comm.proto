@@ -3,19 +3,23 @@ package comm;
 option go_package = "github.com/kmrd-industries/qlp-proto-bindings/gen/go";
 
 // sent via UDP
-message PositionUpdate {
+message MovementUpdate {
     uint32 entity_id = 1;
-    float x = 2;
-    float y = 3;
-    float direction = 4;
-    Room curr_room = 5;
+    float position_x = 2;
+    float position_y = 3;
+    float weapon_pivot_x = 4;
+    float weapon_pivot_y = 5;
+    float direction = 6;
+    bool attack = 7;
+    Room curr_room = 8;
 }
 
 // sent via TCP
 message GameState {
     uint32 player_id = 1;
-    int64 seed = 2;
-    repeated uint32 connected_players = 3;
+    uint32 weapon_id = 2;
+    int64 seed = 3;
+    repeated uint32 connected_players = 4;
 }
 
 message Room {

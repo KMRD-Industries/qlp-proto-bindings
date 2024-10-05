@@ -55,8 +55,9 @@ inline constexpr GameState::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : connected_players_{},
         _connected_players_cached_byte_size_{0},
-        seed_{::int64_t{0}},
         player_id_{0u},
+        weapon_id_{0u},
+        seed_{::int64_t{0}},
         _cached_size_{0} {}
 
 template <typename>
@@ -131,17 +132,20 @@ struct StateUpdateDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
 
-inline constexpr PositionUpdate::Impl_::Impl_(
+inline constexpr MovementUpdate::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         curr_room_{nullptr},
         entity_id_{0u},
-        x_{0},
-        y_{0},
-        direction_{0} {}
+        position_x_{0},
+        position_y_{0},
+        weapon_pivot_x_{0},
+        weapon_pivot_y_{0},
+        direction_{0},
+        attack_{false} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR PositionUpdate::PositionUpdate(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR MovementUpdate::MovementUpdate(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
@@ -149,16 +153,16 @@ PROTOBUF_CONSTEXPR PositionUpdate::PositionUpdate(::_pbi::ConstantInitialized)
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct PositionUpdateDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR PositionUpdateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~PositionUpdateDefaultTypeInternal() {}
+struct MovementUpdateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MovementUpdateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MovementUpdateDefaultTypeInternal() {}
   union {
-    PositionUpdate _instance;
+    MovementUpdate _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PositionUpdateDefaultTypeInternal _PositionUpdate_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MovementUpdateDefaultTypeInternal _MovementUpdate_default_instance_;
 }  // namespace comm
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_comm_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
@@ -166,19 +170,25 @@ static constexpr const ::_pb::ServiceDescriptor**
 const ::uint32_t
     TableStruct_comm_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
-        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::comm::MovementUpdate, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::comm::MovementUpdate, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.entity_id_),
-        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.x_),
-        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.y_),
-        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.direction_),
-        PROTOBUF_FIELD_OFFSET(::comm::PositionUpdate, _impl_.curr_room_),
+        PROTOBUF_FIELD_OFFSET(::comm::MovementUpdate, _impl_.entity_id_),
+        PROTOBUF_FIELD_OFFSET(::comm::MovementUpdate, _impl_.position_x_),
+        PROTOBUF_FIELD_OFFSET(::comm::MovementUpdate, _impl_.position_y_),
+        PROTOBUF_FIELD_OFFSET(::comm::MovementUpdate, _impl_.weapon_pivot_x_),
+        PROTOBUF_FIELD_OFFSET(::comm::MovementUpdate, _impl_.weapon_pivot_y_),
+        PROTOBUF_FIELD_OFFSET(::comm::MovementUpdate, _impl_.direction_),
+        PROTOBUF_FIELD_OFFSET(::comm::MovementUpdate, _impl_.attack_),
+        PROTOBUF_FIELD_OFFSET(::comm::MovementUpdate, _impl_.curr_room_),
+        ~0u,
+        ~0u,
+        ~0u,
         ~0u,
         ~0u,
         ~0u,
@@ -193,6 +203,7 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::comm::GameState, _impl_.player_id_),
+        PROTOBUF_FIELD_OFFSET(::comm::GameState, _impl_.weapon_id_),
         PROTOBUF_FIELD_OFFSET(::comm::GameState, _impl_.seed_),
         PROTOBUF_FIELD_OFFSET(::comm::GameState, _impl_.connected_players_),
         ~0u,  // no _has_bits_
@@ -232,14 +243,14 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, 13, -1, sizeof(::comm::PositionUpdate)},
-        {18, -1, -1, sizeof(::comm::GameState)},
-        {29, -1, -1, sizeof(::comm::Room)},
-        {39, -1, -1, sizeof(::comm::BytePrefix)},
-        {48, 59, -1, sizeof(::comm::StateUpdate)},
+        {0, 16, -1, sizeof(::comm::MovementUpdate)},
+        {24, -1, -1, sizeof(::comm::GameState)},
+        {36, -1, -1, sizeof(::comm::Room)},
+        {46, -1, -1, sizeof(::comm::BytePrefix)},
+        {55, 66, -1, sizeof(::comm::StateUpdate)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
-    &::comm::_PositionUpdate_default_instance_._instance,
+    &::comm::_MovementUpdate_default_instance_._instance,
     &::comm::_GameState_default_instance_._instance,
     &::comm::_Room_default_instance_._instance,
     &::comm::_BytePrefix_default_instance_._instance,
@@ -247,25 +258,27 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\ncomm.proto\022\004comm\"k\n\016PositionUpdate\022\021\n\t"
-    "entity_id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\022\021\n"
-    "\tdirection\030\004 \001(\002\022\035\n\tcurr_room\030\005 \001(\0132\n.co"
-    "mm.Room\"G\n\tGameState\022\021\n\tplayer_id\030\001 \001(\r\022"
-    "\014\n\004seed\030\002 \001(\003\022\031\n\021connected_players\030\003 \003(\r"
-    "\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"\033\n\nBytePr"
-    "efix\022\r\n\005bytes\030\001 \001(\r\"X\n\013StateUpdate\022\n\n\002id"
-    "\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022.comm.StateVari"
-    "ant\022\030\n\004room\030\003 \001(\0132\n.comm.Room*K\n\014StateVa"
-    "riant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCON"
-    "NECTED\020\002\022\020\n\014ROOM_CHANGED\020\003B6Z4github.com"
-    "/kmrd-industries/qlp-proto-bindings/gen/"
-    "gob\006proto3"
+    "\n\ncomm.proto\022\004comm\"\275\001\n\016MovementUpdate\022\021\n"
+    "\tentity_id\030\001 \001(\r\022\022\n\nposition_x\030\002 \001(\002\022\022\n\n"
+    "position_y\030\003 \001(\002\022\026\n\016weapon_pivot_x\030\004 \001(\002"
+    "\022\026\n\016weapon_pivot_y\030\005 \001(\002\022\021\n\tdirection\030\006 "
+    "\001(\002\022\016\n\006attack\030\007 \001(\010\022\035\n\tcurr_room\030\010 \001(\0132\n"
+    ".comm.Room\"Z\n\tGameState\022\021\n\tplayer_id\030\001 \001"
+    "(\r\022\021\n\tweapon_id\030\002 \001(\r\022\014\n\004seed\030\003 \001(\003\022\031\n\021c"
+    "onnected_players\030\004 \003(\r\"\034\n\004Room\022\t\n\001x\030\001 \001("
+    "\005\022\t\n\001y\030\002 \001(\005\"\033\n\nBytePrefix\022\r\n\005bytes\030\001 \001("
+    "\r\"X\n\013StateUpdate\022\n\n\002id\030\001 \001(\r\022#\n\007variant\030"
+    "\002 \001(\0162\022.comm.StateVariant\022\030\n\004room\030\003 \001(\0132"
+    "\n.comm.Room*K\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n"
+    "\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014ROOM_C"
+    "HANGED\020\003B6Z4github.com/kmrd-industries/q"
+    "lp-proto-bindings/gen/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    490,
+    592,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -290,38 +303,38 @@ bool StateVariant_IsValid(int value) {
 }
 // ===================================================================
 
-class PositionUpdate::_Internal {
+class MovementUpdate::_Internal {
  public:
   using HasBits =
-      decltype(std::declval<PositionUpdate>()._impl_._has_bits_);
+      decltype(std::declval<MovementUpdate>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_._has_bits_);
 };
 
-PositionUpdate::PositionUpdate(::google::protobuf::Arena* arena)
+MovementUpdate::MovementUpdate(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:comm.PositionUpdate)
+  // @@protoc_insertion_point(arena_constructor:comm.MovementUpdate)
 }
-inline PROTOBUF_NDEBUG_INLINE PositionUpdate::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE MovementUpdate::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::comm::PositionUpdate& from_msg)
+    const Impl_& from, const ::comm::MovementUpdate& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0} {}
 
-PositionUpdate::PositionUpdate(
+MovementUpdate::MovementUpdate(
     ::google::protobuf::Arena* arena,
-    const PositionUpdate& from)
+    const MovementUpdate& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  PositionUpdate* const _this = this;
+  MovementUpdate* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
@@ -334,32 +347,32 @@ PositionUpdate::PositionUpdate(
                offsetof(Impl_, entity_id_),
            reinterpret_cast<const char *>(&from._impl_) +
                offsetof(Impl_, entity_id_),
-           offsetof(Impl_, direction_) -
+           offsetof(Impl_, attack_) -
                offsetof(Impl_, entity_id_) +
-               sizeof(Impl_::direction_));
+               sizeof(Impl_::attack_));
 
-  // @@protoc_insertion_point(copy_constructor:comm.PositionUpdate)
+  // @@protoc_insertion_point(copy_constructor:comm.MovementUpdate)
 }
-inline PROTOBUF_NDEBUG_INLINE PositionUpdate::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE MovementUpdate::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0} {}
 
-inline void PositionUpdate::SharedCtor(::_pb::Arena* arena) {
+inline void MovementUpdate::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, curr_room_),
            0,
-           offsetof(Impl_, direction_) -
+           offsetof(Impl_, attack_) -
                offsetof(Impl_, curr_room_) +
-               sizeof(Impl_::direction_));
+               sizeof(Impl_::attack_));
 }
-PositionUpdate::~PositionUpdate() {
-  // @@protoc_insertion_point(destructor:comm.PositionUpdate)
+MovementUpdate::~MovementUpdate() {
+  // @@protoc_insertion_point(destructor:comm.MovementUpdate)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void PositionUpdate::SharedDtor() {
+inline void MovementUpdate::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   delete _impl_.curr_room_;
   _impl_.~Impl_();
@@ -368,85 +381,100 @@ inline void PositionUpdate::SharedDtor() {
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
 const ::google::protobuf::MessageLite::ClassDataFull
-    PositionUpdate::_class_data_ = {
+    MovementUpdate::_class_data_ = {
         ::google::protobuf::Message::ClassData{
-            &_PositionUpdate_default_instance_._instance,
+            &_MovementUpdate_default_instance_._instance,
             &_table_.header,
             nullptr,  // OnDemandRegisterArenaDtor
             nullptr,  // IsInitialized
-            &PositionUpdate::MergeImpl,
+            &MovementUpdate::MergeImpl,
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-            ::google::protobuf::Message::GetDeleteImpl<PositionUpdate>(),
-            ::google::protobuf::Message::GetNewImpl<PositionUpdate>(),
-            ::google::protobuf::Message::GetClearImpl<PositionUpdate>(), &PositionUpdate::ByteSizeLong,
-                &PositionUpdate::_InternalSerialize,
+            ::google::protobuf::Message::GetDeleteImpl<MovementUpdate>(),
+            ::google::protobuf::Message::GetNewImpl<MovementUpdate>(),
+            ::google::protobuf::Message::GetClearImpl<MovementUpdate>(), &MovementUpdate::ByteSizeLong,
+                &MovementUpdate::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-            PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_._cached_size_),
+            PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_._cached_size_),
             false,
         },
-        &PositionUpdate::kDescriptorMethods,
+        &MovementUpdate::kDescriptorMethods,
         &descriptor_table_comm_2eproto,
         nullptr,  // tracker
 };
-const ::google::protobuf::MessageLite::ClassData* PositionUpdate::GetClassData() const {
+const ::google::protobuf::MessageLite::ClassData* MovementUpdate::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 1, 0, 2> PositionUpdate::_table_ = {
+const ::_pbi::TcParseTable<3, 8, 1, 0, 2> MovementUpdate::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_._has_bits_),
     0, // no _extensions_
-    5, 56,  // max_field_number, fast_idx_mask
+    8, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967040,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
+    8,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::comm::PositionUpdate>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::comm::MovementUpdate>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // uint32 entity_id = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PositionUpdate, _impl_.entity_id_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.entity_id_)}},
-    // float x = 2;
-    {::_pbi::TcParser::FastF32S1,
-     {21, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.x_)}},
-    // float y = 3;
-    {::_pbi::TcParser::FastF32S1,
-     {29, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_)}},
-    // float direction = 4;
-    {::_pbi::TcParser::FastF32S1,
-     {37, 63, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.direction_)}},
-    // .comm.Room curr_room = 5;
+    // .comm.Room curr_room = 8;
     {::_pbi::TcParser::FastMtS1,
-     {42, 0, 0, PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.curr_room_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
+     {66, 0, 0, PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.curr_room_)}},
+    // uint32 entity_id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MovementUpdate, _impl_.entity_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.entity_id_)}},
+    // float position_x = 2;
+    {::_pbi::TcParser::FastF32S1,
+     {21, 63, 0, PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.position_x_)}},
+    // float position_y = 3;
+    {::_pbi::TcParser::FastF32S1,
+     {29, 63, 0, PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.position_y_)}},
+    // float weapon_pivot_x = 4;
+    {::_pbi::TcParser::FastF32S1,
+     {37, 63, 0, PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.weapon_pivot_x_)}},
+    // float weapon_pivot_y = 5;
+    {::_pbi::TcParser::FastF32S1,
+     {45, 63, 0, PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.weapon_pivot_y_)}},
+    // float direction = 6;
+    {::_pbi::TcParser::FastF32S1,
+     {53, 63, 0, PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.direction_)}},
+    // bool attack = 7;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(MovementUpdate, _impl_.attack_), 63>(),
+     {56, 63, 0, PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.attack_)}},
   }}, {{
     65535, 65535
   }}, {{
     // uint32 entity_id = 1;
-    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.entity_id_), -1, 0,
+    {PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.entity_id_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // float x = 2;
-    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.x_), -1, 0,
+    // float position_x = 2;
+    {PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.position_x_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float y = 3;
-    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.y_), -1, 0,
+    // float position_y = 3;
+    {PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.position_y_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float direction = 4;
-    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.direction_), -1, 0,
+    // float weapon_pivot_x = 4;
+    {PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.weapon_pivot_x_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // .comm.Room curr_room = 5;
-    {PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.curr_room_), _Internal::kHasBitsOffset + 0, 0,
+    // float weapon_pivot_y = 5;
+    {PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.weapon_pivot_y_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // float direction = 6;
+    {PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.direction_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // bool attack = 7;
+    {PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.attack_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // .comm.Room curr_room = 8;
+    {PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.curr_room_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::comm::Room>()},
@@ -454,8 +482,8 @@ const ::_pbi::TcParseTable<3, 5, 1, 0, 2> PositionUpdate::_table_ = {
   }},
 };
 
-PROTOBUF_NOINLINE void PositionUpdate::Clear() {
-// @@protoc_insertion_point(message_clear_start:comm.PositionUpdate)
+PROTOBUF_NOINLINE void MovementUpdate::Clear() {
+// @@protoc_insertion_point(message_clear_start:comm.MovementUpdate)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -467,24 +495,24 @@ PROTOBUF_NOINLINE void PositionUpdate::Clear() {
     _impl_.curr_room_->Clear();
   }
   ::memset(&_impl_.entity_id_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.direction_) -
-      reinterpret_cast<char*>(&_impl_.entity_id_)) + sizeof(_impl_.direction_));
+      reinterpret_cast<char*>(&_impl_.attack_) -
+      reinterpret_cast<char*>(&_impl_.entity_id_)) + sizeof(_impl_.attack_));
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* PositionUpdate::_InternalSerialize(
+        ::uint8_t* MovementUpdate::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const PositionUpdate& this_ = static_cast<const PositionUpdate&>(base);
+          const MovementUpdate& this_ = static_cast<const MovementUpdate&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* PositionUpdate::_InternalSerialize(
+        ::uint8_t* MovementUpdate::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const PositionUpdate& this_ = *this;
+          const MovementUpdate& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:comm.PositionUpdate)
+          // @@protoc_insertion_point(serialize_to_array_start:comm.MovementUpdate)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
@@ -495,32 +523,53 @@ PROTOBUF_NOINLINE void PositionUpdate::Clear() {
                 1, this_._internal_entity_id(), target);
           }
 
-          // float x = 2;
-          if (::absl::bit_cast<::uint32_t>(this_._internal_x()) != 0) {
+          // float position_x = 2;
+          if (::absl::bit_cast<::uint32_t>(this_._internal_position_x()) != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteFloatToArray(
-                2, this_._internal_x(), target);
+                2, this_._internal_position_x(), target);
           }
 
-          // float y = 3;
-          if (::absl::bit_cast<::uint32_t>(this_._internal_y()) != 0) {
+          // float position_y = 3;
+          if (::absl::bit_cast<::uint32_t>(this_._internal_position_y()) != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteFloatToArray(
-                3, this_._internal_y(), target);
+                3, this_._internal_position_y(), target);
           }
 
-          // float direction = 4;
+          // float weapon_pivot_x = 4;
+          if (::absl::bit_cast<::uint32_t>(this_._internal_weapon_pivot_x()) != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteFloatToArray(
+                4, this_._internal_weapon_pivot_x(), target);
+          }
+
+          // float weapon_pivot_y = 5;
+          if (::absl::bit_cast<::uint32_t>(this_._internal_weapon_pivot_y()) != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteFloatToArray(
+                5, this_._internal_weapon_pivot_y(), target);
+          }
+
+          // float direction = 6;
           if (::absl::bit_cast<::uint32_t>(this_._internal_direction()) != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteFloatToArray(
-                4, this_._internal_direction(), target);
+                6, this_._internal_direction(), target);
+          }
+
+          // bool attack = 7;
+          if (this_._internal_attack() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteBoolToArray(
+                7, this_._internal_attack(), target);
           }
 
           cached_has_bits = this_._impl_._has_bits_[0];
-          // .comm.Room curr_room = 5;
+          // .comm.Room curr_room = 8;
           if (cached_has_bits & 0x00000001u) {
             target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                5, *this_._impl_.curr_room_, this_._impl_.curr_room_->GetCachedSize(), target,
+                8, *this_._impl_.curr_room_, this_._impl_.curr_room_->GetCachedSize(), target,
                 stream);
           }
 
@@ -529,18 +578,18 @@ PROTOBUF_NOINLINE void PositionUpdate::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:comm.PositionUpdate)
+          // @@protoc_insertion_point(serialize_to_array_end:comm.MovementUpdate)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t PositionUpdate::ByteSizeLong(const MessageLite& base) {
-          const PositionUpdate& this_ = static_cast<const PositionUpdate&>(base);
+        ::size_t MovementUpdate::ByteSizeLong(const MessageLite& base) {
+          const MovementUpdate& this_ = static_cast<const MovementUpdate&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t PositionUpdate::ByteSizeLong() const {
-          const PositionUpdate& this_ = *this;
+        ::size_t MovementUpdate::ByteSizeLong() const {
+          const MovementUpdate& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:comm.PositionUpdate)
+          // @@protoc_insertion_point(message_byte_size_start:comm.MovementUpdate)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -549,7 +598,7 @@ PROTOBUF_NOINLINE void PositionUpdate::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // .comm.Room curr_room = 5;
+            // .comm.Room curr_room = 8;
             cached_has_bits =
                 this_._impl_._has_bits_[0];
             if (cached_has_bits & 0x00000001u) {
@@ -563,28 +612,40 @@ PROTOBUF_NOINLINE void PositionUpdate::Clear() {
               total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
                   this_._internal_entity_id());
             }
-            // float x = 2;
-            if (::absl::bit_cast<::uint32_t>(this_._internal_x()) != 0) {
+            // float position_x = 2;
+            if (::absl::bit_cast<::uint32_t>(this_._internal_position_x()) != 0) {
               total_size += 5;
             }
-            // float y = 3;
-            if (::absl::bit_cast<::uint32_t>(this_._internal_y()) != 0) {
+            // float position_y = 3;
+            if (::absl::bit_cast<::uint32_t>(this_._internal_position_y()) != 0) {
               total_size += 5;
             }
-            // float direction = 4;
+            // float weapon_pivot_x = 4;
+            if (::absl::bit_cast<::uint32_t>(this_._internal_weapon_pivot_x()) != 0) {
+              total_size += 5;
+            }
+            // float weapon_pivot_y = 5;
+            if (::absl::bit_cast<::uint32_t>(this_._internal_weapon_pivot_y()) != 0) {
+              total_size += 5;
+            }
+            // float direction = 6;
             if (::absl::bit_cast<::uint32_t>(this_._internal_direction()) != 0) {
               total_size += 5;
+            }
+            // bool attack = 7;
+            if (this_._internal_attack() != 0) {
+              total_size += 2;
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
                                                      &this_._impl_._cached_size_);
         }
 
-void PositionUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<PositionUpdate*>(&to_msg);
-  auto& from = static_cast<const PositionUpdate&>(from_msg);
+void MovementUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<MovementUpdate*>(&to_msg);
+  auto& from = static_cast<const MovementUpdate&>(from_msg);
   ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:comm.PositionUpdate)
+  // @@protoc_insertion_point(class_specific_merge_from_start:comm.MovementUpdate)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -602,40 +663,49 @@ void PositionUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::
   if (from._internal_entity_id() != 0) {
     _this->_impl_.entity_id_ = from._impl_.entity_id_;
   }
-  if (::absl::bit_cast<::uint32_t>(from._internal_x()) != 0) {
-    _this->_impl_.x_ = from._impl_.x_;
+  if (::absl::bit_cast<::uint32_t>(from._internal_position_x()) != 0) {
+    _this->_impl_.position_x_ = from._impl_.position_x_;
   }
-  if (::absl::bit_cast<::uint32_t>(from._internal_y()) != 0) {
-    _this->_impl_.y_ = from._impl_.y_;
+  if (::absl::bit_cast<::uint32_t>(from._internal_position_y()) != 0) {
+    _this->_impl_.position_y_ = from._impl_.position_y_;
+  }
+  if (::absl::bit_cast<::uint32_t>(from._internal_weapon_pivot_x()) != 0) {
+    _this->_impl_.weapon_pivot_x_ = from._impl_.weapon_pivot_x_;
+  }
+  if (::absl::bit_cast<::uint32_t>(from._internal_weapon_pivot_y()) != 0) {
+    _this->_impl_.weapon_pivot_y_ = from._impl_.weapon_pivot_y_;
   }
   if (::absl::bit_cast<::uint32_t>(from._internal_direction()) != 0) {
     _this->_impl_.direction_ = from._impl_.direction_;
+  }
+  if (from._internal_attack() != 0) {
+    _this->_impl_.attack_ = from._impl_.attack_;
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void PositionUpdate::CopyFrom(const PositionUpdate& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:comm.PositionUpdate)
+void MovementUpdate::CopyFrom(const MovementUpdate& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:comm.MovementUpdate)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void PositionUpdate::InternalSwap(PositionUpdate* PROTOBUF_RESTRICT other) {
+void MovementUpdate::InternalSwap(MovementUpdate* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.direction_)
-      + sizeof(PositionUpdate::_impl_.direction_)
-      - PROTOBUF_FIELD_OFFSET(PositionUpdate, _impl_.curr_room_)>(
+      PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.attack_)
+      + sizeof(MovementUpdate::_impl_.attack_)
+      - PROTOBUF_FIELD_OFFSET(MovementUpdate, _impl_.curr_room_)>(
           reinterpret_cast<char*>(&_impl_.curr_room_),
           reinterpret_cast<char*>(&other->_impl_.curr_room_));
 }
 
-::google::protobuf::Metadata PositionUpdate::GetMetadata() const {
+::google::protobuf::Metadata MovementUpdate::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
@@ -674,12 +744,12 @@ GameState::GameState(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, seed_),
+               offsetof(Impl_, player_id_),
            reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, seed_),
-           offsetof(Impl_, player_id_) -
-               offsetof(Impl_, seed_) +
-               sizeof(Impl_::player_id_));
+               offsetof(Impl_, player_id_),
+           offsetof(Impl_, seed_) -
+               offsetof(Impl_, player_id_) +
+               sizeof(Impl_::seed_));
 
   // @@protoc_insertion_point(copy_constructor:comm.GameState)
 }
@@ -693,11 +763,11 @@ inline PROTOBUF_NDEBUG_INLINE GameState::Impl_::Impl_(
 inline void GameState::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, seed_),
+               offsetof(Impl_, player_id_),
            0,
-           offsetof(Impl_, player_id_) -
-               offsetof(Impl_, seed_) +
-               sizeof(Impl_::player_id_));
+           offsetof(Impl_, seed_) -
+               offsetof(Impl_, player_id_) +
+               sizeof(Impl_::seed_));
 }
 GameState::~GameState() {
   // @@protoc_insertion_point(destructor:comm.GameState)
@@ -738,15 +808,15 @@ const ::google::protobuf::MessageLite::ClassData* GameState::GetClassData() cons
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 0, 2> GameState::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 0, 0, 2> GameState::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    4, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    4,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -756,26 +826,31 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> GameState::_table_ = {
     ::_pbi::TcParser::GetTable<::comm::GameState>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // repeated uint32 connected_players = 4;
+    {::_pbi::TcParser::FastV32P1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.connected_players_)}},
     // uint32 player_id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GameState, _impl_.player_id_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.player_id_)}},
-    // int64 seed = 2;
+    // uint32 weapon_id = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GameState, _impl_.weapon_id_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.weapon_id_)}},
+    // int64 seed = 3;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(GameState, _impl_.seed_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.seed_)}},
-    // repeated uint32 connected_players = 3;
-    {::_pbi::TcParser::FastV32P1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.connected_players_)}},
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.seed_)}},
   }}, {{
     65535, 65535
   }}, {{
     // uint32 player_id = 1;
     {PROTOBUF_FIELD_OFFSET(GameState, _impl_.player_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // int64 seed = 2;
+    // uint32 weapon_id = 2;
+    {PROTOBUF_FIELD_OFFSET(GameState, _impl_.weapon_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // int64 seed = 3;
     {PROTOBUF_FIELD_OFFSET(GameState, _impl_.seed_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
-    // repeated uint32 connected_players = 3;
+    // repeated uint32 connected_players = 4;
     {PROTOBUF_FIELD_OFFSET(GameState, _impl_.connected_players_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
   }},
@@ -792,9 +867,9 @@ PROTOBUF_NOINLINE void GameState::Clear() {
   (void) cached_has_bits;
 
   _impl_.connected_players_.Clear();
-  ::memset(&_impl_.seed_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.player_id_) -
-      reinterpret_cast<char*>(&_impl_.seed_)) + sizeof(_impl_.player_id_));
+  ::memset(&_impl_.player_id_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.seed_) -
+      reinterpret_cast<char*>(&_impl_.player_id_)) + sizeof(_impl_.seed_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -820,19 +895,26 @@ PROTOBUF_NOINLINE void GameState::Clear() {
                 1, this_._internal_player_id(), target);
           }
 
-          // int64 seed = 2;
+          // uint32 weapon_id = 2;
+          if (this_._internal_weapon_id() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                2, this_._internal_weapon_id(), target);
+          }
+
+          // int64 seed = 3;
           if (this_._internal_seed() != 0) {
             target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt64ToArrayWithField<2>(
+                WriteInt64ToArrayWithField<3>(
                     stream, this_._internal_seed(), target);
           }
 
-          // repeated uint32 connected_players = 3;
+          // repeated uint32 connected_players = 4;
           {
             int byte_size = this_._impl_._connected_players_cached_byte_size_.Get();
             if (byte_size > 0) {
               target = stream->WriteUInt32Packed(
-                  3, this_._internal_connected_players(), byte_size, target);
+                  4, this_._internal_connected_players(), byte_size, target);
             }
           }
 
@@ -861,7 +943,7 @@ PROTOBUF_NOINLINE void GameState::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated uint32 connected_players = 3;
+            // repeated uint32 connected_players = 4;
              {
               std::size_t data_size = ::_pbi::WireFormatLite::UInt32Size(
                   this_._internal_connected_players())
@@ -877,15 +959,20 @@ PROTOBUF_NOINLINE void GameState::Clear() {
             }
           }
            {
-            // int64 seed = 2;
-            if (this_._internal_seed() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
-                  this_._internal_seed());
-            }
             // uint32 player_id = 1;
             if (this_._internal_player_id() != 0) {
               total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
                   this_._internal_player_id());
+            }
+            // uint32 weapon_id = 2;
+            if (this_._internal_weapon_id() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_weapon_id());
+            }
+            // int64 seed = 3;
+            if (this_._internal_seed() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+                  this_._internal_seed());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -901,11 +988,14 @@ void GameState::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::googl
   (void) cached_has_bits;
 
   _this->_internal_mutable_connected_players()->MergeFrom(from._internal_connected_players());
-  if (from._internal_seed() != 0) {
-    _this->_impl_.seed_ = from._impl_.seed_;
-  }
   if (from._internal_player_id() != 0) {
     _this->_impl_.player_id_ = from._impl_.player_id_;
+  }
+  if (from._internal_weapon_id() != 0) {
+    _this->_impl_.weapon_id_ = from._impl_.weapon_id_;
+  }
+  if (from._internal_seed() != 0) {
+    _this->_impl_.seed_ = from._impl_.seed_;
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -923,11 +1013,11 @@ void GameState::InternalSwap(GameState* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.connected_players_.InternalSwap(&other->_impl_.connected_players_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GameState, _impl_.player_id_)
-      + sizeof(GameState::_impl_.player_id_)
-      - PROTOBUF_FIELD_OFFSET(GameState, _impl_.seed_)>(
-          reinterpret_cast<char*>(&_impl_.seed_),
-          reinterpret_cast<char*>(&other->_impl_.seed_));
+      PROTOBUF_FIELD_OFFSET(GameState, _impl_.seed_)
+      + sizeof(GameState::_impl_.seed_)
+      - PROTOBUF_FIELD_OFFSET(GameState, _impl_.player_id_)>(
+          reinterpret_cast<char*>(&_impl_.player_id_),
+          reinterpret_cast<char*>(&other->_impl_.player_id_));
 }
 
 ::google::protobuf::Metadata GameState::GetMetadata() const {
