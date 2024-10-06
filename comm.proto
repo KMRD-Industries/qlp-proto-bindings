@@ -67,4 +67,5 @@ message StateUpdate {
     Room room = 3;
     MapPositionsUpdate mapPositionsUpdate = 4;
     PositionUpdate positionUpdate = 5;
+    EnemyPositionsUpdate enemyPositionsUpdate = 6;
 }

@@ -1661,6 +1661,7 @@ class StateUpdate final :
     kRoomFieldNumber = 3,
     kMapPositionsUpdateFieldNumber = 4,
     kPositionUpdateFieldNumber = 5,
+    kEnemyPositionsUpdateFieldNumber = 6,
     kIdFieldNumber = 1,
     kVariantFieldNumber = 2,
   };
@@ -1718,6 +1719,24 @@ class StateUpdate final :
       ::comm::PositionUpdate* positionupdate);
   ::comm::PositionUpdate* unsafe_arena_release_positionupdate();
 
+  // .comm.EnemyPositionsUpdate enemyPositionsUpdate = 6;
+  bool has_enemypositionsupdate() const;
+  private:
+  bool _internal_has_enemypositionsupdate() const;
+  public:
+  void clear_enemypositionsupdate();
+  const ::comm::EnemyPositionsUpdate& enemypositionsupdate() const;
+  PROTOBUF_NODISCARD ::comm::EnemyPositionsUpdate* release_enemypositionsupdate();
+  ::comm::EnemyPositionsUpdate* mutable_enemypositionsupdate();
+  void set_allocated_enemypositionsupdate(::comm::EnemyPositionsUpdate* enemypositionsupdate);
+  private:
+  const ::comm::EnemyPositionsUpdate& _internal_enemypositionsupdate() const;
+  ::comm::EnemyPositionsUpdate* _internal_mutable_enemypositionsupdate();
+  public:
+  void unsafe_arena_set_allocated_enemypositionsupdate(
+      ::comm::EnemyPositionsUpdate* enemypositionsupdate);
+  ::comm::EnemyPositionsUpdate* unsafe_arena_release_enemypositionsupdate();
+
   // uint32 id = 1;
   void clear_id();
   uint32_t id() const;
@@ -1747,6 +1766,7 @@ class StateUpdate final :
     ::comm::Room* room_;
     ::comm::MapPositionsUpdate* mappositionsupdate_;
     ::comm::PositionUpdate* positionupdate_;
+    ::comm::EnemyPositionsUpdate* enemypositionsupdate_;
     uint32_t id_;
     int variant_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2762,6 +2782,96 @@ inline void StateUpdate::set_allocated_positionupdate(::comm::PositionUpdate* po
   }
   _impl_.positionupdate_ = positionupdate;
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.positionUpdate)
+}
+
+// .comm.EnemyPositionsUpdate enemyPositionsUpdate = 6;
+inline bool StateUpdate::_internal_has_enemypositionsupdate() const {
+  return this != internal_default_instance() && _impl_.enemypositionsupdate_ != nullptr;
+}
+inline bool StateUpdate::has_enemypositionsupdate() const {
+  return _internal_has_enemypositionsupdate();
+}
+inline void StateUpdate::clear_enemypositionsupdate() {
+  if (GetArenaForAllocation() == nullptr && _impl_.enemypositionsupdate_ != nullptr) {
+    delete _impl_.enemypositionsupdate_;
+  }
+  _impl_.enemypositionsupdate_ = nullptr;
+}
+inline const ::comm::EnemyPositionsUpdate& StateUpdate::_internal_enemypositionsupdate() const {
+  const ::comm::EnemyPositionsUpdate* p = _impl_.enemypositionsupdate_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::EnemyPositionsUpdate&>(
+      ::comm::_EnemyPositionsUpdate_default_instance_);
+}
+inline const ::comm::EnemyPositionsUpdate& StateUpdate::enemypositionsupdate() const {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.enemyPositionsUpdate)
+  return _internal_enemypositionsupdate();
+}
+inline void StateUpdate::unsafe_arena_set_allocated_enemypositionsupdate(
+    ::comm::EnemyPositionsUpdate* enemypositionsupdate) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.enemypositionsupdate_);
+  }
+  _impl_.enemypositionsupdate_ = enemypositionsupdate;
+  if (enemypositionsupdate) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.enemyPositionsUpdate)
+}
+inline ::comm::EnemyPositionsUpdate* StateUpdate::release_enemypositionsupdate() {
+  
+  ::comm::EnemyPositionsUpdate* temp = _impl_.enemypositionsupdate_;
+  _impl_.enemypositionsupdate_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::comm::EnemyPositionsUpdate* StateUpdate::unsafe_arena_release_enemypositionsupdate() {
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.enemyPositionsUpdate)
+  
+  ::comm::EnemyPositionsUpdate* temp = _impl_.enemypositionsupdate_;
+  _impl_.enemypositionsupdate_ = nullptr;
+  return temp;
+}
+inline ::comm::EnemyPositionsUpdate* StateUpdate::_internal_mutable_enemypositionsupdate() {
+  
+  if (_impl_.enemypositionsupdate_ == nullptr) {
+    auto* p = CreateMaybeMessage<::comm::EnemyPositionsUpdate>(GetArenaForAllocation());
+    _impl_.enemypositionsupdate_ = p;
+  }
+  return _impl_.enemypositionsupdate_;
+}
+inline ::comm::EnemyPositionsUpdate* StateUpdate::mutable_enemypositionsupdate() {
+  ::comm::EnemyPositionsUpdate* _msg = _internal_mutable_enemypositionsupdate();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.enemyPositionsUpdate)
+  return _msg;
+}
+inline void StateUpdate::set_allocated_enemypositionsupdate(::comm::EnemyPositionsUpdate* enemypositionsupdate) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.enemypositionsupdate_;
+  }
+  if (enemypositionsupdate) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(enemypositionsupdate);
+    if (message_arena != submessage_arena) {
+      enemypositionsupdate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, enemypositionsupdate, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.enemypositionsupdate_ = enemypositionsupdate;
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.enemyPositionsUpdate)
 }
 
 #ifdef __GNUC__

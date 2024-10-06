@@ -147,6 +147,7 @@ PROTOBUF_CONSTEXPR StateUpdate::StateUpdate(
     /*decltype(_impl_.room_)*/nullptr
   , /*decltype(_impl_.mappositionsupdate_)*/nullptr
   , /*decltype(_impl_.positionupdate_)*/nullptr
+  , /*decltype(_impl_.enemypositionsupdate_)*/nullptr
   , /*decltype(_impl_.id_)*/0u
   , /*decltype(_impl_.variant_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -248,6 +249,7 @@ const uint32_t TableStruct_comm_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pro
   PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.room_),
   PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.mappositionsupdate_),
   PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.positionupdate_),
+  PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.enemypositionsupdate_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::comm::PositionUpdate)},
@@ -288,20 +290,21 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "mm.Enemy\"t\n\022MapPositionsUpdate\022!\n\tobstac"
   "les\030\001 \003(\0132\016.comm.Obstacle\022\035\n\007players\030\002 \003"
   "(\0132\014.comm.Player\022\034\n\007enemies\030\003 \003(\0132\013.comm"
-  ".Enemy\"\274\001\n\013StateUpdate\022\n\n\002id\030\001 \001(\r\022#\n\007va"
+  ".Enemy\"\366\001\n\013StateUpdate\022\n\n\002id\030\001 \001(\r\022#\n\007va"
   "riant\030\002 \001(\0162\022.comm.StateVariant\022\030\n\004room\030"
   "\003 \001(\0132\n.comm.Room\0224\n\022mapPositionsUpdate\030"
   "\004 \001(\0132\030.comm.MapPositionsUpdate\022,\n\016posit"
-  "ionUpdate\030\005 \001(\0132\024.comm.PositionUpdate*w\n"
-  "\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020"
-  "\n\014DISCONNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003\022\016\n\nMA"
-  "P_UPDATE\020\004\022\032\n\026PLAYER_POSITION_UPDATE\020\005B6"
-  "Z4github.com/kmrd-industries/qlp-proto-b"
-  "indings/gen/gob\006proto3"
+  "ionUpdate\030\005 \001(\0132\024.comm.PositionUpdate\0228\n"
+  "\024enemyPositionsUpdate\030\006 \001(\0132\032.comm.Enemy"
+  "PositionsUpdate*w\n\014StateVariant\022\010\n\004NONE\020"
+  "\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014RO"
+  "OM_CHANGED\020\003\022\016\n\nMAP_UPDATE\020\004\022\032\n\026PLAYER_P"
+  "OSITION_UPDATE\020\005B6Z4github.com/kmrd-indu"
+  "stries/qlp-proto-bindings/gen/gob\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_comm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
-    false, false, 942, descriptor_table_protodef_comm_2eproto,
+    false, false, 1000, descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once, nullptr, 0, 9,
     schemas, file_default_instances, TableStruct_comm_2eproto::offsets,
@@ -2308,6 +2311,7 @@ class StateUpdate::_Internal {
   static const ::comm::Room& room(const StateUpdate* msg);
   static const ::comm::MapPositionsUpdate& mappositionsupdate(const StateUpdate* msg);
   static const ::comm::PositionUpdate& positionupdate(const StateUpdate* msg);
+  static const ::comm::EnemyPositionsUpdate& enemypositionsupdate(const StateUpdate* msg);
 };
 
 const ::comm::Room&
@@ -2322,6 +2326,10 @@ const ::comm::PositionUpdate&
 StateUpdate::_Internal::positionupdate(const StateUpdate* msg) {
   return *msg->_impl_.positionupdate_;
 }
+const ::comm::EnemyPositionsUpdate&
+StateUpdate::_Internal::enemypositionsupdate(const StateUpdate* msg) {
+  return *msg->_impl_.enemypositionsupdate_;
+}
 StateUpdate::StateUpdate(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -2335,6 +2343,7 @@ StateUpdate::StateUpdate(const StateUpdate& from)
       decltype(_impl_.room_){nullptr}
     , decltype(_impl_.mappositionsupdate_){nullptr}
     , decltype(_impl_.positionupdate_){nullptr}
+    , decltype(_impl_.enemypositionsupdate_){nullptr}
     , decltype(_impl_.id_){}
     , decltype(_impl_.variant_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -2348,6 +2357,9 @@ StateUpdate::StateUpdate(const StateUpdate& from)
   }
   if (from._internal_has_positionupdate()) {
     _this->_impl_.positionupdate_ = new ::comm::PositionUpdate(*from._impl_.positionupdate_);
+  }
+  if (from._internal_has_enemypositionsupdate()) {
+    _this->_impl_.enemypositionsupdate_ = new ::comm::EnemyPositionsUpdate(*from._impl_.enemypositionsupdate_);
   }
   ::memcpy(&_impl_.id_, &from._impl_.id_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.variant_) -
@@ -2363,6 +2375,7 @@ inline void StateUpdate::SharedCtor(
       decltype(_impl_.room_){nullptr}
     , decltype(_impl_.mappositionsupdate_){nullptr}
     , decltype(_impl_.positionupdate_){nullptr}
+    , decltype(_impl_.enemypositionsupdate_){nullptr}
     , decltype(_impl_.id_){0u}
     , decltype(_impl_.variant_){0}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -2383,6 +2396,7 @@ inline void StateUpdate::SharedDtor() {
   if (this != internal_default_instance()) delete _impl_.room_;
   if (this != internal_default_instance()) delete _impl_.mappositionsupdate_;
   if (this != internal_default_instance()) delete _impl_.positionupdate_;
+  if (this != internal_default_instance()) delete _impl_.enemypositionsupdate_;
 }
 
 void StateUpdate::SetCachedSize(int size) const {
@@ -2407,6 +2421,10 @@ void StateUpdate::Clear() {
     delete _impl_.positionupdate_;
   }
   _impl_.positionupdate_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.enemypositionsupdate_ != nullptr) {
+    delete _impl_.enemypositionsupdate_;
+  }
+  _impl_.enemypositionsupdate_ = nullptr;
   ::memset(&_impl_.id_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.variant_) -
       reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.variant_));
@@ -2456,6 +2474,14 @@ const char* StateUpdate::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
           ptr = ctx->ParseMessage(_internal_mutable_positionupdate(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .comm.EnemyPositionsUpdate enemyPositionsUpdate = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_enemypositionsupdate(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2523,6 +2549,13 @@ uint8_t* StateUpdate::_InternalSerialize(
         _Internal::positionupdate(this).GetCachedSize(), target, stream);
   }
 
+  // .comm.EnemyPositionsUpdate enemyPositionsUpdate = 6;
+  if (this->_internal_has_enemypositionsupdate()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(6, _Internal::enemypositionsupdate(this),
+        _Internal::enemypositionsupdate(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2558,6 +2591,13 @@ size_t StateUpdate::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.positionupdate_);
+  }
+
+  // .comm.EnemyPositionsUpdate enemyPositionsUpdate = 6;
+  if (this->_internal_has_enemypositionsupdate()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.enemypositionsupdate_);
   }
 
   // uint32 id = 1;
@@ -2600,6 +2640,10 @@ void StateUpdate::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PR
   if (from._internal_has_positionupdate()) {
     _this->_internal_mutable_positionupdate()->::comm::PositionUpdate::MergeFrom(
         from._internal_positionupdate());
+  }
+  if (from._internal_has_enemypositionsupdate()) {
+    _this->_internal_mutable_enemypositionsupdate()->::comm::EnemyPositionsUpdate::MergeFrom(
+        from._internal_enemypositionsupdate());
   }
   if (from._internal_id() != 0) {
     _this->_internal_set_id(from._internal_id());
