@@ -2,6 +2,15 @@ syntax = "proto3";
 package comm;
 option go_package = "github.com/kmrd-industries/qlp-proto-bindings/gen/go";
 
+enum StateVariant {
+    NONE = 0;
+    CONNECTED = 1;
+    DISCONNECTED = 2;
+    ROOM_CHANGED = 3;
+    MAP_UPDATE = 4;
+    PLAYER_POSITION_UPDATE = 5;
+}
+
 // sent via UDP
 message PositionUpdate {
     uint32 entity_id = 1;
@@ -42,13 +51,8 @@ message Player {
     int32 y = 3;
 }
 
-enum StateVariant {
-    NONE = 0;
-    CONNECTED = 1;
-    DISCONNECTED = 2;
-    ROOM_CHANGED = 3;
-    MAP_UPDATE = 4;
-    PLAYER_POSITION_UPDATE = 5;
+message EnemyPositionsUpdate {
+    repeated Enemy enemyPositions = 1;
 }
 
 message MapPositionsUpdate {
