@@ -56,9 +56,12 @@ message EnemyPositionsUpdate {
 }
 
 message MapPositionsUpdate {
+    repeated Player players = 1;
+    repeated Enemy enemies = 2;
+}
+
+message MapDimensionsUpdate {
     repeated Obstacle obstacles = 1;
-    repeated Player players = 2;
-    repeated Enemy enemies = 3;
 }
 
 message StateUpdate {
@@ -68,4 +71,5 @@ message StateUpdate {
     MapPositionsUpdate mapPositionsUpdate = 4;
     PositionUpdate positionUpdate = 5;
     EnemyPositionsUpdate enemyPositionsUpdate = 6;
+    MapDimensionsUpdate mapDimensionsUpdate = 7;
 }
