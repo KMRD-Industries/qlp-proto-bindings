@@ -9,6 +9,7 @@ enum StateVariant {
     ROOM_CHANGED = 3;
     MAP_UPDATE = 4;
     PLAYER_POSITION_UPDATE = 5;
+    MAP_DIMENSIONS_UPDATE = 6;
 }
 
 // sent via UDP

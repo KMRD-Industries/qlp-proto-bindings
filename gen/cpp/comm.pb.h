@@ -98,12 +98,13 @@ enum StateVariant : int {
   ROOM_CHANGED = 3,
   MAP_UPDATE = 4,
   PLAYER_POSITION_UPDATE = 5,
+  MAP_DIMENSIONS_UPDATE = 6,
   StateVariant_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   StateVariant_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool StateVariant_IsValid(int value);
 constexpr StateVariant StateVariant_MIN = NONE;
-constexpr StateVariant StateVariant_MAX = PLAYER_POSITION_UPDATE;
+constexpr StateVariant StateVariant_MAX = MAP_DIMENSIONS_UPDATE;
 constexpr int StateVariant_ARRAYSIZE = StateVariant_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* StateVariant_descriptor();
