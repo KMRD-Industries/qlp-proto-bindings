@@ -19,7 +19,6 @@ FetchContent_Declare(protobuf
     GIT_REPOSITORY https://github.com/protocolbuffers/protobuf
     GIT_TAG v28.2)
 FetchContent_MakeAvailable(protobuf)
-find_package(protobuf REQUIRED CONFIG)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC protobuf::libprotobuf)
 target_include_directories(${PROJECT_NAME} INTERFACE gen/cpp)
