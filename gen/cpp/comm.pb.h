@@ -1562,9 +1562,9 @@ class GameState final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kConnectedPlayersFieldNumber = 4,
-    kPlayerIdFieldNumber = 1,
-    kWeaponIdFieldNumber = 2,
+    kPlayerFieldNumber = 1,
     kSeedFieldNumber = 3,
+    kWeaponIdFieldNumber = 2,
   };
   // repeated .comm.Player connected_players = 4;
   int connected_players_size() const;
@@ -1583,24 +1583,19 @@ class GameState final : public ::google::protobuf::Message
   const ::comm::Player& connected_players(int index) const;
   ::comm::Player* add_connected_players();
   const ::google::protobuf::RepeatedPtrField<::comm::Player>& connected_players() const;
-  // uint32 player_id = 1;
-  void clear_player_id() ;
-  ::uint32_t player_id() const;
-  void set_player_id(::uint32_t value);
+  // .comm.Player player = 1;
+  bool has_player() const;
+  void clear_player() ;
+  const ::comm::Player& player() const;
+  PROTOBUF_NODISCARD ::comm::Player* release_player();
+  ::comm::Player* mutable_player();
+  void set_allocated_player(::comm::Player* value);
+  void unsafe_arena_set_allocated_player(::comm::Player* value);
+  ::comm::Player* unsafe_arena_release_player();
 
   private:
-  ::uint32_t _internal_player_id() const;
-  void _internal_set_player_id(::uint32_t value);
-
-  public:
-  // uint32 weapon_id = 2;
-  void clear_weapon_id() ;
-  ::uint32_t weapon_id() const;
-  void set_weapon_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_weapon_id() const;
-  void _internal_set_weapon_id(::uint32_t value);
+  const ::comm::Player& _internal_player() const;
+  ::comm::Player* _internal_mutable_player();
 
   public:
   // int64 seed = 3;
@@ -1613,12 +1608,22 @@ class GameState final : public ::google::protobuf::Message
   void _internal_set_seed(::int64_t value);
 
   public:
+  // uint32 weapon_id = 2;
+  void clear_weapon_id() ;
+  ::uint32_t weapon_id() const;
+  void set_weapon_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_weapon_id() const;
+  void _internal_set_weapon_id(::uint32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:comm.GameState)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 1,
+      2, 4, 2,
       0, 2>
       _table_;
 
@@ -1639,11 +1644,12 @@ class GameState final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const GameState& from_msg);
-    ::google::protobuf::RepeatedPtrField< ::comm::Player > connected_players_;
-    ::uint32_t player_id_;
-    ::uint32_t weapon_id_;
-    ::int64_t seed_;
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::comm::Player > connected_players_;
+    ::comm::Player* player_;
+    ::int64_t seed_;
+    ::uint32_t weapon_id_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2068,26 +2074,100 @@ inline void Weapon::_internal_set_id(::uint32_t value) {
 
 // GameState
 
-// uint32 player_id = 1;
-inline void GameState::clear_player_id() {
+// .comm.Player player = 1;
+inline bool GameState::has_player() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.player_ != nullptr);
+  return value;
+}
+inline void GameState::clear_player() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.player_id_ = 0u;
+  if (_impl_.player_ != nullptr) _impl_.player_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline ::uint32_t GameState::player_id() const {
-  // @@protoc_insertion_point(field_get:comm.GameState.player_id)
-  return _internal_player_id();
-}
-inline void GameState::set_player_id(::uint32_t value) {
-  _internal_set_player_id(value);
-  // @@protoc_insertion_point(field_set:comm.GameState.player_id)
-}
-inline ::uint32_t GameState::_internal_player_id() const {
+inline const ::comm::Player& GameState::_internal_player() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.player_id_;
+  const ::comm::Player* p = _impl_.player_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::Player&>(::comm::_Player_default_instance_);
 }
-inline void GameState::_internal_set_player_id(::uint32_t value) {
+inline const ::comm::Player& GameState::player() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.GameState.player)
+  return _internal_player();
+}
+inline void GameState::unsafe_arena_set_allocated_player(::comm::Player* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.player_id_ = value;
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.player_);
+  }
+  _impl_.player_ = reinterpret_cast<::comm::Player*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.GameState.player)
+}
+inline ::comm::Player* GameState::release_player() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::comm::Player* released = _impl_.player_;
+  _impl_.player_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::comm::Player* GameState::unsafe_arena_release_player() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:comm.GameState.player)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::comm::Player* temp = _impl_.player_;
+  _impl_.player_ = nullptr;
+  return temp;
+}
+inline ::comm::Player* GameState::_internal_mutable_player() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.player_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::Player>(GetArena());
+    _impl_.player_ = reinterpret_cast<::comm::Player*>(p);
+  }
+  return _impl_.player_;
+}
+inline ::comm::Player* GameState::mutable_player() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::comm::Player* _msg = _internal_mutable_player();
+  // @@protoc_insertion_point(field_mutable:comm.GameState.player)
+  return _msg;
+}
+inline void GameState::set_allocated_player(::comm::Player* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.player_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.player_ = reinterpret_cast<::comm::Player*>(value);
+  // @@protoc_insertion_point(field_set_allocated:comm.GameState.player)
 }
 
 // uint32 weapon_id = 2;
