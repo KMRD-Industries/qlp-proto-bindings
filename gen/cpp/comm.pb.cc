@@ -76,6 +76,33 @@ struct RoomDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RoomDefaultTypeInternal _Room_default_instance_;
 
+inline constexpr InitialInfo::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : player_id_{0u},
+        weapon_id_{0u},
+        seed_{::int64_t{0}},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR InitialInfo::InitialInfo(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct InitialInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR InitialInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~InitialInfoDefaultTypeInternal() {}
+  union {
+    InitialInfo _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 InitialInfoDefaultTypeInternal _InitialInfo_default_instance_;
+
 inline constexpr BytePrefix::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : bytes_{0u},
@@ -186,33 +213,6 @@ struct StateUpdateDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
-
-inline constexpr GameState::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        player_{nullptr},
-        seed_{::int64_t{0}},
-        weapon_id_{0u} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR GameState::GameState(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct GameStateDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GameStateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GameStateDefaultTypeInternal() {}
-  union {
-    GameState _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GameStateDefaultTypeInternal _GameState_default_instance_;
 }  // namespace comm
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_comm_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
@@ -265,20 +265,17 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::comm::Weapon, _impl_.id_),
-        PROTOBUF_FIELD_OFFSET(::comm::GameState, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::comm::GameState, _internal_metadata_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::comm::GameState, _impl_.player_),
-        PROTOBUF_FIELD_OFFSET(::comm::GameState, _impl_.weapon_id_),
-        PROTOBUF_FIELD_OFFSET(::comm::GameState, _impl_.seed_),
-        0,
-        ~0u,
-        ~0u,
+        PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_.player_id_),
+        PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_.weapon_id_),
+        PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_.seed_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::comm::Room, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -321,16 +318,16 @@ static const ::_pbi::MigrationSchema
         {0, 16, -1, sizeof(::comm::MovementUpdate)},
         {24, 34, -1, sizeof(::comm::Player)},
         {36, -1, -1, sizeof(::comm::Weapon)},
-        {45, 56, -1, sizeof(::comm::GameState)},
-        {59, -1, -1, sizeof(::comm::Room)},
-        {69, -1, -1, sizeof(::comm::BytePrefix)},
-        {78, 90, -1, sizeof(::comm::StateUpdate)},
+        {45, -1, -1, sizeof(::comm::InitialInfo)},
+        {56, -1, -1, sizeof(::comm::Room)},
+        {66, -1, -1, sizeof(::comm::BytePrefix)},
+        {75, 87, -1, sizeof(::comm::StateUpdate)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::comm::_MovementUpdate_default_instance_._instance,
     &::comm::_Player_default_instance_._instance,
     &::comm::_Weapon_default_instance_._instance,
-    &::comm::_GameState_default_instance_._instance,
+    &::comm::_InitialInfo_default_instance_._instance,
     &::comm::_Room_default_instance_._instance,
     &::comm::_BytePrefix_default_instance_._instance,
     &::comm::_StateUpdate_default_instance_._instance,
@@ -344,23 +341,23 @@ const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "\001(\002\022\016\n\006attack\030\007 \001(\010\022\035\n\tcurr_room\030\010 \001(\0132\n"
     ".comm.Room\"2\n\006Player\022\n\n\002id\030\001 \001(\r\022\034\n\006weap"
     "on\030\002 \001(\0132\014.comm.Weapon\"\024\n\006Weapon\022\n\n\002id\030\001"
-    " \001(\r\"J\n\tGameState\022\034\n\006player\030\001 \001(\0132\014.comm"
-    ".Player\022\021\n\tweapon_id\030\002 \001(\r\022\014\n\004seed\030\003 \001(\003"
-    "\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"\033\n\nBytePr"
-    "efix\022\r\n\005bytes\030\001 \001(\r\"\210\001\n\013StateUpdate\022\034\n\006p"
-    "layer\030\001 \001(\0132\014.comm.Player\022\034\n\006weapon\030\002 \001("
-    "\0132\014.comm.Weapon\022#\n\007variant\030\003 \001(\0162\022.comm."
-    "StateVariant\022\030\n\004room\030\004 \001(\0132\n.comm.Room*K"
-    "\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022"
-    "\020\n\014DISCONNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003B6Z4g"
-    "ithub.com/kmrd-industries/qlp-proto-bind"
-    "ings/gen/gob\006proto3"
+    " \001(\r\"A\n\013InitialInfo\022\021\n\tplayer_id\030\001 \001(\r\022\021"
+    "\n\tweapon_id\030\002 \001(\r\022\014\n\004seed\030\003 \001(\003\"\034\n\004Room\022"
+    "\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"\033\n\nBytePrefix\022\r\n\005b"
+    "ytes\030\001 \001(\r\"\210\001\n\013StateUpdate\022\034\n\006player\030\001 \001"
+    "(\0132\014.comm.Player\022\034\n\006weapon\030\002 \001(\0132\014.comm."
+    "Weapon\022#\n\007variant\030\003 \001(\0162\022.comm.StateVari"
+    "ant\022\030\n\004room\030\004 \001(\0132\n.comm.Room*K\n\014StateVa"
+    "riant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCON"
+    "NECTED\020\002\022\020\n\014ROOM_CHANGED\020\003B6Z4github.com"
+    "/kmrd-industries/qlp-proto-bindings/gen/"
+    "gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    699,
+    690,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -1270,196 +1267,156 @@ void Weapon::InternalSwap(Weapon* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
-class GameState::_Internal {
+class InitialInfo::_Internal {
  public:
-  using HasBits =
-      decltype(std::declval<GameState>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(GameState, _impl_._has_bits_);
 };
 
-GameState::GameState(::google::protobuf::Arena* arena)
+InitialInfo::InitialInfo(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:comm.GameState)
+  // @@protoc_insertion_point(arena_constructor:comm.InitialInfo)
 }
-inline PROTOBUF_NDEBUG_INLINE GameState::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::comm::GameState& from_msg)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0} {}
-
-GameState::GameState(
-    ::google::protobuf::Arena* arena,
-    const GameState& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  GameState* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.player_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::comm::Player>(
-                              arena, *from._impl_.player_)
-                        : nullptr;
-  ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, seed_),
-           reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, seed_),
-           offsetof(Impl_, weapon_id_) -
-               offsetof(Impl_, seed_) +
-               sizeof(Impl_::weapon_id_));
-
-  // @@protoc_insertion_point(copy_constructor:comm.GameState)
+InitialInfo::InitialInfo(
+    ::google::protobuf::Arena* arena, const InitialInfo& from)
+    : InitialInfo(arena) {
+  MergeFrom(from);
 }
-inline PROTOBUF_NDEBUG_INLINE GameState::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE InitialInfo::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0} {}
 
-inline void GameState::SharedCtor(::_pb::Arena* arena) {
+inline void InitialInfo::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, player_),
+               offsetof(Impl_, player_id_),
            0,
-           offsetof(Impl_, weapon_id_) -
-               offsetof(Impl_, player_) +
-               sizeof(Impl_::weapon_id_));
+           offsetof(Impl_, seed_) -
+               offsetof(Impl_, player_id_) +
+               sizeof(Impl_::seed_));
 }
-GameState::~GameState() {
-  // @@protoc_insertion_point(destructor:comm.GameState)
+InitialInfo::~InitialInfo() {
+  // @@protoc_insertion_point(destructor:comm.InitialInfo)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void GameState::SharedDtor() {
+inline void InitialInfo::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  delete _impl_.player_;
   _impl_.~Impl_();
 }
 
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
 const ::google::protobuf::MessageLite::ClassDataFull
-    GameState::_class_data_ = {
+    InitialInfo::_class_data_ = {
         ::google::protobuf::Message::ClassData{
-            &_GameState_default_instance_._instance,
+            &_InitialInfo_default_instance_._instance,
             &_table_.header,
             nullptr,  // OnDemandRegisterArenaDtor
             nullptr,  // IsInitialized
-            &GameState::MergeImpl,
+            &InitialInfo::MergeImpl,
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-            ::google::protobuf::Message::GetDeleteImpl<GameState>(),
-            ::google::protobuf::Message::GetNewImpl<GameState>(),
-            ::google::protobuf::Message::GetClearImpl<GameState>(), &GameState::ByteSizeLong,
-                &GameState::_InternalSerialize,
+            ::google::protobuf::Message::GetDeleteImpl<InitialInfo>(),
+            ::google::protobuf::Message::GetNewImpl<InitialInfo>(),
+            ::google::protobuf::Message::GetClearImpl<InitialInfo>(), &InitialInfo::ByteSizeLong,
+                &InitialInfo::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-            PROTOBUF_FIELD_OFFSET(GameState, _impl_._cached_size_),
+            PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_._cached_size_),
             false,
         },
-        &GameState::kDescriptorMethods,
+        &InitialInfo::kDescriptorMethods,
         &descriptor_table_comm_2eproto,
         nullptr,  // tracker
 };
-const ::google::protobuf::MessageLite::ClassData* GameState::GetClassData() const {
+const ::google::protobuf::MessageLite::ClassData* InitialInfo::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 1, 0, 2> GameState::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> InitialInfo::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(GameState, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
     3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
     4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
     3,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::comm::GameState>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::comm::InitialInfo>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // .comm.Player player = 1;
-    {::_pbi::TcParser::FastMtS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.player_)}},
+    // uint32 player_id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(InitialInfo, _impl_.player_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.player_id_)}},
     // uint32 weapon_id = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GameState, _impl_.weapon_id_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.weapon_id_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(InitialInfo, _impl_.weapon_id_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.weapon_id_)}},
     // int64 seed = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(GameState, _impl_.seed_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(GameState, _impl_.seed_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(InitialInfo, _impl_.seed_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.seed_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .comm.Player player = 1;
-    {PROTOBUF_FIELD_OFFSET(GameState, _impl_.player_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // uint32 player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // uint32 weapon_id = 2;
-    {PROTOBUF_FIELD_OFFSET(GameState, _impl_.weapon_id_), -1, 0,
+    {PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.weapon_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // int64 seed = 3;
-    {PROTOBUF_FIELD_OFFSET(GameState, _impl_.seed_), -1, 0,
+    {PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.seed_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::comm::Player>()},
-  }}, {{
+  }},
+  // no aux_entries
+  {{
   }},
 };
 
-PROTOBUF_NOINLINE void GameState::Clear() {
-// @@protoc_insertion_point(message_clear_start:comm.GameState)
+PROTOBUF_NOINLINE void InitialInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:comm.InitialInfo)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.player_ != nullptr);
-    _impl_.player_->Clear();
-  }
-  ::memset(&_impl_.seed_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.weapon_id_) -
-      reinterpret_cast<char*>(&_impl_.seed_)) + sizeof(_impl_.weapon_id_));
-  _impl_._has_bits_.Clear();
+  ::memset(&_impl_.player_id_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.seed_) -
+      reinterpret_cast<char*>(&_impl_.player_id_)) + sizeof(_impl_.seed_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* GameState::_InternalSerialize(
+        ::uint8_t* InitialInfo::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const GameState& this_ = static_cast<const GameState&>(base);
+          const InitialInfo& this_ = static_cast<const InitialInfo&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* GameState::_InternalSerialize(
+        ::uint8_t* InitialInfo::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const GameState& this_ = *this;
+          const InitialInfo& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:comm.GameState)
+          // @@protoc_insertion_point(serialize_to_array_start:comm.InitialInfo)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          cached_has_bits = this_._impl_._has_bits_[0];
-          // .comm.Player player = 1;
-          if (cached_has_bits & 0x00000001u) {
-            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                1, *this_._impl_.player_, this_._impl_.player_->GetCachedSize(), target,
-                stream);
+          // uint32 player_id = 1;
+          if (this_._internal_player_id() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                1, this_._internal_player_id(), target);
           }
 
           // uint32 weapon_id = 2;
@@ -1481,18 +1438,18 @@ PROTOBUF_NOINLINE void GameState::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:comm.GameState)
+          // @@protoc_insertion_point(serialize_to_array_end:comm.InitialInfo)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t GameState::ByteSizeLong(const MessageLite& base) {
-          const GameState& this_ = static_cast<const GameState&>(base);
+        ::size_t InitialInfo::ByteSizeLong(const MessageLite& base) {
+          const InitialInfo& this_ = static_cast<const InitialInfo&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t GameState::ByteSizeLong() const {
-          const GameState& this_ = *this;
+        ::size_t InitialInfo::ByteSizeLong() const {
+          const InitialInfo& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:comm.GameState)
+          // @@protoc_insertion_point(message_byte_size_start:comm.InitialInfo)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -1501,80 +1458,66 @@ PROTOBUF_NOINLINE void GameState::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // .comm.Player player = 1;
-            cached_has_bits =
-                this_._impl_._has_bits_[0];
-            if (cached_has_bits & 0x00000001u) {
-              total_size += 1 +
-                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.player_);
-            }
-          }
-           {
-            // int64 seed = 3;
-            if (this_._internal_seed() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
-                  this_._internal_seed());
+            // uint32 player_id = 1;
+            if (this_._internal_player_id() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_player_id());
             }
             // uint32 weapon_id = 2;
             if (this_._internal_weapon_id() != 0) {
               total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
                   this_._internal_weapon_id());
             }
+            // int64 seed = 3;
+            if (this_._internal_seed() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+                  this_._internal_seed());
+            }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
                                                      &this_._impl_._cached_size_);
         }
 
-void GameState::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<GameState*>(&to_msg);
-  auto& from = static_cast<const GameState&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:comm.GameState)
+void InitialInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<InitialInfo*>(&to_msg);
+  auto& from = static_cast<const InitialInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:comm.InitialInfo)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.player_ != nullptr);
-    if (_this->_impl_.player_ == nullptr) {
-      _this->_impl_.player_ =
-          ::google::protobuf::Message::CopyConstruct<::comm::Player>(arena, *from._impl_.player_);
-    } else {
-      _this->_impl_.player_->MergeFrom(*from._impl_.player_);
-    }
-  }
-  if (from._internal_seed() != 0) {
-    _this->_impl_.seed_ = from._impl_.seed_;
+  if (from._internal_player_id() != 0) {
+    _this->_impl_.player_id_ = from._impl_.player_id_;
   }
   if (from._internal_weapon_id() != 0) {
     _this->_impl_.weapon_id_ = from._impl_.weapon_id_;
   }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  if (from._internal_seed() != 0) {
+    _this->_impl_.seed_ = from._impl_.seed_;
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void GameState::CopyFrom(const GameState& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:comm.GameState)
+void InitialInfo::CopyFrom(const InitialInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:comm.InitialInfo)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void GameState::InternalSwap(GameState* PROTOBUF_RESTRICT other) {
+void InitialInfo::InternalSwap(InitialInfo* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GameState, _impl_.weapon_id_)
-      + sizeof(GameState::_impl_.weapon_id_)
-      - PROTOBUF_FIELD_OFFSET(GameState, _impl_.player_)>(
-          reinterpret_cast<char*>(&_impl_.player_),
-          reinterpret_cast<char*>(&other->_impl_.player_));
+      PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.seed_)
+      + sizeof(InitialInfo::_impl_.seed_)
+      - PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.player_id_)>(
+          reinterpret_cast<char*>(&_impl_.player_id_),
+          reinterpret_cast<char*>(&other->_impl_.player_id_));
 }
 
-::google::protobuf::Metadata GameState::GetMetadata() const {
+::google::protobuf::Metadata InitialInfo::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

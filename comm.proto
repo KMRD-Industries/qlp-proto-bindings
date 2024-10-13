@@ -24,8 +24,8 @@ message Weapon {
     uint32 id = 1;
 }
 
-message GameState {
-    Player player = 1;
+message InitialInfo {
+    uint32 player_id = 1;
     uint32 weapon_id = 2;
     int64 seed = 3;
 }
