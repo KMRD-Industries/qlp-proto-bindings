@@ -28,7 +28,6 @@ message GameState {
     Player player = 1;
     uint32 weapon_id = 2;
     int64 seed = 3;
-    repeated Player connected_players = 4;
 }
 
 message Room {

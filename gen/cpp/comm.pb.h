@@ -1561,28 +1561,10 @@ class GameState final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kConnectedPlayersFieldNumber = 4,
     kPlayerFieldNumber = 1,
     kSeedFieldNumber = 3,
     kWeaponIdFieldNumber = 2,
   };
-  // repeated .comm.Player connected_players = 4;
-  int connected_players_size() const;
-  private:
-  int _internal_connected_players_size() const;
-
-  public:
-  void clear_connected_players() ;
-  ::comm::Player* mutable_connected_players(int index);
-  ::google::protobuf::RepeatedPtrField<::comm::Player>* mutable_connected_players();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<::comm::Player>& _internal_connected_players() const;
-  ::google::protobuf::RepeatedPtrField<::comm::Player>* _internal_mutable_connected_players();
-  public:
-  const ::comm::Player& connected_players(int index) const;
-  ::comm::Player* add_connected_players();
-  const ::google::protobuf::RepeatedPtrField<::comm::Player>& connected_players() const;
   // .comm.Player player = 1;
   bool has_player() const;
   void clear_player() ;
@@ -1623,7 +1605,7 @@ class GameState final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 2,
+      2, 3, 1,
       0, 2>
       _table_;
 
@@ -1646,7 +1628,6 @@ class GameState final : public ::google::protobuf::Message
                           const GameState& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedPtrField< ::comm::Player > connected_players_;
     ::comm::Player* player_;
     ::int64_t seed_;
     ::uint32_t weapon_id_;
@@ -2212,55 +2193,6 @@ inline ::int64_t GameState::_internal_seed() const {
 inline void GameState::_internal_set_seed(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.seed_ = value;
-}
-
-// repeated .comm.Player connected_players = 4;
-inline int GameState::_internal_connected_players_size() const {
-  return _internal_connected_players().size();
-}
-inline int GameState::connected_players_size() const {
-  return _internal_connected_players_size();
-}
-inline void GameState::clear_connected_players() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.connected_players_.Clear();
-}
-inline ::comm::Player* GameState::mutable_connected_players(int index)
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:comm.GameState.connected_players)
-  return _internal_mutable_connected_players()->Mutable(index);
-}
-inline ::google::protobuf::RepeatedPtrField<::comm::Player>* GameState::mutable_connected_players()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:comm.GameState.connected_players)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_connected_players();
-}
-inline const ::comm::Player& GameState::connected_players(int index) const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.GameState.connected_players)
-  return _internal_connected_players().Get(index);
-}
-inline ::comm::Player* GameState::add_connected_players() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::comm::Player* _add = _internal_mutable_connected_players()->Add();
-  // @@protoc_insertion_point(field_add:comm.GameState.connected_players)
-  return _add;
-}
-inline const ::google::protobuf::RepeatedPtrField<::comm::Player>& GameState::connected_players() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:comm.GameState.connected_players)
-  return _internal_connected_players();
-}
-inline const ::google::protobuf::RepeatedPtrField<::comm::Player>&
-GameState::_internal_connected_players() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.connected_players_;
-}
-inline ::google::protobuf::RepeatedPtrField<::comm::Player>*
-GameState::_internal_mutable_connected_players() {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.connected_players_;
 }
 
 // -------------------------------------------------------------------
