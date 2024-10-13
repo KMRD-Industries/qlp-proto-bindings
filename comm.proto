@@ -27,6 +27,8 @@ message Weapon {
 message InitialInfo {
     Player player = 1;
     int64 seed = 2;
+    repeated uint32 player_ids = 3;
+    repeated uint32 weapon_ids = 4;
 }
 
 message Room {

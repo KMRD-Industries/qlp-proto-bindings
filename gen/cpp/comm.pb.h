@@ -1561,9 +1561,47 @@ class InitialInfo final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
+    kPlayerIdsFieldNumber = 3,
+    kWeaponIdsFieldNumber = 4,
     kPlayerFieldNumber = 1,
     kSeedFieldNumber = 2,
   };
+  // repeated uint32 player_ids = 3;
+  int player_ids_size() const;
+  private:
+  int _internal_player_ids_size() const;
+
+  public:
+  void clear_player_ids() ;
+  ::uint32_t player_ids(int index) const;
+  void set_player_ids(int index, ::uint32_t value);
+  void add_player_ids(::uint32_t value);
+  const ::google::protobuf::RepeatedField<::uint32_t>& player_ids() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* mutable_player_ids();
+
+  private:
+  const ::google::protobuf::RepeatedField<::uint32_t>& _internal_player_ids() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_player_ids();
+
+  public:
+  // repeated uint32 weapon_ids = 4;
+  int weapon_ids_size() const;
+  private:
+  int _internal_weapon_ids_size() const;
+
+  public:
+  void clear_weapon_ids() ;
+  ::uint32_t weapon_ids(int index) const;
+  void set_weapon_ids(int index, ::uint32_t value);
+  void add_weapon_ids(::uint32_t value);
+  const ::google::protobuf::RepeatedField<::uint32_t>& weapon_ids() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* mutable_weapon_ids();
+
+  private:
+  const ::google::protobuf::RepeatedField<::uint32_t>& _internal_weapon_ids() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_weapon_ids();
+
+  public:
   // .comm.Player player = 1;
   bool has_player() const;
   void clear_player() ;
@@ -1594,7 +1632,7 @@ class InitialInfo final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 1,
+      2, 4, 1,
       0, 2>
       _table_;
 
@@ -1617,6 +1655,10 @@ class InitialInfo final : public ::google::protobuf::Message
                           const InitialInfo& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedField<::uint32_t> player_ids_;
+    mutable ::google::protobuf::internal::CachedSize _player_ids_cached_byte_size_;
+    ::google::protobuf::RepeatedField<::uint32_t> weapon_ids_;
+    mutable ::google::protobuf::internal::CachedSize _weapon_ids_cached_byte_size_;
     ::comm::Player* player_;
     ::int64_t seed_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -2159,6 +2201,96 @@ inline ::int64_t InitialInfo::_internal_seed() const {
 inline void InitialInfo::_internal_set_seed(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.seed_ = value;
+}
+
+// repeated uint32 player_ids = 3;
+inline int InitialInfo::_internal_player_ids_size() const {
+  return _internal_player_ids().size();
+}
+inline int InitialInfo::player_ids_size() const {
+  return _internal_player_ids_size();
+}
+inline void InitialInfo::clear_player_ids() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.player_ids_.Clear();
+}
+inline ::uint32_t InitialInfo::player_ids(int index) const {
+  // @@protoc_insertion_point(field_get:comm.InitialInfo.player_ids)
+  return _internal_player_ids().Get(index);
+}
+inline void InitialInfo::set_player_ids(int index, ::uint32_t value) {
+  _internal_mutable_player_ids()->Set(index, value);
+  // @@protoc_insertion_point(field_set:comm.InitialInfo.player_ids)
+}
+inline void InitialInfo::add_player_ids(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_player_ids()->Add(value);
+  // @@protoc_insertion_point(field_add:comm.InitialInfo.player_ids)
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>& InitialInfo::player_ids() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:comm.InitialInfo.player_ids)
+  return _internal_player_ids();
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* InitialInfo::mutable_player_ids()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:comm.InitialInfo.player_ids)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_player_ids();
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>&
+InitialInfo::_internal_player_ids() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.player_ids_;
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* InitialInfo::_internal_mutable_player_ids() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.player_ids_;
+}
+
+// repeated uint32 weapon_ids = 4;
+inline int InitialInfo::_internal_weapon_ids_size() const {
+  return _internal_weapon_ids().size();
+}
+inline int InitialInfo::weapon_ids_size() const {
+  return _internal_weapon_ids_size();
+}
+inline void InitialInfo::clear_weapon_ids() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.weapon_ids_.Clear();
+}
+inline ::uint32_t InitialInfo::weapon_ids(int index) const {
+  // @@protoc_insertion_point(field_get:comm.InitialInfo.weapon_ids)
+  return _internal_weapon_ids().Get(index);
+}
+inline void InitialInfo::set_weapon_ids(int index, ::uint32_t value) {
+  _internal_mutable_weapon_ids()->Set(index, value);
+  // @@protoc_insertion_point(field_set:comm.InitialInfo.weapon_ids)
+}
+inline void InitialInfo::add_weapon_ids(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_weapon_ids()->Add(value);
+  // @@protoc_insertion_point(field_add:comm.InitialInfo.weapon_ids)
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>& InitialInfo::weapon_ids() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:comm.InitialInfo.weapon_ids)
+  return _internal_weapon_ids();
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* InitialInfo::mutable_weapon_ids()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:comm.InitialInfo.weapon_ids)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_weapon_ids();
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>&
+InitialInfo::_internal_weapon_ids() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.weapon_ids_;
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* InitialInfo::_internal_mutable_weapon_ids() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.weapon_ids_;
 }
 
 // -------------------------------------------------------------------
