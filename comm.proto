@@ -15,11 +15,20 @@ message MovementUpdate {
 }
 
 // sent via TCP
+message Player {
+    uint32 id = 1;
+    Weapon weapon = 2;
+}
+
+message Weapon {
+    uint32 id = 1;
+}
+
 message GameState {
     uint32 player_id = 1;
     uint32 weapon_id = 2;
     int64 seed = 3;
-    repeated uint32 connected_players = 4;
+    repeated Player connected_players = 4;
 }
 
 message Room {
@@ -39,7 +48,8 @@ message BytePrefix {
 }
 
 message StateUpdate {
-    uint32 id = 1;
-    StateVariant variant = 2;
-    Room room = 3;
+    Player player = 1;
+    Weapon weapon = 2;
+    StateVariant variant = 3;
+    Room room = 4;
 }
