@@ -190,10 +190,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr InitialInfo::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        player_ids_{},
-        _player_ids_cached_byte_size_{0},
-        weapon_ids_{},
-        _weapon_ids_cached_byte_size_{0},
+        connected_players_{},
         player_{nullptr},
         seed_{::int64_t{0}} {}
 
@@ -278,10 +275,8 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_.player_),
         PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_.seed_),
-        PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_.player_ids_),
-        PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_.weapon_ids_),
+        PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_.connected_players_),
         0,
-        ~0u,
         ~0u,
         ~0u,
         ~0u,  // no _has_bits_
@@ -326,10 +321,10 @@ static const ::_pbi::MigrationSchema
         {0, 16, -1, sizeof(::comm::MovementUpdate)},
         {24, 34, -1, sizeof(::comm::Player)},
         {36, -1, -1, sizeof(::comm::Weapon)},
-        {45, 57, -1, sizeof(::comm::InitialInfo)},
-        {61, -1, -1, sizeof(::comm::Room)},
-        {71, -1, -1, sizeof(::comm::BytePrefix)},
-        {80, 92, -1, sizeof(::comm::StateUpdate)},
+        {45, 56, -1, sizeof(::comm::InitialInfo)},
+        {59, -1, -1, sizeof(::comm::Room)},
+        {69, -1, -1, sizeof(::comm::BytePrefix)},
+        {78, 90, -1, sizeof(::comm::StateUpdate)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::comm::_MovementUpdate_default_instance_._instance,
@@ -349,24 +344,24 @@ const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "\001(\002\022\016\n\006attack\030\007 \001(\010\022\035\n\tcurr_room\030\010 \001(\0132\n"
     ".comm.Room\"2\n\006Player\022\n\n\002id\030\001 \001(\r\022\034\n\006weap"
     "on\030\002 \001(\0132\014.comm.Weapon\"\024\n\006Weapon\022\n\n\002id\030\001"
-    " \001(\r\"a\n\013InitialInfo\022\034\n\006player\030\001 \001(\0132\014.co"
-    "mm.Player\022\014\n\004seed\030\002 \001(\003\022\022\n\nplayer_ids\030\003 "
-    "\003(\r\022\022\n\nweapon_ids\030\004 \003(\r\"\034\n\004Room\022\t\n\001x\030\001 \001"
-    "(\005\022\t\n\001y\030\002 \001(\005\"\033\n\nBytePrefix\022\r\n\005bytes\030\001 \001"
-    "(\r\"\210\001\n\013StateUpdate\022\034\n\006player\030\001 \001(\0132\014.com"
-    "m.Player\022\034\n\006weapon\030\002 \001(\0132\014.comm.Weapon\022#"
-    "\n\007variant\030\003 \001(\0162\022.comm.StateVariant\022\030\n\004r"
-    "oom\030\004 \001(\0132\n.comm.Room*K\n\014StateVariant\022\010\n"
-    "\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002"
-    "\022\020\n\014ROOM_CHANGED\020\003B6Z4github.com/kmrd-in"
-    "dustries/qlp-proto-bindings/gen/gob\006prot"
-    "o3"
+    " \001(\r\"b\n\013InitialInfo\022\034\n\006player\030\001 \001(\0132\014.co"
+    "mm.Player\022\014\n\004seed\030\002 \001(\003\022\'\n\021connected_pla"
+    "yers\030\003 \003(\0132\014.comm.Player\"\034\n\004Room\022\t\n\001x\030\001 "
+    "\001(\005\022\t\n\001y\030\002 \001(\005\"\033\n\nBytePrefix\022\r\n\005bytes\030\001 "
+    "\001(\r\"\210\001\n\013StateUpdate\022\034\n\006player\030\001 \001(\0132\014.co"
+    "mm.Player\022\034\n\006weapon\030\002 \001(\0132\014.comm.Weapon\022"
+    "#\n\007variant\030\003 \001(\0162\022.comm.StateVariant\022\030\n\004"
+    "room\030\004 \001(\0132\n.comm.Room*K\n\014StateVariant\022\010"
+    "\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020"
+    "\002\022\020\n\014ROOM_CHANGED\020\003B6Z4github.com/kmrd-i"
+    "ndustries/qlp-proto-bindings/gen/gob\006pro"
+    "to3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    722,
+    723,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -1298,10 +1293,7 @@ inline PROTOBUF_NDEBUG_INLINE InitialInfo::Impl_::Impl_(
     const Impl_& from, const ::comm::InitialInfo& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        player_ids_{visibility, arena, from.player_ids_},
-        _player_ids_cached_byte_size_{0},
-        weapon_ids_{visibility, arena, from.weapon_ids_},
-        _weapon_ids_cached_byte_size_{0} {}
+        connected_players_{visibility, arena, from.connected_players_} {}
 
 InitialInfo::InitialInfo(
     ::google::protobuf::Arena* arena,
@@ -1328,10 +1320,7 @@ inline PROTOBUF_NDEBUG_INLINE InitialInfo::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        player_ids_{visibility, arena},
-        _player_ids_cached_byte_size_{0},
-        weapon_ids_{visibility, arena},
-        _weapon_ids_cached_byte_size_{0} {}
+        connected_players_{visibility, arena} {}
 
 inline void InitialInfo::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -1382,16 +1371,16 @@ const ::google::protobuf::MessageLite::ClassData* InitialInfo::GetClassData() co
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 1, 0, 2> InitialInfo::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 2, 0, 2> InitialInfo::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_._has_bits_),
     0, // no _extensions_
-    4, 24,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
-    1,  // num_aux_entries
+    3,  // num_field_entries
+    2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
@@ -1400,18 +1389,16 @@ const ::_pbi::TcParseTable<2, 4, 1, 0, 2> InitialInfo::_table_ = {
     ::_pbi::TcParser::GetTable<::comm::InitialInfo>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // repeated uint32 weapon_ids = 4;
-    {::_pbi::TcParser::FastV32P1,
-     {34, 63, 0, PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.weapon_ids_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // .comm.Player player = 1;
     {::_pbi::TcParser::FastMtS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.player_)}},
     // int64 seed = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(InitialInfo, _impl_.seed_), 63>(),
      {16, 63, 0, PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.seed_)}},
-    // repeated uint32 player_ids = 3;
-    {::_pbi::TcParser::FastV32P1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.player_ids_)}},
+    // repeated .comm.Player connected_players = 3;
+    {::_pbi::TcParser::FastMtR1,
+     {26, 63, 1, PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.connected_players_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -1421,13 +1408,11 @@ const ::_pbi::TcParseTable<2, 4, 1, 0, 2> InitialInfo::_table_ = {
     // int64 seed = 2;
     {PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.seed_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
-    // repeated uint32 player_ids = 3;
-    {PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.player_ids_), -1, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
-    // repeated uint32 weapon_ids = 4;
-    {PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.weapon_ids_), -1, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+    // repeated .comm.Player connected_players = 3;
+    {PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.connected_players_), -1, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
+    {::_pbi::TcParser::GetTable<::comm::Player>()},
     {::_pbi::TcParser::GetTable<::comm::Player>()},
   }}, {{
   }},
@@ -1440,8 +1425,7 @@ PROTOBUF_NOINLINE void InitialInfo::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.player_ids_.Clear();
-  _impl_.weapon_ids_.Clear();
+  _impl_.connected_players_.Clear();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     ABSL_DCHECK(_impl_.player_ != nullptr);
@@ -1482,22 +1466,15 @@ PROTOBUF_NOINLINE void InitialInfo::Clear() {
                     stream, this_._internal_seed(), target);
           }
 
-          // repeated uint32 player_ids = 3;
-          {
-            int byte_size = this_._impl_._player_ids_cached_byte_size_.Get();
-            if (byte_size > 0) {
-              target = stream->WriteUInt32Packed(
-                  3, this_._internal_player_ids(), byte_size, target);
-            }
-          }
-
-          // repeated uint32 weapon_ids = 4;
-          {
-            int byte_size = this_._impl_._weapon_ids_cached_byte_size_.Get();
-            if (byte_size > 0) {
-              target = stream->WriteUInt32Packed(
-                  4, this_._internal_weapon_ids(), byte_size, target);
-            }
+          // repeated .comm.Player connected_players = 3;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_connected_players_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_connected_players().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    3, repfield, repfield.GetCachedSize(),
+                    target, stream);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1525,33 +1502,12 @@ PROTOBUF_NOINLINE void InitialInfo::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated uint32 player_ids = 3;
+            // repeated .comm.Player connected_players = 3;
              {
-              std::size_t data_size = ::_pbi::WireFormatLite::UInt32Size(
-                  this_._internal_player_ids())
-              ;
-              this_._impl_._player_ids_cached_byte_size_.Set(
-                  ::_pbi::ToCachedSize(data_size));
-              std::size_t tag_size = data_size == 0
-                  ? 0
-                  : 1 + ::_pbi::WireFormatLite::Int32Size(
-                                      static_cast<int32_t>(data_size))
-              ;
-              total_size += tag_size + data_size;
-            }
-            // repeated uint32 weapon_ids = 4;
-             {
-              std::size_t data_size = ::_pbi::WireFormatLite::UInt32Size(
-                  this_._internal_weapon_ids())
-              ;
-              this_._impl_._weapon_ids_cached_byte_size_.Set(
-                  ::_pbi::ToCachedSize(data_size));
-              std::size_t tag_size = data_size == 0
-                  ? 0
-                  : 1 + ::_pbi::WireFormatLite::Int32Size(
-                                      static_cast<int32_t>(data_size))
-              ;
-              total_size += tag_size + data_size;
+              total_size += 1UL * this_._internal_connected_players_size();
+              for (const auto& msg : this_._internal_connected_players()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
             }
           }
            {
@@ -1583,8 +1539,8 @@ void InitialInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goo
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_player_ids()->MergeFrom(from._internal_player_ids());
-  _this->_internal_mutable_weapon_ids()->MergeFrom(from._internal_weapon_ids());
+  _this->_internal_mutable_connected_players()->MergeFrom(
+      from._internal_connected_players());
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     ABSL_DCHECK(from._impl_.player_ != nullptr);
@@ -1614,8 +1570,7 @@ void InitialInfo::InternalSwap(InitialInfo* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.player_ids_.InternalSwap(&other->_impl_.player_ids_);
-  _impl_.weapon_ids_.InternalSwap(&other->_impl_.weapon_ids_);
+  _impl_.connected_players_.InternalSwap(&other->_impl_.connected_players_);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.seed_)
       + sizeof(InitialInfo::_impl_.seed_)
