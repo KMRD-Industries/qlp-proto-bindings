@@ -320,16 +320,17 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   ".comm.PositionUpdate\0228\n\024enemyPositionsUp"
   "date\030\006 \001(\0132\032.comm.EnemyPositionsUpdate\0226"
   "\n\023mapDimensionsUpdate\030\007 \001(\0132\031.comm.MapDi"
-  "mensionsUpdate*\222\001\n\014StateVariant\022\010\n\004NONE\020"
+  "mensionsUpdate*\253\001\n\014StateVariant\022\010\n\004NONE\020"
   "\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014RO"
   "OM_CHANGED\020\003\022\016\n\nMAP_UPDATE\020\004\022\032\n\026PLAYER_P"
   "OSITION_UPDATE\020\005\022\031\n\025MAP_DIMENSIONS_UPDAT"
-  "E\020\006B6Z4github.com/kmrd-industries/qlp-pr"
-  "oto-bindings/gen/gob\006proto3"
+  "E\020\006\022\027\n\023SPAWN_ENEMY_REQUEST\020\007B6Z4github.c"
+  "om/kmrd-industries/qlp-proto-bindings/ge"
+  "n/gob\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_comm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
-    false, false, 1107, descriptor_table_protodef_comm_2eproto,
+    false, false, 1132, descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once, nullptr, 0, 10,
     schemas, file_default_instances, TableStruct_comm_2eproto::offsets,
@@ -356,6 +357,7 @@ bool StateVariant_IsValid(int value) {
     case 4:
     case 5:
     case 6:
+    case 7:
       return true;
     default:
       return false;

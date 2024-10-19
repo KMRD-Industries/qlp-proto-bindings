@@ -10,6 +10,7 @@ enum StateVariant {
     MAP_UPDATE = 4;
     PLAYER_POSITION_UPDATE = 5;
     MAP_DIMENSIONS_UPDATE = 6;
+    SPAWN_ENEMY_REQUEST = 7;
 }
 
 // sent via UDP
