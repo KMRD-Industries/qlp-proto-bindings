@@ -74,4 +74,5 @@ message StateUpdate {
     PositionUpdate positionUpdate = 5;
     EnemyPositionsUpdate enemyPositionsUpdate = 6;
     MapDimensionsUpdate mapDimensionsUpdate = 7;
+    Enemy spawnEnemyRequest = 8;
 }

@@ -161,6 +161,7 @@ PROTOBUF_CONSTEXPR StateUpdate::StateUpdate(
   , /*decltype(_impl_.positionupdate_)*/nullptr
   , /*decltype(_impl_.enemypositionsupdate_)*/nullptr
   , /*decltype(_impl_.mapdimensionsupdate_)*/nullptr
+  , /*decltype(_impl_.spawnenemyrequest_)*/nullptr
   , /*decltype(_impl_.id_)*/0u
   , /*decltype(_impl_.variant_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -270,6 +271,7 @@ const uint32_t TableStruct_comm_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pro
   PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.positionupdate_),
   PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.enemypositionsupdate_),
   PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.mapdimensionsupdate_),
+  PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.spawnenemyrequest_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::comm::PositionUpdate)},
@@ -312,7 +314,7 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "mm.Enemy\"Q\n\022MapPositionsUpdate\022\035\n\007player"
   "s\030\001 \003(\0132\014.comm.Player\022\034\n\007enemies\030\002 \003(\0132\013"
   ".comm.Enemy\"8\n\023MapDimensionsUpdate\022!\n\tob"
-  "stacles\030\001 \003(\0132\016.comm.Obstacle\"\256\002\n\013StateU"
+  "stacles\030\001 \003(\0132\016.comm.Obstacle\"\326\002\n\013StateU"
   "pdate\022\n\n\002id\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022.com"
   "m.StateVariant\022\030\n\004room\030\003 \001(\0132\n.comm.Room"
   "\0224\n\022mapPositionsUpdate\030\004 \001(\0132\030.comm.MapP"
@@ -320,7 +322,8 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   ".comm.PositionUpdate\0228\n\024enemyPositionsUp"
   "date\030\006 \001(\0132\032.comm.EnemyPositionsUpdate\0226"
   "\n\023mapDimensionsUpdate\030\007 \001(\0132\031.comm.MapDi"
-  "mensionsUpdate*\253\001\n\014StateVariant\022\010\n\004NONE\020"
+  "mensionsUpdate\022&\n\021spawnEnemyRequest\030\010 \001("
+  "\0132\013.comm.Enemy*\253\001\n\014StateVariant\022\010\n\004NONE\020"
   "\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014RO"
   "OM_CHANGED\020\003\022\016\n\nMAP_UPDATE\020\004\022\032\n\026PLAYER_P"
   "OSITION_UPDATE\020\005\022\031\n\025MAP_DIMENSIONS_UPDAT"
@@ -330,7 +333,7 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   ;
 static ::_pbi::once_flag descriptor_table_comm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
-    false, false, 1132, descriptor_table_protodef_comm_2eproto,
+    false, false, 1172, descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once, nullptr, 0, 10,
     schemas, file_default_instances, TableStruct_comm_2eproto::offsets,
@@ -2516,6 +2519,7 @@ class StateUpdate::_Internal {
   static const ::comm::PositionUpdate& positionupdate(const StateUpdate* msg);
   static const ::comm::EnemyPositionsUpdate& enemypositionsupdate(const StateUpdate* msg);
   static const ::comm::MapDimensionsUpdate& mapdimensionsupdate(const StateUpdate* msg);
+  static const ::comm::Enemy& spawnenemyrequest(const StateUpdate* msg);
 };
 
 const ::comm::Room&
@@ -2538,6 +2542,10 @@ const ::comm::MapDimensionsUpdate&
 StateUpdate::_Internal::mapdimensionsupdate(const StateUpdate* msg) {
   return *msg->_impl_.mapdimensionsupdate_;
 }
+const ::comm::Enemy&
+StateUpdate::_Internal::spawnenemyrequest(const StateUpdate* msg) {
+  return *msg->_impl_.spawnenemyrequest_;
+}
 StateUpdate::StateUpdate(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -2553,6 +2561,7 @@ StateUpdate::StateUpdate(const StateUpdate& from)
     , decltype(_impl_.positionupdate_){nullptr}
     , decltype(_impl_.enemypositionsupdate_){nullptr}
     , decltype(_impl_.mapdimensionsupdate_){nullptr}
+    , decltype(_impl_.spawnenemyrequest_){nullptr}
     , decltype(_impl_.id_){}
     , decltype(_impl_.variant_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -2573,6 +2582,9 @@ StateUpdate::StateUpdate(const StateUpdate& from)
   if (from._internal_has_mapdimensionsupdate()) {
     _this->_impl_.mapdimensionsupdate_ = new ::comm::MapDimensionsUpdate(*from._impl_.mapdimensionsupdate_);
   }
+  if (from._internal_has_spawnenemyrequest()) {
+    _this->_impl_.spawnenemyrequest_ = new ::comm::Enemy(*from._impl_.spawnenemyrequest_);
+  }
   ::memcpy(&_impl_.id_, &from._impl_.id_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.variant_) -
     reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.variant_));
@@ -2589,6 +2601,7 @@ inline void StateUpdate::SharedCtor(
     , decltype(_impl_.positionupdate_){nullptr}
     , decltype(_impl_.enemypositionsupdate_){nullptr}
     , decltype(_impl_.mapdimensionsupdate_){nullptr}
+    , decltype(_impl_.spawnenemyrequest_){nullptr}
     , decltype(_impl_.id_){0u}
     , decltype(_impl_.variant_){0}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -2611,6 +2624,7 @@ inline void StateUpdate::SharedDtor() {
   if (this != internal_default_instance()) delete _impl_.positionupdate_;
   if (this != internal_default_instance()) delete _impl_.enemypositionsupdate_;
   if (this != internal_default_instance()) delete _impl_.mapdimensionsupdate_;
+  if (this != internal_default_instance()) delete _impl_.spawnenemyrequest_;
 }
 
 void StateUpdate::SetCachedSize(int size) const {
@@ -2643,6 +2657,10 @@ void StateUpdate::Clear() {
     delete _impl_.mapdimensionsupdate_;
   }
   _impl_.mapdimensionsupdate_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.spawnenemyrequest_ != nullptr) {
+    delete _impl_.spawnenemyrequest_;
+  }
+  _impl_.spawnenemyrequest_ = nullptr;
   ::memset(&_impl_.id_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.variant_) -
       reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.variant_));
@@ -2708,6 +2726,14 @@ const char* StateUpdate::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
           ptr = ctx->ParseMessage(_internal_mutable_mapdimensionsupdate(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .comm.Enemy spawnEnemyRequest = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_spawnenemyrequest(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2789,6 +2815,13 @@ uint8_t* StateUpdate::_InternalSerialize(
         _Internal::mapdimensionsupdate(this).GetCachedSize(), target, stream);
   }
 
+  // .comm.Enemy spawnEnemyRequest = 8;
+  if (this->_internal_has_spawnenemyrequest()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(8, _Internal::spawnenemyrequest(this),
+        _Internal::spawnenemyrequest(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2840,6 +2873,13 @@ size_t StateUpdate::ByteSizeLong() const {
         *_impl_.mapdimensionsupdate_);
   }
 
+  // .comm.Enemy spawnEnemyRequest = 8;
+  if (this->_internal_has_spawnenemyrequest()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.spawnenemyrequest_);
+  }
+
   // uint32 id = 1;
   if (this->_internal_id() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_id());
@@ -2888,6 +2928,10 @@ void StateUpdate::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PR
   if (from._internal_has_mapdimensionsupdate()) {
     _this->_internal_mutable_mapdimensionsupdate()->::comm::MapDimensionsUpdate::MergeFrom(
         from._internal_mapdimensionsupdate());
+  }
+  if (from._internal_has_spawnenemyrequest()) {
+    _this->_internal_mutable_spawnenemyrequest()->::comm::Enemy::MergeFrom(
+        from._internal_spawnenemyrequest());
   }
   if (from._internal_id() != 0) {
     _this->_internal_set_id(from._internal_id());

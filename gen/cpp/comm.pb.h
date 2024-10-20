@@ -1806,6 +1806,7 @@ class StateUpdate final :
     kPositionUpdateFieldNumber = 5,
     kEnemyPositionsUpdateFieldNumber = 6,
     kMapDimensionsUpdateFieldNumber = 7,
+    kSpawnEnemyRequestFieldNumber = 8,
     kIdFieldNumber = 1,
     kVariantFieldNumber = 2,
   };
@@ -1899,6 +1900,24 @@ class StateUpdate final :
       ::comm::MapDimensionsUpdate* mapdimensionsupdate);
   ::comm::MapDimensionsUpdate* unsafe_arena_release_mapdimensionsupdate();
 
+  // .comm.Enemy spawnEnemyRequest = 8;
+  bool has_spawnenemyrequest() const;
+  private:
+  bool _internal_has_spawnenemyrequest() const;
+  public:
+  void clear_spawnenemyrequest();
+  const ::comm::Enemy& spawnenemyrequest() const;
+  PROTOBUF_NODISCARD ::comm::Enemy* release_spawnenemyrequest();
+  ::comm::Enemy* mutable_spawnenemyrequest();
+  void set_allocated_spawnenemyrequest(::comm::Enemy* spawnenemyrequest);
+  private:
+  const ::comm::Enemy& _internal_spawnenemyrequest() const;
+  ::comm::Enemy* _internal_mutable_spawnenemyrequest();
+  public:
+  void unsafe_arena_set_allocated_spawnenemyrequest(
+      ::comm::Enemy* spawnenemyrequest);
+  ::comm::Enemy* unsafe_arena_release_spawnenemyrequest();
+
   // uint32 id = 1;
   void clear_id();
   uint32_t id() const;
@@ -1930,6 +1949,7 @@ class StateUpdate final :
     ::comm::PositionUpdate* positionupdate_;
     ::comm::EnemyPositionsUpdate* enemypositionsupdate_;
     ::comm::MapDimensionsUpdate* mapdimensionsupdate_;
+    ::comm::Enemy* spawnenemyrequest_;
     uint32_t id_;
     int variant_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -3129,6 +3149,96 @@ inline void StateUpdate::set_allocated_mapdimensionsupdate(::comm::MapDimensions
   }
   _impl_.mapdimensionsupdate_ = mapdimensionsupdate;
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.mapDimensionsUpdate)
+}
+
+// .comm.Enemy spawnEnemyRequest = 8;
+inline bool StateUpdate::_internal_has_spawnenemyrequest() const {
+  return this != internal_default_instance() && _impl_.spawnenemyrequest_ != nullptr;
+}
+inline bool StateUpdate::has_spawnenemyrequest() const {
+  return _internal_has_spawnenemyrequest();
+}
+inline void StateUpdate::clear_spawnenemyrequest() {
+  if (GetArenaForAllocation() == nullptr && _impl_.spawnenemyrequest_ != nullptr) {
+    delete _impl_.spawnenemyrequest_;
+  }
+  _impl_.spawnenemyrequest_ = nullptr;
+}
+inline const ::comm::Enemy& StateUpdate::_internal_spawnenemyrequest() const {
+  const ::comm::Enemy* p = _impl_.spawnenemyrequest_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::Enemy&>(
+      ::comm::_Enemy_default_instance_);
+}
+inline const ::comm::Enemy& StateUpdate::spawnenemyrequest() const {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.spawnEnemyRequest)
+  return _internal_spawnenemyrequest();
+}
+inline void StateUpdate::unsafe_arena_set_allocated_spawnenemyrequest(
+    ::comm::Enemy* spawnenemyrequest) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.spawnenemyrequest_);
+  }
+  _impl_.spawnenemyrequest_ = spawnenemyrequest;
+  if (spawnenemyrequest) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.spawnEnemyRequest)
+}
+inline ::comm::Enemy* StateUpdate::release_spawnenemyrequest() {
+  
+  ::comm::Enemy* temp = _impl_.spawnenemyrequest_;
+  _impl_.spawnenemyrequest_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::comm::Enemy* StateUpdate::unsafe_arena_release_spawnenemyrequest() {
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.spawnEnemyRequest)
+  
+  ::comm::Enemy* temp = _impl_.spawnenemyrequest_;
+  _impl_.spawnenemyrequest_ = nullptr;
+  return temp;
+}
+inline ::comm::Enemy* StateUpdate::_internal_mutable_spawnenemyrequest() {
+  
+  if (_impl_.spawnenemyrequest_ == nullptr) {
+    auto* p = CreateMaybeMessage<::comm::Enemy>(GetArenaForAllocation());
+    _impl_.spawnenemyrequest_ = p;
+  }
+  return _impl_.spawnenemyrequest_;
+}
+inline ::comm::Enemy* StateUpdate::mutable_spawnenemyrequest() {
+  ::comm::Enemy* _msg = _internal_mutable_spawnenemyrequest();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.spawnEnemyRequest)
+  return _msg;
+}
+inline void StateUpdate::set_allocated_spawnenemyrequest(::comm::Enemy* spawnenemyrequest) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.spawnenemyrequest_;
+  }
+  if (spawnenemyrequest) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(spawnenemyrequest);
+    if (message_arena != submessage_arena) {
+      spawnenemyrequest = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, spawnenemyrequest, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.spawnenemyrequest_ = spawnenemyrequest;
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.spawnEnemyRequest)
 }
 
 #ifdef __GNUC__
