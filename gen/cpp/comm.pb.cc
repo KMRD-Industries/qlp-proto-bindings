@@ -351,17 +351,17 @@ const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "\001(\r\"\210\001\n\013StateUpdate\022\034\n\006player\030\001 \001(\0132\014.co"
     "mm.Player\022\034\n\006weapon\030\002 \001(\0132\014.comm.Weapon\022"
     "#\n\007variant\030\003 \001(\0162\022.comm.StateVariant\022\030\n\004"
-    "room\030\004 \001(\0132\n.comm.Room*K\n\014StateVariant\022\010"
+    "room\030\004 \001(\0132\n.comm.Room*o\n\014StateVariant\022\010"
     "\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020"
-    "\002\022\020\n\014ROOM_CHANGED\020\003B6Z4github.com/kmrd-i"
-    "ndustries/qlp-proto-bindings/gen/gob\006pro"
-    "to3"
+    "\002\022\020\n\014ROOM_CHANGED\020\003\022\020\n\014ROOM_CLEARED\020\004\022\020\n"
+    "\014CHEST_OPENED\020\005B6Z4github.com/kmrd-indus"
+    "tries/qlp-proto-bindings/gen/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    723,
+    759,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -380,9 +380,9 @@ const ::google::protobuf::EnumDescriptor* StateVariant_descriptor() {
   return file_level_enum_descriptors_comm_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t StateVariant_internal_data_[] = {
-    262144u, 0u, };
+    393216u, 0u, };
 bool StateVariant_IsValid(int value) {
-  return 0 <= value && value <= 3;
+  return 0 <= value && value <= 5;
 }
 // ===================================================================
 

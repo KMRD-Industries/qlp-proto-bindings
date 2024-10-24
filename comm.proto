@@ -40,6 +40,8 @@ enum StateVariant {
     CONNECTED = 1;
     DISCONNECTED = 2;
     ROOM_CHANGED = 3;
+    ROOM_CLEARED = 4;
+    CHEST_OPENED = 5;
 }
 
 message BytePrefix {

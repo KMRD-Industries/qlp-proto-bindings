@@ -84,6 +84,8 @@ enum StateVariant : int {
   CONNECTED = 1,
   DISCONNECTED = 2,
   ROOM_CHANGED = 3,
+  ROOM_CLEARED = 4,
+  CHEST_OPENED = 5,
   StateVariant_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   StateVariant_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -93,8 +95,8 @@ enum StateVariant : int {
 bool StateVariant_IsValid(int value);
 extern const uint32_t StateVariant_internal_data_[];
 constexpr StateVariant StateVariant_MIN = static_cast<StateVariant>(0);
-constexpr StateVariant StateVariant_MAX = static_cast<StateVariant>(3);
-constexpr int StateVariant_ARRAYSIZE = 3 + 1;
+constexpr StateVariant StateVariant_MAX = static_cast<StateVariant>(5);
+constexpr int StateVariant_ARRAYSIZE = 5 + 1;
 const ::google::protobuf::EnumDescriptor*
 StateVariant_descriptor();
 template <typename T>
@@ -107,7 +109,7 @@ const std::string& StateVariant_Name(T value) {
 template <>
 inline const std::string& StateVariant_Name(StateVariant value) {
   return ::google::protobuf::internal::NameOfDenseEnum<StateVariant_descriptor,
-                                                 0, 3>(
+                                                 0, 5>(
       static_cast<int>(value));
 }
 inline bool StateVariant_Parse(absl::string_view name, StateVariant* value) {
