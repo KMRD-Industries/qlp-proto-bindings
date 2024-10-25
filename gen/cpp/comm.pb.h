@@ -73,6 +73,9 @@ extern PositionUpdateDefaultTypeInternal _PositionUpdate_default_instance_;
 class Room;
 struct RoomDefaultTypeInternal;
 extern RoomDefaultTypeInternal _Room_default_instance_;
+class SpawnEnemiesRequest;
+struct SpawnEnemiesRequestDefaultTypeInternal;
+extern SpawnEnemiesRequestDefaultTypeInternal _SpawnEnemiesRequest_default_instance_;
 class StateUpdate;
 struct StateUpdateDefaultTypeInternal;
 extern StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
@@ -87,6 +90,7 @@ template<> ::comm::Obstacle* Arena::CreateMaybeMessage<::comm::Obstacle>(Arena*)
 template<> ::comm::Player* Arena::CreateMaybeMessage<::comm::Player>(Arena*);
 template<> ::comm::PositionUpdate* Arena::CreateMaybeMessage<::comm::PositionUpdate>(Arena*);
 template<> ::comm::Room* Arena::CreateMaybeMessage<::comm::Room>(Arena*);
+template<> ::comm::SpawnEnemiesRequest* Arena::CreateMaybeMessage<::comm::SpawnEnemiesRequest>(Arena*);
 template<> ::comm::StateUpdate* Arena::CreateMaybeMessage<::comm::StateUpdate>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace comm {
@@ -1680,6 +1684,163 @@ class MapDimensionsUpdate final :
 };
 // -------------------------------------------------------------------
 
+class SpawnEnemiesRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.SpawnEnemiesRequest) */ {
+ public:
+  inline SpawnEnemiesRequest() : SpawnEnemiesRequest(nullptr) {}
+  ~SpawnEnemiesRequest() override;
+  explicit PROTOBUF_CONSTEXPR SpawnEnemiesRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SpawnEnemiesRequest(const SpawnEnemiesRequest& from);
+  SpawnEnemiesRequest(SpawnEnemiesRequest&& from) noexcept
+    : SpawnEnemiesRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SpawnEnemiesRequest& operator=(const SpawnEnemiesRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SpawnEnemiesRequest& operator=(SpawnEnemiesRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SpawnEnemiesRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SpawnEnemiesRequest* internal_default_instance() {
+    return reinterpret_cast<const SpawnEnemiesRequest*>(
+               &_SpawnEnemiesRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(SpawnEnemiesRequest& a, SpawnEnemiesRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SpawnEnemiesRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SpawnEnemiesRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SpawnEnemiesRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SpawnEnemiesRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SpawnEnemiesRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const SpawnEnemiesRequest& from) {
+    SpawnEnemiesRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SpawnEnemiesRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "comm.SpawnEnemiesRequest";
+  }
+  protected:
+  explicit SpawnEnemiesRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kEnemyDataFieldNumber = 1,
+  };
+  // repeated .comm.Enemy enemyData = 1;
+  int enemydata_size() const;
+  private:
+  int _internal_enemydata_size() const;
+  public:
+  void clear_enemydata();
+  ::comm::Enemy* mutable_enemydata(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Enemy >*
+      mutable_enemydata();
+  private:
+  const ::comm::Enemy& _internal_enemydata(int index) const;
+  ::comm::Enemy* _internal_add_enemydata();
+  public:
+  const ::comm::Enemy& enemydata(int index) const;
+  ::comm::Enemy* add_enemydata();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Enemy >&
+      enemydata() const;
+
+  // @@protoc_insertion_point(class_scope:comm.SpawnEnemiesRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Enemy > enemydata_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_comm_2eproto;
+};
+// -------------------------------------------------------------------
+
 class StateUpdate final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.StateUpdate) */ {
  public:
@@ -1728,7 +1889,7 @@ class StateUpdate final :
                &_StateUpdate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(StateUpdate& a, StateUpdate& b) {
     a.Swap(&b);
@@ -1900,23 +2061,23 @@ class StateUpdate final :
       ::comm::MapDimensionsUpdate* mapdimensionsupdate);
   ::comm::MapDimensionsUpdate* unsafe_arena_release_mapdimensionsupdate();
 
-  // .comm.Enemy spawnEnemyRequest = 8;
+  // .comm.SpawnEnemiesRequest spawnEnemyRequest = 8;
   bool has_spawnenemyrequest() const;
   private:
   bool _internal_has_spawnenemyrequest() const;
   public:
   void clear_spawnenemyrequest();
-  const ::comm::Enemy& spawnenemyrequest() const;
-  PROTOBUF_NODISCARD ::comm::Enemy* release_spawnenemyrequest();
-  ::comm::Enemy* mutable_spawnenemyrequest();
-  void set_allocated_spawnenemyrequest(::comm::Enemy* spawnenemyrequest);
+  const ::comm::SpawnEnemiesRequest& spawnenemyrequest() const;
+  PROTOBUF_NODISCARD ::comm::SpawnEnemiesRequest* release_spawnenemyrequest();
+  ::comm::SpawnEnemiesRequest* mutable_spawnenemyrequest();
+  void set_allocated_spawnenemyrequest(::comm::SpawnEnemiesRequest* spawnenemyrequest);
   private:
-  const ::comm::Enemy& _internal_spawnenemyrequest() const;
-  ::comm::Enemy* _internal_mutable_spawnenemyrequest();
+  const ::comm::SpawnEnemiesRequest& _internal_spawnenemyrequest() const;
+  ::comm::SpawnEnemiesRequest* _internal_mutable_spawnenemyrequest();
   public:
   void unsafe_arena_set_allocated_spawnenemyrequest(
-      ::comm::Enemy* spawnenemyrequest);
-  ::comm::Enemy* unsafe_arena_release_spawnenemyrequest();
+      ::comm::SpawnEnemiesRequest* spawnenemyrequest);
+  ::comm::SpawnEnemiesRequest* unsafe_arena_release_spawnenemyrequest();
 
   // uint32 id = 1;
   void clear_id();
@@ -1949,7 +2110,7 @@ class StateUpdate final :
     ::comm::PositionUpdate* positionupdate_;
     ::comm::EnemyPositionsUpdate* enemypositionsupdate_;
     ::comm::MapDimensionsUpdate* mapdimensionsupdate_;
-    ::comm::Enemy* spawnenemyrequest_;
+    ::comm::SpawnEnemiesRequest* spawnenemyrequest_;
     uint32_t id_;
     int variant_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2659,6 +2820,50 @@ MapDimensionsUpdate::obstacles() const {
 
 // -------------------------------------------------------------------
 
+// SpawnEnemiesRequest
+
+// repeated .comm.Enemy enemyData = 1;
+inline int SpawnEnemiesRequest::_internal_enemydata_size() const {
+  return _impl_.enemydata_.size();
+}
+inline int SpawnEnemiesRequest::enemydata_size() const {
+  return _internal_enemydata_size();
+}
+inline void SpawnEnemiesRequest::clear_enemydata() {
+  _impl_.enemydata_.Clear();
+}
+inline ::comm::Enemy* SpawnEnemiesRequest::mutable_enemydata(int index) {
+  // @@protoc_insertion_point(field_mutable:comm.SpawnEnemiesRequest.enemyData)
+  return _impl_.enemydata_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Enemy >*
+SpawnEnemiesRequest::mutable_enemydata() {
+  // @@protoc_insertion_point(field_mutable_list:comm.SpawnEnemiesRequest.enemyData)
+  return &_impl_.enemydata_;
+}
+inline const ::comm::Enemy& SpawnEnemiesRequest::_internal_enemydata(int index) const {
+  return _impl_.enemydata_.Get(index);
+}
+inline const ::comm::Enemy& SpawnEnemiesRequest::enemydata(int index) const {
+  // @@protoc_insertion_point(field_get:comm.SpawnEnemiesRequest.enemyData)
+  return _internal_enemydata(index);
+}
+inline ::comm::Enemy* SpawnEnemiesRequest::_internal_add_enemydata() {
+  return _impl_.enemydata_.Add();
+}
+inline ::comm::Enemy* SpawnEnemiesRequest::add_enemydata() {
+  ::comm::Enemy* _add = _internal_add_enemydata();
+  // @@protoc_insertion_point(field_add:comm.SpawnEnemiesRequest.enemyData)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::comm::Enemy >&
+SpawnEnemiesRequest::enemydata() const {
+  // @@protoc_insertion_point(field_list:comm.SpawnEnemiesRequest.enemyData)
+  return _impl_.enemydata_;
+}
+
+// -------------------------------------------------------------------
+
 // StateUpdate
 
 // uint32 id = 1;
@@ -3151,7 +3356,7 @@ inline void StateUpdate::set_allocated_mapdimensionsupdate(::comm::MapDimensions
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.mapDimensionsUpdate)
 }
 
-// .comm.Enemy spawnEnemyRequest = 8;
+// .comm.SpawnEnemiesRequest spawnEnemyRequest = 8;
 inline bool StateUpdate::_internal_has_spawnenemyrequest() const {
   return this != internal_default_instance() && _impl_.spawnenemyrequest_ != nullptr;
 }
@@ -3164,17 +3369,17 @@ inline void StateUpdate::clear_spawnenemyrequest() {
   }
   _impl_.spawnenemyrequest_ = nullptr;
 }
-inline const ::comm::Enemy& StateUpdate::_internal_spawnenemyrequest() const {
-  const ::comm::Enemy* p = _impl_.spawnenemyrequest_;
-  return p != nullptr ? *p : reinterpret_cast<const ::comm::Enemy&>(
-      ::comm::_Enemy_default_instance_);
+inline const ::comm::SpawnEnemiesRequest& StateUpdate::_internal_spawnenemyrequest() const {
+  const ::comm::SpawnEnemiesRequest* p = _impl_.spawnenemyrequest_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::SpawnEnemiesRequest&>(
+      ::comm::_SpawnEnemiesRequest_default_instance_);
 }
-inline const ::comm::Enemy& StateUpdate::spawnenemyrequest() const {
+inline const ::comm::SpawnEnemiesRequest& StateUpdate::spawnenemyrequest() const {
   // @@protoc_insertion_point(field_get:comm.StateUpdate.spawnEnemyRequest)
   return _internal_spawnenemyrequest();
 }
 inline void StateUpdate::unsafe_arena_set_allocated_spawnenemyrequest(
-    ::comm::Enemy* spawnenemyrequest) {
+    ::comm::SpawnEnemiesRequest* spawnenemyrequest) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.spawnenemyrequest_);
   }
@@ -3186,9 +3391,9 @@ inline void StateUpdate::unsafe_arena_set_allocated_spawnenemyrequest(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.spawnEnemyRequest)
 }
-inline ::comm::Enemy* StateUpdate::release_spawnenemyrequest() {
+inline ::comm::SpawnEnemiesRequest* StateUpdate::release_spawnenemyrequest() {
   
-  ::comm::Enemy* temp = _impl_.spawnenemyrequest_;
+  ::comm::SpawnEnemiesRequest* temp = _impl_.spawnenemyrequest_;
   _impl_.spawnenemyrequest_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -3201,27 +3406,27 @@ inline ::comm::Enemy* StateUpdate::release_spawnenemyrequest() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::comm::Enemy* StateUpdate::unsafe_arena_release_spawnenemyrequest() {
+inline ::comm::SpawnEnemiesRequest* StateUpdate::unsafe_arena_release_spawnenemyrequest() {
   // @@protoc_insertion_point(field_release:comm.StateUpdate.spawnEnemyRequest)
   
-  ::comm::Enemy* temp = _impl_.spawnenemyrequest_;
+  ::comm::SpawnEnemiesRequest* temp = _impl_.spawnenemyrequest_;
   _impl_.spawnenemyrequest_ = nullptr;
   return temp;
 }
-inline ::comm::Enemy* StateUpdate::_internal_mutable_spawnenemyrequest() {
+inline ::comm::SpawnEnemiesRequest* StateUpdate::_internal_mutable_spawnenemyrequest() {
   
   if (_impl_.spawnenemyrequest_ == nullptr) {
-    auto* p = CreateMaybeMessage<::comm::Enemy>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::comm::SpawnEnemiesRequest>(GetArenaForAllocation());
     _impl_.spawnenemyrequest_ = p;
   }
   return _impl_.spawnenemyrequest_;
 }
-inline ::comm::Enemy* StateUpdate::mutable_spawnenemyrequest() {
-  ::comm::Enemy* _msg = _internal_mutable_spawnenemyrequest();
+inline ::comm::SpawnEnemiesRequest* StateUpdate::mutable_spawnenemyrequest() {
+  ::comm::SpawnEnemiesRequest* _msg = _internal_mutable_spawnenemyrequest();
   // @@protoc_insertion_point(field_mutable:comm.StateUpdate.spawnEnemyRequest)
   return _msg;
 }
-inline void StateUpdate::set_allocated_spawnenemyrequest(::comm::Enemy* spawnenemyrequest) {
+inline void StateUpdate::set_allocated_spawnenemyrequest(::comm::SpawnEnemiesRequest* spawnenemyrequest) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete _impl_.spawnenemyrequest_;
@@ -3244,6 +3449,8 @@ inline void StateUpdate::set_allocated_spawnenemyrequest(::comm::Enemy* spawnene
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -66,6 +66,10 @@ message MapDimensionsUpdate {
     repeated Obstacle obstacles = 1;
 }
 
+message SpawnEnemiesRequest {
+    repeated Enemy enemyData = 1;
+}
+
 message StateUpdate {
     uint32 id = 1;
     StateVariant variant = 2;
@@ -74,5 +78,5 @@ message StateUpdate {
     PositionUpdate positionUpdate = 5;
     EnemyPositionsUpdate enemyPositionsUpdate = 6;
     MapDimensionsUpdate mapDimensionsUpdate = 7;
-    Enemy spawnEnemyRequest = 8;
+    SpawnEnemiesRequest spawnEnemyRequest = 8;
 }
