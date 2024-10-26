@@ -73,6 +73,9 @@ extern PositionUpdateDefaultTypeInternal _PositionUpdate_default_instance_;
 class Room;
 struct RoomDefaultTypeInternal;
 extern RoomDefaultTypeInternal _Room_default_instance_;
+class SpawningEnemiesResponse;
+struct SpawningEnemiesResponseDefaultTypeInternal;
+extern SpawningEnemiesResponseDefaultTypeInternal _SpawningEnemiesResponse_default_instance_;
 class StateUpdate;
 struct StateUpdateDefaultTypeInternal;
 extern StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
@@ -87,6 +90,7 @@ template<> ::comm::Obstacle* Arena::CreateMaybeMessage<::comm::Obstacle>(Arena*)
 template<> ::comm::Player* Arena::CreateMaybeMessage<::comm::Player>(Arena*);
 template<> ::comm::PositionUpdate* Arena::CreateMaybeMessage<::comm::PositionUpdate>(Arena*);
 template<> ::comm::Room* Arena::CreateMaybeMessage<::comm::Room>(Arena*);
+template<> ::comm::SpawningEnemiesResponse* Arena::CreateMaybeMessage<::comm::SpawningEnemiesResponse>(Arena*);
 template<> ::comm::StateUpdate* Arena::CreateMaybeMessage<::comm::StateUpdate>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace comm {
@@ -1680,6 +1684,168 @@ class MapDimensionsUpdate final :
 };
 // -------------------------------------------------------------------
 
+class SpawningEnemiesResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.SpawningEnemiesResponse) */ {
+ public:
+  inline SpawningEnemiesResponse() : SpawningEnemiesResponse(nullptr) {}
+  ~SpawningEnemiesResponse() override;
+  explicit PROTOBUF_CONSTEXPR SpawningEnemiesResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SpawningEnemiesResponse(const SpawningEnemiesResponse& from);
+  SpawningEnemiesResponse(SpawningEnemiesResponse&& from) noexcept
+    : SpawningEnemiesResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SpawningEnemiesResponse& operator=(const SpawningEnemiesResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SpawningEnemiesResponse& operator=(SpawningEnemiesResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SpawningEnemiesResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SpawningEnemiesResponse* internal_default_instance() {
+    return reinterpret_cast<const SpawningEnemiesResponse*>(
+               &_SpawningEnemiesResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(SpawningEnemiesResponse& a, SpawningEnemiesResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SpawningEnemiesResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SpawningEnemiesResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SpawningEnemiesResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SpawningEnemiesResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SpawningEnemiesResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const SpawningEnemiesResponse& from) {
+    SpawningEnemiesResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SpawningEnemiesResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "comm.SpawningEnemiesResponse";
+  }
+  protected:
+  explicit SpawningEnemiesResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kEnemyIdFieldNumber = 1,
+  };
+  // repeated int32 enemyId = 1;
+  int enemyid_size() const;
+  private:
+  int _internal_enemyid_size() const;
+  public:
+  void clear_enemyid();
+  private:
+  int32_t _internal_enemyid(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      _internal_enemyid() const;
+  void _internal_add_enemyid(int32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      _internal_mutable_enemyid();
+  public:
+  int32_t enemyid(int index) const;
+  void set_enemyid(int index, int32_t value);
+  void add_enemyid(int32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      enemyid() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      mutable_enemyid();
+
+  // @@protoc_insertion_point(class_scope:comm.SpawningEnemiesResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > enemyid_;
+    mutable std::atomic<int> _enemyid_cached_byte_size_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_comm_2eproto;
+};
+// -------------------------------------------------------------------
+
 class StateUpdate final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.StateUpdate) */ {
  public:
@@ -1728,7 +1894,7 @@ class StateUpdate final :
                &_StateUpdate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(StateUpdate& a, StateUpdate& b) {
     a.Swap(&b);
@@ -1806,6 +1972,7 @@ class StateUpdate final :
     kPositionUpdateFieldNumber = 5,
     kEnemyPositionsUpdateFieldNumber = 6,
     kMapDimensionsUpdateFieldNumber = 7,
+    kSpawningEnemiesResponseFieldNumber = 9,
     kIdFieldNumber = 1,
     kVariantFieldNumber = 2,
     kNofIdsFieldNumber = 8,
@@ -1900,6 +2067,24 @@ class StateUpdate final :
       ::comm::MapDimensionsUpdate* mapdimensionsupdate);
   ::comm::MapDimensionsUpdate* unsafe_arena_release_mapdimensionsupdate();
 
+  // .comm.SpawningEnemiesResponse spawningEnemiesResponse = 9;
+  bool has_spawningenemiesresponse() const;
+  private:
+  bool _internal_has_spawningenemiesresponse() const;
+  public:
+  void clear_spawningenemiesresponse();
+  const ::comm::SpawningEnemiesResponse& spawningenemiesresponse() const;
+  PROTOBUF_NODISCARD ::comm::SpawningEnemiesResponse* release_spawningenemiesresponse();
+  ::comm::SpawningEnemiesResponse* mutable_spawningenemiesresponse();
+  void set_allocated_spawningenemiesresponse(::comm::SpawningEnemiesResponse* spawningenemiesresponse);
+  private:
+  const ::comm::SpawningEnemiesResponse& _internal_spawningenemiesresponse() const;
+  ::comm::SpawningEnemiesResponse* _internal_mutable_spawningenemiesresponse();
+  public:
+  void unsafe_arena_set_allocated_spawningenemiesresponse(
+      ::comm::SpawningEnemiesResponse* spawningenemiesresponse);
+  ::comm::SpawningEnemiesResponse* unsafe_arena_release_spawningenemiesresponse();
+
   // uint32 id = 1;
   void clear_id();
   uint32_t id() const;
@@ -1940,6 +2125,7 @@ class StateUpdate final :
     ::comm::PositionUpdate* positionupdate_;
     ::comm::EnemyPositionsUpdate* enemypositionsupdate_;
     ::comm::MapDimensionsUpdate* mapdimensionsupdate_;
+    ::comm::SpawningEnemiesResponse* spawningenemiesresponse_;
     uint32_t id_;
     int variant_;
     int32_t nofids_;
@@ -2650,6 +2836,57 @@ MapDimensionsUpdate::obstacles() const {
 
 // -------------------------------------------------------------------
 
+// SpawningEnemiesResponse
+
+// repeated int32 enemyId = 1;
+inline int SpawningEnemiesResponse::_internal_enemyid_size() const {
+  return _impl_.enemyid_.size();
+}
+inline int SpawningEnemiesResponse::enemyid_size() const {
+  return _internal_enemyid_size();
+}
+inline void SpawningEnemiesResponse::clear_enemyid() {
+  _impl_.enemyid_.Clear();
+}
+inline int32_t SpawningEnemiesResponse::_internal_enemyid(int index) const {
+  return _impl_.enemyid_.Get(index);
+}
+inline int32_t SpawningEnemiesResponse::enemyid(int index) const {
+  // @@protoc_insertion_point(field_get:comm.SpawningEnemiesResponse.enemyId)
+  return _internal_enemyid(index);
+}
+inline void SpawningEnemiesResponse::set_enemyid(int index, int32_t value) {
+  _impl_.enemyid_.Set(index, value);
+  // @@protoc_insertion_point(field_set:comm.SpawningEnemiesResponse.enemyId)
+}
+inline void SpawningEnemiesResponse::_internal_add_enemyid(int32_t value) {
+  _impl_.enemyid_.Add(value);
+}
+inline void SpawningEnemiesResponse::add_enemyid(int32_t value) {
+  _internal_add_enemyid(value);
+  // @@protoc_insertion_point(field_add:comm.SpawningEnemiesResponse.enemyId)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+SpawningEnemiesResponse::_internal_enemyid() const {
+  return _impl_.enemyid_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+SpawningEnemiesResponse::enemyid() const {
+  // @@protoc_insertion_point(field_list:comm.SpawningEnemiesResponse.enemyId)
+  return _internal_enemyid();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+SpawningEnemiesResponse::_internal_mutable_enemyid() {
+  return &_impl_.enemyid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+SpawningEnemiesResponse::mutable_enemyid() {
+  // @@protoc_insertion_point(field_mutable_list:comm.SpawningEnemiesResponse.enemyId)
+  return _internal_mutable_enemyid();
+}
+
+// -------------------------------------------------------------------
+
 // StateUpdate
 
 // uint32 id = 1;
@@ -3162,9 +3399,101 @@ inline void StateUpdate::set_nofids(int32_t value) {
   // @@protoc_insertion_point(field_set:comm.StateUpdate.nofIds)
 }
 
+// .comm.SpawningEnemiesResponse spawningEnemiesResponse = 9;
+inline bool StateUpdate::_internal_has_spawningenemiesresponse() const {
+  return this != internal_default_instance() && _impl_.spawningenemiesresponse_ != nullptr;
+}
+inline bool StateUpdate::has_spawningenemiesresponse() const {
+  return _internal_has_spawningenemiesresponse();
+}
+inline void StateUpdate::clear_spawningenemiesresponse() {
+  if (GetArenaForAllocation() == nullptr && _impl_.spawningenemiesresponse_ != nullptr) {
+    delete _impl_.spawningenemiesresponse_;
+  }
+  _impl_.spawningenemiesresponse_ = nullptr;
+}
+inline const ::comm::SpawningEnemiesResponse& StateUpdate::_internal_spawningenemiesresponse() const {
+  const ::comm::SpawningEnemiesResponse* p = _impl_.spawningenemiesresponse_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::SpawningEnemiesResponse&>(
+      ::comm::_SpawningEnemiesResponse_default_instance_);
+}
+inline const ::comm::SpawningEnemiesResponse& StateUpdate::spawningenemiesresponse() const {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.spawningEnemiesResponse)
+  return _internal_spawningenemiesresponse();
+}
+inline void StateUpdate::unsafe_arena_set_allocated_spawningenemiesresponse(
+    ::comm::SpawningEnemiesResponse* spawningenemiesresponse) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.spawningenemiesresponse_);
+  }
+  _impl_.spawningenemiesresponse_ = spawningenemiesresponse;
+  if (spawningenemiesresponse) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.spawningEnemiesResponse)
+}
+inline ::comm::SpawningEnemiesResponse* StateUpdate::release_spawningenemiesresponse() {
+  
+  ::comm::SpawningEnemiesResponse* temp = _impl_.spawningenemiesresponse_;
+  _impl_.spawningenemiesresponse_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::comm::SpawningEnemiesResponse* StateUpdate::unsafe_arena_release_spawningenemiesresponse() {
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.spawningEnemiesResponse)
+  
+  ::comm::SpawningEnemiesResponse* temp = _impl_.spawningenemiesresponse_;
+  _impl_.spawningenemiesresponse_ = nullptr;
+  return temp;
+}
+inline ::comm::SpawningEnemiesResponse* StateUpdate::_internal_mutable_spawningenemiesresponse() {
+  
+  if (_impl_.spawningenemiesresponse_ == nullptr) {
+    auto* p = CreateMaybeMessage<::comm::SpawningEnemiesResponse>(GetArenaForAllocation());
+    _impl_.spawningenemiesresponse_ = p;
+  }
+  return _impl_.spawningenemiesresponse_;
+}
+inline ::comm::SpawningEnemiesResponse* StateUpdate::mutable_spawningenemiesresponse() {
+  ::comm::SpawningEnemiesResponse* _msg = _internal_mutable_spawningenemiesresponse();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.spawningEnemiesResponse)
+  return _msg;
+}
+inline void StateUpdate::set_allocated_spawningenemiesresponse(::comm::SpawningEnemiesResponse* spawningenemiesresponse) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.spawningenemiesresponse_;
+  }
+  if (spawningenemiesresponse) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(spawningenemiesresponse);
+    if (message_arena != submessage_arena) {
+      spawningenemiesresponse = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, spawningenemiesresponse, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.spawningenemiesresponse_ = spawningenemiesresponse;
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.spawningEnemiesResponse)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
