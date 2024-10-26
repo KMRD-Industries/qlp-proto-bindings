@@ -67,7 +67,7 @@ message MapDimensionsUpdate {
 }
 
 message SpawningEnemiesResponse {
-    repeated int32 enemyId = 1;
+    repeated uint32 enemyId = 1;
 }
 
 message StateUpdate {
@@ -78,6 +78,5 @@ message StateUpdate {
     PositionUpdate positionUpdate = 5;
     EnemyPositionsUpdate enemyPositionsUpdate = 6;
     MapDimensionsUpdate mapDimensionsUpdate = 7;
-    int32 nofIds = 8;
-    SpawningEnemiesResponse spawningEnemiesResponse = 9;
+    SpawningEnemiesResponse spawningEnemiesResponse = 8;
 }

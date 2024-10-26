@@ -1807,26 +1807,26 @@ class SpawningEnemiesResponse final :
   enum : int {
     kEnemyIdFieldNumber = 1,
   };
-  // repeated int32 enemyId = 1;
+  // repeated uint32 enemyId = 1;
   int enemyid_size() const;
   private:
   int _internal_enemyid_size() const;
   public:
   void clear_enemyid();
   private:
-  int32_t _internal_enemyid(int index) const;
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+  uint32_t _internal_enemyid(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
       _internal_enemyid() const;
-  void _internal_add_enemyid(int32_t value);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+  void _internal_add_enemyid(uint32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
       _internal_mutable_enemyid();
   public:
-  int32_t enemyid(int index) const;
-  void set_enemyid(int index, int32_t value);
-  void add_enemyid(int32_t value);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+  uint32_t enemyid(int index) const;
+  void set_enemyid(int index, uint32_t value);
+  void add_enemyid(uint32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
       enemyid() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
       mutable_enemyid();
 
   // @@protoc_insertion_point(class_scope:comm.SpawningEnemiesResponse)
@@ -1837,7 +1837,7 @@ class SpawningEnemiesResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > enemyid_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > enemyid_;
     mutable std::atomic<int> _enemyid_cached_byte_size_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -1972,10 +1972,9 @@ class StateUpdate final :
     kPositionUpdateFieldNumber = 5,
     kEnemyPositionsUpdateFieldNumber = 6,
     kMapDimensionsUpdateFieldNumber = 7,
-    kSpawningEnemiesResponseFieldNumber = 9,
+    kSpawningEnemiesResponseFieldNumber = 8,
     kIdFieldNumber = 1,
     kVariantFieldNumber = 2,
-    kNofIdsFieldNumber = 8,
   };
   // .comm.Room room = 3;
   bool has_room() const;
@@ -2067,7 +2066,7 @@ class StateUpdate final :
       ::comm::MapDimensionsUpdate* mapdimensionsupdate);
   ::comm::MapDimensionsUpdate* unsafe_arena_release_mapdimensionsupdate();
 
-  // .comm.SpawningEnemiesResponse spawningEnemiesResponse = 9;
+  // .comm.SpawningEnemiesResponse spawningEnemiesResponse = 8;
   bool has_spawningenemiesresponse() const;
   private:
   bool _internal_has_spawningenemiesresponse() const;
@@ -2103,15 +2102,6 @@ class StateUpdate final :
   void _internal_set_variant(::comm::StateVariant value);
   public:
 
-  // int32 nofIds = 8;
-  void clear_nofids();
-  int32_t nofids() const;
-  void set_nofids(int32_t value);
-  private:
-  int32_t _internal_nofids() const;
-  void _internal_set_nofids(int32_t value);
-  public:
-
   // @@protoc_insertion_point(class_scope:comm.StateUpdate)
  private:
   class _Internal;
@@ -2128,7 +2118,6 @@ class StateUpdate final :
     ::comm::SpawningEnemiesResponse* spawningenemiesresponse_;
     uint32_t id_;
     int variant_;
-    int32_t nofids_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2838,7 +2827,7 @@ MapDimensionsUpdate::obstacles() const {
 
 // SpawningEnemiesResponse
 
-// repeated int32 enemyId = 1;
+// repeated uint32 enemyId = 1;
 inline int SpawningEnemiesResponse::_internal_enemyid_size() const {
   return _impl_.enemyid_.size();
 }
@@ -2848,38 +2837,38 @@ inline int SpawningEnemiesResponse::enemyid_size() const {
 inline void SpawningEnemiesResponse::clear_enemyid() {
   _impl_.enemyid_.Clear();
 }
-inline int32_t SpawningEnemiesResponse::_internal_enemyid(int index) const {
+inline uint32_t SpawningEnemiesResponse::_internal_enemyid(int index) const {
   return _impl_.enemyid_.Get(index);
 }
-inline int32_t SpawningEnemiesResponse::enemyid(int index) const {
+inline uint32_t SpawningEnemiesResponse::enemyid(int index) const {
   // @@protoc_insertion_point(field_get:comm.SpawningEnemiesResponse.enemyId)
   return _internal_enemyid(index);
 }
-inline void SpawningEnemiesResponse::set_enemyid(int index, int32_t value) {
+inline void SpawningEnemiesResponse::set_enemyid(int index, uint32_t value) {
   _impl_.enemyid_.Set(index, value);
   // @@protoc_insertion_point(field_set:comm.SpawningEnemiesResponse.enemyId)
 }
-inline void SpawningEnemiesResponse::_internal_add_enemyid(int32_t value) {
+inline void SpawningEnemiesResponse::_internal_add_enemyid(uint32_t value) {
   _impl_.enemyid_.Add(value);
 }
-inline void SpawningEnemiesResponse::add_enemyid(int32_t value) {
+inline void SpawningEnemiesResponse::add_enemyid(uint32_t value) {
   _internal_add_enemyid(value);
   // @@protoc_insertion_point(field_add:comm.SpawningEnemiesResponse.enemyId)
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
 SpawningEnemiesResponse::_internal_enemyid() const {
   return _impl_.enemyid_;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
 SpawningEnemiesResponse::enemyid() const {
   // @@protoc_insertion_point(field_list:comm.SpawningEnemiesResponse.enemyId)
   return _internal_enemyid();
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
 SpawningEnemiesResponse::_internal_mutable_enemyid() {
   return &_impl_.enemyid_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
 SpawningEnemiesResponse::mutable_enemyid() {
   // @@protoc_insertion_point(field_mutable_list:comm.SpawningEnemiesResponse.enemyId)
   return _internal_mutable_enemyid();
@@ -3379,27 +3368,7 @@ inline void StateUpdate::set_allocated_mapdimensionsupdate(::comm::MapDimensions
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.mapDimensionsUpdate)
 }
 
-// int32 nofIds = 8;
-inline void StateUpdate::clear_nofids() {
-  _impl_.nofids_ = 0;
-}
-inline int32_t StateUpdate::_internal_nofids() const {
-  return _impl_.nofids_;
-}
-inline int32_t StateUpdate::nofids() const {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.nofIds)
-  return _internal_nofids();
-}
-inline void StateUpdate::_internal_set_nofids(int32_t value) {
-  
-  _impl_.nofids_ = value;
-}
-inline void StateUpdate::set_nofids(int32_t value) {
-  _internal_set_nofids(value);
-  // @@protoc_insertion_point(field_set:comm.StateUpdate.nofIds)
-}
-
-// .comm.SpawningEnemiesResponse spawningEnemiesResponse = 9;
+// .comm.SpawningEnemiesResponse spawningEnemiesResponse = 8;
 inline bool StateUpdate::_internal_has_spawningenemiesresponse() const {
   return this != internal_default_instance() && _impl_.spawningenemiesresponse_ != nullptr;
 }

@@ -178,7 +178,6 @@ PROTOBUF_CONSTEXPR StateUpdate::StateUpdate(
   , /*decltype(_impl_.spawningenemiesresponse_)*/nullptr
   , /*decltype(_impl_.id_)*/0u
   , /*decltype(_impl_.variant_)*/0
-  , /*decltype(_impl_.nofids_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct StateUpdateDefaultTypeInternal {
   PROTOBUF_CONSTEXPR StateUpdateDefaultTypeInternal()
@@ -293,7 +292,6 @@ const uint32_t TableStruct_comm_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pro
   PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.positionupdate_),
   PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.enemypositionsupdate_),
   PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.mapdimensionsupdate_),
-  PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.nofids_),
   PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.spawningenemiesresponse_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -340,7 +338,7 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "s\030\001 \003(\0132\014.comm.Player\022\034\n\007enemies\030\002 \003(\0132\013"
   ".comm.Enemy\"8\n\023MapDimensionsUpdate\022!\n\tob"
   "stacles\030\001 \003(\0132\016.comm.Obstacle\"*\n\027Spawnin"
-  "gEnemiesResponse\022\017\n\007enemyId\030\001 \003(\005\"\376\002\n\013St"
+  "gEnemiesResponse\022\017\n\007enemyId\030\001 \003(\r\"\356\002\n\013St"
   "ateUpdate\022\n\n\002id\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022"
   ".comm.StateVariant\022\030\n\004room\030\003 \001(\0132\n.comm."
   "Room\0224\n\022mapPositionsUpdate\030\004 \001(\0132\030.comm."
@@ -348,19 +346,18 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "(\0132\024.comm.PositionUpdate\0228\n\024enemyPositio"
   "nsUpdate\030\006 \001(\0132\032.comm.EnemyPositionsUpda"
   "te\0226\n\023mapDimensionsUpdate\030\007 \001(\0132\031.comm.M"
-  "apDimensionsUpdate\022\016\n\006nofIds\030\010 \001(\005\022>\n\027sp"
-  "awningEnemiesResponse\030\t \001(\0132\035.comm.Spawn"
-  "ingEnemiesResponse*\253\001\n\014StateVariant\022\010\n\004N"
-  "ONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002\022\020"
-  "\n\014ROOM_CHANGED\020\003\022\016\n\nMAP_UPDATE\020\004\022\032\n\026PLAY"
-  "ER_POSITION_UPDATE\020\005\022\031\n\025MAP_DIMENSIONS_U"
-  "PDATE\020\006\022\027\n\023SPAWN_ENEMY_REQUEST\020\007B6Z4gith"
-  "ub.com/kmrd-industries/qlp-proto-binding"
-  "s/gen/gob\006proto3"
+  "apDimensionsUpdate\022>\n\027spawningEnemiesRes"
+  "ponse\030\010 \001(\0132\035.comm.SpawningEnemiesRespon"
+  "se*\253\001\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECT"
+  "ED\020\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003"
+  "\022\016\n\nMAP_UPDATE\020\004\022\032\n\026PLAYER_POSITION_UPDA"
+  "TE\020\005\022\031\n\025MAP_DIMENSIONS_UPDATE\020\006\022\027\n\023SPAWN"
+  "_ENEMY_REQUEST\020\007B6Z4github.com/kmrd-indu"
+  "stries/qlp-proto-bindings/gen/gob\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_comm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
-    false, false, 1256, descriptor_table_protodef_comm_2eproto,
+    false, false, 1240, descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once, nullptr, 0, 11,
     schemas, file_default_instances, TableStruct_comm_2eproto::offsets,
@@ -2606,10 +2603,10 @@ const char* SpawningEnemiesResponse::_InternalParse(const char* ptr, ::_pbi::Par
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // repeated int32 enemyId = 1;
+      // repeated uint32 enemyId = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt32Parser(_internal_mutable_enemyid(), ptr, ctx);
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_enemyid(), ptr, ctx);
           CHK_(ptr);
         } else if (static_cast<uint8_t>(tag) == 8) {
           _internal_add_enemyid(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
@@ -2646,11 +2643,11 @@ uint8_t* SpawningEnemiesResponse::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated int32 enemyId = 1;
+  // repeated uint32 enemyId = 1;
   {
     int byte_size = _impl_._enemyid_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
-      target = stream->WriteInt32Packed(
+      target = stream->WriteUInt32Packed(
           1, _internal_enemyid(), byte_size, target);
     }
   }
@@ -2671,10 +2668,10 @@ size_t SpawningEnemiesResponse::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated int32 enemyId = 1;
+  // repeated uint32 enemyId = 1;
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      Int32Size(this->_impl_.enemyid_);
+      UInt32Size(this->_impl_.enemyid_);
     if (data_size > 0) {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
@@ -2784,7 +2781,6 @@ StateUpdate::StateUpdate(const StateUpdate& from)
     , decltype(_impl_.spawningenemiesresponse_){nullptr}
     , decltype(_impl_.id_){}
     , decltype(_impl_.variant_){}
-    , decltype(_impl_.nofids_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -2807,8 +2803,8 @@ StateUpdate::StateUpdate(const StateUpdate& from)
     _this->_impl_.spawningenemiesresponse_ = new ::comm::SpawningEnemiesResponse(*from._impl_.spawningenemiesresponse_);
   }
   ::memcpy(&_impl_.id_, &from._impl_.id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.nofids_) -
-    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.nofids_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.variant_) -
+    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.variant_));
   // @@protoc_insertion_point(copy_constructor:comm.StateUpdate)
 }
 
@@ -2825,7 +2821,6 @@ inline void StateUpdate::SharedCtor(
     , decltype(_impl_.spawningenemiesresponse_){nullptr}
     , decltype(_impl_.id_){0u}
     , decltype(_impl_.variant_){0}
-    , decltype(_impl_.nofids_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -2884,8 +2879,8 @@ void StateUpdate::Clear() {
   }
   _impl_.spawningenemiesresponse_ = nullptr;
   ::memset(&_impl_.id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.nofids_) -
-      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.nofids_));
+      reinterpret_cast<char*>(&_impl_.variant_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.variant_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2952,17 +2947,9 @@ const char* StateUpdate::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         } else
           goto handle_unusual;
         continue;
-      // int32 nofIds = 8;
+      // .comm.SpawningEnemiesResponse spawningEnemiesResponse = 8;
       case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
-          _impl_.nofids_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .comm.SpawningEnemiesResponse spawningEnemiesResponse = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
           ptr = ctx->ParseMessage(_internal_mutable_spawningenemiesresponse(), ptr);
           CHK_(ptr);
         } else
@@ -3045,16 +3032,10 @@ uint8_t* StateUpdate::_InternalSerialize(
         _Internal::mapdimensionsupdate(this).GetCachedSize(), target, stream);
   }
 
-  // int32 nofIds = 8;
-  if (this->_internal_nofids() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(8, this->_internal_nofids(), target);
-  }
-
-  // .comm.SpawningEnemiesResponse spawningEnemiesResponse = 9;
+  // .comm.SpawningEnemiesResponse spawningEnemiesResponse = 8;
   if (this->_internal_has_spawningenemiesresponse()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(9, _Internal::spawningenemiesresponse(this),
+      InternalWriteMessage(8, _Internal::spawningenemiesresponse(this),
         _Internal::spawningenemiesresponse(this).GetCachedSize(), target, stream);
   }
 
@@ -3109,7 +3090,7 @@ size_t StateUpdate::ByteSizeLong() const {
         *_impl_.mapdimensionsupdate_);
   }
 
-  // .comm.SpawningEnemiesResponse spawningEnemiesResponse = 9;
+  // .comm.SpawningEnemiesResponse spawningEnemiesResponse = 8;
   if (this->_internal_has_spawningenemiesresponse()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -3125,11 +3106,6 @@ size_t StateUpdate::ByteSizeLong() const {
   if (this->_internal_variant() != 0) {
     total_size += 1 +
       ::_pbi::WireFormatLite::EnumSize(this->_internal_variant());
-  }
-
-  // int32 nofIds = 8;
-  if (this->_internal_nofids() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_nofids());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -3180,9 +3156,6 @@ void StateUpdate::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PR
   if (from._internal_variant() != 0) {
     _this->_internal_set_variant(from._internal_variant());
   }
-  if (from._internal_nofids() != 0) {
-    _this->_internal_set_nofids(from._internal_nofids());
-  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3201,8 +3174,8 @@ void StateUpdate::InternalSwap(StateUpdate* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.nofids_)
-      + sizeof(StateUpdate::_impl_.nofids_)
+      PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.variant_)
+      + sizeof(StateUpdate::_impl_.variant_)
       - PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.room_)>(
           reinterpret_cast<char*>(&_impl_.room_),
           reinterpret_cast<char*>(&other->_impl_.room_));
