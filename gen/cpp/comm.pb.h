@@ -81,10 +81,10 @@ namespace protobuf {
 namespace comm {
 enum ItemType : int {
   UNKNOWN = 0,
-  POTION = 1,
-  WEAPON = 2,
-  HELMET = 3,
-  ARMOUR = 4,
+  WEAPON = 1,
+  ARMOUR = 2,
+  POTION = 3,
+  HELMET = 4,
   ItemType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ItemType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -1614,11 +1614,12 @@ class InitialInfo final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kConnectedPlayersFieldNumber = 3,
+    kConnectedPlayersFieldNumber = 4,
     kPlayerFieldNumber = 1,
+    kNextItemFieldNumber = 3,
     kSeedFieldNumber = 2,
   };
-  // repeated .comm.Player connected_players = 3;
+  // repeated .comm.Player connected_players = 4;
   int connected_players_size() const;
   private:
   int _internal_connected_players_size() const;
@@ -1650,6 +1651,21 @@ class InitialInfo final : public ::google::protobuf::Message
   ::comm::Player* _internal_mutable_player();
 
   public:
+  // .comm.Item next_item = 3;
+  bool has_next_item() const;
+  void clear_next_item() ;
+  const ::comm::Item& next_item() const;
+  PROTOBUF_NODISCARD ::comm::Item* release_next_item();
+  ::comm::Item* mutable_next_item();
+  void set_allocated_next_item(::comm::Item* value);
+  void unsafe_arena_set_allocated_next_item(::comm::Item* value);
+  ::comm::Item* unsafe_arena_release_next_item();
+
+  private:
+  const ::comm::Item& _internal_next_item() const;
+  ::comm::Item* _internal_mutable_next_item();
+
+  public:
   // int64 seed = 2;
   void clear_seed() ;
   ::int64_t seed() const;
@@ -1665,7 +1681,7 @@ class InitialInfo final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 2,
+      2, 4, 3,
       0, 2>
       _table_;
 
@@ -1690,6 +1706,7 @@ class InitialInfo final : public ::google::protobuf::Message
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::comm::Player > connected_players_;
     ::comm::Player* player_;
+    ::comm::Item* next_item_;
     ::int64_t seed_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2208,7 +2225,103 @@ inline void InitialInfo::_internal_set_seed(::int64_t value) {
   _impl_.seed_ = value;
 }
 
-// repeated .comm.Player connected_players = 3;
+// .comm.Item next_item = 3;
+inline bool InitialInfo::has_next_item() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.next_item_ != nullptr);
+  return value;
+}
+inline void InitialInfo::clear_next_item() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.next_item_ != nullptr) _impl_.next_item_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::comm::Item& InitialInfo::_internal_next_item() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::comm::Item* p = _impl_.next_item_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::Item&>(::comm::_Item_default_instance_);
+}
+inline const ::comm::Item& InitialInfo::next_item() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.InitialInfo.next_item)
+  return _internal_next_item();
+}
+inline void InitialInfo::unsafe_arena_set_allocated_next_item(::comm::Item* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.next_item_);
+  }
+  _impl_.next_item_ = reinterpret_cast<::comm::Item*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.InitialInfo.next_item)
+}
+inline ::comm::Item* InitialInfo::release_next_item() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::comm::Item* released = _impl_.next_item_;
+  _impl_.next_item_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::comm::Item* InitialInfo::unsafe_arena_release_next_item() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:comm.InitialInfo.next_item)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::comm::Item* temp = _impl_.next_item_;
+  _impl_.next_item_ = nullptr;
+  return temp;
+}
+inline ::comm::Item* InitialInfo::_internal_mutable_next_item() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.next_item_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::Item>(GetArena());
+    _impl_.next_item_ = reinterpret_cast<::comm::Item*>(p);
+  }
+  return _impl_.next_item_;
+}
+inline ::comm::Item* InitialInfo::mutable_next_item() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::comm::Item* _msg = _internal_mutable_next_item();
+  // @@protoc_insertion_point(field_mutable:comm.InitialInfo.next_item)
+  return _msg;
+}
+inline void InitialInfo::set_allocated_next_item(::comm::Item* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.next_item_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.next_item_ = reinterpret_cast<::comm::Item*>(value);
+  // @@protoc_insertion_point(field_set_allocated:comm.InitialInfo.next_item)
+}
+
+// repeated .comm.Player connected_players = 4;
 inline int InitialInfo::_internal_connected_players_size() const {
   return _internal_connected_players().size();
 }

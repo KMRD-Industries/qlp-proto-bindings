@@ -22,10 +22,10 @@ message Player {
 
 enum ItemType {
     UNKNOWN = 0;
-    POTION = 1;
-    WEAPON = 2;
-    HELMET = 3;
-    ARMOUR = 4;
+    WEAPON = 1;
+    ARMOUR = 2;
+    POTION = 3;
+    HELMET = 4;
 }
 
 message Item {
@@ -36,7 +36,8 @@ message Item {
 message InitialInfo {
     Player player = 1;
     int64 seed = 2;
-    repeated Player connected_players = 3;
+    Item next_item = 3;
+    repeated Player connected_players = 4;
 }
 
 message Room {

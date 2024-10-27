@@ -193,6 +193,7 @@ inline constexpr InitialInfo::Impl_::Impl_(
       : _cached_size_{0},
         connected_players_{},
         player_{nullptr},
+        next_item_{nullptr},
         seed_{::int64_t{0}} {}
 
 template <typename>
@@ -275,9 +276,11 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_.player_),
         PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_.seed_),
+        PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_.next_item_),
         PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_.connected_players_),
         0,
         ~0u,
+        1,
         ~0u,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::comm::Room, _internal_metadata_),
@@ -321,10 +324,10 @@ static const ::_pbi::MigrationSchema
         {0, 16, -1, sizeof(::comm::MovementUpdate)},
         {24, -1, -1, sizeof(::comm::Player)},
         {34, -1, -1, sizeof(::comm::Item)},
-        {44, 55, -1, sizeof(::comm::InitialInfo)},
-        {58, -1, -1, sizeof(::comm::Room)},
-        {68, -1, -1, sizeof(::comm::BytePrefix)},
-        {77, 89, -1, sizeof(::comm::StateUpdate)},
+        {44, 56, -1, sizeof(::comm::InitialInfo)},
+        {60, -1, -1, sizeof(::comm::Room)},
+        {70, -1, -1, sizeof(::comm::BytePrefix)},
+        {79, 91, -1, sizeof(::comm::StateUpdate)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::comm::_MovementUpdate_default_instance_._instance,
@@ -344,28 +347,29 @@ const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "\001(\002\022\016\n\006attack\030\007 \001(\010\022\035\n\tcurr_room\030\010 \001(\0132\n"
     ".comm.Room\"/\n\006Player\022\n\n\002id\030\001 \001(\r\022\031\n\005item"
     "s\030\002 \003(\0132\n.comm.Item\"1\n\004Item\022\013\n\003gen\030\001 \001(\r"
-    "\022\034\n\004type\030\002 \001(\0162\016.comm.ItemType\"b\n\013Initia"
-    "lInfo\022\034\n\006player\030\001 \001(\0132\014.comm.Player\022\014\n\004s"
-    "eed\030\002 \001(\003\022\'\n\021connected_players\030\003 \003(\0132\014.c"
-    "omm.Player\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005"
-    "\"\033\n\nBytePrefix\022\r\n\005bytes\030\001 \001(\r\"\204\001\n\013StateU"
-    "pdate\022\034\n\006player\030\001 \001(\0132\014.comm.Player\022\030\n\004i"
-    "tem\030\002 \001(\0132\n.comm.Item\022#\n\007variant\030\003 \001(\0162\022"
-    ".comm.StateVariant\022\030\n\004room\030\004 \001(\0132\n.comm."
-    "Room*G\n\010ItemType\022\013\n\007UNKNOWN\020\000\022\n\n\006POTION\020"
-    "\001\022\n\n\006WEAPON\020\002\022\n\n\006HELMET\020\003\022\n\n\006ARMOUR\020\004*\236\001"
-    "\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022"
-    "\020\n\014DISCONNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003\022\020\n\014R"
-    "OOM_CLEARED\020\004\022\020\n\014CHEST_OPENED\020\005\022\032\n\026REQUE"
-    "ST_ITEM_GENERATOR\020\006\022\021\n\rITEM_EQUIPPED\020\007B6"
-    "Z4github.com/kmrd-industries/qlp-proto-b"
-    "indings/gen/gob\006proto3"
+    "\022\034\n\004type\030\002 \001(\0162\016.comm.ItemType\"\201\001\n\013Initi"
+    "alInfo\022\034\n\006player\030\001 \001(\0132\014.comm.Player\022\014\n\004"
+    "seed\030\002 \001(\003\022\035\n\tnext_item\030\003 \001(\0132\n.comm.Ite"
+    "m\022\'\n\021connected_players\030\004 \003(\0132\014.comm.Play"
+    "er\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"\033\n\nByte"
+    "Prefix\022\r\n\005bytes\030\001 \001(\r\"\204\001\n\013StateUpdate\022\034\n"
+    "\006player\030\001 \001(\0132\014.comm.Player\022\030\n\004item\030\002 \001("
+    "\0132\n.comm.Item\022#\n\007variant\030\003 \001(\0162\022.comm.St"
+    "ateVariant\022\030\n\004room\030\004 \001(\0132\n.comm.Room*G\n\010"
+    "ItemType\022\013\n\007UNKNOWN\020\000\022\n\n\006WEAPON\020\001\022\n\n\006ARM"
+    "OUR\020\002\022\n\n\006POTION\020\003\022\n\n\006HELMET\020\004*\236\001\n\014StateV"
+    "ariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCO"
+    "NNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003\022\020\n\014ROOM_CLEA"
+    "RED\020\004\022\020\n\014CHEST_OPENED\020\005\022\032\n\026REQUEST_ITEM_"
+    "GENERATOR\020\006\022\021\n\rITEM_EQUIPPED\020\007B6Z4github"
+    ".com/kmrd-industries/qlp-proto-bindings/"
+    "gen/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    902,
+    934,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -1329,6 +1333,9 @@ InitialInfo::InitialInfo(
   _impl_.player_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::comm::Player>(
                               arena, *from._impl_.player_)
                         : nullptr;
+  _impl_.next_item_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::comm::Item>(
+                              arena, *from._impl_.next_item_)
+                        : nullptr;
   _impl_.seed_ = from._impl_.seed_;
 
   // @@protoc_insertion_point(copy_constructor:comm.InitialInfo)
@@ -1356,6 +1363,7 @@ InitialInfo::~InitialInfo() {
 inline void InitialInfo::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   delete _impl_.player_;
+  delete _impl_.next_item_;
   _impl_.~Impl_();
 }
 
@@ -1388,16 +1396,16 @@ const ::google::protobuf::MessageLite::ClassData* InitialInfo::GetClassData() co
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 2, 0, 2> InitialInfo::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 3, 0, 2> InitialInfo::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_._has_bits_),
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    4, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
-    2,  // num_aux_entries
+    4,  // num_field_entries
+    3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
@@ -1406,16 +1414,18 @@ const ::_pbi::TcParseTable<2, 3, 2, 0, 2> InitialInfo::_table_ = {
     ::_pbi::TcParser::GetTable<::comm::InitialInfo>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // repeated .comm.Player connected_players = 4;
+    {::_pbi::TcParser::FastMtR1,
+     {34, 63, 2, PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.connected_players_)}},
     // .comm.Player player = 1;
     {::_pbi::TcParser::FastMtS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.player_)}},
     // int64 seed = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(InitialInfo, _impl_.seed_), 63>(),
      {16, 63, 0, PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.seed_)}},
-    // repeated .comm.Player connected_players = 3;
-    {::_pbi::TcParser::FastMtR1,
-     {26, 63, 1, PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.connected_players_)}},
+    // .comm.Item next_item = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 1, 1, PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.next_item_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -1425,11 +1435,15 @@ const ::_pbi::TcParseTable<2, 3, 2, 0, 2> InitialInfo::_table_ = {
     // int64 seed = 2;
     {PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.seed_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
-    // repeated .comm.Player connected_players = 3;
-    {PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.connected_players_), -1, 1,
+    // .comm.Item next_item = 3;
+    {PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.next_item_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .comm.Player connected_players = 4;
+    {PROTOBUF_FIELD_OFFSET(InitialInfo, _impl_.connected_players_), -1, 2,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::comm::Player>()},
+    {::_pbi::TcParser::GetTable<::comm::Item>()},
     {::_pbi::TcParser::GetTable<::comm::Player>()},
   }}, {{
   }},
@@ -1444,9 +1458,15 @@ PROTOBUF_NOINLINE void InitialInfo::Clear() {
 
   _impl_.connected_players_.Clear();
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.player_ != nullptr);
-    _impl_.player_->Clear();
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.player_ != nullptr);
+      _impl_.player_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.next_item_ != nullptr);
+      _impl_.next_item_->Clear();
+    }
   }
   _impl_.seed_ = ::int64_t{0};
   _impl_._has_bits_.Clear();
@@ -1483,14 +1503,21 @@ PROTOBUF_NOINLINE void InitialInfo::Clear() {
                     stream, this_._internal_seed(), target);
           }
 
-          // repeated .comm.Player connected_players = 3;
+          // .comm.Item next_item = 3;
+          if (cached_has_bits & 0x00000002u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                3, *this_._impl_.next_item_, this_._impl_.next_item_->GetCachedSize(), target,
+                stream);
+          }
+
+          // repeated .comm.Player connected_players = 4;
           for (unsigned i = 0, n = static_cast<unsigned>(
                                    this_._internal_connected_players_size());
                i < n; i++) {
             const auto& repfield = this_._internal_connected_players().Get(i);
             target =
                 ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                    3, repfield, repfield.GetCachedSize(),
+                    4, repfield, repfield.GetCachedSize(),
                     target, stream);
           }
 
@@ -1519,7 +1546,7 @@ PROTOBUF_NOINLINE void InitialInfo::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated .comm.Player connected_players = 3;
+            // repeated .comm.Player connected_players = 4;
              {
               total_size += 1UL * this_._internal_connected_players_size();
               for (const auto& msg : this_._internal_connected_players()) {
@@ -1527,13 +1554,17 @@ PROTOBUF_NOINLINE void InitialInfo::Clear() {
               }
             }
           }
-           {
+          cached_has_bits = this_._impl_._has_bits_[0];
+          if (cached_has_bits & 0x00000003u) {
             // .comm.Player player = 1;
-            cached_has_bits =
-                this_._impl_._has_bits_[0];
             if (cached_has_bits & 0x00000001u) {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.player_);
+            }
+            // .comm.Item next_item = 3;
+            if (cached_has_bits & 0x00000002u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.next_item_);
             }
           }
            {
@@ -1559,13 +1590,24 @@ void InitialInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goo
   _this->_internal_mutable_connected_players()->MergeFrom(
       from._internal_connected_players());
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.player_ != nullptr);
-    if (_this->_impl_.player_ == nullptr) {
-      _this->_impl_.player_ =
-          ::google::protobuf::Message::CopyConstruct<::comm::Player>(arena, *from._impl_.player_);
-    } else {
-      _this->_impl_.player_->MergeFrom(*from._impl_.player_);
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.player_ != nullptr);
+      if (_this->_impl_.player_ == nullptr) {
+        _this->_impl_.player_ =
+            ::google::protobuf::Message::CopyConstruct<::comm::Player>(arena, *from._impl_.player_);
+      } else {
+        _this->_impl_.player_->MergeFrom(*from._impl_.player_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(from._impl_.next_item_ != nullptr);
+      if (_this->_impl_.next_item_ == nullptr) {
+        _this->_impl_.next_item_ =
+            ::google::protobuf::Message::CopyConstruct<::comm::Item>(arena, *from._impl_.next_item_);
+      } else {
+        _this->_impl_.next_item_->MergeFrom(*from._impl_.next_item_);
+      }
     }
   }
   if (from._internal_seed() != 0) {
