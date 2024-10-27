@@ -25,31 +25,6 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace comm {
 
-inline constexpr Weapon::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : id_{0u},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR Weapon::Weapon(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct WeaponDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR WeaponDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~WeaponDefaultTypeInternal() {}
-  union {
-    Weapon _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WeaponDefaultTypeInternal _Weapon_default_instance_;
-
 inline constexpr Room::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : x_{0},
@@ -75,6 +50,32 @@ struct RoomDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RoomDefaultTypeInternal _Room_default_instance_;
+
+inline constexpr Item::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : gen_{0u},
+        type_{static_cast< ::comm::ItemType >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Item::Item(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct ItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ItemDefaultTypeInternal() {}
+  union {
+    Item _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ItemDefaultTypeInternal _Item_default_instance_;
 
 inline constexpr BytePrefix::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -103,9 +104,9 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr Player::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        weapon_{nullptr},
-        id_{0u} {}
+      : items_{},
+        id_{0u},
+        _cached_size_{0} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR Player::Player(::_pbi::ConstantInitialized)
@@ -163,7 +164,7 @@ inline constexpr StateUpdate::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         player_{nullptr},
-        weapon_{nullptr},
+        item_{nullptr},
         room_{nullptr},
         variant_{static_cast< ::comm::StateVariant >(0)} {}
 
@@ -214,7 +215,7 @@ struct InitialInfoDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 InitialInfoDefaultTypeInternal _InitialInfo_default_instance_;
 }  // namespace comm
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_comm_2eproto[1];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_comm_2eproto[2];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_comm_2eproto = nullptr;
 const ::uint32_t
@@ -244,7 +245,7 @@ const ::uint32_t
         ~0u,
         ~0u,
         0,
-        PROTOBUF_FIELD_OFFSET(::comm::Player, _impl_._has_bits_),
+        ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::comm::Player, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -253,18 +254,17 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::comm::Player, _impl_.id_),
-        PROTOBUF_FIELD_OFFSET(::comm::Player, _impl_.weapon_),
-        ~0u,
-        0,
+        PROTOBUF_FIELD_OFFSET(::comm::Player, _impl_.items_),
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::comm::Weapon, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::comm::Item, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::comm::Weapon, _impl_.id_),
+        PROTOBUF_FIELD_OFFSET(::comm::Item, _impl_.gen_),
+        PROTOBUF_FIELD_OFFSET(::comm::Item, _impl_.type_),
         PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -307,7 +307,7 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.player_),
-        PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.weapon_),
+        PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.item_),
         PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.variant_),
         PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.room_),
         0,
@@ -319,17 +319,17 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, 16, -1, sizeof(::comm::MovementUpdate)},
-        {24, 34, -1, sizeof(::comm::Player)},
-        {36, -1, -1, sizeof(::comm::Weapon)},
-        {45, 56, -1, sizeof(::comm::InitialInfo)},
-        {59, -1, -1, sizeof(::comm::Room)},
-        {69, -1, -1, sizeof(::comm::BytePrefix)},
-        {78, 90, -1, sizeof(::comm::StateUpdate)},
+        {24, -1, -1, sizeof(::comm::Player)},
+        {34, -1, -1, sizeof(::comm::Item)},
+        {44, 55, -1, sizeof(::comm::InitialInfo)},
+        {58, -1, -1, sizeof(::comm::Room)},
+        {68, -1, -1, sizeof(::comm::BytePrefix)},
+        {77, 89, -1, sizeof(::comm::StateUpdate)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::comm::_MovementUpdate_default_instance_._instance,
     &::comm::_Player_default_instance_._instance,
-    &::comm::_Weapon_default_instance_._instance,
+    &::comm::_Item_default_instance_._instance,
     &::comm::_InitialInfo_default_instance_._instance,
     &::comm::_Room_default_instance_._instance,
     &::comm::_BytePrefix_default_instance_._instance,
@@ -342,26 +342,30 @@ const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "position_y\030\003 \001(\002\022\026\n\016weapon_pivot_x\030\004 \001(\002"
     "\022\026\n\016weapon_pivot_y\030\005 \001(\002\022\021\n\tdirection\030\006 "
     "\001(\002\022\016\n\006attack\030\007 \001(\010\022\035\n\tcurr_room\030\010 \001(\0132\n"
-    ".comm.Room\"2\n\006Player\022\n\n\002id\030\001 \001(\r\022\034\n\006weap"
-    "on\030\002 \001(\0132\014.comm.Weapon\"\024\n\006Weapon\022\n\n\002id\030\001"
-    " \001(\r\"b\n\013InitialInfo\022\034\n\006player\030\001 \001(\0132\014.co"
-    "mm.Player\022\014\n\004seed\030\002 \001(\003\022\'\n\021connected_pla"
-    "yers\030\003 \003(\0132\014.comm.Player\"\034\n\004Room\022\t\n\001x\030\001 "
-    "\001(\005\022\t\n\001y\030\002 \001(\005\"\033\n\nBytePrefix\022\r\n\005bytes\030\001 "
-    "\001(\r\"\210\001\n\013StateUpdate\022\034\n\006player\030\001 \001(\0132\014.co"
-    "mm.Player\022\034\n\006weapon\030\002 \001(\0132\014.comm.Weapon\022"
-    "#\n\007variant\030\003 \001(\0162\022.comm.StateVariant\022\030\n\004"
-    "room\030\004 \001(\0132\n.comm.Room*o\n\014StateVariant\022\010"
-    "\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020"
-    "\002\022\020\n\014ROOM_CHANGED\020\003\022\020\n\014ROOM_CLEARED\020\004\022\020\n"
-    "\014CHEST_OPENED\020\005B6Z4github.com/kmrd-indus"
-    "tries/qlp-proto-bindings/gen/gob\006proto3"
+    ".comm.Room\"/\n\006Player\022\n\n\002id\030\001 \001(\r\022\031\n\005item"
+    "s\030\002 \003(\0132\n.comm.Item\"1\n\004Item\022\013\n\003gen\030\001 \001(\r"
+    "\022\034\n\004type\030\002 \001(\0162\016.comm.ItemType\"b\n\013Initia"
+    "lInfo\022\034\n\006player\030\001 \001(\0132\014.comm.Player\022\014\n\004s"
+    "eed\030\002 \001(\003\022\'\n\021connected_players\030\003 \003(\0132\014.c"
+    "omm.Player\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005"
+    "\"\033\n\nBytePrefix\022\r\n\005bytes\030\001 \001(\r\"\204\001\n\013StateU"
+    "pdate\022\034\n\006player\030\001 \001(\0132\014.comm.Player\022\030\n\004i"
+    "tem\030\002 \001(\0132\n.comm.Item\022#\n\007variant\030\003 \001(\0162\022"
+    ".comm.StateVariant\022\030\n\004room\030\004 \001(\0132\n.comm."
+    "Room*G\n\010ItemType\022\013\n\007UNKNOWN\020\000\022\n\n\006POTION\020"
+    "\001\022\n\n\006WEAPON\020\002\022\n\n\006HELMET\020\003\022\n\n\006ARMOUR\020\004*\213\001"
+    "\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022"
+    "\020\n\014DISCONNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003\022\020\n\014R"
+    "OOM_CLEARED\020\004\022\020\n\014CHEST_OPENED\020\005\022\032\n\026REQUE"
+    "ST_ITEM_GENERATOR\020\006B6Z4github.com/kmrd-i"
+    "ndustries/qlp-proto-bindings/gen/gob\006pro"
+    "to3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    759,
+    883,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -375,14 +379,23 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto =
     file_level_service_descriptors_comm_2eproto,
 };
 namespace comm {
-const ::google::protobuf::EnumDescriptor* StateVariant_descriptor() {
+const ::google::protobuf::EnumDescriptor* ItemType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_comm_2eproto);
   return file_level_enum_descriptors_comm_2eproto[0];
 }
+PROTOBUF_CONSTINIT const uint32_t ItemType_internal_data_[] = {
+    327680u, 0u, };
+bool ItemType_IsValid(int value) {
+  return 0 <= value && value <= 4;
+}
+const ::google::protobuf::EnumDescriptor* StateVariant_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_comm_2eproto);
+  return file_level_enum_descriptors_comm_2eproto[1];
+}
 PROTOBUF_CONSTINIT const uint32_t StateVariant_internal_data_[] = {
-    393216u, 0u, };
+    458752u, 0u, };
 bool StateVariant_IsValid(int value) {
-  return 0 <= value && value <= 5;
+  return 0 <= value && value <= 6;
 }
 // ===================================================================
 
@@ -795,10 +808,6 @@ void MovementUpdate::InternalSwap(MovementUpdate* PROTOBUF_RESTRICT other) {
 
 class Player::_Internal {
  public:
-  using HasBits =
-      decltype(std::declval<Player>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(Player, _impl_._has_bits_);
 };
 
 Player::Player(::google::protobuf::Arena* arena)
@@ -813,7 +822,7 @@ Player::Player(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE Player::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::comm::Player& from_msg)
-      : _has_bits_{from._has_bits_},
+      : items_{visibility, arena, from.items_},
         _cached_size_{0} {}
 
 Player::Player(
@@ -829,10 +838,6 @@ Player::Player(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.weapon_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::comm::Weapon>(
-                              arena, *from._impl_.weapon_)
-                        : nullptr;
   _impl_.id_ = from._impl_.id_;
 
   // @@protoc_insertion_point(copy_constructor:comm.Player)
@@ -840,16 +845,12 @@ Player::Player(
 inline PROTOBUF_NDEBUG_INLINE Player::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
+      : items_{visibility, arena},
+        _cached_size_{0} {}
 
 inline void Player::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, weapon_),
-           0,
-           offsetof(Impl_, id_) -
-               offsetof(Impl_, weapon_) +
-               sizeof(Impl_::id_));
+  _impl_.id_ = {};
 }
 Player::~Player() {
   // @@protoc_insertion_point(destructor:comm.Player)
@@ -858,7 +859,6 @@ Player::~Player() {
 }
 inline void Player::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  delete _impl_.weapon_;
   _impl_.~Impl_();
 }
 
@@ -893,7 +893,7 @@ const ::google::protobuf::MessageLite::ClassData* Player::GetClassData() const {
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
 const ::_pbi::TcParseTable<1, 2, 1, 0, 2> Player::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(Player, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
     2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -909,9 +909,9 @@ const ::_pbi::TcParseTable<1, 2, 1, 0, 2> Player::_table_ = {
     ::_pbi::TcParser::GetTable<::comm::Player>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .comm.Weapon weapon = 2;
-    {::_pbi::TcParser::FastMtS1,
-     {18, 0, 0, PROTOBUF_FIELD_OFFSET(Player, _impl_.weapon_)}},
+    // repeated .comm.Item items = 2;
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Player, _impl_.items_)}},
     // uint32 id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Player, _impl_.id_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(Player, _impl_.id_)}},
@@ -919,13 +919,13 @@ const ::_pbi::TcParseTable<1, 2, 1, 0, 2> Player::_table_ = {
     65535, 65535
   }}, {{
     // uint32 id = 1;
-    {PROTOBUF_FIELD_OFFSET(Player, _impl_.id_), -1, 0,
+    {PROTOBUF_FIELD_OFFSET(Player, _impl_.id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // .comm.Weapon weapon = 2;
-    {PROTOBUF_FIELD_OFFSET(Player, _impl_.weapon_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .comm.Item items = 2;
+    {PROTOBUF_FIELD_OFFSET(Player, _impl_.items_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::comm::Weapon>()},
+    {::_pbi::TcParser::GetTable<::comm::Item>()},
   }}, {{
   }},
 };
@@ -937,13 +937,8 @@ PROTOBUF_NOINLINE void Player::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.weapon_ != nullptr);
-    _impl_.weapon_->Clear();
-  }
+  _impl_.items_.Clear();
   _impl_.id_ = 0u;
-  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -969,12 +964,15 @@ PROTOBUF_NOINLINE void Player::Clear() {
                 1, this_._internal_id(), target);
           }
 
-          cached_has_bits = this_._impl_._has_bits_[0];
-          // .comm.Weapon weapon = 2;
-          if (cached_has_bits & 0x00000001u) {
-            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                2, *this_._impl_.weapon_, this_._impl_.weapon_->GetCachedSize(), target,
-                stream);
+          // repeated .comm.Item items = 2;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_items_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_items().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    2, repfield, repfield.GetCachedSize(),
+                    target, stream);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1002,12 +1000,12 @@ PROTOBUF_NOINLINE void Player::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // .comm.Weapon weapon = 2;
-            cached_has_bits =
-                this_._impl_._has_bits_[0];
-            if (cached_has_bits & 0x00000001u) {
-              total_size += 1 +
-                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.weapon_);
+            // repeated .comm.Item items = 2;
+             {
+              total_size += 1UL * this_._internal_items_size();
+              for (const auto& msg : this_._internal_items()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
             }
           }
            {
@@ -1024,26 +1022,16 @@ PROTOBUF_NOINLINE void Player::Clear() {
 void Player::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<Player*>(&to_msg);
   auto& from = static_cast<const Player&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:comm.Player)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.weapon_ != nullptr);
-    if (_this->_impl_.weapon_ == nullptr) {
-      _this->_impl_.weapon_ =
-          ::google::protobuf::Message::CopyConstruct<::comm::Weapon>(arena, *from._impl_.weapon_);
-    } else {
-      _this->_impl_.weapon_->MergeFrom(*from._impl_.weapon_);
-    }
-  }
+  _this->_internal_mutable_items()->MergeFrom(
+      from._internal_items());
   if (from._internal_id() != 0) {
     _this->_impl_.id_ = from._impl_.id_;
   }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1058,13 +1046,8 @@ void Player::CopyFrom(const Player& from) {
 void Player::InternalSwap(Player* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Player, _impl_.id_)
-      + sizeof(Player::_impl_.id_)
-      - PROTOBUF_FIELD_OFFSET(Player, _impl_.weapon_)>(
-          reinterpret_cast<char*>(&_impl_.weapon_),
-          reinterpret_cast<char*>(&other->_impl_.weapon_));
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+        swap(_impl_.id_, other->_impl_.id_);
 }
 
 ::google::protobuf::Metadata Player::GetMetadata() const {
@@ -1072,39 +1055,44 @@ void Player::InternalSwap(Player* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
-class Weapon::_Internal {
+class Item::_Internal {
  public:
 };
 
-Weapon::Weapon(::google::protobuf::Arena* arena)
+Item::Item(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:comm.Weapon)
+  // @@protoc_insertion_point(arena_constructor:comm.Item)
 }
-Weapon::Weapon(
-    ::google::protobuf::Arena* arena, const Weapon& from)
-    : Weapon(arena) {
+Item::Item(
+    ::google::protobuf::Arena* arena, const Item& from)
+    : Item(arena) {
   MergeFrom(from);
 }
-inline PROTOBUF_NDEBUG_INLINE Weapon::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0} {}
 
-inline void Weapon::SharedCtor(::_pb::Arena* arena) {
+inline void Item::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.id_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, gen_),
+           0,
+           offsetof(Impl_, type_) -
+               offsetof(Impl_, gen_) +
+               sizeof(Impl_::type_));
 }
-Weapon::~Weapon() {
-  // @@protoc_insertion_point(destructor:comm.Weapon)
+Item::~Item() {
+  // @@protoc_insertion_point(destructor:comm.Item)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void Weapon::SharedDtor() {
+inline void Item::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.~Impl_();
 }
@@ -1112,96 +1100,111 @@ inline void Weapon::SharedDtor() {
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
 const ::google::protobuf::MessageLite::ClassDataFull
-    Weapon::_class_data_ = {
+    Item::_class_data_ = {
         ::google::protobuf::Message::ClassData{
-            &_Weapon_default_instance_._instance,
+            &_Item_default_instance_._instance,
             &_table_.header,
             nullptr,  // OnDemandRegisterArenaDtor
             nullptr,  // IsInitialized
-            &Weapon::MergeImpl,
+            &Item::MergeImpl,
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-            ::google::protobuf::Message::GetDeleteImpl<Weapon>(),
-            ::google::protobuf::Message::GetNewImpl<Weapon>(),
-            ::google::protobuf::Message::GetClearImpl<Weapon>(), &Weapon::ByteSizeLong,
-                &Weapon::_InternalSerialize,
+            ::google::protobuf::Message::GetDeleteImpl<Item>(),
+            ::google::protobuf::Message::GetNewImpl<Item>(),
+            ::google::protobuf::Message::GetClearImpl<Item>(), &Item::ByteSizeLong,
+                &Item::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-            PROTOBUF_FIELD_OFFSET(Weapon, _impl_._cached_size_),
+            PROTOBUF_FIELD_OFFSET(Item, _impl_._cached_size_),
             false,
         },
-        &Weapon::kDescriptorMethods,
+        &Item::kDescriptorMethods,
         &descriptor_table_comm_2eproto,
         nullptr,  // tracker
 };
-const ::google::protobuf::MessageLite::ClassData* Weapon::GetClassData() const {
+const ::google::protobuf::MessageLite::ClassData* Item::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> Weapon::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> Item::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
+    2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::comm::Weapon>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::comm::Item>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // uint32 id = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Weapon, _impl_.id_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Weapon, _impl_.id_)}},
+    // .comm.ItemType type = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Item, _impl_.type_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Item, _impl_.type_)}},
+    // uint32 gen = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Item, _impl_.gen_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Item, _impl_.gen_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // uint32 id = 1;
-    {PROTOBUF_FIELD_OFFSET(Weapon, _impl_.id_), 0, 0,
+    // uint32 gen = 1;
+    {PROTOBUF_FIELD_OFFSET(Item, _impl_.gen_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // .comm.ItemType type = 2;
+    {PROTOBUF_FIELD_OFFSET(Item, _impl_.type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
   }},
   // no aux_entries
   {{
   }},
 };
 
-PROTOBUF_NOINLINE void Weapon::Clear() {
-// @@protoc_insertion_point(message_clear_start:comm.Weapon)
+PROTOBUF_NOINLINE void Item::Clear() {
+// @@protoc_insertion_point(message_clear_start:comm.Item)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.id_ = 0u;
+  ::memset(&_impl_.gen_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.type_) -
+      reinterpret_cast<char*>(&_impl_.gen_)) + sizeof(_impl_.type_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* Weapon::_InternalSerialize(
+        ::uint8_t* Item::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const Weapon& this_ = static_cast<const Weapon&>(base);
+          const Item& this_ = static_cast<const Item&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* Weapon::_InternalSerialize(
+        ::uint8_t* Item::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const Weapon& this_ = *this;
+          const Item& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:comm.Weapon)
+          // @@protoc_insertion_point(serialize_to_array_start:comm.Item)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // uint32 id = 1;
-          if (this_._internal_id() != 0) {
+          // uint32 gen = 1;
+          if (this_._internal_gen() != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                1, this_._internal_id(), target);
+                1, this_._internal_gen(), target);
+          }
+
+          // .comm.ItemType type = 2;
+          if (this_._internal_type() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                2, this_._internal_type(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1209,64 +1212,78 @@ PROTOBUF_NOINLINE void Weapon::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:comm.Weapon)
+          // @@protoc_insertion_point(serialize_to_array_end:comm.Item)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t Weapon::ByteSizeLong(const MessageLite& base) {
-          const Weapon& this_ = static_cast<const Weapon&>(base);
+        ::size_t Item::ByteSizeLong(const MessageLite& base) {
+          const Item& this_ = static_cast<const Item&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t Weapon::ByteSizeLong() const {
-          const Weapon& this_ = *this;
+        ::size_t Item::ByteSizeLong() const {
+          const Item& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:comm.Weapon)
+          // @@protoc_insertion_point(message_byte_size_start:comm.Item)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
           // Prevent compiler warnings about cached_has_bits being unused
           (void)cached_has_bits;
 
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // uint32 id = 1;
-            if (this_._internal_id() != 0) {
+            // uint32 gen = 1;
+            if (this_._internal_gen() != 0) {
               total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_id());
+                  this_._internal_gen());
+            }
+            // .comm.ItemType type = 2;
+            if (this_._internal_type() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_type());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
                                                      &this_._impl_._cached_size_);
         }
 
-void Weapon::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<Weapon*>(&to_msg);
-  auto& from = static_cast<const Weapon&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:comm.Weapon)
+void Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Item*>(&to_msg);
+  auto& from = static_cast<const Item&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:comm.Item)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_id() != 0) {
-    _this->_impl_.id_ = from._impl_.id_;
+  if (from._internal_gen() != 0) {
+    _this->_impl_.gen_ = from._impl_.gen_;
+  }
+  if (from._internal_type() != 0) {
+    _this->_impl_.type_ = from._impl_.type_;
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void Weapon::CopyFrom(const Weapon& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:comm.Weapon)
+void Item::CopyFrom(const Item& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:comm.Item)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void Weapon::InternalSwap(Weapon* PROTOBUF_RESTRICT other) {
+void Item::InternalSwap(Item* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-        swap(_impl_.id_, other->_impl_.id_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Item, _impl_.type_)
+      + sizeof(Item::_impl_.type_)
+      - PROTOBUF_FIELD_OFFSET(Item, _impl_.gen_)>(
+          reinterpret_cast<char*>(&_impl_.gen_),
+          reinterpret_cast<char*>(&other->_impl_.gen_));
 }
 
-::google::protobuf::Metadata Weapon::GetMetadata() const {
+::google::protobuf::Metadata Item::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
@@ -2056,8 +2073,8 @@ StateUpdate::StateUpdate(
   _impl_.player_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::comm::Player>(
                               arena, *from._impl_.player_)
                         : nullptr;
-  _impl_.weapon_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::comm::Weapon>(
-                              arena, *from._impl_.weapon_)
+  _impl_.item_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::comm::Item>(
+                              arena, *from._impl_.item_)
                         : nullptr;
   _impl_.room_ = (cached_has_bits & 0x00000004u) ? ::google::protobuf::Message::CopyConstruct<::comm::Room>(
                               arena, *from._impl_.room_)
@@ -2088,7 +2105,7 @@ StateUpdate::~StateUpdate() {
 inline void StateUpdate::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   delete _impl_.player_;
-  delete _impl_.weapon_;
+  delete _impl_.item_;
   delete _impl_.room_;
   _impl_.~Impl_();
 }
@@ -2146,9 +2163,9 @@ const ::_pbi::TcParseTable<2, 4, 3, 0, 2> StateUpdate::_table_ = {
     // .comm.Player player = 1;
     {::_pbi::TcParser::FastMtS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.player_)}},
-    // .comm.Weapon weapon = 2;
+    // .comm.Item item = 2;
     {::_pbi::TcParser::FastMtS1,
-     {18, 1, 1, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.weapon_)}},
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.item_)}},
     // .comm.StateVariant variant = 3;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(StateUpdate, _impl_.variant_), 63>(),
      {24, 63, 0, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.variant_)}},
@@ -2158,8 +2175,8 @@ const ::_pbi::TcParseTable<2, 4, 3, 0, 2> StateUpdate::_table_ = {
     // .comm.Player player = 1;
     {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.player_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .comm.Weapon weapon = 2;
-    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.weapon_), _Internal::kHasBitsOffset + 1, 1,
+    // .comm.Item item = 2;
+    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.item_), _Internal::kHasBitsOffset + 1, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // .comm.StateVariant variant = 3;
     {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.variant_), -1, 0,
@@ -2169,7 +2186,7 @@ const ::_pbi::TcParseTable<2, 4, 3, 0, 2> StateUpdate::_table_ = {
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::comm::Player>()},
-    {::_pbi::TcParser::GetTable<::comm::Weapon>()},
+    {::_pbi::TcParser::GetTable<::comm::Item>()},
     {::_pbi::TcParser::GetTable<::comm::Room>()},
   }}, {{
   }},
@@ -2189,8 +2206,8 @@ PROTOBUF_NOINLINE void StateUpdate::Clear() {
       _impl_.player_->Clear();
     }
     if (cached_has_bits & 0x00000002u) {
-      ABSL_DCHECK(_impl_.weapon_ != nullptr);
-      _impl_.weapon_->Clear();
+      ABSL_DCHECK(_impl_.item_ != nullptr);
+      _impl_.item_->Clear();
     }
     if (cached_has_bits & 0x00000004u) {
       ABSL_DCHECK(_impl_.room_ != nullptr);
@@ -2225,10 +2242,10 @@ PROTOBUF_NOINLINE void StateUpdate::Clear() {
                 stream);
           }
 
-          // .comm.Weapon weapon = 2;
+          // .comm.Item item = 2;
           if (cached_has_bits & 0x00000002u) {
             target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                2, *this_._impl_.weapon_, this_._impl_.weapon_->GetCachedSize(), target,
+                2, *this_._impl_.item_, this_._impl_.item_->GetCachedSize(), target,
                 stream);
           }
 
@@ -2277,10 +2294,10 @@ PROTOBUF_NOINLINE void StateUpdate::Clear() {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.player_);
             }
-            // .comm.Weapon weapon = 2;
+            // .comm.Item item = 2;
             if (cached_has_bits & 0x00000002u) {
               total_size += 1 +
-                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.weapon_);
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.item_);
             }
             // .comm.Room room = 4;
             if (cached_has_bits & 0x00000004u) {
@@ -2320,12 +2337,12 @@ void StateUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goo
       }
     }
     if (cached_has_bits & 0x00000002u) {
-      ABSL_DCHECK(from._impl_.weapon_ != nullptr);
-      if (_this->_impl_.weapon_ == nullptr) {
-        _this->_impl_.weapon_ =
-            ::google::protobuf::Message::CopyConstruct<::comm::Weapon>(arena, *from._impl_.weapon_);
+      ABSL_DCHECK(from._impl_.item_ != nullptr);
+      if (_this->_impl_.item_ == nullptr) {
+        _this->_impl_.item_ =
+            ::google::protobuf::Message::CopyConstruct<::comm::Item>(arena, *from._impl_.item_);
       } else {
-        _this->_impl_.weapon_->MergeFrom(*from._impl_.weapon_);
+        _this->_impl_.item_->MergeFrom(*from._impl_.item_);
       }
     }
     if (cached_has_bits & 0x00000004u) {

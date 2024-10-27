@@ -17,11 +17,20 @@ message MovementUpdate {
 // sent via TCP
 message Player {
     uint32 id = 1;
-    Weapon weapon = 2;
+    repeated Item items = 2;
 }
 
-message Weapon {
-    uint32 id = 1;
+enum ItemType {
+    UNKNOWN = 0;
+    POTION = 1;
+    WEAPON = 2;
+    HELMET = 3;
+    ARMOUR = 4;
+}
+
+message Item {
+    uint32 gen = 1;
+    ItemType type = 2;
 }
 
 message InitialInfo {
@@ -42,6 +51,8 @@ enum StateVariant {
     ROOM_CHANGED = 3;
     ROOM_CLEARED = 4;
     CHEST_OPENED = 5;
+    REQUEST_ITEM_GENERATOR = 6;
+    ITEM_EQUIPPED = 7;
 }
 
 message BytePrefix {
@@ -50,7 +61,7 @@ message BytePrefix {
 
 message StateUpdate {
     Player player = 1;
-    Weapon weapon = 2;
+    Item item = 2;
     StateVariant variant = 3;
     Room room = 4;
 }
