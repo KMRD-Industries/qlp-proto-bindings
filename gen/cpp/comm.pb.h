@@ -501,10 +501,21 @@ class Item final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kGenFieldNumber = 1,
-    kTypeFieldNumber = 2,
+    kIdFieldNumber = 1,
+    kGenFieldNumber = 2,
+    kTypeFieldNumber = 3,
   };
-  // uint32 gen = 1;
+  // uint32 id = 1;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
+
+  public:
+  // uint32 gen = 2;
   void clear_gen() ;
   ::uint32_t gen() const;
   void set_gen(::uint32_t value);
@@ -514,7 +525,7 @@ class Item final : public ::google::protobuf::Message
   void _internal_set_gen(::uint32_t value);
 
   public:
-  // .comm.ItemType type = 2;
+  // .comm.ItemType type = 3;
   void clear_type() ;
   ::comm::ItemType type() const;
   void set_type(::comm::ItemType value);
@@ -529,7 +540,7 @@ class Item final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
+      2, 3, 0,
       0, 2>
       _table_;
 
@@ -550,6 +561,7 @@ class Item final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const Item& from_msg);
+    ::uint32_t id_;
     ::uint32_t gen_;
     int type_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -2059,7 +2071,29 @@ Player::_internal_mutable_items() {
 
 // Item
 
-// uint32 gen = 1;
+// uint32 id = 1;
+inline void Item::clear_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = 0u;
+}
+inline ::uint32_t Item::id() const {
+  // @@protoc_insertion_point(field_get:comm.Item.id)
+  return _internal_id();
+}
+inline void Item::set_id(::uint32_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:comm.Item.id)
+}
+inline ::uint32_t Item::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_;
+}
+inline void Item::_internal_set_id(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = value;
+}
+
+// uint32 gen = 2;
 inline void Item::clear_gen() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.gen_ = 0u;
@@ -2081,7 +2115,7 @@ inline void Item::_internal_set_gen(::uint32_t value) {
   _impl_.gen_ = value;
 }
 
-// .comm.ItemType type = 2;
+// .comm.ItemType type = 3;
 inline void Item::clear_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.type_ = 0;

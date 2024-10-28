@@ -29,8 +29,9 @@ enum ItemType {
 }
 
 message Item {
-    uint32 gen = 1;
-    ItemType type = 2;
+    uint32 id = 1;
+    uint32 gen = 2;
+    ItemType type = 3;
 }
 
 message InitialInfo {

@@ -53,7 +53,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr Item::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : gen_{0u},
+      : id_{0u},
+        gen_{0u},
         type_{static_cast< ::comm::ItemType >(0)},
         _cached_size_{0} {}
 
@@ -264,6 +265,7 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::comm::Item, _impl_.id_),
         PROTOBUF_FIELD_OFFSET(::comm::Item, _impl_.gen_),
         PROTOBUF_FIELD_OFFSET(::comm::Item, _impl_.type_),
         PROTOBUF_FIELD_OFFSET(::comm::InitialInfo, _impl_._has_bits_),
@@ -324,10 +326,10 @@ static const ::_pbi::MigrationSchema
         {0, 16, -1, sizeof(::comm::MovementUpdate)},
         {24, -1, -1, sizeof(::comm::Player)},
         {34, -1, -1, sizeof(::comm::Item)},
-        {44, 56, -1, sizeof(::comm::InitialInfo)},
-        {60, -1, -1, sizeof(::comm::Room)},
-        {70, -1, -1, sizeof(::comm::BytePrefix)},
-        {79, 91, -1, sizeof(::comm::StateUpdate)},
+        {45, 57, -1, sizeof(::comm::InitialInfo)},
+        {61, -1, -1, sizeof(::comm::Room)},
+        {71, -1, -1, sizeof(::comm::BytePrefix)},
+        {80, 92, -1, sizeof(::comm::StateUpdate)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::comm::_MovementUpdate_default_instance_._instance,
@@ -346,30 +348,30 @@ const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "\022\026\n\016weapon_pivot_y\030\005 \001(\002\022\021\n\tdirection\030\006 "
     "\001(\002\022\016\n\006attack\030\007 \001(\010\022\035\n\tcurr_room\030\010 \001(\0132\n"
     ".comm.Room\"/\n\006Player\022\n\n\002id\030\001 \001(\r\022\031\n\005item"
-    "s\030\002 \003(\0132\n.comm.Item\"1\n\004Item\022\013\n\003gen\030\001 \001(\r"
-    "\022\034\n\004type\030\002 \001(\0162\016.comm.ItemType\"\201\001\n\013Initi"
-    "alInfo\022\034\n\006player\030\001 \001(\0132\014.comm.Player\022\014\n\004"
-    "seed\030\002 \001(\003\022\035\n\tnext_item\030\003 \001(\0132\n.comm.Ite"
-    "m\022\'\n\021connected_players\030\004 \003(\0132\014.comm.Play"
-    "er\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"\033\n\nByte"
-    "Prefix\022\r\n\005bytes\030\001 \001(\r\"\204\001\n\013StateUpdate\022\034\n"
-    "\006player\030\001 \001(\0132\014.comm.Player\022\030\n\004item\030\002 \001("
-    "\0132\n.comm.Item\022#\n\007variant\030\003 \001(\0162\022.comm.St"
-    "ateVariant\022\030\n\004room\030\004 \001(\0132\n.comm.Room*G\n\010"
-    "ItemType\022\013\n\007UNKNOWN\020\000\022\n\n\006WEAPON\020\001\022\n\n\006ARM"
-    "OUR\020\002\022\n\n\006POTION\020\003\022\n\n\006HELMET\020\004*\236\001\n\014StateV"
-    "ariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCO"
-    "NNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003\022\020\n\014ROOM_CLEA"
-    "RED\020\004\022\020\n\014CHEST_OPENED\020\005\022\032\n\026REQUEST_ITEM_"
-    "GENERATOR\020\006\022\021\n\rITEM_EQUIPPED\020\007B6Z4github"
-    ".com/kmrd-industries/qlp-proto-bindings/"
-    "gen/gob\006proto3"
+    "s\030\002 \003(\0132\n.comm.Item\"=\n\004Item\022\n\n\002id\030\001 \001(\r\022"
+    "\013\n\003gen\030\002 \001(\r\022\034\n\004type\030\003 \001(\0162\016.comm.ItemTy"
+    "pe\"\201\001\n\013InitialInfo\022\034\n\006player\030\001 \001(\0132\014.com"
+    "m.Player\022\014\n\004seed\030\002 \001(\003\022\035\n\tnext_item\030\003 \001("
+    "\0132\n.comm.Item\022\'\n\021connected_players\030\004 \003(\013"
+    "2\014.comm.Player\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002"
+    " \001(\005\"\033\n\nBytePrefix\022\r\n\005bytes\030\001 \001(\r\"\204\001\n\013St"
+    "ateUpdate\022\034\n\006player\030\001 \001(\0132\014.comm.Player\022"
+    "\030\n\004item\030\002 \001(\0132\n.comm.Item\022#\n\007variant\030\003 \001"
+    "(\0162\022.comm.StateVariant\022\030\n\004room\030\004 \001(\0132\n.c"
+    "omm.Room*G\n\010ItemType\022\013\n\007UNKNOWN\020\000\022\n\n\006WEA"
+    "PON\020\001\022\n\n\006ARMOUR\020\002\022\n\n\006POTION\020\003\022\n\n\006HELMET\020"
+    "\004*\236\001\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTE"
+    "D\020\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003\022"
+    "\020\n\014ROOM_CLEARED\020\004\022\020\n\014CHEST_OPENED\020\005\022\032\n\026R"
+    "EQUEST_ITEM_GENERATOR\020\006\022\021\n\rITEM_EQUIPPED"
+    "\020\007B6Z4github.com/kmrd-industries/qlp-pro"
+    "to-bindings/gen/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    934,
+    946,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -1085,10 +1087,10 @@ inline PROTOBUF_NDEBUG_INLINE Item::Impl_::Impl_(
 inline void Item::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, gen_),
+               offsetof(Impl_, id_),
            0,
            offsetof(Impl_, type_) -
-               offsetof(Impl_, gen_) +
+               offsetof(Impl_, id_) +
                sizeof(Impl_::type_));
 }
 Item::~Item() {
@@ -1130,15 +1132,15 @@ const ::google::protobuf::MessageLite::ClassData* Item::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> Item::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> Item::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -1148,19 +1150,26 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> Item::_table_ = {
     ::_pbi::TcParser::GetTable<::comm::Item>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .comm.ItemType type = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Item, _impl_.type_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Item, _impl_.type_)}},
-    // uint32 gen = 1;
+    {::_pbi::TcParser::MiniParse, {}},
+    // uint32 id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Item, _impl_.id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Item, _impl_.id_)}},
+    // uint32 gen = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Item, _impl_.gen_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Item, _impl_.gen_)}},
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Item, _impl_.gen_)}},
+    // .comm.ItemType type = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Item, _impl_.type_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(Item, _impl_.type_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // uint32 gen = 1;
+    // uint32 id = 1;
+    {PROTOBUF_FIELD_OFFSET(Item, _impl_.id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 gen = 2;
     {PROTOBUF_FIELD_OFFSET(Item, _impl_.gen_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // .comm.ItemType type = 2;
+    // .comm.ItemType type = 3;
     {PROTOBUF_FIELD_OFFSET(Item, _impl_.type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
   }},
@@ -1176,9 +1185,9 @@ PROTOBUF_NOINLINE void Item::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.gen_, 0, static_cast<::size_t>(
+  ::memset(&_impl_.id_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.type_) -
-      reinterpret_cast<char*>(&_impl_.gen_)) + sizeof(_impl_.type_));
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.type_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1197,18 +1206,25 @@ PROTOBUF_NOINLINE void Item::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // uint32 gen = 1;
+          // uint32 id = 1;
+          if (this_._internal_id() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                1, this_._internal_id(), target);
+          }
+
+          // uint32 gen = 2;
           if (this_._internal_gen() != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                1, this_._internal_gen(), target);
+                2, this_._internal_gen(), target);
           }
 
-          // .comm.ItemType type = 2;
+          // .comm.ItemType type = 3;
           if (this_._internal_type() != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                2, this_._internal_type(), target);
+                3, this_._internal_type(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1236,12 +1252,17 @@ PROTOBUF_NOINLINE void Item::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // uint32 gen = 1;
+            // uint32 id = 1;
+            if (this_._internal_id() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_id());
+            }
+            // uint32 gen = 2;
             if (this_._internal_gen() != 0) {
               total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
                   this_._internal_gen());
             }
-            // .comm.ItemType type = 2;
+            // .comm.ItemType type = 3;
             if (this_._internal_type() != 0) {
               total_size += 1 +
                             ::_pbi::WireFormatLite::EnumSize(this_._internal_type());
@@ -1259,6 +1280,9 @@ void Item::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::pr
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from._internal_id() != 0) {
+    _this->_impl_.id_ = from._impl_.id_;
+  }
   if (from._internal_gen() != 0) {
     _this->_impl_.gen_ = from._impl_.gen_;
   }
@@ -1282,9 +1306,9 @@ void Item::InternalSwap(Item* PROTOBUF_RESTRICT other) {
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Item, _impl_.type_)
       + sizeof(Item::_impl_.type_)
-      - PROTOBUF_FIELD_OFFSET(Item, _impl_.gen_)>(
-          reinterpret_cast<char*>(&_impl_.gen_),
-          reinterpret_cast<char*>(&other->_impl_.gen_));
+      - PROTOBUF_FIELD_OFFSET(Item, _impl_.id_)>(
+          reinterpret_cast<char*>(&_impl_.id_),
+          reinterpret_cast<char*>(&other->_impl_.id_));
 }
 
 ::google::protobuf::Metadata Item::GetMetadata() const {
