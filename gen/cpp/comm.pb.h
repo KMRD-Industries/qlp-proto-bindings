@@ -104,12 +104,13 @@ enum StateVariant : int {
   PLAYER_POSITION_UPDATE = 5,
   MAP_DIMENSIONS_UPDATE = 6,
   SPAWN_ENEMY_REQUEST = 7,
+  ENEMY_ALREADY_SPAWNED = 8,
   StateVariant_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   StateVariant_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool StateVariant_IsValid(int value);
 constexpr StateVariant StateVariant_MIN = NONE;
-constexpr StateVariant StateVariant_MAX = SPAWN_ENEMY_REQUEST;
+constexpr StateVariant StateVariant_MAX = ENEMY_ALREADY_SPAWNED;
 constexpr int StateVariant_ARRAYSIZE = StateVariant_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* StateVariant_descriptor();

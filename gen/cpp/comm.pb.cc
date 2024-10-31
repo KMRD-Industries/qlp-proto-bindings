@@ -348,16 +348,17 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "te\0226\n\023mapDimensionsUpdate\030\007 \001(\0132\031.comm.M"
   "apDimensionsUpdate\022>\n\027spawningEnemiesRes"
   "ponse\030\010 \001(\0132\035.comm.SpawningEnemiesRespon"
-  "se*\253\001\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECT"
+  "se*\306\001\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECT"
   "ED\020\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003"
   "\022\016\n\nMAP_UPDATE\020\004\022\032\n\026PLAYER_POSITION_UPDA"
   "TE\020\005\022\031\n\025MAP_DIMENSIONS_UPDATE\020\006\022\027\n\023SPAWN"
-  "_ENEMY_REQUEST\020\007B6Z4github.com/kmrd-indu"
-  "stries/qlp-proto-bindings/gen/gob\006proto3"
+  "_ENEMY_REQUEST\020\007\022\031\n\025ENEMY_ALREADY_SPAWNE"
+  "D\020\010B6Z4github.com/kmrd-industries/qlp-pr"
+  "oto-bindings/gen/gob\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_comm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
-    false, false, 1240, descriptor_table_protodef_comm_2eproto,
+    false, false, 1267, descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once, nullptr, 0, 11,
     schemas, file_default_instances, TableStruct_comm_2eproto::offsets,
@@ -385,6 +386,7 @@ bool StateVariant_IsValid(int value) {
     case 5:
     case 6:
     case 7:
+    case 8:
       return true;
     default:
       return false;
