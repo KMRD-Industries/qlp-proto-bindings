@@ -104,13 +104,13 @@ enum StateVariant : int {
   PLAYER_POSITION_UPDATE = 5,
   MAP_DIMENSIONS_UPDATE = 6,
   SPAWN_ENEMY_REQUEST = 7,
-  ENEMY_ALREADY_SPAWNED = 8,
+  ENEMY_HIT = 8,
   StateVariant_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   StateVariant_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool StateVariant_IsValid(int value);
 constexpr StateVariant StateVariant_MIN = NONE;
-constexpr StateVariant StateVariant_MAX = ENEMY_ALREADY_SPAWNED;
+constexpr StateVariant StateVariant_MAX = ENEMY_HIT;
 constexpr int StateVariant_ARRAYSIZE = StateVariant_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* StateVariant_descriptor();
@@ -978,6 +978,7 @@ class Enemy final :
     kIdFieldNumber = 1,
     kXFieldNumber = 2,
     kYFieldNumber = 3,
+    kHpFieldNumber = 4,
   };
   // uint32 id = 1;
   void clear_id();
@@ -1006,6 +1007,15 @@ class Enemy final :
   void _internal_set_y(float value);
   public:
 
+  // float hp = 4;
+  void clear_hp();
+  float hp() const;
+  void set_hp(float value);
+  private:
+  float _internal_hp() const;
+  void _internal_set_hp(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:comm.Enemy)
  private:
   class _Internal;
@@ -1017,6 +1027,7 @@ class Enemy final :
     uint32_t id_;
     float x_;
     float y_;
+    float hp_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1973,7 +1984,6 @@ class StateUpdate final :
     kPositionUpdateFieldNumber = 5,
     kEnemyPositionsUpdateFieldNumber = 6,
     kMapDimensionsUpdateFieldNumber = 7,
-    kSpawningEnemiesResponseFieldNumber = 8,
     kIdFieldNumber = 1,
     kVariantFieldNumber = 2,
   };
@@ -2067,24 +2077,6 @@ class StateUpdate final :
       ::comm::MapDimensionsUpdate* mapdimensionsupdate);
   ::comm::MapDimensionsUpdate* unsafe_arena_release_mapdimensionsupdate();
 
-  // .comm.SpawningEnemiesResponse spawningEnemiesResponse = 8;
-  bool has_spawningenemiesresponse() const;
-  private:
-  bool _internal_has_spawningenemiesresponse() const;
-  public:
-  void clear_spawningenemiesresponse();
-  const ::comm::SpawningEnemiesResponse& spawningenemiesresponse() const;
-  PROTOBUF_NODISCARD ::comm::SpawningEnemiesResponse* release_spawningenemiesresponse();
-  ::comm::SpawningEnemiesResponse* mutable_spawningenemiesresponse();
-  void set_allocated_spawningenemiesresponse(::comm::SpawningEnemiesResponse* spawningenemiesresponse);
-  private:
-  const ::comm::SpawningEnemiesResponse& _internal_spawningenemiesresponse() const;
-  ::comm::SpawningEnemiesResponse* _internal_mutable_spawningenemiesresponse();
-  public:
-  void unsafe_arena_set_allocated_spawningenemiesresponse(
-      ::comm::SpawningEnemiesResponse* spawningenemiesresponse);
-  ::comm::SpawningEnemiesResponse* unsafe_arena_release_spawningenemiesresponse();
-
   // uint32 id = 1;
   void clear_id();
   uint32_t id() const;
@@ -2116,7 +2108,6 @@ class StateUpdate final :
     ::comm::PositionUpdate* positionupdate_;
     ::comm::EnemyPositionsUpdate* enemypositionsupdate_;
     ::comm::MapDimensionsUpdate* mapdimensionsupdate_;
-    ::comm::SpawningEnemiesResponse* spawningenemiesresponse_;
     uint32_t id_;
     int variant_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2586,6 +2577,26 @@ inline void Enemy::_internal_set_y(float value) {
 inline void Enemy::set_y(float value) {
   _internal_set_y(value);
   // @@protoc_insertion_point(field_set:comm.Enemy.y)
+}
+
+// float hp = 4;
+inline void Enemy::clear_hp() {
+  _impl_.hp_ = 0;
+}
+inline float Enemy::_internal_hp() const {
+  return _impl_.hp_;
+}
+inline float Enemy::hp() const {
+  // @@protoc_insertion_point(field_get:comm.Enemy.hp)
+  return _internal_hp();
+}
+inline void Enemy::_internal_set_hp(float value) {
+  
+  _impl_.hp_ = value;
+}
+inline void Enemy::set_hp(float value) {
+  _internal_set_hp(value);
+  // @@protoc_insertion_point(field_set:comm.Enemy.hp)
 }
 
 // -------------------------------------------------------------------
@@ -3367,96 +3378,6 @@ inline void StateUpdate::set_allocated_mapdimensionsupdate(::comm::MapDimensions
   }
   _impl_.mapdimensionsupdate_ = mapdimensionsupdate;
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.mapDimensionsUpdate)
-}
-
-// .comm.SpawningEnemiesResponse spawningEnemiesResponse = 8;
-inline bool StateUpdate::_internal_has_spawningenemiesresponse() const {
-  return this != internal_default_instance() && _impl_.spawningenemiesresponse_ != nullptr;
-}
-inline bool StateUpdate::has_spawningenemiesresponse() const {
-  return _internal_has_spawningenemiesresponse();
-}
-inline void StateUpdate::clear_spawningenemiesresponse() {
-  if (GetArenaForAllocation() == nullptr && _impl_.spawningenemiesresponse_ != nullptr) {
-    delete _impl_.spawningenemiesresponse_;
-  }
-  _impl_.spawningenemiesresponse_ = nullptr;
-}
-inline const ::comm::SpawningEnemiesResponse& StateUpdate::_internal_spawningenemiesresponse() const {
-  const ::comm::SpawningEnemiesResponse* p = _impl_.spawningenemiesresponse_;
-  return p != nullptr ? *p : reinterpret_cast<const ::comm::SpawningEnemiesResponse&>(
-      ::comm::_SpawningEnemiesResponse_default_instance_);
-}
-inline const ::comm::SpawningEnemiesResponse& StateUpdate::spawningenemiesresponse() const {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.spawningEnemiesResponse)
-  return _internal_spawningenemiesresponse();
-}
-inline void StateUpdate::unsafe_arena_set_allocated_spawningenemiesresponse(
-    ::comm::SpawningEnemiesResponse* spawningenemiesresponse) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.spawningenemiesresponse_);
-  }
-  _impl_.spawningenemiesresponse_ = spawningenemiesresponse;
-  if (spawningenemiesresponse) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.spawningEnemiesResponse)
-}
-inline ::comm::SpawningEnemiesResponse* StateUpdate::release_spawningenemiesresponse() {
-  
-  ::comm::SpawningEnemiesResponse* temp = _impl_.spawningenemiesresponse_;
-  _impl_.spawningenemiesresponse_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::comm::SpawningEnemiesResponse* StateUpdate::unsafe_arena_release_spawningenemiesresponse() {
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.spawningEnemiesResponse)
-  
-  ::comm::SpawningEnemiesResponse* temp = _impl_.spawningenemiesresponse_;
-  _impl_.spawningenemiesresponse_ = nullptr;
-  return temp;
-}
-inline ::comm::SpawningEnemiesResponse* StateUpdate::_internal_mutable_spawningenemiesresponse() {
-  
-  if (_impl_.spawningenemiesresponse_ == nullptr) {
-    auto* p = CreateMaybeMessage<::comm::SpawningEnemiesResponse>(GetArenaForAllocation());
-    _impl_.spawningenemiesresponse_ = p;
-  }
-  return _impl_.spawningenemiesresponse_;
-}
-inline ::comm::SpawningEnemiesResponse* StateUpdate::mutable_spawningenemiesresponse() {
-  ::comm::SpawningEnemiesResponse* _msg = _internal_mutable_spawningenemiesresponse();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.spawningEnemiesResponse)
-  return _msg;
-}
-inline void StateUpdate::set_allocated_spawningenemiesresponse(::comm::SpawningEnemiesResponse* spawningenemiesresponse) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete _impl_.spawningenemiesresponse_;
-  }
-  if (spawningenemiesresponse) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(spawningenemiesresponse);
-    if (message_arena != submessage_arena) {
-      spawningenemiesresponse = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, spawningenemiesresponse, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.spawningenemiesresponse_ = spawningenemiesresponse;
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.spawningEnemiesResponse)
 }
 
 #ifdef __GNUC__
