@@ -1169,22 +1169,22 @@ class Player final :
   void _internal_set_id(uint32_t value);
   public:
 
-  // int32 x = 2;
+  // float x = 2;
   void clear_x();
-  int32_t x() const;
-  void set_x(int32_t value);
+  float x() const;
+  void set_x(float value);
   private:
-  int32_t _internal_x() const;
-  void _internal_set_x(int32_t value);
+  float _internal_x() const;
+  void _internal_set_x(float value);
   public:
 
-  // int32 y = 3;
+  // float y = 3;
   void clear_y();
-  int32_t y() const;
-  void set_y(int32_t value);
+  float y() const;
+  void set_y(float value);
   private:
-  int32_t _internal_y() const;
-  void _internal_set_y(int32_t value);
+  float _internal_y() const;
+  void _internal_set_y(float value);
   public:
 
   // @@protoc_insertion_point(class_scope:comm.Player)
@@ -1196,8 +1196,8 @@ class Player final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     uint32_t id_;
-    int32_t x_;
-    int32_t y_;
+    float x_;
+    float y_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2623,42 +2623,42 @@ inline void Player::set_id(uint32_t value) {
   // @@protoc_insertion_point(field_set:comm.Player.id)
 }
 
-// int32 x = 2;
+// float x = 2;
 inline void Player::clear_x() {
   _impl_.x_ = 0;
 }
-inline int32_t Player::_internal_x() const {
+inline float Player::_internal_x() const {
   return _impl_.x_;
 }
-inline int32_t Player::x() const {
+inline float Player::x() const {
   // @@protoc_insertion_point(field_get:comm.Player.x)
   return _internal_x();
 }
-inline void Player::_internal_set_x(int32_t value) {
+inline void Player::_internal_set_x(float value) {
   
   _impl_.x_ = value;
 }
-inline void Player::set_x(int32_t value) {
+inline void Player::set_x(float value) {
   _internal_set_x(value);
   // @@protoc_insertion_point(field_set:comm.Player.x)
 }
 
-// int32 y = 3;
+// float y = 3;
 inline void Player::clear_y() {
   _impl_.y_ = 0;
 }
-inline int32_t Player::_internal_y() const {
+inline float Player::_internal_y() const {
   return _impl_.y_;
 }
-inline int32_t Player::y() const {
+inline float Player::y() const {
   // @@protoc_insertion_point(field_get:comm.Player.y)
   return _internal_y();
 }
-inline void Player::_internal_set_y(int32_t value) {
+inline void Player::_internal_set_y(float value) {
   
   _impl_.y_ = value;
 }
-inline void Player::set_y(int32_t value) {
+inline void Player::set_y(float value) {
   _internal_set_y(value);
   // @@protoc_insertion_point(field_set:comm.Player.y)
 }
