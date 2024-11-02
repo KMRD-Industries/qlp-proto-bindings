@@ -46,9 +46,15 @@ struct TableStruct_comm_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_comm_2eproto;
 namespace comm {
+class CollisionData;
+struct CollisionDataDefaultTypeInternal;
+extern CollisionDataDefaultTypeInternal _CollisionData_default_instance_;
 class Enemy;
 struct EnemyDefaultTypeInternal;
 extern EnemyDefaultTypeInternal _Enemy_default_instance_;
+class EnemyGotHitUpdate;
+struct EnemyGotHitUpdateDefaultTypeInternal;
+extern EnemyGotHitUpdateDefaultTypeInternal _EnemyGotHitUpdate_default_instance_;
 class EnemyPositionsUpdate;
 struct EnemyPositionsUpdateDefaultTypeInternal;
 extern EnemyPositionsUpdateDefaultTypeInternal _EnemyPositionsUpdate_default_instance_;
@@ -79,9 +85,14 @@ extern SpawningEnemiesResponseDefaultTypeInternal _SpawningEnemiesResponse_defau
 class StateUpdate;
 struct StateUpdateDefaultTypeInternal;
 extern StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
+class TextureData;
+struct TextureDataDefaultTypeInternal;
+extern TextureDataDefaultTypeInternal _TextureData_default_instance_;
 }  // namespace comm
 PROTOBUF_NAMESPACE_OPEN
+template<> ::comm::CollisionData* Arena::CreateMaybeMessage<::comm::CollisionData>(Arena*);
 template<> ::comm::Enemy* Arena::CreateMaybeMessage<::comm::Enemy>(Arena*);
+template<> ::comm::EnemyGotHitUpdate* Arena::CreateMaybeMessage<::comm::EnemyGotHitUpdate>(Arena*);
 template<> ::comm::EnemyPositionsUpdate* Arena::CreateMaybeMessage<::comm::EnemyPositionsUpdate>(Arena*);
 template<> ::comm::GameState* Arena::CreateMaybeMessage<::comm::GameState>(Arena*);
 template<> ::comm::MapDimensionsUpdate* Arena::CreateMaybeMessage<::comm::MapDimensionsUpdate>(Arena*);
@@ -92,6 +103,7 @@ template<> ::comm::PositionUpdate* Arena::CreateMaybeMessage<::comm::PositionUpd
 template<> ::comm::Room* Arena::CreateMaybeMessage<::comm::Room>(Arena*);
 template<> ::comm::SpawningEnemiesResponse* Arena::CreateMaybeMessage<::comm::SpawningEnemiesResponse>(Arena*);
 template<> ::comm::StateUpdate* Arena::CreateMaybeMessage<::comm::StateUpdate>(Arena*);
+template<> ::comm::TextureData* Arena::CreateMaybeMessage<::comm::TextureData>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace comm {
 
@@ -104,13 +116,13 @@ enum StateVariant : int {
   PLAYER_POSITION_UPDATE = 5,
   MAP_DIMENSIONS_UPDATE = 6,
   SPAWN_ENEMY_REQUEST = 7,
-  ENEMY_HP_UPDATE = 8,
+  ENEMY_GOT_HIT_UPDATE = 8,
   StateVariant_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   StateVariant_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool StateVariant_IsValid(int value);
 constexpr StateVariant StateVariant_MIN = NONE;
-constexpr StateVariant StateVariant_MAX = ENEMY_HP_UPDATE;
+constexpr StateVariant StateVariant_MAX = ENEMY_GOT_HIT_UPDATE;
 constexpr int StateVariant_ARRAYSIZE = StateVariant_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* StateVariant_descriptor();
@@ -975,11 +987,80 @@ class Enemy final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kTypeFieldNumber = 4,
+    kNameFieldNumber = 5,
+    kTextureDataFieldNumber = 8,
+    kCollisionDataFieldNumber = 9,
     kIdFieldNumber = 1,
     kXFieldNumber = 2,
     kYFieldNumber = 3,
-    kHpFieldNumber = 4,
+    kHpFieldNumber = 6,
+    kDamageFieldNumber = 7,
   };
+  // string type = 4;
+  void clear_type();
+  const std::string& type() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_type(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_type();
+  PROTOBUF_NODISCARD std::string* release_type();
+  void set_allocated_type(std::string* type);
+  private:
+  const std::string& _internal_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_type(const std::string& value);
+  std::string* _internal_mutable_type();
+  public:
+
+  // string name = 5;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // .comm.TextureData textureData = 8;
+  bool has_texturedata() const;
+  private:
+  bool _internal_has_texturedata() const;
+  public:
+  void clear_texturedata();
+  const ::comm::TextureData& texturedata() const;
+  PROTOBUF_NODISCARD ::comm::TextureData* release_texturedata();
+  ::comm::TextureData* mutable_texturedata();
+  void set_allocated_texturedata(::comm::TextureData* texturedata);
+  private:
+  const ::comm::TextureData& _internal_texturedata() const;
+  ::comm::TextureData* _internal_mutable_texturedata();
+  public:
+  void unsafe_arena_set_allocated_texturedata(
+      ::comm::TextureData* texturedata);
+  ::comm::TextureData* unsafe_arena_release_texturedata();
+
+  // .comm.CollisionData collisionData = 9;
+  bool has_collisiondata() const;
+  private:
+  bool _internal_has_collisiondata() const;
+  public:
+  void clear_collisiondata();
+  const ::comm::CollisionData& collisiondata() const;
+  PROTOBUF_NODISCARD ::comm::CollisionData* release_collisiondata();
+  ::comm::CollisionData* mutable_collisiondata();
+  void set_allocated_collisiondata(::comm::CollisionData* collisiondata);
+  private:
+  const ::comm::CollisionData& _internal_collisiondata() const;
+  ::comm::CollisionData* _internal_mutable_collisiondata();
+  public:
+  void unsafe_arena_set_allocated_collisiondata(
+      ::comm::CollisionData* collisiondata);
+  ::comm::CollisionData* unsafe_arena_release_collisiondata();
+
   // uint32 id = 1;
   void clear_id();
   uint32_t id() const;
@@ -1007,13 +1088,22 @@ class Enemy final :
   void _internal_set_y(float value);
   public:
 
-  // float hp = 4;
+  // float hp = 6;
   void clear_hp();
   float hp() const;
   void set_hp(float value);
   private:
   float _internal_hp() const;
   void _internal_set_hp(float value);
+  public:
+
+  // float damage = 7;
+  void clear_damage();
+  float damage() const;
+  void set_damage(float value);
+  private:
+  float _internal_damage() const;
+  void _internal_set_damage(float value);
   public:
 
   // @@protoc_insertion_point(class_scope:comm.Enemy)
@@ -1024,10 +1114,15 @@ class Enemy final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr type_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    ::comm::TextureData* texturedata_;
+    ::comm::CollisionData* collisiondata_;
     uint32_t id_;
     float x_;
     float y_;
     float hp_;
+    float damage_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1159,6 +1254,7 @@ class Player final :
     kIdFieldNumber = 1,
     kXFieldNumber = 2,
     kYFieldNumber = 3,
+    kPlayerAttackDamageFieldNumber = 4,
   };
   // uint32 id = 1;
   void clear_id();
@@ -1187,6 +1283,15 @@ class Player final :
   void _internal_set_y(float value);
   public:
 
+  // float playerAttackDamage = 4;
+  void clear_playerattackdamage();
+  float playerattackdamage() const;
+  void set_playerattackdamage(float value);
+  private:
+  float _internal_playerattackdamage() const;
+  void _internal_set_playerattackdamage(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:comm.Player)
  private:
   class _Internal;
@@ -1198,6 +1303,533 @@ class Player final :
     uint32_t id_;
     float x_;
     float y_;
+    float playerattackdamage_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_comm_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TextureData final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.TextureData) */ {
+ public:
+  inline TextureData() : TextureData(nullptr) {}
+  ~TextureData() override;
+  explicit PROTOBUF_CONSTEXPR TextureData(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TextureData(const TextureData& from);
+  TextureData(TextureData&& from) noexcept
+    : TextureData() {
+    *this = ::std::move(from);
+  }
+
+  inline TextureData& operator=(const TextureData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TextureData& operator=(TextureData&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TextureData& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TextureData* internal_default_instance() {
+    return reinterpret_cast<const TextureData*>(
+               &_TextureData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(TextureData& a, TextureData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TextureData* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TextureData* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TextureData* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TextureData>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TextureData& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const TextureData& from) {
+    TextureData::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TextureData* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "comm.TextureData";
+  }
+  protected:
+  explicit TextureData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTileSetFieldNumber = 2,
+    kTileIdFieldNumber = 1,
+    kTileLayerFieldNumber = 3,
+  };
+  // string tileSet = 2;
+  void clear_tileset();
+  const std::string& tileset() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_tileset(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_tileset();
+  PROTOBUF_NODISCARD std::string* release_tileset();
+  void set_allocated_tileset(std::string* tileset);
+  private:
+  const std::string& _internal_tileset() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_tileset(const std::string& value);
+  std::string* _internal_mutable_tileset();
+  public:
+
+  // int32 tileId = 1;
+  void clear_tileid();
+  int32_t tileid() const;
+  void set_tileid(int32_t value);
+  private:
+  int32_t _internal_tileid() const;
+  void _internal_set_tileid(int32_t value);
+  public:
+
+  // int32 tileLayer = 3;
+  void clear_tilelayer();
+  int32_t tilelayer() const;
+  void set_tilelayer(int32_t value);
+  private:
+  int32_t _internal_tilelayer() const;
+  void _internal_set_tilelayer(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:comm.TextureData)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tileset_;
+    int32_t tileid_;
+    int32_t tilelayer_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_comm_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CollisionData final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.CollisionData) */ {
+ public:
+  inline CollisionData() : CollisionData(nullptr) {}
+  ~CollisionData() override;
+  explicit PROTOBUF_CONSTEXPR CollisionData(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CollisionData(const CollisionData& from);
+  CollisionData(CollisionData&& from) noexcept
+    : CollisionData() {
+    *this = ::std::move(from);
+  }
+
+  inline CollisionData& operator=(const CollisionData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CollisionData& operator=(CollisionData&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CollisionData& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CollisionData* internal_default_instance() {
+    return reinterpret_cast<const CollisionData*>(
+               &_CollisionData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(CollisionData& a, CollisionData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CollisionData* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CollisionData* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CollisionData* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CollisionData>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CollisionData& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const CollisionData& from) {
+    CollisionData::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CollisionData* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "comm.CollisionData";
+  }
+  protected:
+  explicit CollisionData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTypeFieldNumber = 1,
+    kWidthFieldNumber = 2,
+    kHeightFieldNumber = 3,
+    kXOffsetFieldNumber = 4,
+    kYOffsetFieldNumber = 5,
+  };
+  // int32 type = 1;
+  void clear_type();
+  int32_t type() const;
+  void set_type(int32_t value);
+  private:
+  int32_t _internal_type() const;
+  void _internal_set_type(int32_t value);
+  public:
+
+  // float width = 2;
+  void clear_width();
+  float width() const;
+  void set_width(float value);
+  private:
+  float _internal_width() const;
+  void _internal_set_width(float value);
+  public:
+
+  // float height = 3;
+  void clear_height();
+  float height() const;
+  void set_height(float value);
+  private:
+  float _internal_height() const;
+  void _internal_set_height(float value);
+  public:
+
+  // float xOffset = 4;
+  void clear_xoffset();
+  float xoffset() const;
+  void set_xoffset(float value);
+  private:
+  float _internal_xoffset() const;
+  void _internal_set_xoffset(float value);
+  public:
+
+  // float yOffset = 5;
+  void clear_yoffset();
+  float yoffset() const;
+  void set_yoffset(float value);
+  private:
+  float _internal_yoffset() const;
+  void _internal_set_yoffset(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:comm.CollisionData)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int32_t type_;
+    float width_;
+    float height_;
+    float xoffset_;
+    float yoffset_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_comm_2eproto;
+};
+// -------------------------------------------------------------------
+
+class EnemyGotHitUpdate final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:comm.EnemyGotHitUpdate) */ {
+ public:
+  inline EnemyGotHitUpdate() : EnemyGotHitUpdate(nullptr) {}
+  ~EnemyGotHitUpdate() override;
+  explicit PROTOBUF_CONSTEXPR EnemyGotHitUpdate(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  EnemyGotHitUpdate(const EnemyGotHitUpdate& from);
+  EnemyGotHitUpdate(EnemyGotHitUpdate&& from) noexcept
+    : EnemyGotHitUpdate() {
+    *this = ::std::move(from);
+  }
+
+  inline EnemyGotHitUpdate& operator=(const EnemyGotHitUpdate& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EnemyGotHitUpdate& operator=(EnemyGotHitUpdate&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EnemyGotHitUpdate& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const EnemyGotHitUpdate* internal_default_instance() {
+    return reinterpret_cast<const EnemyGotHitUpdate*>(
+               &_EnemyGotHitUpdate_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(EnemyGotHitUpdate& a, EnemyGotHitUpdate& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(EnemyGotHitUpdate* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EnemyGotHitUpdate* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EnemyGotHitUpdate* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<EnemyGotHitUpdate>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const EnemyGotHitUpdate& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const EnemyGotHitUpdate& from) {
+    EnemyGotHitUpdate::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(EnemyGotHitUpdate* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "comm.EnemyGotHitUpdate";
+  }
+  protected:
+  explicit EnemyGotHitUpdate(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPlayerIdFieldNumber = 1,
+    kEnemyIdFieldNumber = 2,
+  };
+  // uint32 playerId = 1;
+  void clear_playerid();
+  uint32_t playerid() const;
+  void set_playerid(uint32_t value);
+  private:
+  uint32_t _internal_playerid() const;
+  void _internal_set_playerid(uint32_t value);
+  public:
+
+  // uint32 enemyId = 2;
+  void clear_enemyid();
+  uint32_t enemyid() const;
+  void set_enemyid(uint32_t value);
+  private:
+  uint32_t _internal_enemyid() const;
+  void _internal_set_enemyid(uint32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:comm.EnemyGotHitUpdate)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    uint32_t playerid_;
+    uint32_t enemyid_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1253,7 +1885,7 @@ class EnemyPositionsUpdate final :
                &_EnemyPositionsUpdate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    9;
 
   friend void swap(EnemyPositionsUpdate& a, EnemyPositionsUpdate& b) {
     a.Swap(&b);
@@ -1410,7 +2042,7 @@ class MapPositionsUpdate final :
                &_MapPositionsUpdate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    10;
 
   friend void swap(MapPositionsUpdate& a, MapPositionsUpdate& b) {
     a.Swap(&b);
@@ -1587,7 +2219,7 @@ class MapDimensionsUpdate final :
                &_MapDimensionsUpdate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    11;
 
   friend void swap(MapDimensionsUpdate& a, MapDimensionsUpdate& b) {
     a.Swap(&b);
@@ -1744,7 +2376,7 @@ class SpawningEnemiesResponse final :
                &_SpawningEnemiesResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    12;
 
   friend void swap(SpawningEnemiesResponse& a, SpawningEnemiesResponse& b) {
     a.Swap(&b);
@@ -1906,7 +2538,7 @@ class StateUpdate final :
                &_StateUpdate_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    13;
 
   friend void swap(StateUpdate& a, StateUpdate& b) {
     a.Swap(&b);
@@ -1984,6 +2616,7 @@ class StateUpdate final :
     kPositionUpdateFieldNumber = 5,
     kEnemyPositionsUpdateFieldNumber = 6,
     kMapDimensionsUpdateFieldNumber = 7,
+    kEnemyGotHitUpdateFieldNumber = 8,
     kIdFieldNumber = 1,
     kVariantFieldNumber = 2,
   };
@@ -2077,6 +2710,24 @@ class StateUpdate final :
       ::comm::MapDimensionsUpdate* mapdimensionsupdate);
   ::comm::MapDimensionsUpdate* unsafe_arena_release_mapdimensionsupdate();
 
+  // .comm.EnemyGotHitUpdate enemyGotHitUpdate = 8;
+  bool has_enemygothitupdate() const;
+  private:
+  bool _internal_has_enemygothitupdate() const;
+  public:
+  void clear_enemygothitupdate();
+  const ::comm::EnemyGotHitUpdate& enemygothitupdate() const;
+  PROTOBUF_NODISCARD ::comm::EnemyGotHitUpdate* release_enemygothitupdate();
+  ::comm::EnemyGotHitUpdate* mutable_enemygothitupdate();
+  void set_allocated_enemygothitupdate(::comm::EnemyGotHitUpdate* enemygothitupdate);
+  private:
+  const ::comm::EnemyGotHitUpdate& _internal_enemygothitupdate() const;
+  ::comm::EnemyGotHitUpdate* _internal_mutable_enemygothitupdate();
+  public:
+  void unsafe_arena_set_allocated_enemygothitupdate(
+      ::comm::EnemyGotHitUpdate* enemygothitupdate);
+  ::comm::EnemyGotHitUpdate* unsafe_arena_release_enemygothitupdate();
+
   // uint32 id = 1;
   void clear_id();
   uint32_t id() const;
@@ -2108,6 +2759,7 @@ class StateUpdate final :
     ::comm::PositionUpdate* positionupdate_;
     ::comm::EnemyPositionsUpdate* enemypositionsupdate_;
     ::comm::MapDimensionsUpdate* mapdimensionsupdate_;
+    ::comm::EnemyGotHitUpdate* enemygothitupdate_;
     uint32_t id_;
     int variant_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2579,7 +3231,107 @@ inline void Enemy::set_y(float value) {
   // @@protoc_insertion_point(field_set:comm.Enemy.y)
 }
 
-// float hp = 4;
+// string type = 4;
+inline void Enemy::clear_type() {
+  _impl_.type_.ClearToEmpty();
+}
+inline const std::string& Enemy::type() const {
+  // @@protoc_insertion_point(field_get:comm.Enemy.type)
+  return _internal_type();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Enemy::set_type(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.type_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:comm.Enemy.type)
+}
+inline std::string* Enemy::mutable_type() {
+  std::string* _s = _internal_mutable_type();
+  // @@protoc_insertion_point(field_mutable:comm.Enemy.type)
+  return _s;
+}
+inline const std::string& Enemy::_internal_type() const {
+  return _impl_.type_.Get();
+}
+inline void Enemy::_internal_set_type(const std::string& value) {
+  
+  _impl_.type_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Enemy::_internal_mutable_type() {
+  
+  return _impl_.type_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Enemy::release_type() {
+  // @@protoc_insertion_point(field_release:comm.Enemy.type)
+  return _impl_.type_.Release();
+}
+inline void Enemy::set_allocated_type(std::string* type) {
+  if (type != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.type_.SetAllocated(type, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.type_.IsDefault()) {
+    _impl_.type_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:comm.Enemy.type)
+}
+
+// string name = 5;
+inline void Enemy::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& Enemy::name() const {
+  // @@protoc_insertion_point(field_get:comm.Enemy.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Enemy::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:comm.Enemy.name)
+}
+inline std::string* Enemy::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:comm.Enemy.name)
+  return _s;
+}
+inline const std::string& Enemy::_internal_name() const {
+  return _impl_.name_.Get();
+}
+inline void Enemy::_internal_set_name(const std::string& value) {
+  
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Enemy::_internal_mutable_name() {
+  
+  return _impl_.name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Enemy::release_name() {
+  // @@protoc_insertion_point(field_release:comm.Enemy.name)
+  return _impl_.name_.Release();
+}
+inline void Enemy::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:comm.Enemy.name)
+}
+
+// float hp = 6;
 inline void Enemy::clear_hp() {
   _impl_.hp_ = 0;
 }
@@ -2597,6 +3349,206 @@ inline void Enemy::_internal_set_hp(float value) {
 inline void Enemy::set_hp(float value) {
   _internal_set_hp(value);
   // @@protoc_insertion_point(field_set:comm.Enemy.hp)
+}
+
+// float damage = 7;
+inline void Enemy::clear_damage() {
+  _impl_.damage_ = 0;
+}
+inline float Enemy::_internal_damage() const {
+  return _impl_.damage_;
+}
+inline float Enemy::damage() const {
+  // @@protoc_insertion_point(field_get:comm.Enemy.damage)
+  return _internal_damage();
+}
+inline void Enemy::_internal_set_damage(float value) {
+  
+  _impl_.damage_ = value;
+}
+inline void Enemy::set_damage(float value) {
+  _internal_set_damage(value);
+  // @@protoc_insertion_point(field_set:comm.Enemy.damage)
+}
+
+// .comm.TextureData textureData = 8;
+inline bool Enemy::_internal_has_texturedata() const {
+  return this != internal_default_instance() && _impl_.texturedata_ != nullptr;
+}
+inline bool Enemy::has_texturedata() const {
+  return _internal_has_texturedata();
+}
+inline void Enemy::clear_texturedata() {
+  if (GetArenaForAllocation() == nullptr && _impl_.texturedata_ != nullptr) {
+    delete _impl_.texturedata_;
+  }
+  _impl_.texturedata_ = nullptr;
+}
+inline const ::comm::TextureData& Enemy::_internal_texturedata() const {
+  const ::comm::TextureData* p = _impl_.texturedata_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::TextureData&>(
+      ::comm::_TextureData_default_instance_);
+}
+inline const ::comm::TextureData& Enemy::texturedata() const {
+  // @@protoc_insertion_point(field_get:comm.Enemy.textureData)
+  return _internal_texturedata();
+}
+inline void Enemy::unsafe_arena_set_allocated_texturedata(
+    ::comm::TextureData* texturedata) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.texturedata_);
+  }
+  _impl_.texturedata_ = texturedata;
+  if (texturedata) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.Enemy.textureData)
+}
+inline ::comm::TextureData* Enemy::release_texturedata() {
+  
+  ::comm::TextureData* temp = _impl_.texturedata_;
+  _impl_.texturedata_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::comm::TextureData* Enemy::unsafe_arena_release_texturedata() {
+  // @@protoc_insertion_point(field_release:comm.Enemy.textureData)
+  
+  ::comm::TextureData* temp = _impl_.texturedata_;
+  _impl_.texturedata_ = nullptr;
+  return temp;
+}
+inline ::comm::TextureData* Enemy::_internal_mutable_texturedata() {
+  
+  if (_impl_.texturedata_ == nullptr) {
+    auto* p = CreateMaybeMessage<::comm::TextureData>(GetArenaForAllocation());
+    _impl_.texturedata_ = p;
+  }
+  return _impl_.texturedata_;
+}
+inline ::comm::TextureData* Enemy::mutable_texturedata() {
+  ::comm::TextureData* _msg = _internal_mutable_texturedata();
+  // @@protoc_insertion_point(field_mutable:comm.Enemy.textureData)
+  return _msg;
+}
+inline void Enemy::set_allocated_texturedata(::comm::TextureData* texturedata) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.texturedata_;
+  }
+  if (texturedata) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(texturedata);
+    if (message_arena != submessage_arena) {
+      texturedata = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, texturedata, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.texturedata_ = texturedata;
+  // @@protoc_insertion_point(field_set_allocated:comm.Enemy.textureData)
+}
+
+// .comm.CollisionData collisionData = 9;
+inline bool Enemy::_internal_has_collisiondata() const {
+  return this != internal_default_instance() && _impl_.collisiondata_ != nullptr;
+}
+inline bool Enemy::has_collisiondata() const {
+  return _internal_has_collisiondata();
+}
+inline void Enemy::clear_collisiondata() {
+  if (GetArenaForAllocation() == nullptr && _impl_.collisiondata_ != nullptr) {
+    delete _impl_.collisiondata_;
+  }
+  _impl_.collisiondata_ = nullptr;
+}
+inline const ::comm::CollisionData& Enemy::_internal_collisiondata() const {
+  const ::comm::CollisionData* p = _impl_.collisiondata_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::CollisionData&>(
+      ::comm::_CollisionData_default_instance_);
+}
+inline const ::comm::CollisionData& Enemy::collisiondata() const {
+  // @@protoc_insertion_point(field_get:comm.Enemy.collisionData)
+  return _internal_collisiondata();
+}
+inline void Enemy::unsafe_arena_set_allocated_collisiondata(
+    ::comm::CollisionData* collisiondata) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.collisiondata_);
+  }
+  _impl_.collisiondata_ = collisiondata;
+  if (collisiondata) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.Enemy.collisionData)
+}
+inline ::comm::CollisionData* Enemy::release_collisiondata() {
+  
+  ::comm::CollisionData* temp = _impl_.collisiondata_;
+  _impl_.collisiondata_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::comm::CollisionData* Enemy::unsafe_arena_release_collisiondata() {
+  // @@protoc_insertion_point(field_release:comm.Enemy.collisionData)
+  
+  ::comm::CollisionData* temp = _impl_.collisiondata_;
+  _impl_.collisiondata_ = nullptr;
+  return temp;
+}
+inline ::comm::CollisionData* Enemy::_internal_mutable_collisiondata() {
+  
+  if (_impl_.collisiondata_ == nullptr) {
+    auto* p = CreateMaybeMessage<::comm::CollisionData>(GetArenaForAllocation());
+    _impl_.collisiondata_ = p;
+  }
+  return _impl_.collisiondata_;
+}
+inline ::comm::CollisionData* Enemy::mutable_collisiondata() {
+  ::comm::CollisionData* _msg = _internal_mutable_collisiondata();
+  // @@protoc_insertion_point(field_mutable:comm.Enemy.collisionData)
+  return _msg;
+}
+inline void Enemy::set_allocated_collisiondata(::comm::CollisionData* collisiondata) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.collisiondata_;
+  }
+  if (collisiondata) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(collisiondata);
+    if (message_arena != submessage_arena) {
+      collisiondata = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, collisiondata, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.collisiondata_ = collisiondata;
+  // @@protoc_insertion_point(field_set_allocated:comm.Enemy.collisionData)
 }
 
 // -------------------------------------------------------------------
@@ -2661,6 +3613,268 @@ inline void Player::_internal_set_y(float value) {
 inline void Player::set_y(float value) {
   _internal_set_y(value);
   // @@protoc_insertion_point(field_set:comm.Player.y)
+}
+
+// float playerAttackDamage = 4;
+inline void Player::clear_playerattackdamage() {
+  _impl_.playerattackdamage_ = 0;
+}
+inline float Player::_internal_playerattackdamage() const {
+  return _impl_.playerattackdamage_;
+}
+inline float Player::playerattackdamage() const {
+  // @@protoc_insertion_point(field_get:comm.Player.playerAttackDamage)
+  return _internal_playerattackdamage();
+}
+inline void Player::_internal_set_playerattackdamage(float value) {
+  
+  _impl_.playerattackdamage_ = value;
+}
+inline void Player::set_playerattackdamage(float value) {
+  _internal_set_playerattackdamage(value);
+  // @@protoc_insertion_point(field_set:comm.Player.playerAttackDamage)
+}
+
+// -------------------------------------------------------------------
+
+// TextureData
+
+// int32 tileId = 1;
+inline void TextureData::clear_tileid() {
+  _impl_.tileid_ = 0;
+}
+inline int32_t TextureData::_internal_tileid() const {
+  return _impl_.tileid_;
+}
+inline int32_t TextureData::tileid() const {
+  // @@protoc_insertion_point(field_get:comm.TextureData.tileId)
+  return _internal_tileid();
+}
+inline void TextureData::_internal_set_tileid(int32_t value) {
+  
+  _impl_.tileid_ = value;
+}
+inline void TextureData::set_tileid(int32_t value) {
+  _internal_set_tileid(value);
+  // @@protoc_insertion_point(field_set:comm.TextureData.tileId)
+}
+
+// string tileSet = 2;
+inline void TextureData::clear_tileset() {
+  _impl_.tileset_.ClearToEmpty();
+}
+inline const std::string& TextureData::tileset() const {
+  // @@protoc_insertion_point(field_get:comm.TextureData.tileSet)
+  return _internal_tileset();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TextureData::set_tileset(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.tileset_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:comm.TextureData.tileSet)
+}
+inline std::string* TextureData::mutable_tileset() {
+  std::string* _s = _internal_mutable_tileset();
+  // @@protoc_insertion_point(field_mutable:comm.TextureData.tileSet)
+  return _s;
+}
+inline const std::string& TextureData::_internal_tileset() const {
+  return _impl_.tileset_.Get();
+}
+inline void TextureData::_internal_set_tileset(const std::string& value) {
+  
+  _impl_.tileset_.Set(value, GetArenaForAllocation());
+}
+inline std::string* TextureData::_internal_mutable_tileset() {
+  
+  return _impl_.tileset_.Mutable(GetArenaForAllocation());
+}
+inline std::string* TextureData::release_tileset() {
+  // @@protoc_insertion_point(field_release:comm.TextureData.tileSet)
+  return _impl_.tileset_.Release();
+}
+inline void TextureData::set_allocated_tileset(std::string* tileset) {
+  if (tileset != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.tileset_.SetAllocated(tileset, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.tileset_.IsDefault()) {
+    _impl_.tileset_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:comm.TextureData.tileSet)
+}
+
+// int32 tileLayer = 3;
+inline void TextureData::clear_tilelayer() {
+  _impl_.tilelayer_ = 0;
+}
+inline int32_t TextureData::_internal_tilelayer() const {
+  return _impl_.tilelayer_;
+}
+inline int32_t TextureData::tilelayer() const {
+  // @@protoc_insertion_point(field_get:comm.TextureData.tileLayer)
+  return _internal_tilelayer();
+}
+inline void TextureData::_internal_set_tilelayer(int32_t value) {
+  
+  _impl_.tilelayer_ = value;
+}
+inline void TextureData::set_tilelayer(int32_t value) {
+  _internal_set_tilelayer(value);
+  // @@protoc_insertion_point(field_set:comm.TextureData.tileLayer)
+}
+
+// -------------------------------------------------------------------
+
+// CollisionData
+
+// int32 type = 1;
+inline void CollisionData::clear_type() {
+  _impl_.type_ = 0;
+}
+inline int32_t CollisionData::_internal_type() const {
+  return _impl_.type_;
+}
+inline int32_t CollisionData::type() const {
+  // @@protoc_insertion_point(field_get:comm.CollisionData.type)
+  return _internal_type();
+}
+inline void CollisionData::_internal_set_type(int32_t value) {
+  
+  _impl_.type_ = value;
+}
+inline void CollisionData::set_type(int32_t value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:comm.CollisionData.type)
+}
+
+// float width = 2;
+inline void CollisionData::clear_width() {
+  _impl_.width_ = 0;
+}
+inline float CollisionData::_internal_width() const {
+  return _impl_.width_;
+}
+inline float CollisionData::width() const {
+  // @@protoc_insertion_point(field_get:comm.CollisionData.width)
+  return _internal_width();
+}
+inline void CollisionData::_internal_set_width(float value) {
+  
+  _impl_.width_ = value;
+}
+inline void CollisionData::set_width(float value) {
+  _internal_set_width(value);
+  // @@protoc_insertion_point(field_set:comm.CollisionData.width)
+}
+
+// float height = 3;
+inline void CollisionData::clear_height() {
+  _impl_.height_ = 0;
+}
+inline float CollisionData::_internal_height() const {
+  return _impl_.height_;
+}
+inline float CollisionData::height() const {
+  // @@protoc_insertion_point(field_get:comm.CollisionData.height)
+  return _internal_height();
+}
+inline void CollisionData::_internal_set_height(float value) {
+  
+  _impl_.height_ = value;
+}
+inline void CollisionData::set_height(float value) {
+  _internal_set_height(value);
+  // @@protoc_insertion_point(field_set:comm.CollisionData.height)
+}
+
+// float xOffset = 4;
+inline void CollisionData::clear_xoffset() {
+  _impl_.xoffset_ = 0;
+}
+inline float CollisionData::_internal_xoffset() const {
+  return _impl_.xoffset_;
+}
+inline float CollisionData::xoffset() const {
+  // @@protoc_insertion_point(field_get:comm.CollisionData.xOffset)
+  return _internal_xoffset();
+}
+inline void CollisionData::_internal_set_xoffset(float value) {
+  
+  _impl_.xoffset_ = value;
+}
+inline void CollisionData::set_xoffset(float value) {
+  _internal_set_xoffset(value);
+  // @@protoc_insertion_point(field_set:comm.CollisionData.xOffset)
+}
+
+// float yOffset = 5;
+inline void CollisionData::clear_yoffset() {
+  _impl_.yoffset_ = 0;
+}
+inline float CollisionData::_internal_yoffset() const {
+  return _impl_.yoffset_;
+}
+inline float CollisionData::yoffset() const {
+  // @@protoc_insertion_point(field_get:comm.CollisionData.yOffset)
+  return _internal_yoffset();
+}
+inline void CollisionData::_internal_set_yoffset(float value) {
+  
+  _impl_.yoffset_ = value;
+}
+inline void CollisionData::set_yoffset(float value) {
+  _internal_set_yoffset(value);
+  // @@protoc_insertion_point(field_set:comm.CollisionData.yOffset)
+}
+
+// -------------------------------------------------------------------
+
+// EnemyGotHitUpdate
+
+// uint32 playerId = 1;
+inline void EnemyGotHitUpdate::clear_playerid() {
+  _impl_.playerid_ = 0u;
+}
+inline uint32_t EnemyGotHitUpdate::_internal_playerid() const {
+  return _impl_.playerid_;
+}
+inline uint32_t EnemyGotHitUpdate::playerid() const {
+  // @@protoc_insertion_point(field_get:comm.EnemyGotHitUpdate.playerId)
+  return _internal_playerid();
+}
+inline void EnemyGotHitUpdate::_internal_set_playerid(uint32_t value) {
+  
+  _impl_.playerid_ = value;
+}
+inline void EnemyGotHitUpdate::set_playerid(uint32_t value) {
+  _internal_set_playerid(value);
+  // @@protoc_insertion_point(field_set:comm.EnemyGotHitUpdate.playerId)
+}
+
+// uint32 enemyId = 2;
+inline void EnemyGotHitUpdate::clear_enemyid() {
+  _impl_.enemyid_ = 0u;
+}
+inline uint32_t EnemyGotHitUpdate::_internal_enemyid() const {
+  return _impl_.enemyid_;
+}
+inline uint32_t EnemyGotHitUpdate::enemyid() const {
+  // @@protoc_insertion_point(field_get:comm.EnemyGotHitUpdate.enemyId)
+  return _internal_enemyid();
+}
+inline void EnemyGotHitUpdate::_internal_set_enemyid(uint32_t value) {
+  
+  _impl_.enemyid_ = value;
+}
+inline void EnemyGotHitUpdate::set_enemyid(uint32_t value) {
+  _internal_set_enemyid(value);
+  // @@protoc_insertion_point(field_set:comm.EnemyGotHitUpdate.enemyId)
 }
 
 // -------------------------------------------------------------------
@@ -3380,9 +4594,105 @@ inline void StateUpdate::set_allocated_mapdimensionsupdate(::comm::MapDimensions
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.mapDimensionsUpdate)
 }
 
+// .comm.EnemyGotHitUpdate enemyGotHitUpdate = 8;
+inline bool StateUpdate::_internal_has_enemygothitupdate() const {
+  return this != internal_default_instance() && _impl_.enemygothitupdate_ != nullptr;
+}
+inline bool StateUpdate::has_enemygothitupdate() const {
+  return _internal_has_enemygothitupdate();
+}
+inline void StateUpdate::clear_enemygothitupdate() {
+  if (GetArenaForAllocation() == nullptr && _impl_.enemygothitupdate_ != nullptr) {
+    delete _impl_.enemygothitupdate_;
+  }
+  _impl_.enemygothitupdate_ = nullptr;
+}
+inline const ::comm::EnemyGotHitUpdate& StateUpdate::_internal_enemygothitupdate() const {
+  const ::comm::EnemyGotHitUpdate* p = _impl_.enemygothitupdate_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::EnemyGotHitUpdate&>(
+      ::comm::_EnemyGotHitUpdate_default_instance_);
+}
+inline const ::comm::EnemyGotHitUpdate& StateUpdate::enemygothitupdate() const {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.enemyGotHitUpdate)
+  return _internal_enemygothitupdate();
+}
+inline void StateUpdate::unsafe_arena_set_allocated_enemygothitupdate(
+    ::comm::EnemyGotHitUpdate* enemygothitupdate) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.enemygothitupdate_);
+  }
+  _impl_.enemygothitupdate_ = enemygothitupdate;
+  if (enemygothitupdate) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.enemyGotHitUpdate)
+}
+inline ::comm::EnemyGotHitUpdate* StateUpdate::release_enemygothitupdate() {
+  
+  ::comm::EnemyGotHitUpdate* temp = _impl_.enemygothitupdate_;
+  _impl_.enemygothitupdate_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::comm::EnemyGotHitUpdate* StateUpdate::unsafe_arena_release_enemygothitupdate() {
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.enemyGotHitUpdate)
+  
+  ::comm::EnemyGotHitUpdate* temp = _impl_.enemygothitupdate_;
+  _impl_.enemygothitupdate_ = nullptr;
+  return temp;
+}
+inline ::comm::EnemyGotHitUpdate* StateUpdate::_internal_mutable_enemygothitupdate() {
+  
+  if (_impl_.enemygothitupdate_ == nullptr) {
+    auto* p = CreateMaybeMessage<::comm::EnemyGotHitUpdate>(GetArenaForAllocation());
+    _impl_.enemygothitupdate_ = p;
+  }
+  return _impl_.enemygothitupdate_;
+}
+inline ::comm::EnemyGotHitUpdate* StateUpdate::mutable_enemygothitupdate() {
+  ::comm::EnemyGotHitUpdate* _msg = _internal_mutable_enemygothitupdate();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.enemyGotHitUpdate)
+  return _msg;
+}
+inline void StateUpdate::set_allocated_enemygothitupdate(::comm::EnemyGotHitUpdate* enemygothitupdate) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.enemygothitupdate_;
+  }
+  if (enemygothitupdate) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(enemygothitupdate);
+    if (message_arena != submessage_arena) {
+      enemygothitupdate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, enemygothitupdate, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.enemygothitupdate_ = enemygothitupdate;
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.enemyGotHitUpdate)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

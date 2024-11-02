@@ -11,7 +11,7 @@ enum StateVariant {
     PLAYER_POSITION_UPDATE = 5;
     MAP_DIMENSIONS_UPDATE = 6;
     SPAWN_ENEMY_REQUEST = 7;
-    ENEMY_HP_UPDATE = 8;
+    ENEMY_GOT_HIT_UPDATE = 8;
 }
 
 // sent via UDP
@@ -46,13 +46,38 @@ message Enemy {
     uint32 id = 1;
     float x = 2;
     float y = 3;
-    float hp = 4;
+    string type = 4;
+    string name = 5;
+    float hp = 6;
+    float damage = 7;
+    TextureData textureData = 8;
+    CollisionData collisionData = 9;
 }
 
 message Player {
     uint32 id = 1;
     float x = 2;
     float y = 3;
+    float playerAttackDamage = 4;
+}
+
+message TextureData {
+    int32 tileId = 1;
+    string tileSet = 2;
+    int32 tileLayer = 3;
+}
+
+message CollisionData {
+    int32 type = 1;
+    float width = 2;
+    float height = 3;
+    float xOffset = 4;
+    float yOffset = 5;
+}
+
+message EnemyGotHitUpdate {
+    uint32 playerId = 1;
+    uint32 enemyId = 2;
 }
 
 message EnemyPositionsUpdate {
@@ -80,4 +105,5 @@ message StateUpdate {
     PositionUpdate positionUpdate = 5;
     EnemyPositionsUpdate enemyPositionsUpdate = 6;
     MapDimensionsUpdate mapDimensionsUpdate = 7;
+    EnemyGotHitUpdate enemyGotHitUpdate = 8;
 }
