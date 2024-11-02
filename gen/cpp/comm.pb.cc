@@ -346,18 +346,18 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "onUpdate\030\005 \001(\0132\024.comm.PositionUpdate\0228\n\024"
   "enemyPositionsUpdate\030\006 \001(\0132\032.comm.EnemyP"
   "ositionsUpdate\0226\n\023mapDimensionsUpdate\030\007 "
-  "\001(\0132\031.comm.MapDimensionsUpdate*\272\001\n\014State"
+  "\001(\0132\031.comm.MapDimensionsUpdate*\300\001\n\014State"
   "Variant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISC"
   "ONNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003\022\016\n\nMAP_UPDA"
   "TE\020\004\022\032\n\026PLAYER_POSITION_UPDATE\020\005\022\031\n\025MAP_"
   "DIMENSIONS_UPDATE\020\006\022\027\n\023SPAWN_ENEMY_REQUE"
-  "ST\020\007\022\r\n\tENEMY_HIT\020\010B6Z4github.com/kmrd-i"
-  "ndustries/qlp-proto-bindings/gen/gob\006pro"
-  "to3"
+  "ST\020\007\022\023\n\017ENEMY_HP_UPDATE\020\010B6Z4github.com/"
+  "kmrd-industries/qlp-proto-bindings/gen/g"
+  "ob\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_comm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
-    false, false, 1203, descriptor_table_protodef_comm_2eproto,
+    false, false, 1209, descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once, nullptr, 0, 11,
     schemas, file_default_instances, TableStruct_comm_2eproto::offsets,
