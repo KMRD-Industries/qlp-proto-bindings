@@ -1450,13 +1450,13 @@ class TextureData final :
   std::string* _internal_mutable_tileset();
   public:
 
-  // int32 tileId = 1;
+  // uint32 tileId = 1;
   void clear_tileid();
-  int32_t tileid() const;
-  void set_tileid(int32_t value);
+  uint32_t tileid() const;
+  void set_tileid(uint32_t value);
   private:
-  int32_t _internal_tileid() const;
-  void _internal_set_tileid(int32_t value);
+  uint32_t _internal_tileid() const;
+  void _internal_set_tileid(uint32_t value);
   public:
 
   // int32 tileLayer = 3;
@@ -1477,7 +1477,7 @@ class TextureData final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tileset_;
-    int32_t tileid_;
+    uint32_t tileid_;
     int32_t tilelayer_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -3639,22 +3639,22 @@ inline void Player::set_playerattackdamage(double value) {
 
 // TextureData
 
-// int32 tileId = 1;
+// uint32 tileId = 1;
 inline void TextureData::clear_tileid() {
-  _impl_.tileid_ = 0;
+  _impl_.tileid_ = 0u;
 }
-inline int32_t TextureData::_internal_tileid() const {
+inline uint32_t TextureData::_internal_tileid() const {
   return _impl_.tileid_;
 }
-inline int32_t TextureData::tileid() const {
+inline uint32_t TextureData::tileid() const {
   // @@protoc_insertion_point(field_get:comm.TextureData.tileId)
   return _internal_tileid();
 }
-inline void TextureData::_internal_set_tileid(int32_t value) {
+inline void TextureData::_internal_set_tileid(uint32_t value) {
   
   _impl_.tileid_ = value;
 }
-inline void TextureData::set_tileid(int32_t value) {
+inline void TextureData::set_tileid(uint32_t value) {
   _internal_set_tileid(value);
   // @@protoc_insertion_point(field_set:comm.TextureData.tileId)
 }

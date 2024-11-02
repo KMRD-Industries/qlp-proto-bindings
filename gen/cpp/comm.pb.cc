@@ -124,7 +124,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR TextureData::TextureData(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.tileset_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.tileid_)*/0
+  , /*decltype(_impl_.tileid_)*/0u
   , /*decltype(_impl_.tilelayer_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TextureDataDefaultTypeInternal {
@@ -431,7 +431,7 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\022*\n\rcollisionData\030\t \001(\0132\023.comm.Collision"
   "Data\"F\n\006Player\022\n\n\002id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n"
   "\001y\030\003 \001(\002\022\032\n\022playerAttackDamage\030\004 \001(\001\"A\n\013"
-  "TextureData\022\016\n\006tileId\030\001 \001(\005\022\017\n\007tileSet\030\002"
+  "TextureData\022\016\n\006tileId\030\001 \001(\r\022\017\n\007tileSet\030\002"
   " \001(\t\022\021\n\ttileLayer\030\003 \001(\005\"^\n\rCollisionData"
   "\022\014\n\004type\030\001 \001(\005\022\r\n\005width\030\002 \001(\002\022\016\n\006height\030"
   "\003 \001(\002\022\017\n\007xOffset\030\004 \001(\002\022\017\n\007yOffset\030\005 \001(\002\""
@@ -2409,7 +2409,7 @@ inline void TextureData::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.tileset_){}
-    , decltype(_impl_.tileid_){0}
+    , decltype(_impl_.tileid_){0u}
     , decltype(_impl_.tilelayer_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
@@ -2456,7 +2456,7 @@ const char* TextureData::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // int32 tileId = 1;
+      // uint32 tileId = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _impl_.tileid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -2511,10 +2511,10 @@ uint8_t* TextureData::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 tileId = 1;
+  // uint32 tileId = 1;
   if (this->_internal_tileid() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_tileid(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_tileid(), target);
   }
 
   // string tileSet = 2;
@@ -2556,9 +2556,9 @@ size_t TextureData::ByteSizeLong() const {
         this->_internal_tileset());
   }
 
-  // int32 tileId = 1;
+  // uint32 tileId = 1;
   if (this->_internal_tileid() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_tileid());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_tileid());
   }
 
   // int32 tileLayer = 3;

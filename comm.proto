@@ -62,7 +62,7 @@ message Player {
 }
 
 message TextureData {
-    int32 tileId = 1;
+    uint32 tileId = 1;
     string tileSet = 2;
     int32 tileLayer = 3;
 }
