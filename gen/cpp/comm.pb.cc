@@ -92,9 +92,9 @@ PROTOBUF_CONSTEXPR Enemy::Enemy(
   , /*decltype(_impl_.collisiondata_)*/nullptr
   , /*decltype(_impl_.id_)*/0u
   , /*decltype(_impl_.x_)*/0
-  , /*decltype(_impl_.y_)*/0
   , /*decltype(_impl_.hp_)*/0
   , /*decltype(_impl_.damage_)*/0
+  , /*decltype(_impl_.y_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct EnemyDefaultTypeInternal {
   PROTOBUF_CONSTEXPR EnemyDefaultTypeInternal()
@@ -109,8 +109,8 @@ PROTOBUF_CONSTEXPR Player::Player(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.id_)*/0u
   , /*decltype(_impl_.x_)*/0
-  , /*decltype(_impl_.y_)*/0
   , /*decltype(_impl_.playerattackdamage_)*/0
+  , /*decltype(_impl_.y_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct PlayerDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PlayerDefaultTypeInternal()
@@ -426,11 +426,11 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "le\022\016\n\006height\030\001 \001(\005\022\r\n\005width\030\002 \001(\005\022\014\n\004lef"
   "t\030\003 \001(\005\022\013\n\003top\030\004 \001(\005\"\265\001\n\005Enemy\022\n\n\002id\030\001 \001"
   "(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\022\014\n\004type\030\004 \001(\t\022\014"
-  "\n\004name\030\005 \001(\t\022\n\n\002hp\030\006 \001(\002\022\016\n\006damage\030\007 \001(\002"
+  "\n\004name\030\005 \001(\t\022\n\n\002hp\030\006 \001(\001\022\016\n\006damage\030\007 \001(\001"
   "\022&\n\013textureData\030\010 \001(\0132\021.comm.TextureData"
   "\022*\n\rcollisionData\030\t \001(\0132\023.comm.Collision"
   "Data\"F\n\006Player\022\n\n\002id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n"
-  "\001y\030\003 \001(\002\022\032\n\022playerAttackDamage\030\004 \001(\002\"A\n\013"
+  "\001y\030\003 \001(\002\022\032\n\022playerAttackDamage\030\004 \001(\001\"A\n\013"
   "TextureData\022\016\n\006tileId\030\001 \001(\005\022\017\n\007tileSet\030\002"
   " \001(\t\022\021\n\ttileLayer\030\003 \001(\005\"^\n\rCollisionData"
   "\022\014\n\004type\030\001 \001(\005\022\r\n\005width\030\002 \001(\002\022\016\n\006height\030"
@@ -1589,9 +1589,9 @@ Enemy::Enemy(const Enemy& from)
     , decltype(_impl_.collisiondata_){nullptr}
     , decltype(_impl_.id_){}
     , decltype(_impl_.x_){}
-    , decltype(_impl_.y_){}
     , decltype(_impl_.hp_){}
     , decltype(_impl_.damage_){}
+    , decltype(_impl_.y_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -1618,8 +1618,8 @@ Enemy::Enemy(const Enemy& from)
     _this->_impl_.collisiondata_ = new ::comm::CollisionData(*from._impl_.collisiondata_);
   }
   ::memcpy(&_impl_.id_, &from._impl_.id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.damage_) -
-    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.damage_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.y_) -
+    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.y_));
   // @@protoc_insertion_point(copy_constructor:comm.Enemy)
 }
 
@@ -1634,9 +1634,9 @@ inline void Enemy::SharedCtor(
     , decltype(_impl_.collisiondata_){nullptr}
     , decltype(_impl_.id_){0u}
     , decltype(_impl_.x_){0}
-    , decltype(_impl_.y_){0}
     , decltype(_impl_.hp_){0}
     , decltype(_impl_.damage_){0}
+    , decltype(_impl_.y_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.type_.InitDefault();
@@ -1687,8 +1687,8 @@ void Enemy::Clear() {
   }
   _impl_.collisiondata_ = nullptr;
   ::memset(&_impl_.id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.damage_) -
-      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.damage_));
+      reinterpret_cast<char*>(&_impl_.y_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.y_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1742,19 +1742,19 @@ const char* Enemy::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
-      // float hp = 6;
+      // double hp = 6;
       case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 53)) {
-          _impl_.hp_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 49)) {
+          _impl_.hp_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
         } else
           goto handle_unusual;
         continue;
-      // float damage = 7;
+      // double damage = 7;
       case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 61)) {
-          _impl_.damage_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 57)) {
+          _impl_.damage_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
         } else
           goto handle_unusual;
         continue;
@@ -1849,24 +1849,24 @@ uint8_t* Enemy::_InternalSerialize(
         5, this->_internal_name(), target);
   }
 
-  // float hp = 6;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_hp = this->_internal_hp();
-  uint32_t raw_hp;
+  // double hp = 6;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_hp = this->_internal_hp();
+  uint64_t raw_hp;
   memcpy(&raw_hp, &tmp_hp, sizeof(tmp_hp));
   if (raw_hp != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(6, this->_internal_hp(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(6, this->_internal_hp(), target);
   }
 
-  // float damage = 7;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_damage = this->_internal_damage();
-  uint32_t raw_damage;
+  // double damage = 7;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_damage = this->_internal_damage();
+  uint64_t raw_damage;
   memcpy(&raw_damage, &tmp_damage, sizeof(tmp_damage));
   if (raw_damage != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(7, this->_internal_damage(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(7, this->_internal_damage(), target);
   }
 
   // .comm.TextureData textureData = 8;
@@ -1941,30 +1941,30 @@ size_t Enemy::ByteSizeLong() const {
     total_size += 1 + 4;
   }
 
+  // double hp = 6;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_hp = this->_internal_hp();
+  uint64_t raw_hp;
+  memcpy(&raw_hp, &tmp_hp, sizeof(tmp_hp));
+  if (raw_hp != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double damage = 7;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_damage = this->_internal_damage();
+  uint64_t raw_damage;
+  memcpy(&raw_damage, &tmp_damage, sizeof(tmp_damage));
+  if (raw_damage != 0) {
+    total_size += 1 + 8;
+  }
+
   // float y = 3;
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_y = this->_internal_y();
   uint32_t raw_y;
   memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
   if (raw_y != 0) {
-    total_size += 1 + 4;
-  }
-
-  // float hp = 6;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_hp = this->_internal_hp();
-  uint32_t raw_hp;
-  memcpy(&raw_hp, &tmp_hp, sizeof(tmp_hp));
-  if (raw_hp != 0) {
-    total_size += 1 + 4;
-  }
-
-  // float damage = 7;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_damage = this->_internal_damage();
-  uint32_t raw_damage;
-  memcpy(&raw_damage, &tmp_damage, sizeof(tmp_damage));
-  if (raw_damage != 0) {
     total_size += 1 + 4;
   }
 
@@ -2010,26 +2010,26 @@ void Enemy::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF
   if (raw_x != 0) {
     _this->_internal_set_x(from._internal_x());
   }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_hp = from._internal_hp();
+  uint64_t raw_hp;
+  memcpy(&raw_hp, &tmp_hp, sizeof(tmp_hp));
+  if (raw_hp != 0) {
+    _this->_internal_set_hp(from._internal_hp());
+  }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_damage = from._internal_damage();
+  uint64_t raw_damage;
+  memcpy(&raw_damage, &tmp_damage, sizeof(tmp_damage));
+  if (raw_damage != 0) {
+    _this->_internal_set_damage(from._internal_damage());
+  }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_y = from._internal_y();
   uint32_t raw_y;
   memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
   if (raw_y != 0) {
     _this->_internal_set_y(from._internal_y());
-  }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_hp = from._internal_hp();
-  uint32_t raw_hp;
-  memcpy(&raw_hp, &tmp_hp, sizeof(tmp_hp));
-  if (raw_hp != 0) {
-    _this->_internal_set_hp(from._internal_hp());
-  }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_damage = from._internal_damage();
-  uint32_t raw_damage;
-  memcpy(&raw_damage, &tmp_damage, sizeof(tmp_damage));
-  if (raw_damage != 0) {
-    _this->_internal_set_damage(from._internal_damage());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -2059,8 +2059,8 @@ void Enemy::InternalSwap(Enemy* other) {
       &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Enemy, _impl_.damage_)
-      + sizeof(Enemy::_impl_.damage_)
+      PROTOBUF_FIELD_OFFSET(Enemy, _impl_.y_)
+      + sizeof(Enemy::_impl_.y_)
       - PROTOBUF_FIELD_OFFSET(Enemy, _impl_.texturedata_)>(
           reinterpret_cast<char*>(&_impl_.texturedata_),
           reinterpret_cast<char*>(&other->_impl_.texturedata_));
@@ -2090,14 +2090,14 @@ Player::Player(const Player& from)
   new (&_impl_) Impl_{
       decltype(_impl_.id_){}
     , decltype(_impl_.x_){}
-    , decltype(_impl_.y_){}
     , decltype(_impl_.playerattackdamage_){}
+    , decltype(_impl_.y_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&_impl_.id_, &from._impl_.id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.playerattackdamage_) -
-    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.playerattackdamage_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.y_) -
+    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.y_));
   // @@protoc_insertion_point(copy_constructor:comm.Player)
 }
 
@@ -2108,8 +2108,8 @@ inline void Player::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_.id_){0u}
     , decltype(_impl_.x_){0}
-    , decltype(_impl_.y_){0}
     , decltype(_impl_.playerattackdamage_){0}
+    , decltype(_impl_.y_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -2138,8 +2138,8 @@ void Player::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.playerattackdamage_) -
-      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.playerattackdamage_));
+      reinterpret_cast<char*>(&_impl_.y_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.y_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2173,11 +2173,11 @@ const char* Player::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
-      // float playerAttackDamage = 4;
+      // double playerAttackDamage = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
-          _impl_.playerattackdamage_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 33)) {
+          _impl_.playerattackdamage_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
         } else
           goto handle_unusual;
         continue;
@@ -2236,14 +2236,14 @@ uint8_t* Player::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_y(), target);
   }
 
-  // float playerAttackDamage = 4;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_playerattackdamage = this->_internal_playerattackdamage();
-  uint32_t raw_playerattackdamage;
+  // double playerAttackDamage = 4;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_playerattackdamage = this->_internal_playerattackdamage();
+  uint64_t raw_playerattackdamage;
   memcpy(&raw_playerattackdamage, &tmp_playerattackdamage, sizeof(tmp_playerattackdamage));
   if (raw_playerattackdamage != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(4, this->_internal_playerattackdamage(), target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(4, this->_internal_playerattackdamage(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2276,21 +2276,21 @@ size_t Player::ByteSizeLong() const {
     total_size += 1 + 4;
   }
 
+  // double playerAttackDamage = 4;
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_playerattackdamage = this->_internal_playerattackdamage();
+  uint64_t raw_playerattackdamage;
+  memcpy(&raw_playerattackdamage, &tmp_playerattackdamage, sizeof(tmp_playerattackdamage));
+  if (raw_playerattackdamage != 0) {
+    total_size += 1 + 8;
+  }
+
   // float y = 3;
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_y = this->_internal_y();
   uint32_t raw_y;
   memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
   if (raw_y != 0) {
-    total_size += 1 + 4;
-  }
-
-  // float playerAttackDamage = 4;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_playerattackdamage = this->_internal_playerattackdamage();
-  uint32_t raw_playerattackdamage;
-  memcpy(&raw_playerattackdamage, &tmp_playerattackdamage, sizeof(tmp_playerattackdamage));
-  if (raw_playerattackdamage != 0) {
     total_size += 1 + 4;
   }
 
@@ -2322,19 +2322,19 @@ void Player::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBU
   if (raw_x != 0) {
     _this->_internal_set_x(from._internal_x());
   }
+  static_assert(sizeof(uint64_t) == sizeof(double), "Code assumes uint64_t and double are the same size.");
+  double tmp_playerattackdamage = from._internal_playerattackdamage();
+  uint64_t raw_playerattackdamage;
+  memcpy(&raw_playerattackdamage, &tmp_playerattackdamage, sizeof(tmp_playerattackdamage));
+  if (raw_playerattackdamage != 0) {
+    _this->_internal_set_playerattackdamage(from._internal_playerattackdamage());
+  }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_y = from._internal_y();
   uint32_t raw_y;
   memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
   if (raw_y != 0) {
     _this->_internal_set_y(from._internal_y());
-  }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_playerattackdamage = from._internal_playerattackdamage();
-  uint32_t raw_playerattackdamage;
-  memcpy(&raw_playerattackdamage, &tmp_playerattackdamage, sizeof(tmp_playerattackdamage));
-  if (raw_playerattackdamage != 0) {
-    _this->_internal_set_playerattackdamage(from._internal_playerattackdamage());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -2354,8 +2354,8 @@ void Player::InternalSwap(Player* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Player, _impl_.playerattackdamage_)
-      + sizeof(Player::_impl_.playerattackdamage_)
+      PROTOBUF_FIELD_OFFSET(Player, _impl_.y_)
+      + sizeof(Player::_impl_.y_)
       - PROTOBUF_FIELD_OFFSET(Player, _impl_.id_)>(
           reinterpret_cast<char*>(&_impl_.id_),
           reinterpret_cast<char*>(&other->_impl_.id_));

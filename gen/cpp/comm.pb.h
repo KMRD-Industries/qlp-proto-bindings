@@ -993,9 +993,9 @@ class Enemy final :
     kCollisionDataFieldNumber = 9,
     kIdFieldNumber = 1,
     kXFieldNumber = 2,
-    kYFieldNumber = 3,
     kHpFieldNumber = 6,
     kDamageFieldNumber = 7,
+    kYFieldNumber = 3,
   };
   // string type = 4;
   void clear_type();
@@ -1079,6 +1079,24 @@ class Enemy final :
   void _internal_set_x(float value);
   public:
 
+  // double hp = 6;
+  void clear_hp();
+  double hp() const;
+  void set_hp(double value);
+  private:
+  double _internal_hp() const;
+  void _internal_set_hp(double value);
+  public:
+
+  // double damage = 7;
+  void clear_damage();
+  double damage() const;
+  void set_damage(double value);
+  private:
+  double _internal_damage() const;
+  void _internal_set_damage(double value);
+  public:
+
   // float y = 3;
   void clear_y();
   float y() const;
@@ -1086,24 +1104,6 @@ class Enemy final :
   private:
   float _internal_y() const;
   void _internal_set_y(float value);
-  public:
-
-  // float hp = 6;
-  void clear_hp();
-  float hp() const;
-  void set_hp(float value);
-  private:
-  float _internal_hp() const;
-  void _internal_set_hp(float value);
-  public:
-
-  // float damage = 7;
-  void clear_damage();
-  float damage() const;
-  void set_damage(float value);
-  private:
-  float _internal_damage() const;
-  void _internal_set_damage(float value);
   public:
 
   // @@protoc_insertion_point(class_scope:comm.Enemy)
@@ -1120,9 +1120,9 @@ class Enemy final :
     ::comm::CollisionData* collisiondata_;
     uint32_t id_;
     float x_;
+    double hp_;
+    double damage_;
     float y_;
-    float hp_;
-    float damage_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1253,8 +1253,8 @@ class Player final :
   enum : int {
     kIdFieldNumber = 1,
     kXFieldNumber = 2,
-    kYFieldNumber = 3,
     kPlayerAttackDamageFieldNumber = 4,
+    kYFieldNumber = 3,
   };
   // uint32 id = 1;
   void clear_id();
@@ -1274,6 +1274,15 @@ class Player final :
   void _internal_set_x(float value);
   public:
 
+  // double playerAttackDamage = 4;
+  void clear_playerattackdamage();
+  double playerattackdamage() const;
+  void set_playerattackdamage(double value);
+  private:
+  double _internal_playerattackdamage() const;
+  void _internal_set_playerattackdamage(double value);
+  public:
+
   // float y = 3;
   void clear_y();
   float y() const;
@@ -1281,15 +1290,6 @@ class Player final :
   private:
   float _internal_y() const;
   void _internal_set_y(float value);
-  public:
-
-  // float playerAttackDamage = 4;
-  void clear_playerattackdamage();
-  float playerattackdamage() const;
-  void set_playerattackdamage(float value);
-  private:
-  float _internal_playerattackdamage() const;
-  void _internal_set_playerattackdamage(float value);
   public:
 
   // @@protoc_insertion_point(class_scope:comm.Player)
@@ -1302,8 +1302,8 @@ class Player final :
   struct Impl_ {
     uint32_t id_;
     float x_;
+    double playerattackdamage_;
     float y_;
-    float playerattackdamage_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3331,42 +3331,42 @@ inline void Enemy::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:comm.Enemy.name)
 }
 
-// float hp = 6;
+// double hp = 6;
 inline void Enemy::clear_hp() {
   _impl_.hp_ = 0;
 }
-inline float Enemy::_internal_hp() const {
+inline double Enemy::_internal_hp() const {
   return _impl_.hp_;
 }
-inline float Enemy::hp() const {
+inline double Enemy::hp() const {
   // @@protoc_insertion_point(field_get:comm.Enemy.hp)
   return _internal_hp();
 }
-inline void Enemy::_internal_set_hp(float value) {
+inline void Enemy::_internal_set_hp(double value) {
   
   _impl_.hp_ = value;
 }
-inline void Enemy::set_hp(float value) {
+inline void Enemy::set_hp(double value) {
   _internal_set_hp(value);
   // @@protoc_insertion_point(field_set:comm.Enemy.hp)
 }
 
-// float damage = 7;
+// double damage = 7;
 inline void Enemy::clear_damage() {
   _impl_.damage_ = 0;
 }
-inline float Enemy::_internal_damage() const {
+inline double Enemy::_internal_damage() const {
   return _impl_.damage_;
 }
-inline float Enemy::damage() const {
+inline double Enemy::damage() const {
   // @@protoc_insertion_point(field_get:comm.Enemy.damage)
   return _internal_damage();
 }
-inline void Enemy::_internal_set_damage(float value) {
+inline void Enemy::_internal_set_damage(double value) {
   
   _impl_.damage_ = value;
 }
-inline void Enemy::set_damage(float value) {
+inline void Enemy::set_damage(double value) {
   _internal_set_damage(value);
   // @@protoc_insertion_point(field_set:comm.Enemy.damage)
 }
@@ -3615,22 +3615,22 @@ inline void Player::set_y(float value) {
   // @@protoc_insertion_point(field_set:comm.Player.y)
 }
 
-// float playerAttackDamage = 4;
+// double playerAttackDamage = 4;
 inline void Player::clear_playerattackdamage() {
   _impl_.playerattackdamage_ = 0;
 }
-inline float Player::_internal_playerattackdamage() const {
+inline double Player::_internal_playerattackdamage() const {
   return _impl_.playerattackdamage_;
 }
-inline float Player::playerattackdamage() const {
+inline double Player::playerattackdamage() const {
   // @@protoc_insertion_point(field_get:comm.Player.playerAttackDamage)
   return _internal_playerattackdamage();
 }
-inline void Player::_internal_set_playerattackdamage(float value) {
+inline void Player::_internal_set_playerattackdamage(double value) {
   
   _impl_.playerattackdamage_ = value;
 }
-inline void Player::set_playerattackdamage(float value) {
+inline void Player::set_playerattackdamage(double value) {
   _internal_set_playerattackdamage(value);
   // @@protoc_insertion_point(field_set:comm.Player.playerAttackDamage)
 }
