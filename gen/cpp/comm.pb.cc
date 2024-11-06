@@ -360,18 +360,19 @@ const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "(\0162\022.comm.StateVariant\022\030\n\004room\030\004 \001(\0132\n.c"
     "omm.Room*G\n\010ItemType\022\013\n\007UNKNOWN\020\000\022\n\n\006WEA"
     "PON\020\001\022\n\n\006ARMOUR\020\002\022\n\n\006POTION\020\003\022\n\n\006HELMET\020"
-    "\004*\236\001\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTE"
+    "\004*\302\001\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTE"
     "D\020\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003\022"
-    "\020\n\014ROOM_CLEARED\020\004\022\020\n\014CHEST_OPENED\020\005\022\032\n\026R"
-    "EQUEST_ITEM_GENERATOR\020\006\022\021\n\rITEM_EQUIPPED"
-    "\020\007B6Z4github.com/kmrd-industries/qlp-pro"
-    "to-bindings/gen/gob\006proto3"
+    "\020\n\014ROOM_CLEARED\020\004\022\021\n\rLEVEL_CHANGED\020\005\022\020\n\014"
+    "CHEST_OPENED\020\006\022\032\n\026REQUEST_ITEM_GENERATOR"
+    "\020\007\022\021\n\rITEM_EQUIPPED\020\010\022\017\n\013PLAYER_DIED\020\tB6"
+    "Z4github.com/kmrd-industries/qlp-proto-b"
+    "indings/gen/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    946,
+    982,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -399,9 +400,9 @@ const ::google::protobuf::EnumDescriptor* StateVariant_descriptor() {
   return file_level_enum_descriptors_comm_2eproto[1];
 }
 PROTOBUF_CONSTINIT const uint32_t StateVariant_internal_data_[] = {
-    524288u, 0u, };
+    655360u, 0u, };
 bool StateVariant_IsValid(int value) {
-  return 0 <= value && value <= 7;
+  return 0 <= value && value <= 9;
 }
 // ===================================================================
 
