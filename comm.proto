@@ -104,4 +104,5 @@ message StateUpdate {
     EnemyPositionsUpdate enemyPositionsUpdate = 6;
     MapDimensionsUpdate mapDimensionsUpdate = 7;
     EnemyGotHitUpdate enemyGotHitUpdate = 8;
+    bytes compressed_map_dimensions_update = 9;
 }

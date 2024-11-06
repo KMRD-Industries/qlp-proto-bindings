@@ -2589,6 +2589,7 @@ class StateUpdate final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kCompressedMapDimensionsUpdateFieldNumber = 9,
     kRoomFieldNumber = 3,
     kMapPositionsUpdateFieldNumber = 4,
     kPositionUpdateFieldNumber = 5,
@@ -2598,6 +2599,20 @@ class StateUpdate final :
     kIdFieldNumber = 1,
     kVariantFieldNumber = 2,
   };
+  // bytes compressed_map_dimensions_update = 9;
+  void clear_compressed_map_dimensions_update();
+  const std::string& compressed_map_dimensions_update() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_compressed_map_dimensions_update(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_compressed_map_dimensions_update();
+  PROTOBUF_NODISCARD std::string* release_compressed_map_dimensions_update();
+  void set_allocated_compressed_map_dimensions_update(std::string* compressed_map_dimensions_update);
+  private:
+  const std::string& _internal_compressed_map_dimensions_update() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_compressed_map_dimensions_update(const std::string& value);
+  std::string* _internal_mutable_compressed_map_dimensions_update();
+  public:
+
   // .comm.Room room = 3;
   bool has_room() const;
   private:
@@ -2732,6 +2747,7 @@ class StateUpdate final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr compressed_map_dimensions_update_;
     ::comm::Room* room_;
     ::comm::MapPositionsUpdate* mappositionsupdate_;
     ::comm::PositionUpdate* positionupdate_;
@@ -4620,6 +4636,56 @@ inline void StateUpdate::set_allocated_enemygothitupdate(::comm::EnemyGotHitUpda
   }
   _impl_.enemygothitupdate_ = enemygothitupdate;
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.enemyGotHitUpdate)
+}
+
+// bytes compressed_map_dimensions_update = 9;
+inline void StateUpdate::clear_compressed_map_dimensions_update() {
+  _impl_.compressed_map_dimensions_update_.ClearToEmpty();
+}
+inline const std::string& StateUpdate::compressed_map_dimensions_update() const {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.compressed_map_dimensions_update)
+  return _internal_compressed_map_dimensions_update();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void StateUpdate::set_compressed_map_dimensions_update(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.compressed_map_dimensions_update_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:comm.StateUpdate.compressed_map_dimensions_update)
+}
+inline std::string* StateUpdate::mutable_compressed_map_dimensions_update() {
+  std::string* _s = _internal_mutable_compressed_map_dimensions_update();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.compressed_map_dimensions_update)
+  return _s;
+}
+inline const std::string& StateUpdate::_internal_compressed_map_dimensions_update() const {
+  return _impl_.compressed_map_dimensions_update_.Get();
+}
+inline void StateUpdate::_internal_set_compressed_map_dimensions_update(const std::string& value) {
+  
+  _impl_.compressed_map_dimensions_update_.Set(value, GetArenaForAllocation());
+}
+inline std::string* StateUpdate::_internal_mutable_compressed_map_dimensions_update() {
+  
+  return _impl_.compressed_map_dimensions_update_.Mutable(GetArenaForAllocation());
+}
+inline std::string* StateUpdate::release_compressed_map_dimensions_update() {
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.compressed_map_dimensions_update)
+  return _impl_.compressed_map_dimensions_update_.Release();
+}
+inline void StateUpdate::set_allocated_compressed_map_dimensions_update(std::string* compressed_map_dimensions_update) {
+  if (compressed_map_dimensions_update != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.compressed_map_dimensions_update_.SetAllocated(compressed_map_dimensions_update, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.compressed_map_dimensions_update_.IsDefault()) {
+    _impl_.compressed_map_dimensions_update_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.compressed_map_dimensions_update)
 }
 
 #ifdef __GNUC__

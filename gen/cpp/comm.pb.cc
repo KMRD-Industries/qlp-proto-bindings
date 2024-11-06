@@ -221,7 +221,8 @@ struct SpawningEnemiesResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SpawningEnemiesResponseDefaultTypeInternal _SpawningEnemiesResponse_default_instance_;
 PROTOBUF_CONSTEXPR StateUpdate::StateUpdate(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.room_)*/nullptr
+    /*decltype(_impl_.compressed_map_dimensions_update_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.room_)*/nullptr
   , /*decltype(_impl_.mappositionsupdate_)*/nullptr
   , /*decltype(_impl_.positionupdate_)*/nullptr
   , /*decltype(_impl_.enemypositionsupdate_)*/nullptr
@@ -377,6 +378,7 @@ const uint32_t TableStruct_comm_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pro
   PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.enemypositionsupdate_),
   PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.mapdimensionsupdate_),
   PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.enemygothitupdate_),
+  PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.compressed_map_dimensions_update_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::comm::PositionUpdate)},
@@ -437,7 +439,7 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   " \003(\0132\014.comm.Player\022\034\n\007enemies\030\002 \003(\0132\013.co"
   "mm.Enemy\"8\n\023MapDimensionsUpdate\022!\n\tobsta"
   "cles\030\001 \003(\0132\016.comm.Obstacle\"*\n\027SpawningEn"
-  "emiesResponse\022\017\n\007enemyId\030\001 \003(\r\"\342\002\n\013State"
+  "emiesResponse\022\017\n\007enemyId\030\001 \003(\r\"\214\003\n\013State"
   "Update\022\n\n\002id\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022.co"
   "mm.StateVariant\022\030\n\004room\030\003 \001(\0132\n.comm.Roo"
   "m\0224\n\022mapPositionsUpdate\030\004 \001(\0132\030.comm.Map"
@@ -446,18 +448,19 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "pdate\030\006 \001(\0132\032.comm.EnemyPositionsUpdate\022"
   "6\n\023mapDimensionsUpdate\030\007 \001(\0132\031.comm.MapD"
   "imensionsUpdate\0222\n\021enemyGotHitUpdate\030\010 \001"
-  "(\0132\027.comm.EnemyGotHitUpdate*\305\001\n\014StateVar"
-  "iant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONN"
-  "ECTED\020\002\022\020\n\014ROOM_CHANGED\020\003\022\016\n\nMAP_UPDATE\020"
-  "\004\022\032\n\026PLAYER_POSITION_UPDATE\020\005\022\031\n\025MAP_DIM"
-  "ENSIONS_UPDATE\020\006\022\027\n\023SPAWN_ENEMY_REQUEST\020"
-  "\007\022\030\n\024ENEMY_GOT_HIT_UPDATE\020\010B6Z4github.co"
-  "m/kmrd-industries/qlp-proto-bindings/gen"
-  "/gob\006proto3"
+  "(\0132\027.comm.EnemyGotHitUpdate\022(\n compresse"
+  "d_map_dimensions_update\030\t \001(\014*\305\001\n\014StateV"
+  "ariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCO"
+  "NNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003\022\016\n\nMAP_UPDAT"
+  "E\020\004\022\032\n\026PLAYER_POSITION_UPDATE\020\005\022\031\n\025MAP_D"
+  "IMENSIONS_UPDATE\020\006\022\027\n\023SPAWN_ENEMY_REQUES"
+  "T\020\007\022\030\n\024ENEMY_GOT_HIT_UPDATE\020\010B6Z4github."
+  "com/kmrd-industries/qlp-proto-bindings/g"
+  "en/gob\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_comm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
-    false, false, 1611, descriptor_table_protodef_comm_2eproto,
+    false, false, 1653, descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once, nullptr, 0, 14,
     schemas, file_default_instances, TableStruct_comm_2eproto::offsets,
@@ -3947,7 +3950,8 @@ StateUpdate::StateUpdate(const StateUpdate& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   StateUpdate* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.room_){nullptr}
+      decltype(_impl_.compressed_map_dimensions_update_){}
+    , decltype(_impl_.room_){nullptr}
     , decltype(_impl_.mappositionsupdate_){nullptr}
     , decltype(_impl_.positionupdate_){nullptr}
     , decltype(_impl_.enemypositionsupdate_){nullptr}
@@ -3958,6 +3962,14 @@ StateUpdate::StateUpdate(const StateUpdate& from)
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.compressed_map_dimensions_update_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.compressed_map_dimensions_update_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_compressed_map_dimensions_update().empty()) {
+    _this->_impl_.compressed_map_dimensions_update_.Set(from._internal_compressed_map_dimensions_update(), 
+      _this->GetArenaForAllocation());
+  }
   if (from._internal_has_room()) {
     _this->_impl_.room_ = new ::comm::Room(*from._impl_.room_);
   }
@@ -3987,7 +3999,8 @@ inline void StateUpdate::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.room_){nullptr}
+      decltype(_impl_.compressed_map_dimensions_update_){}
+    , decltype(_impl_.room_){nullptr}
     , decltype(_impl_.mappositionsupdate_){nullptr}
     , decltype(_impl_.positionupdate_){nullptr}
     , decltype(_impl_.enemypositionsupdate_){nullptr}
@@ -3997,6 +4010,10 @@ inline void StateUpdate::SharedCtor(
     , decltype(_impl_.variant_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
+  _impl_.compressed_map_dimensions_update_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.compressed_map_dimensions_update_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 StateUpdate::~StateUpdate() {
@@ -4010,6 +4027,7 @@ StateUpdate::~StateUpdate() {
 
 inline void StateUpdate::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.compressed_map_dimensions_update_.Destroy();
   if (this != internal_default_instance()) delete _impl_.room_;
   if (this != internal_default_instance()) delete _impl_.mappositionsupdate_;
   if (this != internal_default_instance()) delete _impl_.positionupdate_;
@@ -4028,6 +4046,7 @@ void StateUpdate::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.compressed_map_dimensions_update_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && _impl_.room_ != nullptr) {
     delete _impl_.room_;
   }
@@ -4129,6 +4148,15 @@ const char* StateUpdate::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         } else
           goto handle_unusual;
         continue;
+      // bytes compressed_map_dimensions_update = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          auto str = _internal_mutable_compressed_map_dimensions_update();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -4213,6 +4241,12 @@ uint8_t* StateUpdate::_InternalSerialize(
         _Internal::enemygothitupdate(this).GetCachedSize(), target, stream);
   }
 
+  // bytes compressed_map_dimensions_update = 9;
+  if (!this->_internal_compressed_map_dimensions_update().empty()) {
+    target = stream->WriteBytesMaybeAliased(
+        9, this->_internal_compressed_map_dimensions_update(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -4228,6 +4262,13 @@ size_t StateUpdate::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // bytes compressed_map_dimensions_update = 9;
+  if (!this->_internal_compressed_map_dimensions_update().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_compressed_map_dimensions_update());
+  }
 
   // .comm.Room room = 3;
   if (this->_internal_has_room()) {
@@ -4300,6 +4341,9 @@ void StateUpdate::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PR
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!from._internal_compressed_map_dimensions_update().empty()) {
+    _this->_internal_set_compressed_map_dimensions_update(from._internal_compressed_map_dimensions_update());
+  }
   if (from._internal_has_room()) {
     _this->_internal_mutable_room()->::comm::Room::MergeFrom(
         from._internal_room());
@@ -4346,7 +4390,13 @@ bool StateUpdate::IsInitialized() const {
 
 void StateUpdate::InternalSwap(StateUpdate* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.compressed_map_dimensions_update_, lhs_arena,
+      &other->_impl_.compressed_map_dimensions_update_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.variant_)
       + sizeof(StateUpdate::_impl_.variant_)
