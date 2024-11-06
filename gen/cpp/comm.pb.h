@@ -806,30 +806,10 @@ class Obstacle final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kHeightFieldNumber = 1,
-    kWidthFieldNumber = 2,
-    kLeftFieldNumber = 3,
-    kTopFieldNumber = 4,
+    kLeftFieldNumber = 1,
+    kTopFieldNumber = 2,
   };
-  // int32 height = 1;
-  void clear_height();
-  int32_t height() const;
-  void set_height(int32_t value);
-  private:
-  int32_t _internal_height() const;
-  void _internal_set_height(int32_t value);
-  public:
-
-  // int32 width = 2;
-  void clear_width();
-  int32_t width() const;
-  void set_width(int32_t value);
-  private:
-  int32_t _internal_width() const;
-  void _internal_set_width(int32_t value);
-  public:
-
-  // int32 left = 3;
+  // int32 left = 1;
   void clear_left();
   int32_t left() const;
   void set_left(int32_t value);
@@ -838,7 +818,7 @@ class Obstacle final :
   void _internal_set_left(int32_t value);
   public:
 
-  // int32 top = 4;
+  // int32 top = 2;
   void clear_top();
   int32_t top() const;
   void set_top(int32_t value);
@@ -855,8 +835,6 @@ class Obstacle final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    int32_t height_;
-    int32_t width_;
     int32_t left_;
     int32_t top_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -3087,47 +3065,7 @@ inline void Room::set_y(int32_t value) {
 
 // Obstacle
 
-// int32 height = 1;
-inline void Obstacle::clear_height() {
-  _impl_.height_ = 0;
-}
-inline int32_t Obstacle::_internal_height() const {
-  return _impl_.height_;
-}
-inline int32_t Obstacle::height() const {
-  // @@protoc_insertion_point(field_get:comm.Obstacle.height)
-  return _internal_height();
-}
-inline void Obstacle::_internal_set_height(int32_t value) {
-  
-  _impl_.height_ = value;
-}
-inline void Obstacle::set_height(int32_t value) {
-  _internal_set_height(value);
-  // @@protoc_insertion_point(field_set:comm.Obstacle.height)
-}
-
-// int32 width = 2;
-inline void Obstacle::clear_width() {
-  _impl_.width_ = 0;
-}
-inline int32_t Obstacle::_internal_width() const {
-  return _impl_.width_;
-}
-inline int32_t Obstacle::width() const {
-  // @@protoc_insertion_point(field_get:comm.Obstacle.width)
-  return _internal_width();
-}
-inline void Obstacle::_internal_set_width(int32_t value) {
-  
-  _impl_.width_ = value;
-}
-inline void Obstacle::set_width(int32_t value) {
-  _internal_set_width(value);
-  // @@protoc_insertion_point(field_set:comm.Obstacle.width)
-}
-
-// int32 left = 3;
+// int32 left = 1;
 inline void Obstacle::clear_left() {
   _impl_.left_ = 0;
 }
@@ -3147,7 +3085,7 @@ inline void Obstacle::set_left(int32_t value) {
   // @@protoc_insertion_point(field_set:comm.Obstacle.left)
 }
 
-// int32 top = 4;
+// int32 top = 2;
 inline void Obstacle::clear_top() {
   _impl_.top_ = 0;
 }

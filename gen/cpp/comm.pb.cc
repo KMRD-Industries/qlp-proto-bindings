@@ -70,9 +70,7 @@ struct RoomDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RoomDefaultTypeInternal _Room_default_instance_;
 PROTOBUF_CONSTEXPR Obstacle::Obstacle(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.height_)*/0
-  , /*decltype(_impl_.width_)*/0
-  , /*decltype(_impl_.left_)*/0
+    /*decltype(_impl_.left_)*/0
   , /*decltype(_impl_.top_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ObstacleDefaultTypeInternal {
@@ -281,8 +279,6 @@ const uint32_t TableStruct_comm_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pro
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::comm::Obstacle, _impl_.height_),
-  PROTOBUF_FIELD_OFFSET(::comm::Obstacle, _impl_.width_),
   PROTOBUF_FIELD_OFFSET(::comm::Obstacle, _impl_.left_),
   PROTOBUF_FIELD_OFFSET(::comm::Obstacle, _impl_.top_),
   ~0u,  // no _has_bits_
@@ -387,16 +383,16 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 11, -1, -1, sizeof(::comm::GameState)},
   { 20, -1, -1, sizeof(::comm::Room)},
   { 28, -1, -1, sizeof(::comm::Obstacle)},
-  { 38, -1, -1, sizeof(::comm::Enemy)},
-  { 53, -1, -1, sizeof(::comm::Player)},
-  { 63, -1, -1, sizeof(::comm::TextureData)},
-  { 72, -1, -1, sizeof(::comm::CollisionData)},
-  { 83, -1, -1, sizeof(::comm::EnemyGotHitUpdate)},
-  { 91, -1, -1, sizeof(::comm::EnemyPositionsUpdate)},
-  { 98, -1, -1, sizeof(::comm::MapPositionsUpdate)},
-  { 106, -1, -1, sizeof(::comm::MapDimensionsUpdate)},
-  { 113, -1, -1, sizeof(::comm::SpawningEnemiesResponse)},
-  { 120, -1, -1, sizeof(::comm::StateUpdate)},
+  { 36, -1, -1, sizeof(::comm::Enemy)},
+  { 51, -1, -1, sizeof(::comm::Player)},
+  { 61, -1, -1, sizeof(::comm::TextureData)},
+  { 70, -1, -1, sizeof(::comm::CollisionData)},
+  { 81, -1, -1, sizeof(::comm::EnemyGotHitUpdate)},
+  { 89, -1, -1, sizeof(::comm::EnemyPositionsUpdate)},
+  { 96, -1, -1, sizeof(::comm::MapPositionsUpdate)},
+  { 104, -1, -1, sizeof(::comm::MapDimensionsUpdate)},
+  { 111, -1, -1, sizeof(::comm::SpawningEnemiesResponse)},
+  { 118, -1, -1, sizeof(::comm::StateUpdate)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -422,47 +418,46 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\tdirection\030\004 \001(\002\022\035\n\tcurr_room\030\005 \001(\0132\n.co"
   "mm.Room\"G\n\tGameState\022\021\n\tplayer_id\030\001 \001(\r\022"
   "\014\n\004seed\030\002 \001(\003\022\031\n\021connected_players\030\003 \003(\r"
-  "\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"D\n\010Obstac"
-  "le\022\016\n\006height\030\001 \001(\005\022\r\n\005width\030\002 \001(\005\022\014\n\004lef"
-  "t\030\003 \001(\005\022\013\n\003top\030\004 \001(\005\"\265\001\n\005Enemy\022\n\n\002id\030\001 \001"
-  "(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\022\014\n\004type\030\004 \001(\t\022\014"
-  "\n\004name\030\005 \001(\t\022\n\n\002hp\030\006 \001(\001\022\016\n\006damage\030\007 \001(\001"
-  "\022&\n\013textureData\030\010 \001(\0132\021.comm.TextureData"
-  "\022*\n\rcollisionData\030\t \001(\0132\023.comm.Collision"
-  "Data\"F\n\006Player\022\n\n\002id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n"
-  "\001y\030\003 \001(\002\022\032\n\022playerAttackDamage\030\004 \001(\001\"A\n\013"
-  "TextureData\022\016\n\006tileId\030\001 \001(\r\022\017\n\007tileSet\030\002"
-  " \001(\t\022\021\n\ttileLayer\030\003 \001(\005\"^\n\rCollisionData"
-  "\022\014\n\004type\030\001 \001(\005\022\r\n\005width\030\002 \001(\002\022\016\n\006height\030"
-  "\003 \001(\002\022\017\n\007xOffset\030\004 \001(\002\022\017\n\007yOffset\030\005 \001(\002\""
-  "6\n\021EnemyGotHitUpdate\022\020\n\010playerId\030\001 \001(\r\022\017"
-  "\n\007enemyId\030\002 \001(\r\";\n\024EnemyPositionsUpdate\022"
-  "#\n\016enemyPositions\030\001 \003(\0132\013.comm.Enemy\"Q\n\022"
-  "MapPositionsUpdate\022\035\n\007players\030\001 \003(\0132\014.co"
-  "mm.Player\022\034\n\007enemies\030\002 \003(\0132\013.comm.Enemy\""
-  "8\n\023MapDimensionsUpdate\022!\n\tobstacles\030\001 \003("
-  "\0132\016.comm.Obstacle\"*\n\027SpawningEnemiesResp"
-  "onse\022\017\n\007enemyId\030\001 \003(\r\"\342\002\n\013StateUpdate\022\n\n"
-  "\002id\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022.comm.StateV"
-  "ariant\022\030\n\004room\030\003 \001(\0132\n.comm.Room\0224\n\022mapP"
-  "ositionsUpdate\030\004 \001(\0132\030.comm.MapPositions"
-  "Update\022,\n\016positionUpdate\030\005 \001(\0132\024.comm.Po"
-  "sitionUpdate\0228\n\024enemyPositionsUpdate\030\006 \001"
-  "(\0132\032.comm.EnemyPositionsUpdate\0226\n\023mapDim"
-  "ensionsUpdate\030\007 \001(\0132\031.comm.MapDimensions"
-  "Update\0222\n\021enemyGotHitUpdate\030\010 \001(\0132\027.comm"
-  ".EnemyGotHitUpdate*\305\001\n\014StateVariant\022\010\n\004N"
-  "ONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002\022\020"
-  "\n\014ROOM_CHANGED\020\003\022\016\n\nMAP_UPDATE\020\004\022\032\n\026PLAY"
-  "ER_POSITION_UPDATE\020\005\022\031\n\025MAP_DIMENSIONS_U"
-  "PDATE\020\006\022\027\n\023SPAWN_ENEMY_REQUEST\020\007\022\030\n\024ENEM"
-  "Y_GOT_HIT_UPDATE\020\010B6Z4github.com/kmrd-in"
-  "dustries/qlp-proto-bindings/gen/gob\006prot"
-  "o3"
+  "\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"%\n\010Obstac"
+  "le\022\014\n\004left\030\001 \001(\005\022\013\n\003top\030\002 \001(\005\"\265\001\n\005Enemy\022"
+  "\n\n\002id\030\001 \001(\r\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\022\014\n\004typ"
+  "e\030\004 \001(\t\022\014\n\004name\030\005 \001(\t\022\n\n\002hp\030\006 \001(\001\022\016\n\006dam"
+  "age\030\007 \001(\001\022&\n\013textureData\030\010 \001(\0132\021.comm.Te"
+  "xtureData\022*\n\rcollisionData\030\t \001(\0132\023.comm."
+  "CollisionData\"F\n\006Player\022\n\n\002id\030\001 \001(\r\022\t\n\001x"
+  "\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\022\032\n\022playerAttackDamage\030"
+  "\004 \001(\001\"A\n\013TextureData\022\016\n\006tileId\030\001 \001(\r\022\017\n\007"
+  "tileSet\030\002 \001(\t\022\021\n\ttileLayer\030\003 \001(\005\"^\n\rColl"
+  "isionData\022\014\n\004type\030\001 \001(\005\022\r\n\005width\030\002 \001(\002\022\016"
+  "\n\006height\030\003 \001(\002\022\017\n\007xOffset\030\004 \001(\002\022\017\n\007yOffs"
+  "et\030\005 \001(\002\"6\n\021EnemyGotHitUpdate\022\020\n\010playerI"
+  "d\030\001 \001(\r\022\017\n\007enemyId\030\002 \001(\r\";\n\024EnemyPositio"
+  "nsUpdate\022#\n\016enemyPositions\030\001 \003(\0132\013.comm."
+  "Enemy\"Q\n\022MapPositionsUpdate\022\035\n\007players\030\001"
+  " \003(\0132\014.comm.Player\022\034\n\007enemies\030\002 \003(\0132\013.co"
+  "mm.Enemy\"8\n\023MapDimensionsUpdate\022!\n\tobsta"
+  "cles\030\001 \003(\0132\016.comm.Obstacle\"*\n\027SpawningEn"
+  "emiesResponse\022\017\n\007enemyId\030\001 \003(\r\"\342\002\n\013State"
+  "Update\022\n\n\002id\030\001 \001(\r\022#\n\007variant\030\002 \001(\0162\022.co"
+  "mm.StateVariant\022\030\n\004room\030\003 \001(\0132\n.comm.Roo"
+  "m\0224\n\022mapPositionsUpdate\030\004 \001(\0132\030.comm.Map"
+  "PositionsUpdate\022,\n\016positionUpdate\030\005 \001(\0132"
+  "\024.comm.PositionUpdate\0228\n\024enemyPositionsU"
+  "pdate\030\006 \001(\0132\032.comm.EnemyPositionsUpdate\022"
+  "6\n\023mapDimensionsUpdate\030\007 \001(\0132\031.comm.MapD"
+  "imensionsUpdate\0222\n\021enemyGotHitUpdate\030\010 \001"
+  "(\0132\027.comm.EnemyGotHitUpdate*\305\001\n\014StateVar"
+  "iant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONN"
+  "ECTED\020\002\022\020\n\014ROOM_CHANGED\020\003\022\016\n\nMAP_UPDATE\020"
+  "\004\022\032\n\026PLAYER_POSITION_UPDATE\020\005\022\031\n\025MAP_DIM"
+  "ENSIONS_UPDATE\020\006\022\027\n\023SPAWN_ENEMY_REQUEST\020"
+  "\007\022\030\n\024ENEMY_GOT_HIT_UPDATE\020\010B6Z4github.co"
+  "m/kmrd-industries/qlp-proto-bindings/gen"
+  "/gob\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_comm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
-    false, false, 1642, descriptor_table_protodef_comm_2eproto,
+    false, false, 1611, descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once, nullptr, 0, 14,
     schemas, file_default_instances, TableStruct_comm_2eproto::offsets,
@@ -1314,16 +1309,14 @@ Obstacle::Obstacle(const Obstacle& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   Obstacle* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.height_){}
-    , decltype(_impl_.width_){}
-    , decltype(_impl_.left_){}
+      decltype(_impl_.left_){}
     , decltype(_impl_.top_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.height_, &from._impl_.height_,
+  ::memcpy(&_impl_.left_, &from._impl_.left_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.top_) -
-    reinterpret_cast<char*>(&_impl_.height_)) + sizeof(_impl_.top_));
+    reinterpret_cast<char*>(&_impl_.left_)) + sizeof(_impl_.top_));
   // @@protoc_insertion_point(copy_constructor:comm.Obstacle)
 }
 
@@ -1332,9 +1325,7 @@ inline void Obstacle::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.height_){0}
-    , decltype(_impl_.width_){0}
-    , decltype(_impl_.left_){0}
+      decltype(_impl_.left_){0}
     , decltype(_impl_.top_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
@@ -1363,9 +1354,9 @@ void Obstacle::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.height_, 0, static_cast<size_t>(
+  ::memset(&_impl_.left_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.top_) -
-      reinterpret_cast<char*>(&_impl_.height_)) + sizeof(_impl_.top_));
+      reinterpret_cast<char*>(&_impl_.left_)) + sizeof(_impl_.top_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1375,33 +1366,17 @@ const char* Obstacle::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // int32 height = 1;
+      // int32 left = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 width = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 left = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _impl_.left_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // int32 top = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+      // int32 top = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           _impl_.top_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
@@ -1436,28 +1411,16 @@ uint8_t* Obstacle::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 height = 1;
-  if (this->_internal_height() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_height(), target);
-  }
-
-  // int32 width = 2;
-  if (this->_internal_width() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_width(), target);
-  }
-
-  // int32 left = 3;
+  // int32 left = 1;
   if (this->_internal_left() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_left(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_left(), target);
   }
 
-  // int32 top = 4;
+  // int32 top = 2;
   if (this->_internal_top() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_top(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_top(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1476,22 +1439,12 @@ size_t Obstacle::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // int32 height = 1;
-  if (this->_internal_height() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_height());
-  }
-
-  // int32 width = 2;
-  if (this->_internal_width() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_width());
-  }
-
-  // int32 left = 3;
+  // int32 left = 1;
   if (this->_internal_left() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_left());
   }
 
-  // int32 top = 4;
+  // int32 top = 2;
   if (this->_internal_top() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_top());
   }
@@ -1514,12 +1467,6 @@ void Obstacle::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTO
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_height() != 0) {
-    _this->_internal_set_height(from._internal_height());
-  }
-  if (from._internal_width() != 0) {
-    _this->_internal_set_width(from._internal_width());
-  }
   if (from._internal_left() != 0) {
     _this->_internal_set_left(from._internal_left());
   }
@@ -1546,9 +1493,9 @@ void Obstacle::InternalSwap(Obstacle* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Obstacle, _impl_.top_)
       + sizeof(Obstacle::_impl_.top_)
-      - PROTOBUF_FIELD_OFFSET(Obstacle, _impl_.height_)>(
-          reinterpret_cast<char*>(&_impl_.height_),
-          reinterpret_cast<char*>(&other->_impl_.height_));
+      - PROTOBUF_FIELD_OFFSET(Obstacle, _impl_.left_)>(
+          reinterpret_cast<char*>(&_impl_.left_),
+          reinterpret_cast<char*>(&other->_impl_.left_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Obstacle::GetMetadata() const {

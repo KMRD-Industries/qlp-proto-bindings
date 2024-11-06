@@ -36,10 +36,8 @@ message Room {
 }
 
 message Obstacle {
-    int32 height = 1;
-    int32 width = 2;
-    int32 left = 3;
-    int32 top = 4;
+    int32 left = 1;
+    int32 top = 2;
 }
 
 message Enemy {
