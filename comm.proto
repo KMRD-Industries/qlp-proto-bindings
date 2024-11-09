@@ -59,6 +59,7 @@ enum StateVariant {
     PLAYER_DIED = 9;
 }
 
+
 message BytePrefix {
     uint32 bytes = 1;
 }
@@ -69,3 +70,8 @@ message StateUpdate {
     StateVariant variant = 3;
     Room room = 4;
 }
+
+message StateUpdateSeries {
+    repeated StateUpdate updates = 1;
+}
+

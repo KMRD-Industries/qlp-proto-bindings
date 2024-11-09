@@ -72,6 +72,9 @@ extern RoomDefaultTypeInternal _Room_default_instance_;
 class StateUpdate;
 struct StateUpdateDefaultTypeInternal;
 extern StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
+class StateUpdateSeries;
+struct StateUpdateSeriesDefaultTypeInternal;
+extern StateUpdateSeriesDefaultTypeInternal _StateUpdateSeries_default_instance_;
 }  // namespace comm
 namespace google {
 namespace protobuf {
@@ -1727,6 +1730,201 @@ class InitialInfo final : public ::google::protobuf::Message
   union { Impl_ _impl_; };
   friend struct ::TableStruct_comm_2eproto;
 };
+// -------------------------------------------------------------------
+
+class StateUpdateSeries final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:comm.StateUpdateSeries) */ {
+ public:
+  inline StateUpdateSeries() : StateUpdateSeries(nullptr) {}
+  ~StateUpdateSeries() PROTOBUF_FINAL;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR StateUpdateSeries(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline StateUpdateSeries(const StateUpdateSeries& from) : StateUpdateSeries(nullptr, from) {}
+  inline StateUpdateSeries(StateUpdateSeries&& from) noexcept
+      : StateUpdateSeries(nullptr, std::move(from)) {}
+  inline StateUpdateSeries& operator=(const StateUpdateSeries& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StateUpdateSeries& operator=(StateUpdateSeries&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StateUpdateSeries& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StateUpdateSeries* internal_default_instance() {
+    return reinterpret_cast<const StateUpdateSeries*>(
+        &_StateUpdateSeries_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(StateUpdateSeries& a, StateUpdateSeries& b) { a.Swap(&b); }
+  inline void Swap(StateUpdateSeries* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StateUpdateSeries* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StateUpdateSeries* New(::google::protobuf::Arena* arena = nullptr) const PROTOBUF_FINAL {
+    return ::google::protobuf::Message::DefaultConstruct<StateUpdateSeries>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const StateUpdateSeries& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const StateUpdateSeries& from) { StateUpdateSeries::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(StateUpdateSeries* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "comm.StateUpdateSeries"; }
+
+ protected:
+  explicit StateUpdateSeries(::google::protobuf::Arena* arena);
+  StateUpdateSeries(::google::protobuf::Arena* arena, const StateUpdateSeries& from);
+  StateUpdateSeries(::google::protobuf::Arena* arena, StateUpdateSeries&& from) noexcept
+      : StateUpdateSeries(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static const ::google::protobuf::Message::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kUpdatesFieldNumber = 1,
+  };
+  // repeated .comm.StateUpdate updates = 1;
+  int updates_size() const;
+  private:
+  int _internal_updates_size() const;
+
+  public:
+  void clear_updates() ;
+  ::comm::StateUpdate* mutable_updates(int index);
+  ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>* mutable_updates();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>& _internal_updates() const;
+  ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>* _internal_mutable_updates();
+  public:
+  const ::comm::StateUpdate& updates(int index) const;
+  ::comm::StateUpdate* add_updates();
+  const ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>& updates() const;
+  // @@protoc_insertion_point(class_scope:comm.StateUpdateSeries)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_StateUpdateSeries_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const StateUpdateSeries& from_msg);
+    ::google::protobuf::RepeatedPtrField< ::comm::StateUpdate > updates_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_comm_2eproto;
+};
 
 // ===================================================================
 
@@ -2792,6 +2990,59 @@ inline void StateUpdate::set_allocated_room(::comm::Room* value) {
 
   _impl_.room_ = reinterpret_cast<::comm::Room*>(value);
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.room)
+}
+
+// -------------------------------------------------------------------
+
+// StateUpdateSeries
+
+// repeated .comm.StateUpdate updates = 1;
+inline int StateUpdateSeries::_internal_updates_size() const {
+  return _internal_updates().size();
+}
+inline int StateUpdateSeries::updates_size() const {
+  return _internal_updates_size();
+}
+inline void StateUpdateSeries::clear_updates() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.updates_.Clear();
+}
+inline ::comm::StateUpdate* StateUpdateSeries::mutable_updates(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdateSeries.updates)
+  return _internal_mutable_updates()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>* StateUpdateSeries::mutable_updates()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:comm.StateUpdateSeries.updates)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_updates();
+}
+inline const ::comm::StateUpdate& StateUpdateSeries::updates(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.StateUpdateSeries.updates)
+  return _internal_updates().Get(index);
+}
+inline ::comm::StateUpdate* StateUpdateSeries::add_updates() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::comm::StateUpdate* _add = _internal_mutable_updates()->Add();
+  // @@protoc_insertion_point(field_add:comm.StateUpdateSeries.updates)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>& StateUpdateSeries::updates() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:comm.StateUpdateSeries.updates)
+  return _internal_updates();
+}
+inline const ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>&
+StateUpdateSeries::_internal_updates() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.updates_;
+}
+inline ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>*
+StateUpdateSeries::_internal_mutable_updates() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.updates_;
 }
 
 #ifdef __GNUC__
