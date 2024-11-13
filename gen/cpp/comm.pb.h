@@ -3029,7 +3029,7 @@ class StateUpdate final :
     kItemFieldNumber = 2,
     kRoomFieldNumber = 4,
     kMapPositionsUpdateFieldNumber = 5,
-    kPositionUpdateFieldNumber = 6,
+    kMovementUpdateFieldNumber = 6,
     kEnemyPositionsUpdateFieldNumber = 7,
     kMapDimensionsUpdateFieldNumber = 8,
     kEnemyGotHitUpdateFieldNumber = 9,
@@ -3121,23 +3121,23 @@ class StateUpdate final :
       ::comm::MapPositionsUpdate* map_positions_update);
   ::comm::MapPositionsUpdate* unsafe_arena_release_map_positions_update();
 
-  // .comm.MovementUpdate position_Update = 6;
-  bool has_position_update() const;
+  // .comm.MovementUpdate movement_update = 6;
+  bool has_movement_update() const;
   private:
-  bool _internal_has_position_update() const;
+  bool _internal_has_movement_update() const;
   public:
-  void clear_position_update();
-  const ::comm::MovementUpdate& position_update() const;
-  PROTOBUF_NODISCARD ::comm::MovementUpdate* release_position_update();
-  ::comm::MovementUpdate* mutable_position_update();
-  void set_allocated_position_update(::comm::MovementUpdate* position_update);
+  void clear_movement_update();
+  const ::comm::MovementUpdate& movement_update() const;
+  PROTOBUF_NODISCARD ::comm::MovementUpdate* release_movement_update();
+  ::comm::MovementUpdate* mutable_movement_update();
+  void set_allocated_movement_update(::comm::MovementUpdate* movement_update);
   private:
-  const ::comm::MovementUpdate& _internal_position_update() const;
-  ::comm::MovementUpdate* _internal_mutable_position_update();
+  const ::comm::MovementUpdate& _internal_movement_update() const;
+  ::comm::MovementUpdate* _internal_mutable_movement_update();
   public:
-  void unsafe_arena_set_allocated_position_update(
-      ::comm::MovementUpdate* position_update);
-  ::comm::MovementUpdate* unsafe_arena_release_position_update();
+  void unsafe_arena_set_allocated_movement_update(
+      ::comm::MovementUpdate* movement_update);
+  ::comm::MovementUpdate* unsafe_arena_release_movement_update();
 
   // .comm.EnemyPositionsUpdate enemy_positions_update = 7;
   bool has_enemy_positions_update() const;
@@ -3215,7 +3215,7 @@ class StateUpdate final :
     ::comm::Item* item_;
     ::comm::Room* room_;
     ::comm::MapPositionsUpdate* map_positions_update_;
-    ::comm::MovementUpdate* position_update_;
+    ::comm::MovementUpdate* movement_update_;
     ::comm::EnemyPositionsUpdate* enemy_positions_update_;
     ::comm::MapDimensionsUpdate* map_dimensions_update_;
     ::comm::EnemyGotHitUpdate* enemy_got_hit_update_;
@@ -5243,45 +5243,45 @@ inline void StateUpdate::set_allocated_map_positions_update(::comm::MapPositions
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.map_positions_update)
 }
 
-// .comm.MovementUpdate position_Update = 6;
-inline bool StateUpdate::_internal_has_position_update() const {
-  return this != internal_default_instance() && _impl_.position_update_ != nullptr;
+// .comm.MovementUpdate movement_update = 6;
+inline bool StateUpdate::_internal_has_movement_update() const {
+  return this != internal_default_instance() && _impl_.movement_update_ != nullptr;
 }
-inline bool StateUpdate::has_position_update() const {
-  return _internal_has_position_update();
+inline bool StateUpdate::has_movement_update() const {
+  return _internal_has_movement_update();
 }
-inline void StateUpdate::clear_position_update() {
-  if (GetArenaForAllocation() == nullptr && _impl_.position_update_ != nullptr) {
-    delete _impl_.position_update_;
+inline void StateUpdate::clear_movement_update() {
+  if (GetArenaForAllocation() == nullptr && _impl_.movement_update_ != nullptr) {
+    delete _impl_.movement_update_;
   }
-  _impl_.position_update_ = nullptr;
+  _impl_.movement_update_ = nullptr;
 }
-inline const ::comm::MovementUpdate& StateUpdate::_internal_position_update() const {
-  const ::comm::MovementUpdate* p = _impl_.position_update_;
+inline const ::comm::MovementUpdate& StateUpdate::_internal_movement_update() const {
+  const ::comm::MovementUpdate* p = _impl_.movement_update_;
   return p != nullptr ? *p : reinterpret_cast<const ::comm::MovementUpdate&>(
       ::comm::_MovementUpdate_default_instance_);
 }
-inline const ::comm::MovementUpdate& StateUpdate::position_update() const {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.position_Update)
-  return _internal_position_update();
+inline const ::comm::MovementUpdate& StateUpdate::movement_update() const {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.movement_update)
+  return _internal_movement_update();
 }
-inline void StateUpdate::unsafe_arena_set_allocated_position_update(
-    ::comm::MovementUpdate* position_update) {
+inline void StateUpdate::unsafe_arena_set_allocated_movement_update(
+    ::comm::MovementUpdate* movement_update) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.position_update_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.movement_update_);
   }
-  _impl_.position_update_ = position_update;
-  if (position_update) {
+  _impl_.movement_update_ = movement_update;
+  if (movement_update) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.position_Update)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.movement_update)
 }
-inline ::comm::MovementUpdate* StateUpdate::release_position_update() {
+inline ::comm::MovementUpdate* StateUpdate::release_movement_update() {
   
-  ::comm::MovementUpdate* temp = _impl_.position_update_;
-  _impl_.position_update_ = nullptr;
+  ::comm::MovementUpdate* temp = _impl_.movement_update_;
+  _impl_.movement_update_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -5293,44 +5293,44 @@ inline ::comm::MovementUpdate* StateUpdate::release_position_update() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::comm::MovementUpdate* StateUpdate::unsafe_arena_release_position_update() {
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.position_Update)
+inline ::comm::MovementUpdate* StateUpdate::unsafe_arena_release_movement_update() {
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.movement_update)
   
-  ::comm::MovementUpdate* temp = _impl_.position_update_;
-  _impl_.position_update_ = nullptr;
+  ::comm::MovementUpdate* temp = _impl_.movement_update_;
+  _impl_.movement_update_ = nullptr;
   return temp;
 }
-inline ::comm::MovementUpdate* StateUpdate::_internal_mutable_position_update() {
+inline ::comm::MovementUpdate* StateUpdate::_internal_mutable_movement_update() {
   
-  if (_impl_.position_update_ == nullptr) {
+  if (_impl_.movement_update_ == nullptr) {
     auto* p = CreateMaybeMessage<::comm::MovementUpdate>(GetArenaForAllocation());
-    _impl_.position_update_ = p;
+    _impl_.movement_update_ = p;
   }
-  return _impl_.position_update_;
+  return _impl_.movement_update_;
 }
-inline ::comm::MovementUpdate* StateUpdate::mutable_position_update() {
-  ::comm::MovementUpdate* _msg = _internal_mutable_position_update();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.position_Update)
+inline ::comm::MovementUpdate* StateUpdate::mutable_movement_update() {
+  ::comm::MovementUpdate* _msg = _internal_mutable_movement_update();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.movement_update)
   return _msg;
 }
-inline void StateUpdate::set_allocated_position_update(::comm::MovementUpdate* position_update) {
+inline void StateUpdate::set_allocated_movement_update(::comm::MovementUpdate* movement_update) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete _impl_.position_update_;
+    delete _impl_.movement_update_;
   }
-  if (position_update) {
+  if (movement_update) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(position_update);
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(movement_update);
     if (message_arena != submessage_arena) {
-      position_update = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, position_update, submessage_arena);
+      movement_update = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, movement_update, submessage_arena);
     }
     
   } else {
     
   }
-  _impl_.position_update_ = position_update;
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.position_Update)
+  _impl_.movement_update_ = movement_update;
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.movement_update)
 }
 
 // .comm.EnemyPositionsUpdate enemy_positions_update = 7;

@@ -129,7 +129,7 @@ message StateUpdate {
     StateVariant variant = 3;
     Room room = 4;
     MapPositionsUpdate map_positions_update = 5;
-    MovementUpdate position_Update = 6;
+    MovementUpdate movement_update = 6;
     EnemyPositionsUpdate enemy_positions_update = 7;
     MapDimensionsUpdate map_dimensions_update = 8;
     EnemyGotHitUpdate enemy_got_hit_update = 9;
