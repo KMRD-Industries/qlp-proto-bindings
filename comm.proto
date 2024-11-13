@@ -128,10 +128,10 @@ message StateUpdate {
     Item item = 2;
     StateVariant variant = 3;
     Room room = 4;
-    MapPositionsUpdate map_Positions_Update = 5;
+    MapPositionsUpdate map_positions_update = 5;
     MovementUpdate position_Update = 6;
-    EnemyPositionsUpdate enemy_Positions_Update = 7;
-    MapDimensionsUpdate map_Dimensions_Update = 8;
-    EnemyGotHitUpdate enemy_Got_Hit_Update = 9;
+    EnemyPositionsUpdate enemy_positions_update = 7;
+    MapDimensionsUpdate map_dimensions_update = 8;
+    EnemyGotHitUpdate enemy_got_hit_update = 9;
     bytes compressed_map_dimensions_update = 10;
 }

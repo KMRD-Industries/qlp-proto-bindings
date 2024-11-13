@@ -510,12 +510,12 @@ const char descriptor_table_protodef_comm_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "player\030\001 \001(\0132\014.comm.Player\022\030\n\004item\030\002 \001(\013"
   "2\n.comm.Item\022#\n\007variant\030\003 \001(\0162\022.comm.Sta"
   "teVariant\022\030\n\004room\030\004 \001(\0132\n.comm.Room\0226\n\024m"
-  "ap_Positions_Update\030\005 \001(\0132\030.comm.MapPosi"
+  "ap_positions_update\030\005 \001(\0132\030.comm.MapPosi"
   "tionsUpdate\022-\n\017position_Update\030\006 \001(\0132\024.c"
-  "omm.MovementUpdate\022:\n\026enemy_Positions_Up"
+  "omm.MovementUpdate\022:\n\026enemy_positions_up"
   "date\030\007 \001(\0132\032.comm.EnemyPositionsUpdate\0228"
-  "\n\025map_Dimensions_Update\030\010 \001(\0132\031.comm.Map"
-  "DimensionsUpdate\0225\n\024enemy_Got_Hit_Update"
+  "\n\025map_dimensions_update\030\010 \001(\0132\031.comm.Map"
+  "DimensionsUpdate\0225\n\024enemy_got_hit_update"
   "\030\t \001(\0132\027.comm.EnemyGotHitUpdate\022(\n compr"
   "essed_map_dimensions_update\030\n \001(\014*\230\002\n\014St"
   "ateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014D"
@@ -4825,7 +4825,7 @@ const char* StateUpdate::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         } else
           goto handle_unusual;
         continue;
-      // .comm.MapPositionsUpdate map_Positions_Update = 5;
+      // .comm.MapPositionsUpdate map_positions_update = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
           ptr = ctx->ParseMessage(_internal_mutable_map_positions_update(), ptr);
@@ -4841,7 +4841,7 @@ const char* StateUpdate::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         } else
           goto handle_unusual;
         continue;
-      // .comm.EnemyPositionsUpdate enemy_Positions_Update = 7;
+      // .comm.EnemyPositionsUpdate enemy_positions_update = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
           ptr = ctx->ParseMessage(_internal_mutable_enemy_positions_update(), ptr);
@@ -4849,7 +4849,7 @@ const char* StateUpdate::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         } else
           goto handle_unusual;
         continue;
-      // .comm.MapDimensionsUpdate map_Dimensions_Update = 8;
+      // .comm.MapDimensionsUpdate map_dimensions_update = 8;
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
           ptr = ctx->ParseMessage(_internal_mutable_map_dimensions_update(), ptr);
@@ -4857,7 +4857,7 @@ const char* StateUpdate::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         } else
           goto handle_unusual;
         continue;
-      // .comm.EnemyGotHitUpdate enemy_Got_Hit_Update = 9;
+      // .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
           ptr = ctx->ParseMessage(_internal_mutable_enemy_got_hit_update(), ptr);
@@ -4931,7 +4931,7 @@ uint8_t* StateUpdate::_InternalSerialize(
         _Internal::room(this).GetCachedSize(), target, stream);
   }
 
-  // .comm.MapPositionsUpdate map_Positions_Update = 5;
+  // .comm.MapPositionsUpdate map_positions_update = 5;
   if (this->_internal_has_map_positions_update()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(5, _Internal::map_positions_update(this),
@@ -4945,21 +4945,21 @@ uint8_t* StateUpdate::_InternalSerialize(
         _Internal::position_update(this).GetCachedSize(), target, stream);
   }
 
-  // .comm.EnemyPositionsUpdate enemy_Positions_Update = 7;
+  // .comm.EnemyPositionsUpdate enemy_positions_update = 7;
   if (this->_internal_has_enemy_positions_update()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(7, _Internal::enemy_positions_update(this),
         _Internal::enemy_positions_update(this).GetCachedSize(), target, stream);
   }
 
-  // .comm.MapDimensionsUpdate map_Dimensions_Update = 8;
+  // .comm.MapDimensionsUpdate map_dimensions_update = 8;
   if (this->_internal_has_map_dimensions_update()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(8, _Internal::map_dimensions_update(this),
         _Internal::map_dimensions_update(this).GetCachedSize(), target, stream);
   }
 
-  // .comm.EnemyGotHitUpdate enemy_Got_Hit_Update = 9;
+  // .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
   if (this->_internal_has_enemy_got_hit_update()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(9, _Internal::enemy_got_hit_update(this),
@@ -5016,7 +5016,7 @@ size_t StateUpdate::ByteSizeLong() const {
         *_impl_.room_);
   }
 
-  // .comm.MapPositionsUpdate map_Positions_Update = 5;
+  // .comm.MapPositionsUpdate map_positions_update = 5;
   if (this->_internal_has_map_positions_update()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -5030,21 +5030,21 @@ size_t StateUpdate::ByteSizeLong() const {
         *_impl_.position_update_);
   }
 
-  // .comm.EnemyPositionsUpdate enemy_Positions_Update = 7;
+  // .comm.EnemyPositionsUpdate enemy_positions_update = 7;
   if (this->_internal_has_enemy_positions_update()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.enemy_positions_update_);
   }
 
-  // .comm.MapDimensionsUpdate map_Dimensions_Update = 8;
+  // .comm.MapDimensionsUpdate map_dimensions_update = 8;
   if (this->_internal_has_map_dimensions_update()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.map_dimensions_update_);
   }
 
-  // .comm.EnemyGotHitUpdate enemy_Got_Hit_Update = 9;
+  // .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
   if (this->_internal_has_enemy_got_hit_update()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(

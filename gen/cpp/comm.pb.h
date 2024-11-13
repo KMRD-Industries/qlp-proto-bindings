@@ -3103,7 +3103,7 @@ class StateUpdate final :
       ::comm::Room* room);
   ::comm::Room* unsafe_arena_release_room();
 
-  // .comm.MapPositionsUpdate map_Positions_Update = 5;
+  // .comm.MapPositionsUpdate map_positions_update = 5;
   bool has_map_positions_update() const;
   private:
   bool _internal_has_map_positions_update() const;
@@ -3139,7 +3139,7 @@ class StateUpdate final :
       ::comm::MovementUpdate* position_update);
   ::comm::MovementUpdate* unsafe_arena_release_position_update();
 
-  // .comm.EnemyPositionsUpdate enemy_Positions_Update = 7;
+  // .comm.EnemyPositionsUpdate enemy_positions_update = 7;
   bool has_enemy_positions_update() const;
   private:
   bool _internal_has_enemy_positions_update() const;
@@ -3157,7 +3157,7 @@ class StateUpdate final :
       ::comm::EnemyPositionsUpdate* enemy_positions_update);
   ::comm::EnemyPositionsUpdate* unsafe_arena_release_enemy_positions_update();
 
-  // .comm.MapDimensionsUpdate map_Dimensions_Update = 8;
+  // .comm.MapDimensionsUpdate map_dimensions_update = 8;
   bool has_map_dimensions_update() const;
   private:
   bool _internal_has_map_dimensions_update() const;
@@ -3175,7 +3175,7 @@ class StateUpdate final :
       ::comm::MapDimensionsUpdate* map_dimensions_update);
   ::comm::MapDimensionsUpdate* unsafe_arena_release_map_dimensions_update();
 
-  // .comm.EnemyGotHitUpdate enemy_Got_Hit_Update = 9;
+  // .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
   bool has_enemy_got_hit_update() const;
   private:
   bool _internal_has_enemy_got_hit_update() const;
@@ -5153,7 +5153,7 @@ inline void StateUpdate::set_allocated_room(::comm::Room* room) {
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.room)
 }
 
-// .comm.MapPositionsUpdate map_Positions_Update = 5;
+// .comm.MapPositionsUpdate map_positions_update = 5;
 inline bool StateUpdate::_internal_has_map_positions_update() const {
   return this != internal_default_instance() && _impl_.map_positions_update_ != nullptr;
 }
@@ -5172,7 +5172,7 @@ inline const ::comm::MapPositionsUpdate& StateUpdate::_internal_map_positions_up
       ::comm::_MapPositionsUpdate_default_instance_);
 }
 inline const ::comm::MapPositionsUpdate& StateUpdate::map_positions_update() const {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.map_Positions_Update)
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.map_positions_update)
   return _internal_map_positions_update();
 }
 inline void StateUpdate::unsafe_arena_set_allocated_map_positions_update(
@@ -5186,7 +5186,7 @@ inline void StateUpdate::unsafe_arena_set_allocated_map_positions_update(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.map_Positions_Update)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.map_positions_update)
 }
 inline ::comm::MapPositionsUpdate* StateUpdate::release_map_positions_update() {
   
@@ -5204,7 +5204,7 @@ inline ::comm::MapPositionsUpdate* StateUpdate::release_map_positions_update() {
   return temp;
 }
 inline ::comm::MapPositionsUpdate* StateUpdate::unsafe_arena_release_map_positions_update() {
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.map_Positions_Update)
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.map_positions_update)
   
   ::comm::MapPositionsUpdate* temp = _impl_.map_positions_update_;
   _impl_.map_positions_update_ = nullptr;
@@ -5220,7 +5220,7 @@ inline ::comm::MapPositionsUpdate* StateUpdate::_internal_mutable_map_positions_
 }
 inline ::comm::MapPositionsUpdate* StateUpdate::mutable_map_positions_update() {
   ::comm::MapPositionsUpdate* _msg = _internal_mutable_map_positions_update();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.map_Positions_Update)
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.map_positions_update)
   return _msg;
 }
 inline void StateUpdate::set_allocated_map_positions_update(::comm::MapPositionsUpdate* map_positions_update) {
@@ -5240,7 +5240,7 @@ inline void StateUpdate::set_allocated_map_positions_update(::comm::MapPositions
     
   }
   _impl_.map_positions_update_ = map_positions_update;
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.map_Positions_Update)
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.map_positions_update)
 }
 
 // .comm.MovementUpdate position_Update = 6;
@@ -5333,7 +5333,7 @@ inline void StateUpdate::set_allocated_position_update(::comm::MovementUpdate* p
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.position_Update)
 }
 
-// .comm.EnemyPositionsUpdate enemy_Positions_Update = 7;
+// .comm.EnemyPositionsUpdate enemy_positions_update = 7;
 inline bool StateUpdate::_internal_has_enemy_positions_update() const {
   return this != internal_default_instance() && _impl_.enemy_positions_update_ != nullptr;
 }
@@ -5352,7 +5352,7 @@ inline const ::comm::EnemyPositionsUpdate& StateUpdate::_internal_enemy_position
       ::comm::_EnemyPositionsUpdate_default_instance_);
 }
 inline const ::comm::EnemyPositionsUpdate& StateUpdate::enemy_positions_update() const {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.enemy_Positions_Update)
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.enemy_positions_update)
   return _internal_enemy_positions_update();
 }
 inline void StateUpdate::unsafe_arena_set_allocated_enemy_positions_update(
@@ -5366,7 +5366,7 @@ inline void StateUpdate::unsafe_arena_set_allocated_enemy_positions_update(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.enemy_Positions_Update)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.enemy_positions_update)
 }
 inline ::comm::EnemyPositionsUpdate* StateUpdate::release_enemy_positions_update() {
   
@@ -5384,7 +5384,7 @@ inline ::comm::EnemyPositionsUpdate* StateUpdate::release_enemy_positions_update
   return temp;
 }
 inline ::comm::EnemyPositionsUpdate* StateUpdate::unsafe_arena_release_enemy_positions_update() {
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.enemy_Positions_Update)
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.enemy_positions_update)
   
   ::comm::EnemyPositionsUpdate* temp = _impl_.enemy_positions_update_;
   _impl_.enemy_positions_update_ = nullptr;
@@ -5400,7 +5400,7 @@ inline ::comm::EnemyPositionsUpdate* StateUpdate::_internal_mutable_enemy_positi
 }
 inline ::comm::EnemyPositionsUpdate* StateUpdate::mutable_enemy_positions_update() {
   ::comm::EnemyPositionsUpdate* _msg = _internal_mutable_enemy_positions_update();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.enemy_Positions_Update)
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.enemy_positions_update)
   return _msg;
 }
 inline void StateUpdate::set_allocated_enemy_positions_update(::comm::EnemyPositionsUpdate* enemy_positions_update) {
@@ -5420,10 +5420,10 @@ inline void StateUpdate::set_allocated_enemy_positions_update(::comm::EnemyPosit
     
   }
   _impl_.enemy_positions_update_ = enemy_positions_update;
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.enemy_Positions_Update)
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.enemy_positions_update)
 }
 
-// .comm.MapDimensionsUpdate map_Dimensions_Update = 8;
+// .comm.MapDimensionsUpdate map_dimensions_update = 8;
 inline bool StateUpdate::_internal_has_map_dimensions_update() const {
   return this != internal_default_instance() && _impl_.map_dimensions_update_ != nullptr;
 }
@@ -5442,7 +5442,7 @@ inline const ::comm::MapDimensionsUpdate& StateUpdate::_internal_map_dimensions_
       ::comm::_MapDimensionsUpdate_default_instance_);
 }
 inline const ::comm::MapDimensionsUpdate& StateUpdate::map_dimensions_update() const {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.map_Dimensions_Update)
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.map_dimensions_update)
   return _internal_map_dimensions_update();
 }
 inline void StateUpdate::unsafe_arena_set_allocated_map_dimensions_update(
@@ -5456,7 +5456,7 @@ inline void StateUpdate::unsafe_arena_set_allocated_map_dimensions_update(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.map_Dimensions_Update)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.map_dimensions_update)
 }
 inline ::comm::MapDimensionsUpdate* StateUpdate::release_map_dimensions_update() {
   
@@ -5474,7 +5474,7 @@ inline ::comm::MapDimensionsUpdate* StateUpdate::release_map_dimensions_update()
   return temp;
 }
 inline ::comm::MapDimensionsUpdate* StateUpdate::unsafe_arena_release_map_dimensions_update() {
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.map_Dimensions_Update)
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.map_dimensions_update)
   
   ::comm::MapDimensionsUpdate* temp = _impl_.map_dimensions_update_;
   _impl_.map_dimensions_update_ = nullptr;
@@ -5490,7 +5490,7 @@ inline ::comm::MapDimensionsUpdate* StateUpdate::_internal_mutable_map_dimension
 }
 inline ::comm::MapDimensionsUpdate* StateUpdate::mutable_map_dimensions_update() {
   ::comm::MapDimensionsUpdate* _msg = _internal_mutable_map_dimensions_update();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.map_Dimensions_Update)
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.map_dimensions_update)
   return _msg;
 }
 inline void StateUpdate::set_allocated_map_dimensions_update(::comm::MapDimensionsUpdate* map_dimensions_update) {
@@ -5510,10 +5510,10 @@ inline void StateUpdate::set_allocated_map_dimensions_update(::comm::MapDimensio
     
   }
   _impl_.map_dimensions_update_ = map_dimensions_update;
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.map_Dimensions_Update)
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.map_dimensions_update)
 }
 
-// .comm.EnemyGotHitUpdate enemy_Got_Hit_Update = 9;
+// .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
 inline bool StateUpdate::_internal_has_enemy_got_hit_update() const {
   return this != internal_default_instance() && _impl_.enemy_got_hit_update_ != nullptr;
 }
@@ -5532,7 +5532,7 @@ inline const ::comm::EnemyGotHitUpdate& StateUpdate::_internal_enemy_got_hit_upd
       ::comm::_EnemyGotHitUpdate_default_instance_);
 }
 inline const ::comm::EnemyGotHitUpdate& StateUpdate::enemy_got_hit_update() const {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.enemy_Got_Hit_Update)
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.enemy_got_hit_update)
   return _internal_enemy_got_hit_update();
 }
 inline void StateUpdate::unsafe_arena_set_allocated_enemy_got_hit_update(
@@ -5546,7 +5546,7 @@ inline void StateUpdate::unsafe_arena_set_allocated_enemy_got_hit_update(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.enemy_Got_Hit_Update)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.enemy_got_hit_update)
 }
 inline ::comm::EnemyGotHitUpdate* StateUpdate::release_enemy_got_hit_update() {
   
@@ -5564,7 +5564,7 @@ inline ::comm::EnemyGotHitUpdate* StateUpdate::release_enemy_got_hit_update() {
   return temp;
 }
 inline ::comm::EnemyGotHitUpdate* StateUpdate::unsafe_arena_release_enemy_got_hit_update() {
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.enemy_Got_Hit_Update)
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.enemy_got_hit_update)
   
   ::comm::EnemyGotHitUpdate* temp = _impl_.enemy_got_hit_update_;
   _impl_.enemy_got_hit_update_ = nullptr;
@@ -5580,7 +5580,7 @@ inline ::comm::EnemyGotHitUpdate* StateUpdate::_internal_mutable_enemy_got_hit_u
 }
 inline ::comm::EnemyGotHitUpdate* StateUpdate::mutable_enemy_got_hit_update() {
   ::comm::EnemyGotHitUpdate* _msg = _internal_mutable_enemy_got_hit_update();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.enemy_Got_Hit_Update)
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.enemy_got_hit_update)
   return _msg;
 }
 inline void StateUpdate::set_allocated_enemy_got_hit_update(::comm::EnemyGotHitUpdate* enemy_got_hit_update) {
@@ -5600,7 +5600,7 @@ inline void StateUpdate::set_allocated_enemy_got_hit_update(::comm::EnemyGotHitU
     
   }
   _impl_.enemy_got_hit_update_ = enemy_got_hit_update;
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.enemy_Got_Hit_Update)
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.enemy_got_hit_update)
 }
 
 // bytes compressed_map_dimensions_update = 10;
