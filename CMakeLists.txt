@@ -21,10 +21,7 @@ FetchContent_Declare(protobuf
         GIT_TAG v28.2)
 FetchContent_MakeAvailable(protobuf)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC
-        ${_REFLECTION}
-        ${_GRPC_GRPCPP}
-        ${_PROTOBUF_LIBPROTOBUF})
+target_link_libraries(${PROJECT_NAME} PUBLIC protobuf::libprotobuf)
 target_include_directories(${PROJECT_NAME} INTERFACE gen/cpp)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
