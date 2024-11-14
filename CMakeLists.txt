@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(ABSL_PROPAGATE_CXX_STD ON)
 
 add_library(${PROJECT_NAME} STATIC
-    gen/cpp/comm.pb.cc
-    gen/cpp/comm.pb.h
+        gen/cpp/comm.pb.cc
+        gen/cpp/comm.pb.h
 )
 
 include(FetchContent)
@@ -17,16 +17,19 @@ set(protobuf_BUILD_PROTOC_BINARIES OFF)
 set(protobuf_BUILD_TESTS OFF)
 set(protobuf_BUILD_LIBUPB OFF)
 FetchContent_Declare(protobuf
-    GIT_REPOSITORY https://github.com/protocolbuffers/protobuf
-    GIT_TAG v28.2)
+        GIT_REPOSITORY https://github.com/protocolbuffers/protobuf
+        GIT_TAG v28.2)
 FetchContent_MakeAvailable(protobuf)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC protobuf::libprotobuf)
+target_link_libraries(${PROJECT_NAME} PUBLIC
+        ${_REFLECTION}
+        ${_GRPC_GRPCPP}
+        ${_PROTOBUF_LIBPROTOBUF})
 target_include_directories(${PROJECT_NAME} INTERFACE gen/cpp)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 
 install(TARGETS ${PROJECT_NAME}
-    EXPORT ${PROJECT_NAME}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        EXPORT ${PROJECT_NAME}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
