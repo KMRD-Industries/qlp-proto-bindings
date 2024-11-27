@@ -96,6 +96,9 @@ extern SpawningEnemiesResponseDefaultTypeInternal _SpawningEnemiesResponse_defau
 class StateUpdate;
 struct StateUpdateDefaultTypeInternal;
 extern StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
+class StateUpdateSeries;
+struct StateUpdateSeriesDefaultTypeInternal;
+extern StateUpdateSeriesDefaultTypeInternal _StateUpdateSeries_default_instance_;
 class TextureData;
 struct TextureDataDefaultTypeInternal;
 extern TextureDataDefaultTypeInternal _TextureData_default_instance_;
@@ -112,14 +115,16 @@ enum StateVariant : int {
   DISCONNECTED = 2,
   ROOM_CHANGED = 3,
   ROOM_CLEARED = 4,
-  CHEST_OPENED = 5,
-  REQUEST_ITEM_GENERATOR = 6,
-  ITEM_EQUIPPED = 7,
-  MAP_UPDATE = 8,
-  PLAYER_POSITION_UPDATE = 9,
-  MAP_DIMENSIONS_UPDATE = 10,
-  SPAWN_ENEMY_REQUEST = 11,
-  ENEMY_GOT_HIT_UPDATE = 12,
+  LEVEL_CHANGED = 5,
+  CHEST_OPENED = 6,
+  REQUEST_ITEM_GENERATOR = 7,
+  ITEM_EQUIPPED = 8,
+  PLAYER_DIED = 9,
+  MAP_UPDATE = 10,
+  PLAYER_POSITION_UPDATE = 11,
+  MAP_DIMENSIONS_UPDATE = 12,
+  SPAWN_ENEMY_REQUEST = 13,
+  ENEMY_GOT_HIT_UPDATE = 14,
   StateVariant_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   StateVariant_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -129,8 +134,8 @@ enum StateVariant : int {
 bool StateVariant_IsValid(int value);
 extern const uint32_t StateVariant_internal_data_[];
 constexpr StateVariant StateVariant_MIN = static_cast<StateVariant>(0);
-constexpr StateVariant StateVariant_MAX = static_cast<StateVariant>(12);
-constexpr int StateVariant_ARRAYSIZE = 12 + 1;
+constexpr StateVariant StateVariant_MAX = static_cast<StateVariant>(14);
+constexpr int StateVariant_ARRAYSIZE = 14 + 1;
 const ::google::protobuf::EnumDescriptor*
 StateVariant_descriptor();
 template <typename T>
@@ -143,7 +148,7 @@ const std::string& StateVariant_Name(T value) {
 template <>
 inline const std::string& StateVariant_Name(StateVariant value) {
   return ::google::protobuf::internal::NameOfDenseEnum<StateVariant_descriptor,
-                                                 0, 12>(
+                                                 0, 14>(
       static_cast<int>(value));
 }
 inline bool StateVariant_Parse(absl::string_view name, StateVariant* value) {
@@ -1984,13 +1989,13 @@ class Player final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kItemsFieldNumber = 5,
+    kItemsFieldNumber = 2,
     kIdFieldNumber = 1,
-    kPositionXFieldNumber = 2,
-    kPlayerAttackDamageFieldNumber = 4,
-    kPositionYFieldNumber = 3,
+    kPositionXFieldNumber = 3,
+    kPlayerAttackDamageFieldNumber = 5,
+    kPositionYFieldNumber = 4,
   };
-  // repeated .comm.Item items = 5;
+  // repeated .comm.Item items = 2;
   int items_size() const;
   private:
   int _internal_items_size() const;
@@ -2017,7 +2022,7 @@ class Player final : public ::google::protobuf::Message
   void _internal_set_id(::uint32_t value);
 
   public:
-  // float position_x = 2;
+  // float position_x = 3;
   void clear_position_x() ;
   float position_x() const;
   void set_position_x(float value);
@@ -2027,7 +2032,7 @@ class Player final : public ::google::protobuf::Message
   void _internal_set_position_x(float value);
 
   public:
-  // double player_attack_damage = 4;
+  // double player_attack_damage = 5;
   void clear_player_attack_damage() ;
   double player_attack_damage() const;
   void set_player_attack_damage(double value);
@@ -2037,7 +2042,7 @@ class Player final : public ::google::protobuf::Message
   void _internal_set_player_attack_damage(double value);
 
   public:
-  // float position_y = 3;
+  // float position_y = 4;
   void clear_position_y() ;
   float position_y() const;
   void set_position_y(float value);
@@ -3858,6 +3863,201 @@ class StateUpdate final : public ::google::protobuf::Message
   union { Impl_ _impl_; };
   friend struct ::TableStruct_comm_2eproto;
 };
+// -------------------------------------------------------------------
+
+class StateUpdateSeries final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:comm.StateUpdateSeries) */ {
+ public:
+  inline StateUpdateSeries() : StateUpdateSeries(nullptr) {}
+  ~StateUpdateSeries() PROTOBUF_FINAL;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR StateUpdateSeries(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline StateUpdateSeries(const StateUpdateSeries& from) : StateUpdateSeries(nullptr, from) {}
+  inline StateUpdateSeries(StateUpdateSeries&& from) noexcept
+      : StateUpdateSeries(nullptr, std::move(from)) {}
+  inline StateUpdateSeries& operator=(const StateUpdateSeries& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StateUpdateSeries& operator=(StateUpdateSeries&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StateUpdateSeries& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StateUpdateSeries* internal_default_instance() {
+    return reinterpret_cast<const StateUpdateSeries*>(
+        &_StateUpdateSeries_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 16;
+  friend void swap(StateUpdateSeries& a, StateUpdateSeries& b) { a.Swap(&b); }
+  inline void Swap(StateUpdateSeries* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StateUpdateSeries* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StateUpdateSeries* New(::google::protobuf::Arena* arena = nullptr) const PROTOBUF_FINAL {
+    return ::google::protobuf::Message::DefaultConstruct<StateUpdateSeries>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const StateUpdateSeries& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const StateUpdateSeries& from) { StateUpdateSeries::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(StateUpdateSeries* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "comm.StateUpdateSeries"; }
+
+ protected:
+  explicit StateUpdateSeries(::google::protobuf::Arena* arena);
+  StateUpdateSeries(::google::protobuf::Arena* arena, const StateUpdateSeries& from);
+  StateUpdateSeries(::google::protobuf::Arena* arena, StateUpdateSeries&& from) noexcept
+      : StateUpdateSeries(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static const ::google::protobuf::Message::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kUpdatesFieldNumber = 1,
+  };
+  // repeated .comm.StateUpdate updates = 1;
+  int updates_size() const;
+  private:
+  int _internal_updates_size() const;
+
+  public:
+  void clear_updates() ;
+  ::comm::StateUpdate* mutable_updates(int index);
+  ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>* mutable_updates();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>& _internal_updates() const;
+  ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>* _internal_mutable_updates();
+  public:
+  const ::comm::StateUpdate& updates(int index) const;
+  ::comm::StateUpdate* add_updates();
+  const ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>& updates() const;
+  // @@protoc_insertion_point(class_scope:comm.StateUpdateSeries)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_StateUpdateSeries_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const StateUpdateSeries& from_msg);
+    ::google::protobuf::RepeatedPtrField< ::comm::StateUpdate > updates_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_comm_2eproto;
+};
 
 // ===================================================================
 
@@ -4151,73 +4351,7 @@ inline void Player::_internal_set_id(::uint32_t value) {
   _impl_.id_ = value;
 }
 
-// float position_x = 2;
-inline void Player::clear_position_x() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.position_x_ = 0;
-}
-inline float Player::position_x() const {
-  // @@protoc_insertion_point(field_get:comm.Player.position_x)
-  return _internal_position_x();
-}
-inline void Player::set_position_x(float value) {
-  _internal_set_position_x(value);
-  // @@protoc_insertion_point(field_set:comm.Player.position_x)
-}
-inline float Player::_internal_position_x() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.position_x_;
-}
-inline void Player::_internal_set_position_x(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.position_x_ = value;
-}
-
-// float position_y = 3;
-inline void Player::clear_position_y() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.position_y_ = 0;
-}
-inline float Player::position_y() const {
-  // @@protoc_insertion_point(field_get:comm.Player.position_y)
-  return _internal_position_y();
-}
-inline void Player::set_position_y(float value) {
-  _internal_set_position_y(value);
-  // @@protoc_insertion_point(field_set:comm.Player.position_y)
-}
-inline float Player::_internal_position_y() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.position_y_;
-}
-inline void Player::_internal_set_position_y(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.position_y_ = value;
-}
-
-// double player_attack_damage = 4;
-inline void Player::clear_player_attack_damage() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.player_attack_damage_ = 0;
-}
-inline double Player::player_attack_damage() const {
-  // @@protoc_insertion_point(field_get:comm.Player.player_attack_damage)
-  return _internal_player_attack_damage();
-}
-inline void Player::set_player_attack_damage(double value) {
-  _internal_set_player_attack_damage(value);
-  // @@protoc_insertion_point(field_set:comm.Player.player_attack_damage)
-}
-inline double Player::_internal_player_attack_damage() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.player_attack_damage_;
-}
-inline void Player::_internal_set_player_attack_damage(double value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.player_attack_damage_ = value;
-}
-
-// repeated .comm.Item items = 5;
+// repeated .comm.Item items = 2;
 inline int Player::_internal_items_size() const {
   return _internal_items().size();
 }
@@ -4264,6 +4398,72 @@ inline ::google::protobuf::RepeatedPtrField<::comm::Item>*
 Player::_internal_mutable_items() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.items_;
+}
+
+// float position_x = 3;
+inline void Player::clear_position_x() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.position_x_ = 0;
+}
+inline float Player::position_x() const {
+  // @@protoc_insertion_point(field_get:comm.Player.position_x)
+  return _internal_position_x();
+}
+inline void Player::set_position_x(float value) {
+  _internal_set_position_x(value);
+  // @@protoc_insertion_point(field_set:comm.Player.position_x)
+}
+inline float Player::_internal_position_x() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.position_x_;
+}
+inline void Player::_internal_set_position_x(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.position_x_ = value;
+}
+
+// float position_y = 4;
+inline void Player::clear_position_y() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.position_y_ = 0;
+}
+inline float Player::position_y() const {
+  // @@protoc_insertion_point(field_get:comm.Player.position_y)
+  return _internal_position_y();
+}
+inline void Player::set_position_y(float value) {
+  _internal_set_position_y(value);
+  // @@protoc_insertion_point(field_set:comm.Player.position_y)
+}
+inline float Player::_internal_position_y() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.position_y_;
+}
+inline void Player::_internal_set_position_y(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.position_y_ = value;
+}
+
+// double player_attack_damage = 5;
+inline void Player::clear_player_attack_damage() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.player_attack_damage_ = 0;
+}
+inline double Player::player_attack_damage() const {
+  // @@protoc_insertion_point(field_get:comm.Player.player_attack_damage)
+  return _internal_player_attack_damage();
+}
+inline void Player::set_player_attack_damage(double value) {
+  _internal_set_player_attack_damage(value);
+  // @@protoc_insertion_point(field_set:comm.Player.player_attack_damage)
+}
+inline double Player::_internal_player_attack_damage() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.player_attack_damage_;
+}
+inline void Player::_internal_set_player_attack_damage(double value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.player_attack_damage_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -6490,6 +6690,59 @@ inline void StateUpdate::set_allocated_compressed_map_dimensions_update(std::str
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.compressed_map_dimensions_update)
+}
+
+// -------------------------------------------------------------------
+
+// StateUpdateSeries
+
+// repeated .comm.StateUpdate updates = 1;
+inline int StateUpdateSeries::_internal_updates_size() const {
+  return _internal_updates().size();
+}
+inline int StateUpdateSeries::updates_size() const {
+  return _internal_updates_size();
+}
+inline void StateUpdateSeries::clear_updates() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.updates_.Clear();
+}
+inline ::comm::StateUpdate* StateUpdateSeries::mutable_updates(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdateSeries.updates)
+  return _internal_mutable_updates()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>* StateUpdateSeries::mutable_updates()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:comm.StateUpdateSeries.updates)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_updates();
+}
+inline const ::comm::StateUpdate& StateUpdateSeries::updates(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.StateUpdateSeries.updates)
+  return _internal_updates().Get(index);
+}
+inline ::comm::StateUpdate* StateUpdateSeries::add_updates() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::comm::StateUpdate* _add = _internal_mutable_updates()->Add();
+  // @@protoc_insertion_point(field_add:comm.StateUpdateSeries.updates)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>& StateUpdateSeries::updates() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:comm.StateUpdateSeries.updates)
+  return _internal_updates();
+}
+inline const ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>&
+StateUpdateSeries::_internal_updates() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.updates_;
+}
+inline ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>*
+StateUpdateSeries::_internal_mutable_updates() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.updates_;
 }
 
 #ifdef __GNUC__

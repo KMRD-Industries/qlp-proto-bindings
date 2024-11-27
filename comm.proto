@@ -8,14 +8,16 @@ enum StateVariant {
     DISCONNECTED = 2;
     ROOM_CHANGED = 3;
     ROOM_CLEARED = 4;
-    CHEST_OPENED = 5;
-    REQUEST_ITEM_GENERATOR = 6;
-    ITEM_EQUIPPED = 7;
-    MAP_UPDATE = 8;
-    PLAYER_POSITION_UPDATE = 9;
-    MAP_DIMENSIONS_UPDATE = 10;
-    SPAWN_ENEMY_REQUEST = 11;
-    ENEMY_GOT_HIT_UPDATE = 12;
+    LEVEL_CHANGED = 5;
+    CHEST_OPENED = 6;
+    REQUEST_ITEM_GENERATOR = 7;
+    ITEM_EQUIPPED = 8;
+    PLAYER_DIED = 9;
+    MAP_UPDATE = 10;
+    PLAYER_POSITION_UPDATE = 11;
+    MAP_DIMENSIONS_UPDATE = 12;
+    SPAWN_ENEMY_REQUEST = 13;
+    ENEMY_GOT_HIT_UPDATE = 14;
 }
 
 enum ItemType {
@@ -42,10 +44,10 @@ message MovementUpdate {
 // sent via TCP
 message Player {
     uint32 id = 1;
-    float position_x = 2;
-    float position_y = 3;
-    double player_attack_damage = 4;
-    repeated Item items = 5;
+    repeated Item items = 2;
+    float position_x = 3;
+    float position_y = 4;
+    double player_attack_damage = 5;
 }
 
 message Item {
@@ -134,4 +136,8 @@ message StateUpdate {
     MapDimensionsUpdate map_dimensions_update = 8;
     EnemyGotHitUpdate enemy_got_hit_update = 9;
     bytes compressed_map_dimensions_update = 10;
+}
+
+message StateUpdateSeries {
+    repeated StateUpdate updates = 1;
 }
