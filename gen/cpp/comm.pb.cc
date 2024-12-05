@@ -792,7 +792,7 @@ const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "\n\004seed\030\002 \001(\003\022\035\n\tnext_item\030\003 \001(\0132\n.comm.I"
     "tem\022\'\n\021connected_players\030\004 \003(\0132\014.comm.Pl"
     "ayer\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"%\n\010Ob"
-    "stacle\022\014\n\004left\030\001 \001(\005\022\013\n\003top\030\002 \001(\005\"\311\001\n\005En"
+    "stacle\022\014\n\004left\030\001 \001(\002\022\013\n\003top\030\002 \001(\002\"\311\001\n\005En"
     "emy\022\n\n\002id\030\001 \001(\r\022\022\n\nposition_x\030\002 \001(\002\022\022\n\np"
     "osition_y\030\003 \001(\002\022\014\n\004type\030\004 \001(\t\022\014\n\004name\030\005 "
     "\001(\t\022\n\n\002hp\030\006 \001(\001\022\016\n\006damage\030\007 \001(\001\022\'\n\014textu"
@@ -2539,21 +2539,21 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> Obstacle::_table_ = {
     ::_pbi::TcParser::GetTable<::comm::Obstacle>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // int32 top = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Obstacle, _impl_.top_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Obstacle, _impl_.top_)}},
-    // int32 left = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Obstacle, _impl_.left_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Obstacle, _impl_.left_)}},
+    // float top = 2;
+    {::_pbi::TcParser::FastF32S1,
+     {21, 63, 0, PROTOBUF_FIELD_OFFSET(Obstacle, _impl_.top_)}},
+    // float left = 1;
+    {::_pbi::TcParser::FastF32S1,
+     {13, 63, 0, PROTOBUF_FIELD_OFFSET(Obstacle, _impl_.left_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // int32 left = 1;
+    // float left = 1;
     {PROTOBUF_FIELD_OFFSET(Obstacle, _impl_.left_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 top = 2;
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // float top = 2;
     {PROTOBUF_FIELD_OFFSET(Obstacle, _impl_.top_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
   }},
   // no aux_entries
   {{
@@ -2588,18 +2588,18 @@ PROTOBUF_NOINLINE void Obstacle::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // int32 left = 1;
-          if (this_._internal_left() != 0) {
-            target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt32ToArrayWithField<1>(
-                    stream, this_._internal_left(), target);
+          // float left = 1;
+          if (::absl::bit_cast<::uint32_t>(this_._internal_left()) != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteFloatToArray(
+                1, this_._internal_left(), target);
           }
 
-          // int32 top = 2;
-          if (this_._internal_top() != 0) {
-            target = ::google::protobuf::internal::WireFormatLite::
-                WriteInt32ToArrayWithField<2>(
-                    stream, this_._internal_top(), target);
+          // float top = 2;
+          if (::absl::bit_cast<::uint32_t>(this_._internal_top()) != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteFloatToArray(
+                2, this_._internal_top(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -2627,15 +2627,13 @@ PROTOBUF_NOINLINE void Obstacle::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // int32 left = 1;
-            if (this_._internal_left() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-                  this_._internal_left());
+            // float left = 1;
+            if (::absl::bit_cast<::uint32_t>(this_._internal_left()) != 0) {
+              total_size += 5;
             }
-            // int32 top = 2;
-            if (this_._internal_top() != 0) {
-              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-                  this_._internal_top());
+            // float top = 2;
+            if (::absl::bit_cast<::uint32_t>(this_._internal_top()) != 0) {
+              total_size += 5;
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -2650,10 +2648,10 @@ void Obstacle::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_left() != 0) {
+  if (::absl::bit_cast<::uint32_t>(from._internal_left()) != 0) {
     _this->_impl_.left_ = from._impl_.left_;
   }
-  if (from._internal_top() != 0) {
+  if (::absl::bit_cast<::uint32_t>(from._internal_top()) != 0) {
     _this->_impl_.top_ = from._impl_.top_;
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);

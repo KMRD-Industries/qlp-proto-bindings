@@ -956,24 +956,24 @@ class Obstacle final : public ::google::protobuf::Message
     kLeftFieldNumber = 1,
     kTopFieldNumber = 2,
   };
-  // int32 left = 1;
+  // float left = 1;
   void clear_left() ;
-  ::int32_t left() const;
-  void set_left(::int32_t value);
+  float left() const;
+  void set_left(float value);
 
   private:
-  ::int32_t _internal_left() const;
-  void _internal_set_left(::int32_t value);
+  float _internal_left() const;
+  void _internal_set_left(float value);
 
   public:
-  // int32 top = 2;
+  // float top = 2;
   void clear_top() ;
-  ::int32_t top() const;
-  void set_top(::int32_t value);
+  float top() const;
+  void set_top(float value);
 
   private:
-  ::int32_t _internal_top() const;
-  void _internal_set_top(::int32_t value);
+  float _internal_top() const;
+  void _internal_set_top(float value);
 
   public:
   // @@protoc_insertion_point(class_scope:comm.Obstacle)
@@ -1002,8 +1002,8 @@ class Obstacle final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const Obstacle& from_msg);
-    ::int32_t left_;
-    ::int32_t top_;
+    float left_;
+    float top_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -4855,46 +4855,46 @@ inline void Room::_internal_set_y(::int32_t value) {
 
 // Obstacle
 
-// int32 left = 1;
+// float left = 1;
 inline void Obstacle::clear_left() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.left_ = 0;
 }
-inline ::int32_t Obstacle::left() const {
+inline float Obstacle::left() const {
   // @@protoc_insertion_point(field_get:comm.Obstacle.left)
   return _internal_left();
 }
-inline void Obstacle::set_left(::int32_t value) {
+inline void Obstacle::set_left(float value) {
   _internal_set_left(value);
   // @@protoc_insertion_point(field_set:comm.Obstacle.left)
 }
-inline ::int32_t Obstacle::_internal_left() const {
+inline float Obstacle::_internal_left() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.left_;
 }
-inline void Obstacle::_internal_set_left(::int32_t value) {
+inline void Obstacle::_internal_set_left(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.left_ = value;
 }
 
-// int32 top = 2;
+// float top = 2;
 inline void Obstacle::clear_top() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.top_ = 0;
 }
-inline ::int32_t Obstacle::top() const {
+inline float Obstacle::top() const {
   // @@protoc_insertion_point(field_get:comm.Obstacle.top)
   return _internal_top();
 }
-inline void Obstacle::set_top(::int32_t value) {
+inline void Obstacle::set_top(float value) {
   _internal_set_top(value);
   // @@protoc_insertion_point(field_set:comm.Obstacle.top)
 }
-inline ::int32_t Obstacle::_internal_top() const {
+inline float Obstacle::_internal_top() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.top_;
 }
-inline void Obstacle::_internal_set_top(::int32_t value) {
+inline void Obstacle::_internal_set_top(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.top_ = value;
 }

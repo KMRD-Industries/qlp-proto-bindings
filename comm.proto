@@ -69,8 +69,8 @@ message Room {
 }
 
 message Obstacle {
-    int32 left = 1;
-    int32 top = 2;
+    float left = 1;
+    float top = 2;
 }
 
 message Enemy {
