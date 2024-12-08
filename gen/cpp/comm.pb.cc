@@ -333,6 +333,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr StateUpdate::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
+        enemy_spawner_positions_{},
         compressed_map_dimensions_update_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
@@ -534,6 +535,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.item_),
         PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.variant_),
         PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.room_),
+        PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.enemy_spawner_positions_),
         PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.map_dimensions_update_),
         PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.enemy_got_hit_update_),
         PROTOBUF_FIELD_OFFSET(::comm::StateUpdate, _impl_.compressed_map_dimensions_update_),
@@ -541,6 +543,7 @@ const ::uint32_t
         1,
         ~0u,
         2,
+        ~0u,
         3,
         4,
         ~0u,
@@ -707,20 +710,20 @@ static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, 19, -1, sizeof(::comm::MovementUpdate)},
         {30, -1, -1, sizeof(::comm::BytePrefix)},
-        {39, 54, -1, sizeof(::comm::StateUpdate)},
-        {61, -1, -1, sizeof(::comm::StateUpdateSeries)},
-        {70, -1, -1, sizeof(::comm::Player)},
-        {83, -1, -1, sizeof(::comm::Item)},
-        {94, 106, -1, sizeof(::comm::InitialInfo)},
-        {110, -1, -1, sizeof(::comm::Room)},
-        {120, -1, -1, sizeof(::comm::Obstacle)},
-        {130, 147, -1, sizeof(::comm::Enemy)},
-        {156, -1, -1, sizeof(::comm::TextureData)},
-        {167, -1, -1, sizeof(::comm::CollisionData)},
-        {180, -1, -1, sizeof(::comm::EnemyGotHitUpdate)},
-        {190, -1, -1, sizeof(::comm::MapPositionsUpdate)},
-        {200, -1, -1, sizeof(::comm::MapDimensionsUpdate)},
-        {209, -1, -1, sizeof(::comm::SpawningEnemiesResponse)},
+        {39, 55, -1, sizeof(::comm::StateUpdate)},
+        {63, -1, -1, sizeof(::comm::StateUpdateSeries)},
+        {72, -1, -1, sizeof(::comm::Player)},
+        {85, -1, -1, sizeof(::comm::Item)},
+        {96, 108, -1, sizeof(::comm::InitialInfo)},
+        {112, -1, -1, sizeof(::comm::Room)},
+        {122, -1, -1, sizeof(::comm::Obstacle)},
+        {132, 149, -1, sizeof(::comm::Enemy)},
+        {158, -1, -1, sizeof(::comm::TextureData)},
+        {169, -1, -1, sizeof(::comm::CollisionData)},
+        {182, -1, -1, sizeof(::comm::EnemyGotHitUpdate)},
+        {192, -1, -1, sizeof(::comm::MapPositionsUpdate)},
+        {202, -1, -1, sizeof(::comm::MapDimensionsUpdate)},
+        {211, -1, -1, sizeof(::comm::SpawningEnemiesResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::comm::_MovementUpdate_default_instance_._instance,
@@ -751,59 +754,60 @@ const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     ".comm.Room\022$\n\017enemy_positions\030\n \003(\0132\013.co"
     "mm.Enemy\0226\n\024map_positions_update\030\013 \001(\0132\030"
     ".comm.MapPositionsUpdate\"\033\n\nBytePrefix\022\r"
-    "\n\005bytes\030\001 \001(\r\"\237\002\n\013StateUpdate\022\034\n\006player\030"
+    "\n\005bytes\030\001 \001(\r\"\315\002\n\013StateUpdate\022\034\n\006player\030"
     "\001 \001(\0132\014.comm.Player\022\030\n\004item\030\002 \001(\0132\n.comm"
     ".Item\022#\n\007variant\030\003 \001(\0162\022.comm.StateVaria"
-    "nt\022\030\n\004room\030\004 \001(\0132\n.comm.Room\0228\n\025map_dime"
-    "nsions_update\030\010 \001(\0132\031.comm.MapDimensions"
-    "Update\0225\n\024enemy_got_hit_update\030\t \001(\0132\027.c"
-    "omm.EnemyGotHitUpdate\022(\n compressed_map_"
-    "dimensions_update\030\n \001(\014\"7\n\021StateUpdateSe"
-    "ries\022\"\n\007updates\030\001 \003(\0132\021.comm.StateUpdate"
-    "\"u\n\006Player\022\n\n\002id\030\001 \001(\r\022\031\n\005items\030\002 \003(\0132\n."
-    "comm.Item\022\022\n\nposition_x\030\003 \001(\002\022\022\n\npositio"
-    "n_y\030\004 \001(\002\022\034\n\024player_attack_damage\030\005 \001(\001\""
-    "=\n\004Item\022\n\n\002id\030\001 \001(\r\022\013\n\003gen\030\002 \001(\r\022\034\n\004type"
-    "\030\003 \001(\0162\016.comm.ItemType\"\201\001\n\013InitialInfo\022\034"
-    "\n\006player\030\001 \001(\0132\014.comm.Player\022\014\n\004seed\030\002 \001"
-    "(\003\022\035\n\tnext_item\030\003 \001(\0132\n.comm.Item\022\'\n\021con"
-    "nected_players\030\004 \003(\0132\014.comm.Player\"\034\n\004Ro"
-    "om\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"%\n\010Obstacle\022\014\n\004"
-    "left\030\001 \001(\002\022\013\n\003top\030\002 \001(\002\"\311\001\n\005Enemy\022\n\n\002id\030"
-    "\001 \001(\r\022\022\n\nposition_x\030\002 \001(\002\022\022\n\nposition_y\030"
-    "\003 \001(\002\022\014\n\004type\030\004 \001(\t\022\014\n\004name\030\005 \001(\t\022\n\n\002hp\030"
-    "\006 \001(\001\022\016\n\006damage\030\007 \001(\001\022\'\n\014texture_data\030\010 "
-    "\001(\0132\021.comm.TextureData\022+\n\016collision_data"
-    "\030\t \001(\0132\023.comm.CollisionData\"D\n\013TextureDa"
-    "ta\022\017\n\007tile_id\030\001 \001(\r\022\020\n\010tile_set\030\002 \001(\t\022\022\n"
-    "\ntile_layer\030\003 \001(\005\"`\n\rCollisionData\022\014\n\004ty"
-    "pe\030\001 \001(\005\022\r\n\005width\030\002 \001(\002\022\016\n\006height\030\003 \001(\002\022"
-    "\020\n\010x_offset\030\004 \001(\002\022\020\n\010y_offset\030\005 \001(\002\"8\n\021E"
-    "nemyGotHitUpdate\022\021\n\tplayer_id\030\001 \001(\r\022\020\n\010e"
-    "nemy_id\030\002 \001(\r\"Q\n\022MapPositionsUpdate\022\035\n\007p"
-    "layers\030\001 \003(\0132\014.comm.Player\022\034\n\007enemies\030\002 "
-    "\003(\0132\013.comm.Enemy\"8\n\023MapDimensionsUpdate\022"
-    "!\n\tobstacles\030\001 \003(\0132\016.comm.Obstacle\"+\n\027Sp"
-    "awningEnemiesResponse\022\020\n\010enemy_id\030\001 \003(\r*"
-    "\220\002\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020"
-    "\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003\022\020\n"
-    "\014ROOM_CLEARED\020\004\022\021\n\rLEVEL_CHANGED\020\005\022\020\n\014CH"
-    "EST_OPENED\020\006\022\032\n\026REQUEST_ITEM_GENERATOR\020\007"
-    "\022\021\n\rITEM_EQUIPPED\020\010\022\017\n\013PLAYER_DIED\020\t\022\031\n\025"
-    "MAP_DIMENSIONS_UPDATE\020\n\022\027\n\023SPAWN_ENEMY_R"
-    "EQUEST\020\013\022\030\n\024ENEMY_GOT_HIT_UPDATE\020\014*Y\n\017Mo"
-    "vementVariant\022\032\n\026PLAYER_MOVEMENT_UPDATE\020"
-    "\000\022\016\n\nMAP_UPDATE\020\001\022\032\n\026ENEMY_POSITIONS_UPD"
-    "ATE\020\002*G\n\010ItemType\022\013\n\007UNKNOWN\020\000\022\n\n\006WEAPON"
-    "\020\001\022\n\n\006ARMOUR\020\002\022\n\n\006POTION\020\003\022\n\n\006HELMET\020\004B6"
-    "Z4github.com/kmrd-industries/qlp-proto-b"
-    "indings/gen/gob\006proto3"
+    "nt\022\030\n\004room\030\004 \001(\0132\n.comm.Room\022,\n\027enemy_sp"
+    "awner_positions\030\005 \003(\0132\013.comm.Enemy\0228\n\025ma"
+    "p_dimensions_update\030\006 \001(\0132\031.comm.MapDime"
+    "nsionsUpdate\0225\n\024enemy_got_hit_update\030\007 \001"
+    "(\0132\027.comm.EnemyGotHitUpdate\022(\n compresse"
+    "d_map_dimensions_update\030\010 \001(\014\"7\n\021StateUp"
+    "dateSeries\022\"\n\007updates\030\001 \003(\0132\021.comm.State"
+    "Update\"u\n\006Player\022\n\n\002id\030\001 \001(\r\022\031\n\005items\030\002 "
+    "\003(\0132\n.comm.Item\022\022\n\nposition_x\030\003 \001(\002\022\022\n\np"
+    "osition_y\030\004 \001(\002\022\034\n\024player_attack_damage\030"
+    "\005 \001(\001\"=\n\004Item\022\n\n\002id\030\001 \001(\r\022\013\n\003gen\030\002 \001(\r\022\034"
+    "\n\004type\030\003 \001(\0162\016.comm.ItemType\"\201\001\n\013Initial"
+    "Info\022\034\n\006player\030\001 \001(\0132\014.comm.Player\022\014\n\004se"
+    "ed\030\002 \001(\003\022\035\n\tnext_item\030\003 \001(\0132\n.comm.Item\022"
+    "\'\n\021connected_players\030\004 \003(\0132\014.comm.Player"
+    "\"\034\n\004Room\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"%\n\010Obstac"
+    "le\022\014\n\004left\030\001 \001(\002\022\013\n\003top\030\002 \001(\002\"\311\001\n\005Enemy\022"
+    "\n\n\002id\030\001 \001(\r\022\022\n\nposition_x\030\002 \001(\002\022\022\n\nposit"
+    "ion_y\030\003 \001(\002\022\014\n\004type\030\004 \001(\t\022\014\n\004name\030\005 \001(\t\022"
+    "\n\n\002hp\030\006 \001(\001\022\016\n\006damage\030\007 \001(\001\022\'\n\014texture_d"
+    "ata\030\010 \001(\0132\021.comm.TextureData\022+\n\016collisio"
+    "n_data\030\t \001(\0132\023.comm.CollisionData\"D\n\013Tex"
+    "tureData\022\017\n\007tile_id\030\001 \001(\r\022\020\n\010tile_set\030\002 "
+    "\001(\t\022\022\n\ntile_layer\030\003 \001(\005\"`\n\rCollisionData"
+    "\022\014\n\004type\030\001 \001(\005\022\r\n\005width\030\002 \001(\002\022\016\n\006height\030"
+    "\003 \001(\002\022\020\n\010x_offset\030\004 \001(\002\022\020\n\010y_offset\030\005 \001("
+    "\002\"8\n\021EnemyGotHitUpdate\022\021\n\tplayer_id\030\001 \001("
+    "\r\022\020\n\010enemy_id\030\002 \001(\r\"Q\n\022MapPositionsUpdat"
+    "e\022\035\n\007players\030\001 \003(\0132\014.comm.Player\022\034\n\007enem"
+    "ies\030\002 \003(\0132\013.comm.Enemy\"8\n\023MapDimensionsU"
+    "pdate\022!\n\tobstacles\030\001 \003(\0132\016.comm.Obstacle"
+    "\"+\n\027SpawningEnemiesResponse\022\020\n\010enemy_id\030"
+    "\001 \003(\r*\220\002\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONN"
+    "ECTED\020\001\022\020\n\014DISCONNECTED\020\002\022\020\n\014ROOM_CHANGE"
+    "D\020\003\022\020\n\014ROOM_CLEARED\020\004\022\021\n\rLEVEL_CHANGED\020\005"
+    "\022\020\n\014CHEST_OPENED\020\006\022\032\n\026REQUEST_ITEM_GENER"
+    "ATOR\020\007\022\021\n\rITEM_EQUIPPED\020\010\022\017\n\013PLAYER_DIED"
+    "\020\t\022\031\n\025MAP_DIMENSIONS_UPDATE\020\n\022\027\n\023SPAWN_E"
+    "NEMY_REQUEST\020\013\022\030\n\024ENEMY_GOT_HIT_UPDATE\020\014"
+    "*Y\n\017MovementVariant\022\032\n\026PLAYER_MOVEMENT_U"
+    "PDATE\020\000\022\016\n\nMAP_UPDATE\020\001\022\032\n\026ENEMY_POSITIO"
+    "NS_UPDATE\020\002*G\n\010ItemType\022\013\n\007UNKNOWN\020\000\022\n\n\006"
+    "WEAPON\020\001\022\n\n\006ARMOUR\020\002\022\n\n\006POTION\020\003\022\n\n\006HELM"
+    "ET\020\004B6Z4github.com/kmrd-industries/qlp-p"
+    "roto-bindings/gen/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    2222,
+    2268,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -1572,6 +1576,7 @@ inline PROTOBUF_NDEBUG_INLINE StateUpdate::Impl_::Impl_(
     const Impl_& from, const ::comm::StateUpdate& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
+        enemy_spawner_positions_{visibility, arena, from.enemy_spawner_positions_},
         compressed_map_dimensions_update_(arena, from.compressed_map_dimensions_update_) {}
 
 StateUpdate::StateUpdate(
@@ -1611,6 +1616,7 @@ inline PROTOBUF_NDEBUG_INLINE StateUpdate::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
+        enemy_spawner_positions_{visibility, arena},
         compressed_map_dimensions_update_(arena) {}
 
 inline void StateUpdate::SharedCtor(::_pb::Arena* arena) {
@@ -1667,16 +1673,16 @@ const ::google::protobuf::MessageLite::ClassData* StateUpdate::GetClassData() co
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 5, 0, 2> StateUpdate::_table_ = {
+const ::_pbi::TcParseTable<3, 8, 6, 0, 2> StateUpdate::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_._has_bits_),
     0, // no _extensions_
-    10, 56,  // max_field_number, fast_idx_mask
+    8, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294966384,  // skipmap
+    4294967040,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
-    5,  // num_aux_entries
+    8,  // num_field_entries
+    6,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
@@ -1685,9 +1691,9 @@ const ::_pbi::TcParseTable<3, 7, 5, 0, 2> StateUpdate::_table_ = {
     ::_pbi::TcParser::GetTable<::comm::StateUpdate>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .comm.MapDimensionsUpdate map_dimensions_update = 8;
-    {::_pbi::TcParser::FastMtS1,
-     {66, 3, 3, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.map_dimensions_update_)}},
+    // bytes compressed_map_dimensions_update = 8;
+    {::_pbi::TcParser::FastBS1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.compressed_map_dimensions_update_)}},
     // .comm.Player player = 1;
     {::_pbi::TcParser::FastMtS1,
      {10, 0, 0, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.player_)}},
@@ -1700,9 +1706,15 @@ const ::_pbi::TcParseTable<3, 7, 5, 0, 2> StateUpdate::_table_ = {
     // .comm.Room room = 4;
     {::_pbi::TcParser::FastMtS1,
      {34, 2, 2, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.room_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // repeated .comm.Enemy enemy_spawner_positions = 5;
+    {::_pbi::TcParser::FastMtR1,
+     {42, 63, 3, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.enemy_spawner_positions_)}},
+    // .comm.MapDimensionsUpdate map_dimensions_update = 6;
+    {::_pbi::TcParser::FastMtS1,
+     {50, 3, 4, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.map_dimensions_update_)}},
+    // .comm.EnemyGotHitUpdate enemy_got_hit_update = 7;
+    {::_pbi::TcParser::FastMtS1,
+     {58, 4, 5, PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.enemy_got_hit_update_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -1718,19 +1730,23 @@ const ::_pbi::TcParseTable<3, 7, 5, 0, 2> StateUpdate::_table_ = {
     // .comm.Room room = 4;
     {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.room_), _Internal::kHasBitsOffset + 2, 2,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .comm.MapDimensionsUpdate map_dimensions_update = 8;
-    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.map_dimensions_update_), _Internal::kHasBitsOffset + 3, 3,
+    // repeated .comm.Enemy enemy_spawner_positions = 5;
+    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.enemy_spawner_positions_), -1, 3,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .comm.MapDimensionsUpdate map_dimensions_update = 6;
+    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.map_dimensions_update_), _Internal::kHasBitsOffset + 3, 4,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
-    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.enemy_got_hit_update_), _Internal::kHasBitsOffset + 4, 4,
+    // .comm.EnemyGotHitUpdate enemy_got_hit_update = 7;
+    {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.enemy_got_hit_update_), _Internal::kHasBitsOffset + 4, 5,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // bytes compressed_map_dimensions_update = 10;
+    // bytes compressed_map_dimensions_update = 8;
     {PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.compressed_map_dimensions_update_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::comm::Player>()},
     {::_pbi::TcParser::GetTable<::comm::Item>()},
     {::_pbi::TcParser::GetTable<::comm::Room>()},
+    {::_pbi::TcParser::GetTable<::comm::Enemy>()},
     {::_pbi::TcParser::GetTable<::comm::MapDimensionsUpdate>()},
     {::_pbi::TcParser::GetTable<::comm::EnemyGotHitUpdate>()},
   }}, {{
@@ -1744,6 +1760,7 @@ PROTOBUF_NOINLINE void StateUpdate::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.enemy_spawner_positions_.Clear();
   _impl_.compressed_map_dimensions_update_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x0000001fu) {
@@ -1817,24 +1834,35 @@ PROTOBUF_NOINLINE void StateUpdate::Clear() {
                 stream);
           }
 
-          // .comm.MapDimensionsUpdate map_dimensions_update = 8;
+          // repeated .comm.Enemy enemy_spawner_positions = 5;
+          for (unsigned i = 0, n = static_cast<unsigned>(
+                                   this_._internal_enemy_spawner_positions_size());
+               i < n; i++) {
+            const auto& repfield = this_._internal_enemy_spawner_positions().Get(i);
+            target =
+                ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                    5, repfield, repfield.GetCachedSize(),
+                    target, stream);
+          }
+
+          // .comm.MapDimensionsUpdate map_dimensions_update = 6;
           if (cached_has_bits & 0x00000008u) {
             target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                8, *this_._impl_.map_dimensions_update_, this_._impl_.map_dimensions_update_->GetCachedSize(), target,
+                6, *this_._impl_.map_dimensions_update_, this_._impl_.map_dimensions_update_->GetCachedSize(), target,
                 stream);
           }
 
-          // .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
+          // .comm.EnemyGotHitUpdate enemy_got_hit_update = 7;
           if (cached_has_bits & 0x00000010u) {
             target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                9, *this_._impl_.enemy_got_hit_update_, this_._impl_.enemy_got_hit_update_->GetCachedSize(), target,
+                7, *this_._impl_.enemy_got_hit_update_, this_._impl_.enemy_got_hit_update_->GetCachedSize(), target,
                 stream);
           }
 
-          // bytes compressed_map_dimensions_update = 10;
+          // bytes compressed_map_dimensions_update = 8;
           if (!this_._internal_compressed_map_dimensions_update().empty()) {
             const std::string& _s = this_._internal_compressed_map_dimensions_update();
-            target = stream->WriteBytesMaybeAliased(10, _s, target);
+            target = stream->WriteBytesMaybeAliased(8, _s, target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1862,7 +1890,16 @@ PROTOBUF_NOINLINE void StateUpdate::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // bytes compressed_map_dimensions_update = 10;
+            // repeated .comm.Enemy enemy_spawner_positions = 5;
+             {
+              total_size += 1UL * this_._internal_enemy_spawner_positions_size();
+              for (const auto& msg : this_._internal_enemy_spawner_positions()) {
+                total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+              }
+            }
+          }
+           {
+            // bytes compressed_map_dimensions_update = 8;
             if (!this_._internal_compressed_map_dimensions_update().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                               this_._internal_compressed_map_dimensions_update());
@@ -1885,12 +1922,12 @@ PROTOBUF_NOINLINE void StateUpdate::Clear() {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.room_);
             }
-            // .comm.MapDimensionsUpdate map_dimensions_update = 8;
+            // .comm.MapDimensionsUpdate map_dimensions_update = 6;
             if (cached_has_bits & 0x00000008u) {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.map_dimensions_update_);
             }
-            // .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
+            // .comm.EnemyGotHitUpdate enemy_got_hit_update = 7;
             if (cached_has_bits & 0x00000010u) {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.enemy_got_hit_update_);
@@ -1916,6 +1953,8 @@ void StateUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goo
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  _this->_internal_mutable_enemy_spawner_positions()->MergeFrom(
+      from._internal_enemy_spawner_positions());
   if (!from._internal_compressed_map_dimensions_update().empty()) {
     _this->_internal_set_compressed_map_dimensions_update(from._internal_compressed_map_dimensions_update());
   }
@@ -1988,6 +2027,7 @@ void StateUpdate::InternalSwap(StateUpdate* PROTOBUF_RESTRICT other) {
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.enemy_spawner_positions_.InternalSwap(&other->_impl_.enemy_spawner_positions_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.compressed_map_dimensions_update_, &other->_impl_.compressed_map_dimensions_update_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(StateUpdate, _impl_.variant_)

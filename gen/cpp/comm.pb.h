@@ -2763,15 +2763,33 @@ class StateUpdate final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kCompressedMapDimensionsUpdateFieldNumber = 10,
+    kEnemySpawnerPositionsFieldNumber = 5,
+    kCompressedMapDimensionsUpdateFieldNumber = 8,
     kPlayerFieldNumber = 1,
     kItemFieldNumber = 2,
     kRoomFieldNumber = 4,
-    kMapDimensionsUpdateFieldNumber = 8,
-    kEnemyGotHitUpdateFieldNumber = 9,
+    kMapDimensionsUpdateFieldNumber = 6,
+    kEnemyGotHitUpdateFieldNumber = 7,
     kVariantFieldNumber = 3,
   };
-  // bytes compressed_map_dimensions_update = 10;
+  // repeated .comm.Enemy enemy_spawner_positions = 5;
+  int enemy_spawner_positions_size() const;
+  private:
+  int _internal_enemy_spawner_positions_size() const;
+
+  public:
+  void clear_enemy_spawner_positions() ;
+  ::comm::Enemy* mutable_enemy_spawner_positions(int index);
+  ::google::protobuf::RepeatedPtrField<::comm::Enemy>* mutable_enemy_spawner_positions();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::comm::Enemy>& _internal_enemy_spawner_positions() const;
+  ::google::protobuf::RepeatedPtrField<::comm::Enemy>* _internal_mutable_enemy_spawner_positions();
+  public:
+  const ::comm::Enemy& enemy_spawner_positions(int index) const;
+  ::comm::Enemy* add_enemy_spawner_positions();
+  const ::google::protobuf::RepeatedPtrField<::comm::Enemy>& enemy_spawner_positions() const;
+  // bytes compressed_map_dimensions_update = 8;
   void clear_compressed_map_dimensions_update() ;
   const std::string& compressed_map_dimensions_update() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -2832,7 +2850,7 @@ class StateUpdate final : public ::google::protobuf::Message
   ::comm::Room* _internal_mutable_room();
 
   public:
-  // .comm.MapDimensionsUpdate map_dimensions_update = 8;
+  // .comm.MapDimensionsUpdate map_dimensions_update = 6;
   bool has_map_dimensions_update() const;
   void clear_map_dimensions_update() ;
   const ::comm::MapDimensionsUpdate& map_dimensions_update() const;
@@ -2847,7 +2865,7 @@ class StateUpdate final : public ::google::protobuf::Message
   ::comm::MapDimensionsUpdate* _internal_mutable_map_dimensions_update();
 
   public:
-  // .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
+  // .comm.EnemyGotHitUpdate enemy_got_hit_update = 7;
   bool has_enemy_got_hit_update() const;
   void clear_enemy_got_hit_update() ;
   const ::comm::EnemyGotHitUpdate& enemy_got_hit_update() const;
@@ -2877,7 +2895,7 @@ class StateUpdate final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 5,
+      3, 8, 6,
       0, 2>
       _table_;
 
@@ -2900,6 +2918,7 @@ class StateUpdate final : public ::google::protobuf::Message
                           const StateUpdate& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::comm::Enemy > enemy_spawner_positions_;
     ::google::protobuf::internal::ArenaStringPtr compressed_map_dimensions_update_;
     ::comm::Player* player_;
     ::comm::Item* item_;
@@ -4663,7 +4682,56 @@ inline void StateUpdate::set_allocated_room(::comm::Room* value) {
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.room)
 }
 
-// .comm.MapDimensionsUpdate map_dimensions_update = 8;
+// repeated .comm.Enemy enemy_spawner_positions = 5;
+inline int StateUpdate::_internal_enemy_spawner_positions_size() const {
+  return _internal_enemy_spawner_positions().size();
+}
+inline int StateUpdate::enemy_spawner_positions_size() const {
+  return _internal_enemy_spawner_positions_size();
+}
+inline void StateUpdate::clear_enemy_spawner_positions() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.enemy_spawner_positions_.Clear();
+}
+inline ::comm::Enemy* StateUpdate::mutable_enemy_spawner_positions(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.enemy_spawner_positions)
+  return _internal_mutable_enemy_spawner_positions()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::comm::Enemy>* StateUpdate::mutable_enemy_spawner_positions()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:comm.StateUpdate.enemy_spawner_positions)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_enemy_spawner_positions();
+}
+inline const ::comm::Enemy& StateUpdate::enemy_spawner_positions(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.enemy_spawner_positions)
+  return _internal_enemy_spawner_positions().Get(index);
+}
+inline ::comm::Enemy* StateUpdate::add_enemy_spawner_positions() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::comm::Enemy* _add = _internal_mutable_enemy_spawner_positions()->Add();
+  // @@protoc_insertion_point(field_add:comm.StateUpdate.enemy_spawner_positions)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::comm::Enemy>& StateUpdate::enemy_spawner_positions() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:comm.StateUpdate.enemy_spawner_positions)
+  return _internal_enemy_spawner_positions();
+}
+inline const ::google::protobuf::RepeatedPtrField<::comm::Enemy>&
+StateUpdate::_internal_enemy_spawner_positions() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.enemy_spawner_positions_;
+}
+inline ::google::protobuf::RepeatedPtrField<::comm::Enemy>*
+StateUpdate::_internal_mutable_enemy_spawner_positions() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.enemy_spawner_positions_;
+}
+
+// .comm.MapDimensionsUpdate map_dimensions_update = 6;
 inline bool StateUpdate::has_map_dimensions_update() const {
   bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.map_dimensions_update_ != nullptr);
@@ -4759,7 +4827,7 @@ inline void StateUpdate::set_allocated_map_dimensions_update(::comm::MapDimensio
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.map_dimensions_update)
 }
 
-// .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
+// .comm.EnemyGotHitUpdate enemy_got_hit_update = 7;
 inline bool StateUpdate::has_enemy_got_hit_update() const {
   bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.enemy_got_hit_update_ != nullptr);
@@ -4855,7 +4923,7 @@ inline void StateUpdate::set_allocated_enemy_got_hit_update(::comm::EnemyGotHitU
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.enemy_got_hit_update)
 }
 
-// bytes compressed_map_dimensions_update = 10;
+// bytes compressed_map_dimensions_update = 8;
 inline void StateUpdate::clear_compressed_map_dimensions_update() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.compressed_map_dimensions_update_.ClearToEmpty();
