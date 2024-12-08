@@ -63,9 +63,6 @@ extern EnemyDefaultTypeInternal _Enemy_default_instance_;
 class EnemyGotHitUpdate;
 struct EnemyGotHitUpdateDefaultTypeInternal;
 extern EnemyGotHitUpdateDefaultTypeInternal _EnemyGotHitUpdate_default_instance_;
-class EnemyPositionsUpdate;
-struct EnemyPositionsUpdateDefaultTypeInternal;
-extern EnemyPositionsUpdateDefaultTypeInternal _EnemyPositionsUpdate_default_instance_;
 class InitialInfo;
 struct InitialInfoDefaultTypeInternal;
 extern InitialInfoDefaultTypeInternal _InitialInfo_default_instance_;
@@ -120,11 +117,9 @@ enum StateVariant : int {
   REQUEST_ITEM_GENERATOR = 7,
   ITEM_EQUIPPED = 8,
   PLAYER_DIED = 9,
-  MAP_UPDATE = 10,
-  PLAYER_POSITION_UPDATE = 11,
-  MAP_DIMENSIONS_UPDATE = 12,
-  SPAWN_ENEMY_REQUEST = 13,
-  ENEMY_GOT_HIT_UPDATE = 14,
+  MAP_DIMENSIONS_UPDATE = 10,
+  SPAWN_ENEMY_REQUEST = 11,
+  ENEMY_GOT_HIT_UPDATE = 12,
   StateVariant_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   StateVariant_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -134,8 +129,8 @@ enum StateVariant : int {
 bool StateVariant_IsValid(int value);
 extern const uint32_t StateVariant_internal_data_[];
 constexpr StateVariant StateVariant_MIN = static_cast<StateVariant>(0);
-constexpr StateVariant StateVariant_MAX = static_cast<StateVariant>(14);
-constexpr int StateVariant_ARRAYSIZE = 14 + 1;
+constexpr StateVariant StateVariant_MAX = static_cast<StateVariant>(12);
+constexpr int StateVariant_ARRAYSIZE = 12 + 1;
 const ::google::protobuf::EnumDescriptor*
 StateVariant_descriptor();
 template <typename T>
@@ -148,12 +143,46 @@ const std::string& StateVariant_Name(T value) {
 template <>
 inline const std::string& StateVariant_Name(StateVariant value) {
   return ::google::protobuf::internal::NameOfDenseEnum<StateVariant_descriptor,
-                                                 0, 14>(
+                                                 0, 12>(
       static_cast<int>(value));
 }
 inline bool StateVariant_Parse(absl::string_view name, StateVariant* value) {
   return ::google::protobuf::internal::ParseNamedEnum<StateVariant>(
       StateVariant_descriptor(), name, value);
+}
+enum MovementVariant : int {
+  PLAYER_MOVEMENT_UPDATE = 0,
+  MAP_UPDATE = 1,
+  ENEMY_POSITIONS_UPDATE = 2,
+  MovementVariant_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  MovementVariant_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool MovementVariant_IsValid(int value);
+extern const uint32_t MovementVariant_internal_data_[];
+constexpr MovementVariant MovementVariant_MIN = static_cast<MovementVariant>(0);
+constexpr MovementVariant MovementVariant_MAX = static_cast<MovementVariant>(2);
+constexpr int MovementVariant_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+MovementVariant_descriptor();
+template <typename T>
+const std::string& MovementVariant_Name(T value) {
+  static_assert(std::is_same<T, MovementVariant>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to MovementVariant_Name().");
+  return MovementVariant_Name(static_cast<MovementVariant>(value));
+}
+template <>
+inline const std::string& MovementVariant_Name(MovementVariant value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<MovementVariant_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool MovementVariant_Parse(absl::string_view name, MovementVariant* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<MovementVariant>(
+      MovementVariant_descriptor(), name, value);
 }
 enum ItemType : int {
   UNKNOWN = 0,
@@ -252,7 +281,7 @@ class TextureData final : public ::google::protobuf::Message
     return reinterpret_cast<const TextureData*>(
         &_TextureData_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(TextureData& a, TextureData& b) { a.Swap(&b); }
   inline void Swap(TextureData* other) {
     if (other == this) return;
@@ -470,7 +499,7 @@ class SpawningEnemiesResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const SpawningEnemiesResponse*>(
         &_SpawningEnemiesResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 15;
   friend void swap(SpawningEnemiesResponse& a, SpawningEnemiesResponse& b) { a.Swap(&b); }
   inline void Swap(SpawningEnemiesResponse* other) {
     if (other == this) return;
@@ -667,7 +696,7 @@ class Room final : public ::google::protobuf::Message
     return reinterpret_cast<const Room*>(
         &_Room_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(Room& a, Room& b) { a.Swap(&b); }
   inline void Swap(Room* other) {
     if (other == this) return;
@@ -867,7 +896,7 @@ class Obstacle final : public ::google::protobuf::Message
     return reinterpret_cast<const Obstacle*>(
         &_Obstacle_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(Obstacle& a, Obstacle& b) { a.Swap(&b); }
   inline void Swap(Obstacle* other) {
     if (other == this) return;
@@ -1067,7 +1096,7 @@ class Item final : public ::google::protobuf::Message
     return reinterpret_cast<const Item*>(
         &_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(Item& a, Item& b) { a.Swap(&b); }
   inline void Swap(Item* other) {
     if (other == this) return;
@@ -1279,7 +1308,7 @@ class EnemyGotHitUpdate final : public ::google::protobuf::Message
     return reinterpret_cast<const EnemyGotHitUpdate*>(
         &_EnemyGotHitUpdate_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(EnemyGotHitUpdate& a, EnemyGotHitUpdate& b) { a.Swap(&b); }
   inline void Swap(EnemyGotHitUpdate* other) {
     if (other == this) return;
@@ -1479,7 +1508,7 @@ class CollisionData final : public ::google::protobuf::Message
     return reinterpret_cast<const CollisionData*>(
         &_CollisionData_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(CollisionData& a, CollisionData& b) { a.Swap(&b); }
   inline void Swap(CollisionData* other) {
     if (other == this) return;
@@ -1715,7 +1744,7 @@ class BytePrefix final : public ::google::protobuf::Message
     return reinterpret_cast<const BytePrefix*>(
         &_BytePrefix_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 1;
   friend void swap(BytePrefix& a, BytePrefix& b) { a.Swap(&b); }
   inline void Swap(BytePrefix* other) {
     if (other == this) return;
@@ -1903,7 +1932,7 @@ class Player final : public ::google::protobuf::Message
     return reinterpret_cast<const Player*>(
         &_Player_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(Player& a, Player& b) { a.Swap(&b); }
   inline void Swap(Player* other) {
     if (other == this) return;
@@ -2091,284 +2120,6 @@ class Player final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class MovementUpdate final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:comm.MovementUpdate) */ {
- public:
-  inline MovementUpdate() : MovementUpdate(nullptr) {}
-  ~MovementUpdate() PROTOBUF_FINAL;
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR MovementUpdate(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline MovementUpdate(const MovementUpdate& from) : MovementUpdate(nullptr, from) {}
-  inline MovementUpdate(MovementUpdate&& from) noexcept
-      : MovementUpdate(nullptr, std::move(from)) {}
-  inline MovementUpdate& operator=(const MovementUpdate& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline MovementUpdate& operator=(MovementUpdate&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const MovementUpdate& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const MovementUpdate* internal_default_instance() {
-    return reinterpret_cast<const MovementUpdate*>(
-        &_MovementUpdate_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 0;
-  friend void swap(MovementUpdate& a, MovementUpdate& b) { a.Swap(&b); }
-  inline void Swap(MovementUpdate* other) {
-    if (other == this) return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(MovementUpdate* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  MovementUpdate* New(::google::protobuf::Arena* arena = nullptr) const PROTOBUF_FINAL {
-    return ::google::protobuf::Message::DefaultConstruct<MovementUpdate>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const MovementUpdate& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const MovementUpdate& from) { MovementUpdate::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(MovementUpdate* other);
- private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "comm.MovementUpdate"; }
-
- protected:
-  explicit MovementUpdate(::google::protobuf::Arena* arena);
-  MovementUpdate(::google::protobuf::Arena* arena, const MovementUpdate& from);
-  MovementUpdate(::google::protobuf::Arena* arena, MovementUpdate&& from) noexcept
-      : MovementUpdate(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::Message::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static const ::google::protobuf::Message::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kCurrRoomFieldNumber = 8,
-    kEntityIdFieldNumber = 1,
-    kPositionXFieldNumber = 2,
-    kPositionYFieldNumber = 3,
-    kWeaponPivotXFieldNumber = 4,
-    kWeaponPivotYFieldNumber = 5,
-    kDirectionFieldNumber = 6,
-    kAttackFieldNumber = 7,
-  };
-  // .comm.Room curr_room = 8;
-  bool has_curr_room() const;
-  void clear_curr_room() ;
-  const ::comm::Room& curr_room() const;
-  PROTOBUF_NODISCARD ::comm::Room* release_curr_room();
-  ::comm::Room* mutable_curr_room();
-  void set_allocated_curr_room(::comm::Room* value);
-  void unsafe_arena_set_allocated_curr_room(::comm::Room* value);
-  ::comm::Room* unsafe_arena_release_curr_room();
-
-  private:
-  const ::comm::Room& _internal_curr_room() const;
-  ::comm::Room* _internal_mutable_curr_room();
-
-  public:
-  // uint32 entity_id = 1;
-  void clear_entity_id() ;
-  ::uint32_t entity_id() const;
-  void set_entity_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_entity_id() const;
-  void _internal_set_entity_id(::uint32_t value);
-
-  public:
-  // float position_x = 2;
-  void clear_position_x() ;
-  float position_x() const;
-  void set_position_x(float value);
-
-  private:
-  float _internal_position_x() const;
-  void _internal_set_position_x(float value);
-
-  public:
-  // float position_y = 3;
-  void clear_position_y() ;
-  float position_y() const;
-  void set_position_y(float value);
-
-  private:
-  float _internal_position_y() const;
-  void _internal_set_position_y(float value);
-
-  public:
-  // float weapon_pivot_x = 4;
-  void clear_weapon_pivot_x() ;
-  float weapon_pivot_x() const;
-  void set_weapon_pivot_x(float value);
-
-  private:
-  float _internal_weapon_pivot_x() const;
-  void _internal_set_weapon_pivot_x(float value);
-
-  public:
-  // float weapon_pivot_y = 5;
-  void clear_weapon_pivot_y() ;
-  float weapon_pivot_y() const;
-  void set_weapon_pivot_y(float value);
-
-  private:
-  float _internal_weapon_pivot_y() const;
-  void _internal_set_weapon_pivot_y(float value);
-
-  public:
-  // float direction = 6;
-  void clear_direction() ;
-  float direction() const;
-  void set_direction(float value);
-
-  private:
-  float _internal_direction() const;
-  void _internal_set_direction(float value);
-
-  public:
-  // bool attack = 7;
-  void clear_attack() ;
-  bool attack() const;
-  void set_attack(bool value);
-
-  private:
-  bool _internal_attack() const;
-  void _internal_set_attack(bool value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:comm.MovementUpdate)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      3, 8, 1,
-      0, 2>
-      _table_;
-
-  static constexpr const void* _raw_default_instance_ =
-      &_MovementUpdate_default_instance_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const MovementUpdate& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::comm::Room* curr_room_;
-    ::uint32_t entity_id_;
-    float position_x_;
-    float position_y_;
-    float weapon_pivot_x_;
-    float weapon_pivot_y_;
-    float direction_;
-    bool attack_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_comm_2eproto;
-};
-// -------------------------------------------------------------------
-
 class MapDimensionsUpdate final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:comm.MapDimensionsUpdate) */ {
  public:
@@ -2424,7 +2175,7 @@ class MapDimensionsUpdate final : public ::google::protobuf::Message
     return reinterpret_cast<const MapDimensionsUpdate*>(
         &_MapDimensionsUpdate_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 12;
+  static constexpr int kIndexInFileMessages = 14;
   friend void swap(MapDimensionsUpdate& a, MapDimensionsUpdate& b) { a.Swap(&b); }
   inline void Swap(MapDimensionsUpdate* other) {
     if (other == this) return;
@@ -2619,7 +2370,7 @@ class Enemy final : public ::google::protobuf::Message
     return reinterpret_cast<const Enemy*>(
         &_Enemy_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(Enemy& a, Enemy& b) { a.Swap(&b); }
   inline void Swap(Enemy* other) {
     if (other == this) return;
@@ -2871,6 +2622,298 @@ class Enemy final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class StateUpdate final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:comm.StateUpdate) */ {
+ public:
+  inline StateUpdate() : StateUpdate(nullptr) {}
+  ~StateUpdate() PROTOBUF_FINAL;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR StateUpdate(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline StateUpdate(const StateUpdate& from) : StateUpdate(nullptr, from) {}
+  inline StateUpdate(StateUpdate&& from) noexcept
+      : StateUpdate(nullptr, std::move(from)) {}
+  inline StateUpdate& operator=(const StateUpdate& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StateUpdate& operator=(StateUpdate&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StateUpdate& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StateUpdate* internal_default_instance() {
+    return reinterpret_cast<const StateUpdate*>(
+        &_StateUpdate_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(StateUpdate& a, StateUpdate& b) { a.Swap(&b); }
+  inline void Swap(StateUpdate* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StateUpdate* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StateUpdate* New(::google::protobuf::Arena* arena = nullptr) const PROTOBUF_FINAL {
+    return ::google::protobuf::Message::DefaultConstruct<StateUpdate>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const StateUpdate& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const StateUpdate& from) { StateUpdate::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(StateUpdate* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "comm.StateUpdate"; }
+
+ protected:
+  explicit StateUpdate(::google::protobuf::Arena* arena);
+  StateUpdate(::google::protobuf::Arena* arena, const StateUpdate& from);
+  StateUpdate(::google::protobuf::Arena* arena, StateUpdate&& from) noexcept
+      : StateUpdate(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static const ::google::protobuf::Message::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kCompressedMapDimensionsUpdateFieldNumber = 10,
+    kPlayerFieldNumber = 1,
+    kItemFieldNumber = 2,
+    kRoomFieldNumber = 4,
+    kMapDimensionsUpdateFieldNumber = 8,
+    kEnemyGotHitUpdateFieldNumber = 9,
+    kVariantFieldNumber = 3,
+  };
+  // bytes compressed_map_dimensions_update = 10;
+  void clear_compressed_map_dimensions_update() ;
+  const std::string& compressed_map_dimensions_update() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_compressed_map_dimensions_update(Arg_&& arg, Args_... args);
+  std::string* mutable_compressed_map_dimensions_update();
+  PROTOBUF_NODISCARD std::string* release_compressed_map_dimensions_update();
+  void set_allocated_compressed_map_dimensions_update(std::string* value);
+
+  private:
+  const std::string& _internal_compressed_map_dimensions_update() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_compressed_map_dimensions_update(
+      const std::string& value);
+  std::string* _internal_mutable_compressed_map_dimensions_update();
+
+  public:
+  // .comm.Player player = 1;
+  bool has_player() const;
+  void clear_player() ;
+  const ::comm::Player& player() const;
+  PROTOBUF_NODISCARD ::comm::Player* release_player();
+  ::comm::Player* mutable_player();
+  void set_allocated_player(::comm::Player* value);
+  void unsafe_arena_set_allocated_player(::comm::Player* value);
+  ::comm::Player* unsafe_arena_release_player();
+
+  private:
+  const ::comm::Player& _internal_player() const;
+  ::comm::Player* _internal_mutable_player();
+
+  public:
+  // .comm.Item item = 2;
+  bool has_item() const;
+  void clear_item() ;
+  const ::comm::Item& item() const;
+  PROTOBUF_NODISCARD ::comm::Item* release_item();
+  ::comm::Item* mutable_item();
+  void set_allocated_item(::comm::Item* value);
+  void unsafe_arena_set_allocated_item(::comm::Item* value);
+  ::comm::Item* unsafe_arena_release_item();
+
+  private:
+  const ::comm::Item& _internal_item() const;
+  ::comm::Item* _internal_mutable_item();
+
+  public:
+  // .comm.Room room = 4;
+  bool has_room() const;
+  void clear_room() ;
+  const ::comm::Room& room() const;
+  PROTOBUF_NODISCARD ::comm::Room* release_room();
+  ::comm::Room* mutable_room();
+  void set_allocated_room(::comm::Room* value);
+  void unsafe_arena_set_allocated_room(::comm::Room* value);
+  ::comm::Room* unsafe_arena_release_room();
+
+  private:
+  const ::comm::Room& _internal_room() const;
+  ::comm::Room* _internal_mutable_room();
+
+  public:
+  // .comm.MapDimensionsUpdate map_dimensions_update = 8;
+  bool has_map_dimensions_update() const;
+  void clear_map_dimensions_update() ;
+  const ::comm::MapDimensionsUpdate& map_dimensions_update() const;
+  PROTOBUF_NODISCARD ::comm::MapDimensionsUpdate* release_map_dimensions_update();
+  ::comm::MapDimensionsUpdate* mutable_map_dimensions_update();
+  void set_allocated_map_dimensions_update(::comm::MapDimensionsUpdate* value);
+  void unsafe_arena_set_allocated_map_dimensions_update(::comm::MapDimensionsUpdate* value);
+  ::comm::MapDimensionsUpdate* unsafe_arena_release_map_dimensions_update();
+
+  private:
+  const ::comm::MapDimensionsUpdate& _internal_map_dimensions_update() const;
+  ::comm::MapDimensionsUpdate* _internal_mutable_map_dimensions_update();
+
+  public:
+  // .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
+  bool has_enemy_got_hit_update() const;
+  void clear_enemy_got_hit_update() ;
+  const ::comm::EnemyGotHitUpdate& enemy_got_hit_update() const;
+  PROTOBUF_NODISCARD ::comm::EnemyGotHitUpdate* release_enemy_got_hit_update();
+  ::comm::EnemyGotHitUpdate* mutable_enemy_got_hit_update();
+  void set_allocated_enemy_got_hit_update(::comm::EnemyGotHitUpdate* value);
+  void unsafe_arena_set_allocated_enemy_got_hit_update(::comm::EnemyGotHitUpdate* value);
+  ::comm::EnemyGotHitUpdate* unsafe_arena_release_enemy_got_hit_update();
+
+  private:
+  const ::comm::EnemyGotHitUpdate& _internal_enemy_got_hit_update() const;
+  ::comm::EnemyGotHitUpdate* _internal_mutable_enemy_got_hit_update();
+
+  public:
+  // .comm.StateVariant variant = 3;
+  void clear_variant() ;
+  ::comm::StateVariant variant() const;
+  void set_variant(::comm::StateVariant value);
+
+  private:
+  ::comm::StateVariant _internal_variant() const;
+  void _internal_set_variant(::comm::StateVariant value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:comm.StateUpdate)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 7, 5,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_StateUpdate_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const StateUpdate& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr compressed_map_dimensions_update_;
+    ::comm::Player* player_;
+    ::comm::Item* item_;
+    ::comm::Room* room_;
+    ::comm::MapDimensionsUpdate* map_dimensions_update_;
+    ::comm::EnemyGotHitUpdate* enemy_got_hit_update_;
+    int variant_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_comm_2eproto;
+};
+// -------------------------------------------------------------------
+
 class MapPositionsUpdate final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:comm.MapPositionsUpdate) */ {
  public:
@@ -2926,7 +2969,7 @@ class MapPositionsUpdate final : public ::google::protobuf::Message
     return reinterpret_cast<const MapPositionsUpdate*>(
         &_MapPositionsUpdate_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 11;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(MapPositionsUpdate& a, MapPositionsUpdate& b) { a.Swap(&b); }
   inline void Swap(MapPositionsUpdate* other) {
     if (other == this) return;
@@ -3140,7 +3183,7 @@ class InitialInfo final : public ::google::protobuf::Message
     return reinterpret_cast<const InitialInfo*>(
         &_InitialInfo_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 6;
   friend void swap(InitialInfo& a, InitialInfo& b) { a.Swap(&b); }
   inline void Swap(InitialInfo* other) {
     if (other == this) return;
@@ -3327,544 +3370,6 @@ class InitialInfo final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class EnemyPositionsUpdate final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:comm.EnemyPositionsUpdate) */ {
- public:
-  inline EnemyPositionsUpdate() : EnemyPositionsUpdate(nullptr) {}
-  ~EnemyPositionsUpdate() PROTOBUF_FINAL;
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR EnemyPositionsUpdate(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline EnemyPositionsUpdate(const EnemyPositionsUpdate& from) : EnemyPositionsUpdate(nullptr, from) {}
-  inline EnemyPositionsUpdate(EnemyPositionsUpdate&& from) noexcept
-      : EnemyPositionsUpdate(nullptr, std::move(from)) {}
-  inline EnemyPositionsUpdate& operator=(const EnemyPositionsUpdate& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline EnemyPositionsUpdate& operator=(EnemyPositionsUpdate&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const EnemyPositionsUpdate& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const EnemyPositionsUpdate* internal_default_instance() {
-    return reinterpret_cast<const EnemyPositionsUpdate*>(
-        &_EnemyPositionsUpdate_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 10;
-  friend void swap(EnemyPositionsUpdate& a, EnemyPositionsUpdate& b) { a.Swap(&b); }
-  inline void Swap(EnemyPositionsUpdate* other) {
-    if (other == this) return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(EnemyPositionsUpdate* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  EnemyPositionsUpdate* New(::google::protobuf::Arena* arena = nullptr) const PROTOBUF_FINAL {
-    return ::google::protobuf::Message::DefaultConstruct<EnemyPositionsUpdate>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const EnemyPositionsUpdate& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const EnemyPositionsUpdate& from) { EnemyPositionsUpdate::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(EnemyPositionsUpdate* other);
- private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "comm.EnemyPositionsUpdate"; }
-
- protected:
-  explicit EnemyPositionsUpdate(::google::protobuf::Arena* arena);
-  EnemyPositionsUpdate(::google::protobuf::Arena* arena, const EnemyPositionsUpdate& from);
-  EnemyPositionsUpdate(::google::protobuf::Arena* arena, EnemyPositionsUpdate&& from) noexcept
-      : EnemyPositionsUpdate(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::Message::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static const ::google::protobuf::Message::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kEnemyPositionsFieldNumber = 1,
-  };
-  // repeated .comm.Enemy enemy_positions = 1;
-  int enemy_positions_size() const;
-  private:
-  int _internal_enemy_positions_size() const;
-
-  public:
-  void clear_enemy_positions() ;
-  ::comm::Enemy* mutable_enemy_positions(int index);
-  ::google::protobuf::RepeatedPtrField<::comm::Enemy>* mutable_enemy_positions();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<::comm::Enemy>& _internal_enemy_positions() const;
-  ::google::protobuf::RepeatedPtrField<::comm::Enemy>* _internal_mutable_enemy_positions();
-  public:
-  const ::comm::Enemy& enemy_positions(int index) const;
-  ::comm::Enemy* add_enemy_positions();
-  const ::google::protobuf::RepeatedPtrField<::comm::Enemy>& enemy_positions() const;
-  // @@protoc_insertion_point(class_scope:comm.EnemyPositionsUpdate)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
-      0, 2>
-      _table_;
-
-  static constexpr const void* _raw_default_instance_ =
-      &_EnemyPositionsUpdate_default_instance_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const EnemyPositionsUpdate& from_msg);
-    ::google::protobuf::RepeatedPtrField< ::comm::Enemy > enemy_positions_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_comm_2eproto;
-};
-// -------------------------------------------------------------------
-
-class StateUpdate final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:comm.StateUpdate) */ {
- public:
-  inline StateUpdate() : StateUpdate(nullptr) {}
-  ~StateUpdate() PROTOBUF_FINAL;
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR StateUpdate(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline StateUpdate(const StateUpdate& from) : StateUpdate(nullptr, from) {}
-  inline StateUpdate(StateUpdate&& from) noexcept
-      : StateUpdate(nullptr, std::move(from)) {}
-  inline StateUpdate& operator=(const StateUpdate& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline StateUpdate& operator=(StateUpdate&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const StateUpdate& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const StateUpdate* internal_default_instance() {
-    return reinterpret_cast<const StateUpdate*>(
-        &_StateUpdate_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 15;
-  friend void swap(StateUpdate& a, StateUpdate& b) { a.Swap(&b); }
-  inline void Swap(StateUpdate* other) {
-    if (other == this) return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(StateUpdate* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  StateUpdate* New(::google::protobuf::Arena* arena = nullptr) const PROTOBUF_FINAL {
-    return ::google::protobuf::Message::DefaultConstruct<StateUpdate>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const StateUpdate& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const StateUpdate& from) { StateUpdate::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(StateUpdate* other);
- private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "comm.StateUpdate"; }
-
- protected:
-  explicit StateUpdate(::google::protobuf::Arena* arena);
-  StateUpdate(::google::protobuf::Arena* arena, const StateUpdate& from);
-  StateUpdate(::google::protobuf::Arena* arena, StateUpdate&& from) noexcept
-      : StateUpdate(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::Message::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static const ::google::protobuf::Message::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kCompressedMapDimensionsUpdateFieldNumber = 10,
-    kPlayerFieldNumber = 1,
-    kItemFieldNumber = 2,
-    kRoomFieldNumber = 4,
-    kMapPositionsUpdateFieldNumber = 5,
-    kMovementUpdateFieldNumber = 6,
-    kEnemyPositionsUpdateFieldNumber = 7,
-    kMapDimensionsUpdateFieldNumber = 8,
-    kEnemyGotHitUpdateFieldNumber = 9,
-    kVariantFieldNumber = 3,
-  };
-  // bytes compressed_map_dimensions_update = 10;
-  void clear_compressed_map_dimensions_update() ;
-  const std::string& compressed_map_dimensions_update() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_compressed_map_dimensions_update(Arg_&& arg, Args_... args);
-  std::string* mutable_compressed_map_dimensions_update();
-  PROTOBUF_NODISCARD std::string* release_compressed_map_dimensions_update();
-  void set_allocated_compressed_map_dimensions_update(std::string* value);
-
-  private:
-  const std::string& _internal_compressed_map_dimensions_update() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_compressed_map_dimensions_update(
-      const std::string& value);
-  std::string* _internal_mutable_compressed_map_dimensions_update();
-
-  public:
-  // .comm.Player player = 1;
-  bool has_player() const;
-  void clear_player() ;
-  const ::comm::Player& player() const;
-  PROTOBUF_NODISCARD ::comm::Player* release_player();
-  ::comm::Player* mutable_player();
-  void set_allocated_player(::comm::Player* value);
-  void unsafe_arena_set_allocated_player(::comm::Player* value);
-  ::comm::Player* unsafe_arena_release_player();
-
-  private:
-  const ::comm::Player& _internal_player() const;
-  ::comm::Player* _internal_mutable_player();
-
-  public:
-  // .comm.Item item = 2;
-  bool has_item() const;
-  void clear_item() ;
-  const ::comm::Item& item() const;
-  PROTOBUF_NODISCARD ::comm::Item* release_item();
-  ::comm::Item* mutable_item();
-  void set_allocated_item(::comm::Item* value);
-  void unsafe_arena_set_allocated_item(::comm::Item* value);
-  ::comm::Item* unsafe_arena_release_item();
-
-  private:
-  const ::comm::Item& _internal_item() const;
-  ::comm::Item* _internal_mutable_item();
-
-  public:
-  // .comm.Room room = 4;
-  bool has_room() const;
-  void clear_room() ;
-  const ::comm::Room& room() const;
-  PROTOBUF_NODISCARD ::comm::Room* release_room();
-  ::comm::Room* mutable_room();
-  void set_allocated_room(::comm::Room* value);
-  void unsafe_arena_set_allocated_room(::comm::Room* value);
-  ::comm::Room* unsafe_arena_release_room();
-
-  private:
-  const ::comm::Room& _internal_room() const;
-  ::comm::Room* _internal_mutable_room();
-
-  public:
-  // .comm.MapPositionsUpdate map_positions_update = 5;
-  bool has_map_positions_update() const;
-  void clear_map_positions_update() ;
-  const ::comm::MapPositionsUpdate& map_positions_update() const;
-  PROTOBUF_NODISCARD ::comm::MapPositionsUpdate* release_map_positions_update();
-  ::comm::MapPositionsUpdate* mutable_map_positions_update();
-  void set_allocated_map_positions_update(::comm::MapPositionsUpdate* value);
-  void unsafe_arena_set_allocated_map_positions_update(::comm::MapPositionsUpdate* value);
-  ::comm::MapPositionsUpdate* unsafe_arena_release_map_positions_update();
-
-  private:
-  const ::comm::MapPositionsUpdate& _internal_map_positions_update() const;
-  ::comm::MapPositionsUpdate* _internal_mutable_map_positions_update();
-
-  public:
-  // .comm.MovementUpdate movement_update = 6;
-  bool has_movement_update() const;
-  void clear_movement_update() ;
-  const ::comm::MovementUpdate& movement_update() const;
-  PROTOBUF_NODISCARD ::comm::MovementUpdate* release_movement_update();
-  ::comm::MovementUpdate* mutable_movement_update();
-  void set_allocated_movement_update(::comm::MovementUpdate* value);
-  void unsafe_arena_set_allocated_movement_update(::comm::MovementUpdate* value);
-  ::comm::MovementUpdate* unsafe_arena_release_movement_update();
-
-  private:
-  const ::comm::MovementUpdate& _internal_movement_update() const;
-  ::comm::MovementUpdate* _internal_mutable_movement_update();
-
-  public:
-  // .comm.EnemyPositionsUpdate enemy_positions_update = 7;
-  bool has_enemy_positions_update() const;
-  void clear_enemy_positions_update() ;
-  const ::comm::EnemyPositionsUpdate& enemy_positions_update() const;
-  PROTOBUF_NODISCARD ::comm::EnemyPositionsUpdate* release_enemy_positions_update();
-  ::comm::EnemyPositionsUpdate* mutable_enemy_positions_update();
-  void set_allocated_enemy_positions_update(::comm::EnemyPositionsUpdate* value);
-  void unsafe_arena_set_allocated_enemy_positions_update(::comm::EnemyPositionsUpdate* value);
-  ::comm::EnemyPositionsUpdate* unsafe_arena_release_enemy_positions_update();
-
-  private:
-  const ::comm::EnemyPositionsUpdate& _internal_enemy_positions_update() const;
-  ::comm::EnemyPositionsUpdate* _internal_mutable_enemy_positions_update();
-
-  public:
-  // .comm.MapDimensionsUpdate map_dimensions_update = 8;
-  bool has_map_dimensions_update() const;
-  void clear_map_dimensions_update() ;
-  const ::comm::MapDimensionsUpdate& map_dimensions_update() const;
-  PROTOBUF_NODISCARD ::comm::MapDimensionsUpdate* release_map_dimensions_update();
-  ::comm::MapDimensionsUpdate* mutable_map_dimensions_update();
-  void set_allocated_map_dimensions_update(::comm::MapDimensionsUpdate* value);
-  void unsafe_arena_set_allocated_map_dimensions_update(::comm::MapDimensionsUpdate* value);
-  ::comm::MapDimensionsUpdate* unsafe_arena_release_map_dimensions_update();
-
-  private:
-  const ::comm::MapDimensionsUpdate& _internal_map_dimensions_update() const;
-  ::comm::MapDimensionsUpdate* _internal_mutable_map_dimensions_update();
-
-  public:
-  // .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
-  bool has_enemy_got_hit_update() const;
-  void clear_enemy_got_hit_update() ;
-  const ::comm::EnemyGotHitUpdate& enemy_got_hit_update() const;
-  PROTOBUF_NODISCARD ::comm::EnemyGotHitUpdate* release_enemy_got_hit_update();
-  ::comm::EnemyGotHitUpdate* mutable_enemy_got_hit_update();
-  void set_allocated_enemy_got_hit_update(::comm::EnemyGotHitUpdate* value);
-  void unsafe_arena_set_allocated_enemy_got_hit_update(::comm::EnemyGotHitUpdate* value);
-  ::comm::EnemyGotHitUpdate* unsafe_arena_release_enemy_got_hit_update();
-
-  private:
-  const ::comm::EnemyGotHitUpdate& _internal_enemy_got_hit_update() const;
-  ::comm::EnemyGotHitUpdate* _internal_mutable_enemy_got_hit_update();
-
-  public:
-  // .comm.StateVariant variant = 3;
-  void clear_variant() ;
-  ::comm::StateVariant variant() const;
-  void set_variant(::comm::StateVariant value);
-
-  private:
-  ::comm::StateVariant _internal_variant() const;
-  void _internal_set_variant(::comm::StateVariant value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:comm.StateUpdate)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      4, 10, 8,
-      0, 2>
-      _table_;
-
-  static constexpr const void* _raw_default_instance_ =
-      &_StateUpdate_default_instance_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const StateUpdate& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr compressed_map_dimensions_update_;
-    ::comm::Player* player_;
-    ::comm::Item* item_;
-    ::comm::Room* room_;
-    ::comm::MapPositionsUpdate* map_positions_update_;
-    ::comm::MovementUpdate* movement_update_;
-    ::comm::EnemyPositionsUpdate* enemy_positions_update_;
-    ::comm::MapDimensionsUpdate* map_dimensions_update_;
-    ::comm::EnemyGotHitUpdate* enemy_got_hit_update_;
-    int variant_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_comm_2eproto;
-};
-// -------------------------------------------------------------------
-
 class StateUpdateSeries final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:comm.StateUpdateSeries) */ {
  public:
@@ -3920,7 +3425,7 @@ class StateUpdateSeries final : public ::google::protobuf::Message
     return reinterpret_cast<const StateUpdateSeries*>(
         &_StateUpdateSeries_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 16;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(StateUpdateSeries& a, StateUpdateSeries& b) { a.Swap(&b); }
   inline void Swap(StateUpdateSeries* other) {
     if (other == this) return;
@@ -4058,6 +3563,332 @@ class StateUpdateSeries final : public ::google::protobuf::Message
   union { Impl_ _impl_; };
   friend struct ::TableStruct_comm_2eproto;
 };
+// -------------------------------------------------------------------
+
+class MovementUpdate final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:comm.MovementUpdate) */ {
+ public:
+  inline MovementUpdate() : MovementUpdate(nullptr) {}
+  ~MovementUpdate() PROTOBUF_FINAL;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR MovementUpdate(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline MovementUpdate(const MovementUpdate& from) : MovementUpdate(nullptr, from) {}
+  inline MovementUpdate(MovementUpdate&& from) noexcept
+      : MovementUpdate(nullptr, std::move(from)) {}
+  inline MovementUpdate& operator=(const MovementUpdate& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MovementUpdate& operator=(MovementUpdate&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MovementUpdate& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MovementUpdate* internal_default_instance() {
+    return reinterpret_cast<const MovementUpdate*>(
+        &_MovementUpdate_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(MovementUpdate& a, MovementUpdate& b) { a.Swap(&b); }
+  inline void Swap(MovementUpdate* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MovementUpdate* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MovementUpdate* New(::google::protobuf::Arena* arena = nullptr) const PROTOBUF_FINAL {
+    return ::google::protobuf::Message::DefaultConstruct<MovementUpdate>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MovementUpdate& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const MovementUpdate& from) { MovementUpdate::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MovementUpdate* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "comm.MovementUpdate"; }
+
+ protected:
+  explicit MovementUpdate(::google::protobuf::Arena* arena);
+  MovementUpdate(::google::protobuf::Arena* arena, const MovementUpdate& from);
+  MovementUpdate(::google::protobuf::Arena* arena, MovementUpdate&& from) noexcept
+      : MovementUpdate(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static const ::google::protobuf::Message::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kEnemyPositionsFieldNumber = 10,
+    kCurrRoomFieldNumber = 9,
+    kMapPositionsUpdateFieldNumber = 11,
+    kEntityIdFieldNumber = 1,
+    kVariantFieldNumber = 2,
+    kPositionXFieldNumber = 3,
+    kPositionYFieldNumber = 4,
+    kWeaponPivotXFieldNumber = 5,
+    kWeaponPivotYFieldNumber = 6,
+    kDirectionFieldNumber = 7,
+    kAttackFieldNumber = 8,
+  };
+  // repeated .comm.Enemy enemy_positions = 10;
+  int enemy_positions_size() const;
+  private:
+  int _internal_enemy_positions_size() const;
+
+  public:
+  void clear_enemy_positions() ;
+  ::comm::Enemy* mutable_enemy_positions(int index);
+  ::google::protobuf::RepeatedPtrField<::comm::Enemy>* mutable_enemy_positions();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::comm::Enemy>& _internal_enemy_positions() const;
+  ::google::protobuf::RepeatedPtrField<::comm::Enemy>* _internal_mutable_enemy_positions();
+  public:
+  const ::comm::Enemy& enemy_positions(int index) const;
+  ::comm::Enemy* add_enemy_positions();
+  const ::google::protobuf::RepeatedPtrField<::comm::Enemy>& enemy_positions() const;
+  // .comm.Room curr_room = 9;
+  bool has_curr_room() const;
+  void clear_curr_room() ;
+  const ::comm::Room& curr_room() const;
+  PROTOBUF_NODISCARD ::comm::Room* release_curr_room();
+  ::comm::Room* mutable_curr_room();
+  void set_allocated_curr_room(::comm::Room* value);
+  void unsafe_arena_set_allocated_curr_room(::comm::Room* value);
+  ::comm::Room* unsafe_arena_release_curr_room();
+
+  private:
+  const ::comm::Room& _internal_curr_room() const;
+  ::comm::Room* _internal_mutable_curr_room();
+
+  public:
+  // .comm.MapPositionsUpdate map_positions_update = 11;
+  bool has_map_positions_update() const;
+  void clear_map_positions_update() ;
+  const ::comm::MapPositionsUpdate& map_positions_update() const;
+  PROTOBUF_NODISCARD ::comm::MapPositionsUpdate* release_map_positions_update();
+  ::comm::MapPositionsUpdate* mutable_map_positions_update();
+  void set_allocated_map_positions_update(::comm::MapPositionsUpdate* value);
+  void unsafe_arena_set_allocated_map_positions_update(::comm::MapPositionsUpdate* value);
+  ::comm::MapPositionsUpdate* unsafe_arena_release_map_positions_update();
+
+  private:
+  const ::comm::MapPositionsUpdate& _internal_map_positions_update() const;
+  ::comm::MapPositionsUpdate* _internal_mutable_map_positions_update();
+
+  public:
+  // uint32 entity_id = 1;
+  void clear_entity_id() ;
+  ::uint32_t entity_id() const;
+  void set_entity_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_entity_id() const;
+  void _internal_set_entity_id(::uint32_t value);
+
+  public:
+  // .comm.MovementVariant variant = 2;
+  void clear_variant() ;
+  ::comm::MovementVariant variant() const;
+  void set_variant(::comm::MovementVariant value);
+
+  private:
+  ::comm::MovementVariant _internal_variant() const;
+  void _internal_set_variant(::comm::MovementVariant value);
+
+  public:
+  // float position_x = 3;
+  void clear_position_x() ;
+  float position_x() const;
+  void set_position_x(float value);
+
+  private:
+  float _internal_position_x() const;
+  void _internal_set_position_x(float value);
+
+  public:
+  // float position_y = 4;
+  void clear_position_y() ;
+  float position_y() const;
+  void set_position_y(float value);
+
+  private:
+  float _internal_position_y() const;
+  void _internal_set_position_y(float value);
+
+  public:
+  // float weapon_pivot_x = 5;
+  void clear_weapon_pivot_x() ;
+  float weapon_pivot_x() const;
+  void set_weapon_pivot_x(float value);
+
+  private:
+  float _internal_weapon_pivot_x() const;
+  void _internal_set_weapon_pivot_x(float value);
+
+  public:
+  // float weapon_pivot_y = 6;
+  void clear_weapon_pivot_y() ;
+  float weapon_pivot_y() const;
+  void set_weapon_pivot_y(float value);
+
+  private:
+  float _internal_weapon_pivot_y() const;
+  void _internal_set_weapon_pivot_y(float value);
+
+  public:
+  // float direction = 7;
+  void clear_direction() ;
+  float direction() const;
+  void set_direction(float value);
+
+  private:
+  float _internal_direction() const;
+  void _internal_set_direction(float value);
+
+  public:
+  // bool attack = 8;
+  void clear_attack() ;
+  bool attack() const;
+  void set_attack(bool value);
+
+  private:
+  bool _internal_attack() const;
+  void _internal_set_attack(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:comm.MovementUpdate)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      4, 11, 3,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_MovementUpdate_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const MovementUpdate& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::comm::Enemy > enemy_positions_;
+    ::comm::Room* curr_room_;
+    ::comm::MapPositionsUpdate* map_positions_update_;
+    ::uint32_t entity_id_;
+    int variant_;
+    float position_x_;
+    float position_y_;
+    float weapon_pivot_x_;
+    float weapon_pivot_y_;
+    float direction_;
+    bool attack_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_comm_2eproto;
+};
 
 // ===================================================================
 
@@ -4097,7 +3928,29 @@ inline void MovementUpdate::_internal_set_entity_id(::uint32_t value) {
   _impl_.entity_id_ = value;
 }
 
-// float position_x = 2;
+// .comm.MovementVariant variant = 2;
+inline void MovementUpdate::clear_variant() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.variant_ = 0;
+}
+inline ::comm::MovementVariant MovementUpdate::variant() const {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.variant)
+  return _internal_variant();
+}
+inline void MovementUpdate::set_variant(::comm::MovementVariant value) {
+  _internal_set_variant(value);
+  // @@protoc_insertion_point(field_set:comm.MovementUpdate.variant)
+}
+inline ::comm::MovementVariant MovementUpdate::_internal_variant() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::comm::MovementVariant>(_impl_.variant_);
+}
+inline void MovementUpdate::_internal_set_variant(::comm::MovementVariant value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.variant_ = value;
+}
+
+// float position_x = 3;
 inline void MovementUpdate::clear_position_x() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.position_x_ = 0;
@@ -4119,7 +3972,7 @@ inline void MovementUpdate::_internal_set_position_x(float value) {
   _impl_.position_x_ = value;
 }
 
-// float position_y = 3;
+// float position_y = 4;
 inline void MovementUpdate::clear_position_y() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.position_y_ = 0;
@@ -4141,7 +3994,7 @@ inline void MovementUpdate::_internal_set_position_y(float value) {
   _impl_.position_y_ = value;
 }
 
-// float weapon_pivot_x = 4;
+// float weapon_pivot_x = 5;
 inline void MovementUpdate::clear_weapon_pivot_x() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.weapon_pivot_x_ = 0;
@@ -4163,7 +4016,7 @@ inline void MovementUpdate::_internal_set_weapon_pivot_x(float value) {
   _impl_.weapon_pivot_x_ = value;
 }
 
-// float weapon_pivot_y = 5;
+// float weapon_pivot_y = 6;
 inline void MovementUpdate::clear_weapon_pivot_y() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.weapon_pivot_y_ = 0;
@@ -4185,7 +4038,7 @@ inline void MovementUpdate::_internal_set_weapon_pivot_y(float value) {
   _impl_.weapon_pivot_y_ = value;
 }
 
-// float direction = 6;
+// float direction = 7;
 inline void MovementUpdate::clear_direction() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.direction_ = 0;
@@ -4207,7 +4060,7 @@ inline void MovementUpdate::_internal_set_direction(float value) {
   _impl_.direction_ = value;
 }
 
-// bool attack = 7;
+// bool attack = 8;
 inline void MovementUpdate::clear_attack() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.attack_ = false;
@@ -4229,7 +4082,7 @@ inline void MovementUpdate::_internal_set_attack(bool value) {
   _impl_.attack_ = value;
 }
 
-// .comm.Room curr_room = 8;
+// .comm.Room curr_room = 9;
 inline bool MovementUpdate::has_curr_room() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.curr_room_ != nullptr);
@@ -4323,6 +4176,786 @@ inline void MovementUpdate::set_allocated_curr_room(::comm::Room* value) {
 
   _impl_.curr_room_ = reinterpret_cast<::comm::Room*>(value);
   // @@protoc_insertion_point(field_set_allocated:comm.MovementUpdate.curr_room)
+}
+
+// repeated .comm.Enemy enemy_positions = 10;
+inline int MovementUpdate::_internal_enemy_positions_size() const {
+  return _internal_enemy_positions().size();
+}
+inline int MovementUpdate::enemy_positions_size() const {
+  return _internal_enemy_positions_size();
+}
+inline void MovementUpdate::clear_enemy_positions() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.enemy_positions_.Clear();
+}
+inline ::comm::Enemy* MovementUpdate::mutable_enemy_positions(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:comm.MovementUpdate.enemy_positions)
+  return _internal_mutable_enemy_positions()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::comm::Enemy>* MovementUpdate::mutable_enemy_positions()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:comm.MovementUpdate.enemy_positions)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_enemy_positions();
+}
+inline const ::comm::Enemy& MovementUpdate::enemy_positions(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.enemy_positions)
+  return _internal_enemy_positions().Get(index);
+}
+inline ::comm::Enemy* MovementUpdate::add_enemy_positions() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::comm::Enemy* _add = _internal_mutable_enemy_positions()->Add();
+  // @@protoc_insertion_point(field_add:comm.MovementUpdate.enemy_positions)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::comm::Enemy>& MovementUpdate::enemy_positions() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:comm.MovementUpdate.enemy_positions)
+  return _internal_enemy_positions();
+}
+inline const ::google::protobuf::RepeatedPtrField<::comm::Enemy>&
+MovementUpdate::_internal_enemy_positions() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.enemy_positions_;
+}
+inline ::google::protobuf::RepeatedPtrField<::comm::Enemy>*
+MovementUpdate::_internal_mutable_enemy_positions() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.enemy_positions_;
+}
+
+// .comm.MapPositionsUpdate map_positions_update = 11;
+inline bool MovementUpdate::has_map_positions_update() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.map_positions_update_ != nullptr);
+  return value;
+}
+inline void MovementUpdate::clear_map_positions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.map_positions_update_ != nullptr) _impl_.map_positions_update_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::comm::MapPositionsUpdate& MovementUpdate::_internal_map_positions_update() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::comm::MapPositionsUpdate* p = _impl_.map_positions_update_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::MapPositionsUpdate&>(::comm::_MapPositionsUpdate_default_instance_);
+}
+inline const ::comm::MapPositionsUpdate& MovementUpdate::map_positions_update() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.map_positions_update)
+  return _internal_map_positions_update();
+}
+inline void MovementUpdate::unsafe_arena_set_allocated_map_positions_update(::comm::MapPositionsUpdate* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.map_positions_update_);
+  }
+  _impl_.map_positions_update_ = reinterpret_cast<::comm::MapPositionsUpdate*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.MovementUpdate.map_positions_update)
+}
+inline ::comm::MapPositionsUpdate* MovementUpdate::release_map_positions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::comm::MapPositionsUpdate* released = _impl_.map_positions_update_;
+  _impl_.map_positions_update_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::comm::MapPositionsUpdate* MovementUpdate::unsafe_arena_release_map_positions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:comm.MovementUpdate.map_positions_update)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::comm::MapPositionsUpdate* temp = _impl_.map_positions_update_;
+  _impl_.map_positions_update_ = nullptr;
+  return temp;
+}
+inline ::comm::MapPositionsUpdate* MovementUpdate::_internal_mutable_map_positions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.map_positions_update_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::MapPositionsUpdate>(GetArena());
+    _impl_.map_positions_update_ = reinterpret_cast<::comm::MapPositionsUpdate*>(p);
+  }
+  return _impl_.map_positions_update_;
+}
+inline ::comm::MapPositionsUpdate* MovementUpdate::mutable_map_positions_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::comm::MapPositionsUpdate* _msg = _internal_mutable_map_positions_update();
+  // @@protoc_insertion_point(field_mutable:comm.MovementUpdate.map_positions_update)
+  return _msg;
+}
+inline void MovementUpdate::set_allocated_map_positions_update(::comm::MapPositionsUpdate* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.map_positions_update_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.map_positions_update_ = reinterpret_cast<::comm::MapPositionsUpdate*>(value);
+  // @@protoc_insertion_point(field_set_allocated:comm.MovementUpdate.map_positions_update)
+}
+
+// -------------------------------------------------------------------
+
+// BytePrefix
+
+// uint32 bytes = 1;
+inline void BytePrefix::clear_bytes() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bytes_ = 0u;
+}
+inline ::uint32_t BytePrefix::bytes() const {
+  // @@protoc_insertion_point(field_get:comm.BytePrefix.bytes)
+  return _internal_bytes();
+}
+inline void BytePrefix::set_bytes(::uint32_t value) {
+  _internal_set_bytes(value);
+  // @@protoc_insertion_point(field_set:comm.BytePrefix.bytes)
+}
+inline ::uint32_t BytePrefix::_internal_bytes() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.bytes_;
+}
+inline void BytePrefix::_internal_set_bytes(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bytes_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// StateUpdate
+
+// .comm.Player player = 1;
+inline bool StateUpdate::has_player() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.player_ != nullptr);
+  return value;
+}
+inline void StateUpdate::clear_player() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.player_ != nullptr) _impl_.player_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::comm::Player& StateUpdate::_internal_player() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::comm::Player* p = _impl_.player_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::Player&>(::comm::_Player_default_instance_);
+}
+inline const ::comm::Player& StateUpdate::player() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.player)
+  return _internal_player();
+}
+inline void StateUpdate::unsafe_arena_set_allocated_player(::comm::Player* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.player_);
+  }
+  _impl_.player_ = reinterpret_cast<::comm::Player*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.player)
+}
+inline ::comm::Player* StateUpdate::release_player() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::comm::Player* released = _impl_.player_;
+  _impl_.player_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::comm::Player* StateUpdate::unsafe_arena_release_player() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.player)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::comm::Player* temp = _impl_.player_;
+  _impl_.player_ = nullptr;
+  return temp;
+}
+inline ::comm::Player* StateUpdate::_internal_mutable_player() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.player_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::Player>(GetArena());
+    _impl_.player_ = reinterpret_cast<::comm::Player*>(p);
+  }
+  return _impl_.player_;
+}
+inline ::comm::Player* StateUpdate::mutable_player() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::comm::Player* _msg = _internal_mutable_player();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.player)
+  return _msg;
+}
+inline void StateUpdate::set_allocated_player(::comm::Player* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.player_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.player_ = reinterpret_cast<::comm::Player*>(value);
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.player)
+}
+
+// .comm.Item item = 2;
+inline bool StateUpdate::has_item() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.item_ != nullptr);
+  return value;
+}
+inline void StateUpdate::clear_item() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.item_ != nullptr) _impl_.item_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::comm::Item& StateUpdate::_internal_item() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::comm::Item* p = _impl_.item_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::Item&>(::comm::_Item_default_instance_);
+}
+inline const ::comm::Item& StateUpdate::item() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.item)
+  return _internal_item();
+}
+inline void StateUpdate::unsafe_arena_set_allocated_item(::comm::Item* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.item_);
+  }
+  _impl_.item_ = reinterpret_cast<::comm::Item*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.item)
+}
+inline ::comm::Item* StateUpdate::release_item() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::comm::Item* released = _impl_.item_;
+  _impl_.item_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::comm::Item* StateUpdate::unsafe_arena_release_item() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.item)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::comm::Item* temp = _impl_.item_;
+  _impl_.item_ = nullptr;
+  return temp;
+}
+inline ::comm::Item* StateUpdate::_internal_mutable_item() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.item_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::Item>(GetArena());
+    _impl_.item_ = reinterpret_cast<::comm::Item*>(p);
+  }
+  return _impl_.item_;
+}
+inline ::comm::Item* StateUpdate::mutable_item() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::comm::Item* _msg = _internal_mutable_item();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.item)
+  return _msg;
+}
+inline void StateUpdate::set_allocated_item(::comm::Item* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.item_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.item_ = reinterpret_cast<::comm::Item*>(value);
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.item)
+}
+
+// .comm.StateVariant variant = 3;
+inline void StateUpdate::clear_variant() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.variant_ = 0;
+}
+inline ::comm::StateVariant StateUpdate::variant() const {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.variant)
+  return _internal_variant();
+}
+inline void StateUpdate::set_variant(::comm::StateVariant value) {
+  _internal_set_variant(value);
+  // @@protoc_insertion_point(field_set:comm.StateUpdate.variant)
+}
+inline ::comm::StateVariant StateUpdate::_internal_variant() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::comm::StateVariant>(_impl_.variant_);
+}
+inline void StateUpdate::_internal_set_variant(::comm::StateVariant value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.variant_ = value;
+}
+
+// .comm.Room room = 4;
+inline bool StateUpdate::has_room() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.room_ != nullptr);
+  return value;
+}
+inline void StateUpdate::clear_room() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.room_ != nullptr) _impl_.room_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const ::comm::Room& StateUpdate::_internal_room() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::comm::Room* p = _impl_.room_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::Room&>(::comm::_Room_default_instance_);
+}
+inline const ::comm::Room& StateUpdate::room() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.room)
+  return _internal_room();
+}
+inline void StateUpdate::unsafe_arena_set_allocated_room(::comm::Room* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.room_);
+  }
+  _impl_.room_ = reinterpret_cast<::comm::Room*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.room)
+}
+inline ::comm::Room* StateUpdate::release_room() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  ::comm::Room* released = _impl_.room_;
+  _impl_.room_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::comm::Room* StateUpdate::unsafe_arena_release_room() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.room)
+
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  ::comm::Room* temp = _impl_.room_;
+  _impl_.room_ = nullptr;
+  return temp;
+}
+inline ::comm::Room* StateUpdate::_internal_mutable_room() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.room_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::Room>(GetArena());
+    _impl_.room_ = reinterpret_cast<::comm::Room*>(p);
+  }
+  return _impl_.room_;
+}
+inline ::comm::Room* StateUpdate::mutable_room() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000004u;
+  ::comm::Room* _msg = _internal_mutable_room();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.room)
+  return _msg;
+}
+inline void StateUpdate::set_allocated_room(::comm::Room* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.room_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+
+  _impl_.room_ = reinterpret_cast<::comm::Room*>(value);
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.room)
+}
+
+// .comm.MapDimensionsUpdate map_dimensions_update = 8;
+inline bool StateUpdate::has_map_dimensions_update() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.map_dimensions_update_ != nullptr);
+  return value;
+}
+inline void StateUpdate::clear_map_dimensions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.map_dimensions_update_ != nullptr) _impl_.map_dimensions_update_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline const ::comm::MapDimensionsUpdate& StateUpdate::_internal_map_dimensions_update() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::comm::MapDimensionsUpdate* p = _impl_.map_dimensions_update_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::MapDimensionsUpdate&>(::comm::_MapDimensionsUpdate_default_instance_);
+}
+inline const ::comm::MapDimensionsUpdate& StateUpdate::map_dimensions_update() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.map_dimensions_update)
+  return _internal_map_dimensions_update();
+}
+inline void StateUpdate::unsafe_arena_set_allocated_map_dimensions_update(::comm::MapDimensionsUpdate* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.map_dimensions_update_);
+  }
+  _impl_.map_dimensions_update_ = reinterpret_cast<::comm::MapDimensionsUpdate*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.map_dimensions_update)
+}
+inline ::comm::MapDimensionsUpdate* StateUpdate::release_map_dimensions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::comm::MapDimensionsUpdate* released = _impl_.map_dimensions_update_;
+  _impl_.map_dimensions_update_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::comm::MapDimensionsUpdate* StateUpdate::unsafe_arena_release_map_dimensions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.map_dimensions_update)
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::comm::MapDimensionsUpdate* temp = _impl_.map_dimensions_update_;
+  _impl_.map_dimensions_update_ = nullptr;
+  return temp;
+}
+inline ::comm::MapDimensionsUpdate* StateUpdate::_internal_mutable_map_dimensions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.map_dimensions_update_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::MapDimensionsUpdate>(GetArena());
+    _impl_.map_dimensions_update_ = reinterpret_cast<::comm::MapDimensionsUpdate*>(p);
+  }
+  return _impl_.map_dimensions_update_;
+}
+inline ::comm::MapDimensionsUpdate* StateUpdate::mutable_map_dimensions_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000008u;
+  ::comm::MapDimensionsUpdate* _msg = _internal_mutable_map_dimensions_update();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.map_dimensions_update)
+  return _msg;
+}
+inline void StateUpdate::set_allocated_map_dimensions_update(::comm::MapDimensionsUpdate* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.map_dimensions_update_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+
+  _impl_.map_dimensions_update_ = reinterpret_cast<::comm::MapDimensionsUpdate*>(value);
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.map_dimensions_update)
+}
+
+// .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
+inline bool StateUpdate::has_enemy_got_hit_update() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.enemy_got_hit_update_ != nullptr);
+  return value;
+}
+inline void StateUpdate::clear_enemy_got_hit_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.enemy_got_hit_update_ != nullptr) _impl_.enemy_got_hit_update_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline const ::comm::EnemyGotHitUpdate& StateUpdate::_internal_enemy_got_hit_update() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::comm::EnemyGotHitUpdate* p = _impl_.enemy_got_hit_update_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::EnemyGotHitUpdate&>(::comm::_EnemyGotHitUpdate_default_instance_);
+}
+inline const ::comm::EnemyGotHitUpdate& StateUpdate::enemy_got_hit_update() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.enemy_got_hit_update)
+  return _internal_enemy_got_hit_update();
+}
+inline void StateUpdate::unsafe_arena_set_allocated_enemy_got_hit_update(::comm::EnemyGotHitUpdate* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.enemy_got_hit_update_);
+  }
+  _impl_.enemy_got_hit_update_ = reinterpret_cast<::comm::EnemyGotHitUpdate*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000010u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000010u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.enemy_got_hit_update)
+}
+inline ::comm::EnemyGotHitUpdate* StateUpdate::release_enemy_got_hit_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000010u;
+  ::comm::EnemyGotHitUpdate* released = _impl_.enemy_got_hit_update_;
+  _impl_.enemy_got_hit_update_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::comm::EnemyGotHitUpdate* StateUpdate::unsafe_arena_release_enemy_got_hit_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.enemy_got_hit_update)
+
+  _impl_._has_bits_[0] &= ~0x00000010u;
+  ::comm::EnemyGotHitUpdate* temp = _impl_.enemy_got_hit_update_;
+  _impl_.enemy_got_hit_update_ = nullptr;
+  return temp;
+}
+inline ::comm::EnemyGotHitUpdate* StateUpdate::_internal_mutable_enemy_got_hit_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.enemy_got_hit_update_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::EnemyGotHitUpdate>(GetArena());
+    _impl_.enemy_got_hit_update_ = reinterpret_cast<::comm::EnemyGotHitUpdate*>(p);
+  }
+  return _impl_.enemy_got_hit_update_;
+}
+inline ::comm::EnemyGotHitUpdate* StateUpdate::mutable_enemy_got_hit_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000010u;
+  ::comm::EnemyGotHitUpdate* _msg = _internal_mutable_enemy_got_hit_update();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.enemy_got_hit_update)
+  return _msg;
+}
+inline void StateUpdate::set_allocated_enemy_got_hit_update(::comm::EnemyGotHitUpdate* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.enemy_got_hit_update_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000010u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000010u;
+  }
+
+  _impl_.enemy_got_hit_update_ = reinterpret_cast<::comm::EnemyGotHitUpdate*>(value);
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.enemy_got_hit_update)
+}
+
+// bytes compressed_map_dimensions_update = 10;
+inline void StateUpdate::clear_compressed_map_dimensions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.compressed_map_dimensions_update_.ClearToEmpty();
+}
+inline const std::string& StateUpdate::compressed_map_dimensions_update() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.compressed_map_dimensions_update)
+  return _internal_compressed_map_dimensions_update();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void StateUpdate::set_compressed_map_dimensions_update(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.compressed_map_dimensions_update_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:comm.StateUpdate.compressed_map_dimensions_update)
+}
+inline std::string* StateUpdate::mutable_compressed_map_dimensions_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_compressed_map_dimensions_update();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.compressed_map_dimensions_update)
+  return _s;
+}
+inline const std::string& StateUpdate::_internal_compressed_map_dimensions_update() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.compressed_map_dimensions_update_.Get();
+}
+inline void StateUpdate::_internal_set_compressed_map_dimensions_update(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.compressed_map_dimensions_update_.Set(value, GetArena());
+}
+inline std::string* StateUpdate::_internal_mutable_compressed_map_dimensions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.compressed_map_dimensions_update_.Mutable( GetArena());
+}
+inline std::string* StateUpdate::release_compressed_map_dimensions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.compressed_map_dimensions_update)
+  return _impl_.compressed_map_dimensions_update_.Release();
+}
+inline void StateUpdate::set_allocated_compressed_map_dimensions_update(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.compressed_map_dimensions_update_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.compressed_map_dimensions_update_.IsDefault()) {
+          _impl_.compressed_map_dimensions_update_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.compressed_map_dimensions_update)
+}
+
+// -------------------------------------------------------------------
+
+// StateUpdateSeries
+
+// repeated .comm.StateUpdate updates = 1;
+inline int StateUpdateSeries::_internal_updates_size() const {
+  return _internal_updates().size();
+}
+inline int StateUpdateSeries::updates_size() const {
+  return _internal_updates_size();
+}
+inline void StateUpdateSeries::clear_updates() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.updates_.Clear();
+}
+inline ::comm::StateUpdate* StateUpdateSeries::mutable_updates(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdateSeries.updates)
+  return _internal_mutable_updates()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>* StateUpdateSeries::mutable_updates()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:comm.StateUpdateSeries.updates)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_updates();
+}
+inline const ::comm::StateUpdate& StateUpdateSeries::updates(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.StateUpdateSeries.updates)
+  return _internal_updates().Get(index);
+}
+inline ::comm::StateUpdate* StateUpdateSeries::add_updates() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::comm::StateUpdate* _add = _internal_mutable_updates()->Add();
+  // @@protoc_insertion_point(field_add:comm.StateUpdateSeries.updates)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>& StateUpdateSeries::updates() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:comm.StateUpdateSeries.updates)
+  return _internal_updates();
+}
+inline const ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>&
+StateUpdateSeries::_internal_updates() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.updates_;
+}
+inline ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>*
+StateUpdateSeries::_internal_mutable_updates() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.updates_;
 }
 
 // -------------------------------------------------------------------
@@ -5567,59 +6200,6 @@ inline void EnemyGotHitUpdate::_internal_set_enemy_id(::uint32_t value) {
 
 // -------------------------------------------------------------------
 
-// EnemyPositionsUpdate
-
-// repeated .comm.Enemy enemy_positions = 1;
-inline int EnemyPositionsUpdate::_internal_enemy_positions_size() const {
-  return _internal_enemy_positions().size();
-}
-inline int EnemyPositionsUpdate::enemy_positions_size() const {
-  return _internal_enemy_positions_size();
-}
-inline void EnemyPositionsUpdate::clear_enemy_positions() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.enemy_positions_.Clear();
-}
-inline ::comm::Enemy* EnemyPositionsUpdate::mutable_enemy_positions(int index)
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:comm.EnemyPositionsUpdate.enemy_positions)
-  return _internal_mutable_enemy_positions()->Mutable(index);
-}
-inline ::google::protobuf::RepeatedPtrField<::comm::Enemy>* EnemyPositionsUpdate::mutable_enemy_positions()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:comm.EnemyPositionsUpdate.enemy_positions)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_enemy_positions();
-}
-inline const ::comm::Enemy& EnemyPositionsUpdate::enemy_positions(int index) const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.EnemyPositionsUpdate.enemy_positions)
-  return _internal_enemy_positions().Get(index);
-}
-inline ::comm::Enemy* EnemyPositionsUpdate::add_enemy_positions() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::comm::Enemy* _add = _internal_mutable_enemy_positions()->Add();
-  // @@protoc_insertion_point(field_add:comm.EnemyPositionsUpdate.enemy_positions)
-  return _add;
-}
-inline const ::google::protobuf::RepeatedPtrField<::comm::Enemy>& EnemyPositionsUpdate::enemy_positions() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:comm.EnemyPositionsUpdate.enemy_positions)
-  return _internal_enemy_positions();
-}
-inline const ::google::protobuf::RepeatedPtrField<::comm::Enemy>&
-EnemyPositionsUpdate::_internal_enemy_positions() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.enemy_positions_;
-}
-inline ::google::protobuf::RepeatedPtrField<::comm::Enemy>*
-EnemyPositionsUpdate::_internal_mutable_enemy_positions() {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.enemy_positions_;
-}
-
-// -------------------------------------------------------------------
-
 // MapPositionsUpdate
 
 // repeated .comm.Player players = 1;
@@ -5822,929 +6402,6 @@ inline ::google::protobuf::RepeatedField<::uint32_t>* SpawningEnemiesResponse::_
   return &_impl_.enemy_id_;
 }
 
-// -------------------------------------------------------------------
-
-// BytePrefix
-
-// uint32 bytes = 1;
-inline void BytePrefix::clear_bytes() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.bytes_ = 0u;
-}
-inline ::uint32_t BytePrefix::bytes() const {
-  // @@protoc_insertion_point(field_get:comm.BytePrefix.bytes)
-  return _internal_bytes();
-}
-inline void BytePrefix::set_bytes(::uint32_t value) {
-  _internal_set_bytes(value);
-  // @@protoc_insertion_point(field_set:comm.BytePrefix.bytes)
-}
-inline ::uint32_t BytePrefix::_internal_bytes() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.bytes_;
-}
-inline void BytePrefix::_internal_set_bytes(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.bytes_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// StateUpdate
-
-// .comm.Player player = 1;
-inline bool StateUpdate::has_player() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.player_ != nullptr);
-  return value;
-}
-inline void StateUpdate::clear_player() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.player_ != nullptr) _impl_.player_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline const ::comm::Player& StateUpdate::_internal_player() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::comm::Player* p = _impl_.player_;
-  return p != nullptr ? *p : reinterpret_cast<const ::comm::Player&>(::comm::_Player_default_instance_);
-}
-inline const ::comm::Player& StateUpdate::player() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.player)
-  return _internal_player();
-}
-inline void StateUpdate::unsafe_arena_set_allocated_player(::comm::Player* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.player_);
-  }
-  _impl_.player_ = reinterpret_cast<::comm::Player*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.player)
-}
-inline ::comm::Player* StateUpdate::release_player() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::comm::Player* released = _impl_.player_;
-  _impl_.player_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::comm::Player* StateUpdate::unsafe_arena_release_player() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.player)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::comm::Player* temp = _impl_.player_;
-  _impl_.player_ = nullptr;
-  return temp;
-}
-inline ::comm::Player* StateUpdate::_internal_mutable_player() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.player_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::Player>(GetArena());
-    _impl_.player_ = reinterpret_cast<::comm::Player*>(p);
-  }
-  return _impl_.player_;
-}
-inline ::comm::Player* StateUpdate::mutable_player() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  ::comm::Player* _msg = _internal_mutable_player();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.player)
-  return _msg;
-}
-inline void StateUpdate::set_allocated_player(::comm::Player* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.player_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.player_ = reinterpret_cast<::comm::Player*>(value);
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.player)
-}
-
-// .comm.Item item = 2;
-inline bool StateUpdate::has_item() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.item_ != nullptr);
-  return value;
-}
-inline void StateUpdate::clear_item() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.item_ != nullptr) _impl_.item_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000002u;
-}
-inline const ::comm::Item& StateUpdate::_internal_item() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::comm::Item* p = _impl_.item_;
-  return p != nullptr ? *p : reinterpret_cast<const ::comm::Item&>(::comm::_Item_default_instance_);
-}
-inline const ::comm::Item& StateUpdate::item() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.item)
-  return _internal_item();
-}
-inline void StateUpdate::unsafe_arena_set_allocated_item(::comm::Item* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.item_);
-  }
-  _impl_.item_ = reinterpret_cast<::comm::Item*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.item)
-}
-inline ::comm::Item* StateUpdate::release_item() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::comm::Item* released = _impl_.item_;
-  _impl_.item_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::comm::Item* StateUpdate::unsafe_arena_release_item() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.item)
-
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::comm::Item* temp = _impl_.item_;
-  _impl_.item_ = nullptr;
-  return temp;
-}
-inline ::comm::Item* StateUpdate::_internal_mutable_item() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.item_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::Item>(GetArena());
-    _impl_.item_ = reinterpret_cast<::comm::Item*>(p);
-  }
-  return _impl_.item_;
-}
-inline ::comm::Item* StateUpdate::mutable_item() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000002u;
-  ::comm::Item* _msg = _internal_mutable_item();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.item)
-  return _msg;
-}
-inline void StateUpdate::set_allocated_item(::comm::Item* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.item_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-
-  _impl_.item_ = reinterpret_cast<::comm::Item*>(value);
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.item)
-}
-
-// .comm.StateVariant variant = 3;
-inline void StateUpdate::clear_variant() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.variant_ = 0;
-}
-inline ::comm::StateVariant StateUpdate::variant() const {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.variant)
-  return _internal_variant();
-}
-inline void StateUpdate::set_variant(::comm::StateVariant value) {
-  _internal_set_variant(value);
-  // @@protoc_insertion_point(field_set:comm.StateUpdate.variant)
-}
-inline ::comm::StateVariant StateUpdate::_internal_variant() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::comm::StateVariant>(_impl_.variant_);
-}
-inline void StateUpdate::_internal_set_variant(::comm::StateVariant value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.variant_ = value;
-}
-
-// .comm.Room room = 4;
-inline bool StateUpdate::has_room() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.room_ != nullptr);
-  return value;
-}
-inline void StateUpdate::clear_room() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.room_ != nullptr) _impl_.room_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000004u;
-}
-inline const ::comm::Room& StateUpdate::_internal_room() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::comm::Room* p = _impl_.room_;
-  return p != nullptr ? *p : reinterpret_cast<const ::comm::Room&>(::comm::_Room_default_instance_);
-}
-inline const ::comm::Room& StateUpdate::room() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.room)
-  return _internal_room();
-}
-inline void StateUpdate::unsafe_arena_set_allocated_room(::comm::Room* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.room_);
-  }
-  _impl_.room_ = reinterpret_cast<::comm::Room*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000004u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.room)
-}
-inline ::comm::Room* StateUpdate::release_room() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000004u;
-  ::comm::Room* released = _impl_.room_;
-  _impl_.room_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::comm::Room* StateUpdate::unsafe_arena_release_room() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.room)
-
-  _impl_._has_bits_[0] &= ~0x00000004u;
-  ::comm::Room* temp = _impl_.room_;
-  _impl_.room_ = nullptr;
-  return temp;
-}
-inline ::comm::Room* StateUpdate::_internal_mutable_room() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.room_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::Room>(GetArena());
-    _impl_.room_ = reinterpret_cast<::comm::Room*>(p);
-  }
-  return _impl_.room_;
-}
-inline ::comm::Room* StateUpdate::mutable_room() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000004u;
-  ::comm::Room* _msg = _internal_mutable_room();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.room)
-  return _msg;
-}
-inline void StateUpdate::set_allocated_room(::comm::Room* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.room_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000004u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
-  }
-
-  _impl_.room_ = reinterpret_cast<::comm::Room*>(value);
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.room)
-}
-
-// .comm.MapPositionsUpdate map_positions_update = 5;
-inline bool StateUpdate::has_map_positions_update() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.map_positions_update_ != nullptr);
-  return value;
-}
-inline void StateUpdate::clear_map_positions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.map_positions_update_ != nullptr) _impl_.map_positions_update_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000008u;
-}
-inline const ::comm::MapPositionsUpdate& StateUpdate::_internal_map_positions_update() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::comm::MapPositionsUpdate* p = _impl_.map_positions_update_;
-  return p != nullptr ? *p : reinterpret_cast<const ::comm::MapPositionsUpdate&>(::comm::_MapPositionsUpdate_default_instance_);
-}
-inline const ::comm::MapPositionsUpdate& StateUpdate::map_positions_update() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.map_positions_update)
-  return _internal_map_positions_update();
-}
-inline void StateUpdate::unsafe_arena_set_allocated_map_positions_update(::comm::MapPositionsUpdate* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.map_positions_update_);
-  }
-  _impl_.map_positions_update_ = reinterpret_cast<::comm::MapPositionsUpdate*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000008u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.map_positions_update)
-}
-inline ::comm::MapPositionsUpdate* StateUpdate::release_map_positions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000008u;
-  ::comm::MapPositionsUpdate* released = _impl_.map_positions_update_;
-  _impl_.map_positions_update_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::comm::MapPositionsUpdate* StateUpdate::unsafe_arena_release_map_positions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.map_positions_update)
-
-  _impl_._has_bits_[0] &= ~0x00000008u;
-  ::comm::MapPositionsUpdate* temp = _impl_.map_positions_update_;
-  _impl_.map_positions_update_ = nullptr;
-  return temp;
-}
-inline ::comm::MapPositionsUpdate* StateUpdate::_internal_mutable_map_positions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.map_positions_update_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::MapPositionsUpdate>(GetArena());
-    _impl_.map_positions_update_ = reinterpret_cast<::comm::MapPositionsUpdate*>(p);
-  }
-  return _impl_.map_positions_update_;
-}
-inline ::comm::MapPositionsUpdate* StateUpdate::mutable_map_positions_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000008u;
-  ::comm::MapPositionsUpdate* _msg = _internal_mutable_map_positions_update();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.map_positions_update)
-  return _msg;
-}
-inline void StateUpdate::set_allocated_map_positions_update(::comm::MapPositionsUpdate* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.map_positions_update_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000008u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
-  }
-
-  _impl_.map_positions_update_ = reinterpret_cast<::comm::MapPositionsUpdate*>(value);
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.map_positions_update)
-}
-
-// .comm.MovementUpdate movement_update = 6;
-inline bool StateUpdate::has_movement_update() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.movement_update_ != nullptr);
-  return value;
-}
-inline void StateUpdate::clear_movement_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.movement_update_ != nullptr) _impl_.movement_update_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000010u;
-}
-inline const ::comm::MovementUpdate& StateUpdate::_internal_movement_update() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::comm::MovementUpdate* p = _impl_.movement_update_;
-  return p != nullptr ? *p : reinterpret_cast<const ::comm::MovementUpdate&>(::comm::_MovementUpdate_default_instance_);
-}
-inline const ::comm::MovementUpdate& StateUpdate::movement_update() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.movement_update)
-  return _internal_movement_update();
-}
-inline void StateUpdate::unsafe_arena_set_allocated_movement_update(::comm::MovementUpdate* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.movement_update_);
-  }
-  _impl_.movement_update_ = reinterpret_cast<::comm::MovementUpdate*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000010u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000010u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.movement_update)
-}
-inline ::comm::MovementUpdate* StateUpdate::release_movement_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000010u;
-  ::comm::MovementUpdate* released = _impl_.movement_update_;
-  _impl_.movement_update_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::comm::MovementUpdate* StateUpdate::unsafe_arena_release_movement_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.movement_update)
-
-  _impl_._has_bits_[0] &= ~0x00000010u;
-  ::comm::MovementUpdate* temp = _impl_.movement_update_;
-  _impl_.movement_update_ = nullptr;
-  return temp;
-}
-inline ::comm::MovementUpdate* StateUpdate::_internal_mutable_movement_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.movement_update_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::MovementUpdate>(GetArena());
-    _impl_.movement_update_ = reinterpret_cast<::comm::MovementUpdate*>(p);
-  }
-  return _impl_.movement_update_;
-}
-inline ::comm::MovementUpdate* StateUpdate::mutable_movement_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000010u;
-  ::comm::MovementUpdate* _msg = _internal_mutable_movement_update();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.movement_update)
-  return _msg;
-}
-inline void StateUpdate::set_allocated_movement_update(::comm::MovementUpdate* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.movement_update_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000010u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000010u;
-  }
-
-  _impl_.movement_update_ = reinterpret_cast<::comm::MovementUpdate*>(value);
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.movement_update)
-}
-
-// .comm.EnemyPositionsUpdate enemy_positions_update = 7;
-inline bool StateUpdate::has_enemy_positions_update() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.enemy_positions_update_ != nullptr);
-  return value;
-}
-inline void StateUpdate::clear_enemy_positions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.enemy_positions_update_ != nullptr) _impl_.enemy_positions_update_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000020u;
-}
-inline const ::comm::EnemyPositionsUpdate& StateUpdate::_internal_enemy_positions_update() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::comm::EnemyPositionsUpdate* p = _impl_.enemy_positions_update_;
-  return p != nullptr ? *p : reinterpret_cast<const ::comm::EnemyPositionsUpdate&>(::comm::_EnemyPositionsUpdate_default_instance_);
-}
-inline const ::comm::EnemyPositionsUpdate& StateUpdate::enemy_positions_update() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.enemy_positions_update)
-  return _internal_enemy_positions_update();
-}
-inline void StateUpdate::unsafe_arena_set_allocated_enemy_positions_update(::comm::EnemyPositionsUpdate* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.enemy_positions_update_);
-  }
-  _impl_.enemy_positions_update_ = reinterpret_cast<::comm::EnemyPositionsUpdate*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000020u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000020u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.enemy_positions_update)
-}
-inline ::comm::EnemyPositionsUpdate* StateUpdate::release_enemy_positions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000020u;
-  ::comm::EnemyPositionsUpdate* released = _impl_.enemy_positions_update_;
-  _impl_.enemy_positions_update_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::comm::EnemyPositionsUpdate* StateUpdate::unsafe_arena_release_enemy_positions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.enemy_positions_update)
-
-  _impl_._has_bits_[0] &= ~0x00000020u;
-  ::comm::EnemyPositionsUpdate* temp = _impl_.enemy_positions_update_;
-  _impl_.enemy_positions_update_ = nullptr;
-  return temp;
-}
-inline ::comm::EnemyPositionsUpdate* StateUpdate::_internal_mutable_enemy_positions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.enemy_positions_update_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::EnemyPositionsUpdate>(GetArena());
-    _impl_.enemy_positions_update_ = reinterpret_cast<::comm::EnemyPositionsUpdate*>(p);
-  }
-  return _impl_.enemy_positions_update_;
-}
-inline ::comm::EnemyPositionsUpdate* StateUpdate::mutable_enemy_positions_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000020u;
-  ::comm::EnemyPositionsUpdate* _msg = _internal_mutable_enemy_positions_update();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.enemy_positions_update)
-  return _msg;
-}
-inline void StateUpdate::set_allocated_enemy_positions_update(::comm::EnemyPositionsUpdate* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.enemy_positions_update_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000020u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000020u;
-  }
-
-  _impl_.enemy_positions_update_ = reinterpret_cast<::comm::EnemyPositionsUpdate*>(value);
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.enemy_positions_update)
-}
-
-// .comm.MapDimensionsUpdate map_dimensions_update = 8;
-inline bool StateUpdate::has_map_dimensions_update() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000040u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.map_dimensions_update_ != nullptr);
-  return value;
-}
-inline void StateUpdate::clear_map_dimensions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.map_dimensions_update_ != nullptr) _impl_.map_dimensions_update_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000040u;
-}
-inline const ::comm::MapDimensionsUpdate& StateUpdate::_internal_map_dimensions_update() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::comm::MapDimensionsUpdate* p = _impl_.map_dimensions_update_;
-  return p != nullptr ? *p : reinterpret_cast<const ::comm::MapDimensionsUpdate&>(::comm::_MapDimensionsUpdate_default_instance_);
-}
-inline const ::comm::MapDimensionsUpdate& StateUpdate::map_dimensions_update() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.map_dimensions_update)
-  return _internal_map_dimensions_update();
-}
-inline void StateUpdate::unsafe_arena_set_allocated_map_dimensions_update(::comm::MapDimensionsUpdate* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.map_dimensions_update_);
-  }
-  _impl_.map_dimensions_update_ = reinterpret_cast<::comm::MapDimensionsUpdate*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000040u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000040u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.map_dimensions_update)
-}
-inline ::comm::MapDimensionsUpdate* StateUpdate::release_map_dimensions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000040u;
-  ::comm::MapDimensionsUpdate* released = _impl_.map_dimensions_update_;
-  _impl_.map_dimensions_update_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::comm::MapDimensionsUpdate* StateUpdate::unsafe_arena_release_map_dimensions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.map_dimensions_update)
-
-  _impl_._has_bits_[0] &= ~0x00000040u;
-  ::comm::MapDimensionsUpdate* temp = _impl_.map_dimensions_update_;
-  _impl_.map_dimensions_update_ = nullptr;
-  return temp;
-}
-inline ::comm::MapDimensionsUpdate* StateUpdate::_internal_mutable_map_dimensions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.map_dimensions_update_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::MapDimensionsUpdate>(GetArena());
-    _impl_.map_dimensions_update_ = reinterpret_cast<::comm::MapDimensionsUpdate*>(p);
-  }
-  return _impl_.map_dimensions_update_;
-}
-inline ::comm::MapDimensionsUpdate* StateUpdate::mutable_map_dimensions_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000040u;
-  ::comm::MapDimensionsUpdate* _msg = _internal_mutable_map_dimensions_update();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.map_dimensions_update)
-  return _msg;
-}
-inline void StateUpdate::set_allocated_map_dimensions_update(::comm::MapDimensionsUpdate* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.map_dimensions_update_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000040u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000040u;
-  }
-
-  _impl_.map_dimensions_update_ = reinterpret_cast<::comm::MapDimensionsUpdate*>(value);
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.map_dimensions_update)
-}
-
-// .comm.EnemyGotHitUpdate enemy_got_hit_update = 9;
-inline bool StateUpdate::has_enemy_got_hit_update() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000080u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.enemy_got_hit_update_ != nullptr);
-  return value;
-}
-inline void StateUpdate::clear_enemy_got_hit_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.enemy_got_hit_update_ != nullptr) _impl_.enemy_got_hit_update_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000080u;
-}
-inline const ::comm::EnemyGotHitUpdate& StateUpdate::_internal_enemy_got_hit_update() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::comm::EnemyGotHitUpdate* p = _impl_.enemy_got_hit_update_;
-  return p != nullptr ? *p : reinterpret_cast<const ::comm::EnemyGotHitUpdate&>(::comm::_EnemyGotHitUpdate_default_instance_);
-}
-inline const ::comm::EnemyGotHitUpdate& StateUpdate::enemy_got_hit_update() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.enemy_got_hit_update)
-  return _internal_enemy_got_hit_update();
-}
-inline void StateUpdate::unsafe_arena_set_allocated_enemy_got_hit_update(::comm::EnemyGotHitUpdate* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.enemy_got_hit_update_);
-  }
-  _impl_.enemy_got_hit_update_ = reinterpret_cast<::comm::EnemyGotHitUpdate*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000080u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000080u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.enemy_got_hit_update)
-}
-inline ::comm::EnemyGotHitUpdate* StateUpdate::release_enemy_got_hit_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000080u;
-  ::comm::EnemyGotHitUpdate* released = _impl_.enemy_got_hit_update_;
-  _impl_.enemy_got_hit_update_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::comm::EnemyGotHitUpdate* StateUpdate::unsafe_arena_release_enemy_got_hit_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.enemy_got_hit_update)
-
-  _impl_._has_bits_[0] &= ~0x00000080u;
-  ::comm::EnemyGotHitUpdate* temp = _impl_.enemy_got_hit_update_;
-  _impl_.enemy_got_hit_update_ = nullptr;
-  return temp;
-}
-inline ::comm::EnemyGotHitUpdate* StateUpdate::_internal_mutable_enemy_got_hit_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.enemy_got_hit_update_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::EnemyGotHitUpdate>(GetArena());
-    _impl_.enemy_got_hit_update_ = reinterpret_cast<::comm::EnemyGotHitUpdate*>(p);
-  }
-  return _impl_.enemy_got_hit_update_;
-}
-inline ::comm::EnemyGotHitUpdate* StateUpdate::mutable_enemy_got_hit_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000080u;
-  ::comm::EnemyGotHitUpdate* _msg = _internal_mutable_enemy_got_hit_update();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.enemy_got_hit_update)
-  return _msg;
-}
-inline void StateUpdate::set_allocated_enemy_got_hit_update(::comm::EnemyGotHitUpdate* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.enemy_got_hit_update_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000080u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000080u;
-  }
-
-  _impl_.enemy_got_hit_update_ = reinterpret_cast<::comm::EnemyGotHitUpdate*>(value);
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.enemy_got_hit_update)
-}
-
-// bytes compressed_map_dimensions_update = 10;
-inline void StateUpdate::clear_compressed_map_dimensions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.compressed_map_dimensions_update_.ClearToEmpty();
-}
-inline const std::string& StateUpdate::compressed_map_dimensions_update() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.compressed_map_dimensions_update)
-  return _internal_compressed_map_dimensions_update();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void StateUpdate::set_compressed_map_dimensions_update(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.compressed_map_dimensions_update_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:comm.StateUpdate.compressed_map_dimensions_update)
-}
-inline std::string* StateUpdate::mutable_compressed_map_dimensions_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_compressed_map_dimensions_update();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.compressed_map_dimensions_update)
-  return _s;
-}
-inline const std::string& StateUpdate::_internal_compressed_map_dimensions_update() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.compressed_map_dimensions_update_.Get();
-}
-inline void StateUpdate::_internal_set_compressed_map_dimensions_update(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.compressed_map_dimensions_update_.Set(value, GetArena());
-}
-inline std::string* StateUpdate::_internal_mutable_compressed_map_dimensions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.compressed_map_dimensions_update_.Mutable( GetArena());
-}
-inline std::string* StateUpdate::release_compressed_map_dimensions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.compressed_map_dimensions_update)
-  return _impl_.compressed_map_dimensions_update_.Release();
-}
-inline void StateUpdate::set_allocated_compressed_map_dimensions_update(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.compressed_map_dimensions_update_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.compressed_map_dimensions_update_.IsDefault()) {
-          _impl_.compressed_map_dimensions_update_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.compressed_map_dimensions_update)
-}
-
-// -------------------------------------------------------------------
-
-// StateUpdateSeries
-
-// repeated .comm.StateUpdate updates = 1;
-inline int StateUpdateSeries::_internal_updates_size() const {
-  return _internal_updates().size();
-}
-inline int StateUpdateSeries::updates_size() const {
-  return _internal_updates_size();
-}
-inline void StateUpdateSeries::clear_updates() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.updates_.Clear();
-}
-inline ::comm::StateUpdate* StateUpdateSeries::mutable_updates(int index)
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdateSeries.updates)
-  return _internal_mutable_updates()->Mutable(index);
-}
-inline ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>* StateUpdateSeries::mutable_updates()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:comm.StateUpdateSeries.updates)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_updates();
-}
-inline const ::comm::StateUpdate& StateUpdateSeries::updates(int index) const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.StateUpdateSeries.updates)
-  return _internal_updates().Get(index);
-}
-inline ::comm::StateUpdate* StateUpdateSeries::add_updates() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::comm::StateUpdate* _add = _internal_mutable_updates()->Add();
-  // @@protoc_insertion_point(field_add:comm.StateUpdateSeries.updates)
-  return _add;
-}
-inline const ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>& StateUpdateSeries::updates() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:comm.StateUpdateSeries.updates)
-  return _internal_updates();
-}
-inline const ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>&
-StateUpdateSeries::_internal_updates() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.updates_;
-}
-inline ::google::protobuf::RepeatedPtrField<::comm::StateUpdate>*
-StateUpdateSeries::_internal_mutable_updates() {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.updates_;
-}
-
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
 #endif  // __GNUC__
@@ -6761,6 +6418,12 @@ struct is_proto_enum<::comm::StateVariant> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::comm::StateVariant>() {
   return ::comm::StateVariant_descriptor();
+}
+template <>
+struct is_proto_enum<::comm::MovementVariant> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::comm::MovementVariant>() {
+  return ::comm::MovementVariant_descriptor();
 }
 template <>
 struct is_proto_enum<::comm::ItemType> : std::true_type {};

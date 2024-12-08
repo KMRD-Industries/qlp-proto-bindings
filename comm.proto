@@ -13,11 +13,15 @@ enum StateVariant {
     REQUEST_ITEM_GENERATOR = 7;
     ITEM_EQUIPPED = 8;
     PLAYER_DIED = 9;
-    MAP_UPDATE = 10;
-    PLAYER_POSITION_UPDATE = 11;
-    MAP_DIMENSIONS_UPDATE = 12;
-    SPAWN_ENEMY_REQUEST = 13;
-    ENEMY_GOT_HIT_UPDATE = 14;
+    MAP_DIMENSIONS_UPDATE = 10;
+    SPAWN_ENEMY_REQUEST = 11;
+    ENEMY_GOT_HIT_UPDATE = 12;
+}
+
+enum MovementVariant {
+    PLAYER_MOVEMENT_UPDATE = 0;
+    MAP_UPDATE = 1;
+    ENEMY_POSITIONS_UPDATE = 2;
 }
 
 enum ItemType {
@@ -29,16 +33,39 @@ enum ItemType {
 }
 
 // sent via UDP
-// position update
 message MovementUpdate {
     uint32 entity_id = 1;
-    float position_x = 2;
-    float position_y = 3;
-    float weapon_pivot_x = 4;
-    float weapon_pivot_y = 5;
-    float direction = 6;
-    bool attack = 7;
-    Room curr_room = 8;
+    MovementVariant variant = 2;
+    float position_x = 3;
+    float position_y = 4;
+    float weapon_pivot_x = 5;
+    float weapon_pivot_y = 6;
+    float direction = 7;
+    bool attack = 8;
+    Room curr_room = 9;
+    repeated Enemy enemy_positions = 10;
+    MapPositionsUpdate map_positions_update = 11;
+}
+
+message BytePrefix {
+    uint32 bytes = 1;
+}
+
+message StateUpdate {
+    Player player = 1;
+    Item item = 2;
+    StateVariant variant = 3;
+    Room room = 4;
+    // MapPositionsUpdate map_positions_update = 5;
+    // MovementUpdate movement_update = 6;
+    // EnemyPositionsUpdate enemy_positions_update = 7;
+    MapDimensionsUpdate map_dimensions_update = 8;
+    EnemyGotHitUpdate enemy_got_hit_update = 9;
+    bytes compressed_map_dimensions_update = 10;
+}
+
+message StateUpdateSeries {
+    repeated StateUpdate updates = 1;
 }
 
 // sent via TCP
@@ -104,10 +131,6 @@ message EnemyGotHitUpdate {
     uint32 enemy_id = 2;
 }
 
-message EnemyPositionsUpdate {
-    repeated Enemy enemy_positions = 1;
-}
-
 message MapPositionsUpdate {
     repeated Player players = 1;
     repeated Enemy enemies = 2;
@@ -119,25 +142,4 @@ message MapDimensionsUpdate {
 
 message SpawningEnemiesResponse {
     repeated uint32 enemy_id = 1;
-}
-
-message BytePrefix {
-    uint32 bytes = 1;
-}
-
-message StateUpdate {
-    Player player = 1;
-    Item item = 2;
-    StateVariant variant = 3;
-    Room room = 4;
-    MapPositionsUpdate map_positions_update = 5;
-    MovementUpdate movement_update = 6;
-    EnemyPositionsUpdate enemy_positions_update = 7;
-    MapDimensionsUpdate map_dimensions_update = 8;
-    EnemyGotHitUpdate enemy_got_hit_update = 9;
-    bytes compressed_map_dimensions_update = 10;
-}
-
-message StateUpdateSeries {
-    repeated StateUpdate updates = 1;
 }
