@@ -18,18 +18,25 @@ enum StateVariant {
     ENEMY_GOT_HIT_UPDATE = 12;
 }
 
+message StateUpdate {
+    Player player = 1;
+    Item item = 2;
+    StateVariant variant = 3;
+    Room room = 4;
+    repeated Enemy enemy_spawner_positions = 5;
+    MapDimensionsUpdate map_dimensions_update = 6;
+    EnemyGotHitUpdate enemy_got_hit_update = 7;
+    bytes compressed_map_dimensions_update = 8;
+}
+
+message StateUpdateSeries {
+    repeated StateUpdate updates = 1;
+}
+
 enum MovementVariant {
     PLAYER_MOVEMENT_UPDATE = 0;
     MAP_UPDATE = 1;
     ENEMY_POSITIONS_UPDATE = 2;
-}
-
-enum ItemType {
-    UNKNOWN = 0;
-    WEAPON = 1;
-    ARMOUR = 2;
-    POTION = 3;
-    HELMET = 4;
 }
 
 // sent via UDP
@@ -47,25 +54,6 @@ message MovementUpdate {
     MapPositionsUpdate map_positions_update = 11;
 }
 
-message BytePrefix {
-    uint32 bytes = 1;
-}
-
-message StateUpdate {
-    Player player = 1;
-    Item item = 2;
-    StateVariant variant = 3;
-    Room room = 4;
-    repeated Enemy enemy_spawner_positions = 5;
-    MapDimensionsUpdate map_dimensions_update = 6;
-    EnemyGotHitUpdate enemy_got_hit_update = 7;
-    bytes compressed_map_dimensions_update = 8;
-}
-
-message StateUpdateSeries {
-    repeated StateUpdate updates = 1;
-}
-
 // sent via TCP
 message Player {
     uint32 id = 1;
@@ -73,6 +61,14 @@ message Player {
     float position_x = 3;
     float position_y = 4;
     double player_attack_damage = 5;
+}
+
+enum ItemType {
+    UNKNOWN = 0;
+    WEAPON = 1;
+    ARMOUR = 2;
+    POTION = 3;
+    HELMET = 4;
 }
 
 message Item {
@@ -93,9 +89,8 @@ message Room {
     int32 y = 2;
 }
 
-message Obstacle {
-    float left = 1;
-    float top = 2;
+message BytePrefix {
+    uint32 bytes = 1;
 }
 
 message Enemy {
@@ -108,6 +103,11 @@ message Enemy {
     double damage = 7;
     TextureData texture_data = 8;
     CollisionData collision_data = 9;
+}
+
+message Obstacle {
+    float left = 1;
+    float top = 2;
 }
 
 message TextureData {
