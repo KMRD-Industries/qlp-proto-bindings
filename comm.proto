@@ -36,7 +36,6 @@ message StateUpdateSeries {
 enum MovementVariant {
     PLAYER_MOVEMENT_UPDATE = 0;
     MAP_UPDATE = 1;
-    ENEMY_POSITIONS_UPDATE = 2;
 }
 
 // sent via UDP
@@ -138,6 +137,3 @@ message MapDimensionsUpdate {
     repeated Obstacle obstacles = 1;
 }
 
-message SpawningEnemiesResponse {
-    repeated uint32 enemy_id = 1;
-}

@@ -87,9 +87,6 @@ extern PlayerDefaultTypeInternal _Player_default_instance_;
 class Room;
 struct RoomDefaultTypeInternal;
 extern RoomDefaultTypeInternal _Room_default_instance_;
-class SpawningEnemiesResponse;
-struct SpawningEnemiesResponseDefaultTypeInternal;
-extern SpawningEnemiesResponseDefaultTypeInternal _SpawningEnemiesResponse_default_instance_;
 class StateUpdate;
 struct StateUpdateDefaultTypeInternal;
 extern StateUpdateDefaultTypeInternal _StateUpdate_default_instance_;
@@ -153,7 +150,6 @@ inline bool StateVariant_Parse(absl::string_view name, StateVariant* value) {
 enum MovementVariant : int {
   PLAYER_MOVEMENT_UPDATE = 0,
   MAP_UPDATE = 1,
-  ENEMY_POSITIONS_UPDATE = 2,
   MovementVariant_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   MovementVariant_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -163,8 +159,8 @@ enum MovementVariant : int {
 bool MovementVariant_IsValid(int value);
 extern const uint32_t MovementVariant_internal_data_[];
 constexpr MovementVariant MovementVariant_MIN = static_cast<MovementVariant>(0);
-constexpr MovementVariant MovementVariant_MAX = static_cast<MovementVariant>(2);
-constexpr int MovementVariant_ARRAYSIZE = 2 + 1;
+constexpr MovementVariant MovementVariant_MAX = static_cast<MovementVariant>(1);
+constexpr int MovementVariant_ARRAYSIZE = 1 + 1;
 const ::google::protobuf::EnumDescriptor*
 MovementVariant_descriptor();
 template <typename T>
@@ -177,7 +173,7 @@ const std::string& MovementVariant_Name(T value) {
 template <>
 inline const std::string& MovementVariant_Name(MovementVariant value) {
   return ::google::protobuf::internal::NameOfDenseEnum<MovementVariant_descriptor,
-                                                 0, 2>(
+                                                 0, 1>(
       static_cast<int>(value));
 }
 inline bool MovementVariant_Parse(absl::string_view name, MovementVariant* value) {
@@ -444,203 +440,6 @@ class TextureData final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class SpawningEnemiesResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:comm.SpawningEnemiesResponse) */ {
- public:
-  inline SpawningEnemiesResponse() : SpawningEnemiesResponse(nullptr) {}
-  ~SpawningEnemiesResponse() PROTOBUF_FINAL;
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR SpawningEnemiesResponse(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline SpawningEnemiesResponse(const SpawningEnemiesResponse& from) : SpawningEnemiesResponse(nullptr, from) {}
-  inline SpawningEnemiesResponse(SpawningEnemiesResponse&& from) noexcept
-      : SpawningEnemiesResponse(nullptr, std::move(from)) {}
-  inline SpawningEnemiesResponse& operator=(const SpawningEnemiesResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline SpawningEnemiesResponse& operator=(SpawningEnemiesResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const SpawningEnemiesResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const SpawningEnemiesResponse* internal_default_instance() {
-    return reinterpret_cast<const SpawningEnemiesResponse*>(
-        &_SpawningEnemiesResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 15;
-  friend void swap(SpawningEnemiesResponse& a, SpawningEnemiesResponse& b) { a.Swap(&b); }
-  inline void Swap(SpawningEnemiesResponse* other) {
-    if (other == this) return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(SpawningEnemiesResponse* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  SpawningEnemiesResponse* New(::google::protobuf::Arena* arena = nullptr) const PROTOBUF_FINAL {
-    return ::google::protobuf::Message::DefaultConstruct<SpawningEnemiesResponse>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const SpawningEnemiesResponse& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const SpawningEnemiesResponse& from) { SpawningEnemiesResponse::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(SpawningEnemiesResponse* other);
- private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "comm.SpawningEnemiesResponse"; }
-
- protected:
-  explicit SpawningEnemiesResponse(::google::protobuf::Arena* arena);
-  SpawningEnemiesResponse(::google::protobuf::Arena* arena, const SpawningEnemiesResponse& from);
-  SpawningEnemiesResponse(::google::protobuf::Arena* arena, SpawningEnemiesResponse&& from) noexcept
-      : SpawningEnemiesResponse(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::Message::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static const ::google::protobuf::Message::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kEnemyIdFieldNumber = 1,
-  };
-  // repeated uint32 enemy_id = 1;
-  int enemy_id_size() const;
-  private:
-  int _internal_enemy_id_size() const;
-
-  public:
-  void clear_enemy_id() ;
-  ::uint32_t enemy_id(int index) const;
-  void set_enemy_id(int index, ::uint32_t value);
-  void add_enemy_id(::uint32_t value);
-  const ::google::protobuf::RepeatedField<::uint32_t>& enemy_id() const;
-  ::google::protobuf::RepeatedField<::uint32_t>* mutable_enemy_id();
-
-  private:
-  const ::google::protobuf::RepeatedField<::uint32_t>& _internal_enemy_id() const;
-  ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_enemy_id();
-
-  public:
-  // @@protoc_insertion_point(class_scope:comm.SpawningEnemiesResponse)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      0, 2>
-      _table_;
-
-  static constexpr const void* _raw_default_instance_ =
-      &_SpawningEnemiesResponse_default_instance_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const SpawningEnemiesResponse& from_msg);
-    ::google::protobuf::RepeatedField<::uint32_t> enemy_id_;
-    mutable ::google::protobuf::internal::CachedSize _enemy_id_cached_byte_size_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_comm_2eproto;
-};
-// -------------------------------------------------------------------
-
 class Room final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:comm.Room) */ {
  public:
@@ -696,7 +495,7 @@ class Room final : public ::google::protobuf::Message
     return reinterpret_cast<const Room*>(
         &_Room_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 6;
   friend void swap(Room& a, Room& b) { a.Swap(&b); }
   inline void Swap(Room* other) {
     if (other == this) return;
@@ -896,7 +695,7 @@ class Obstacle final : public ::google::protobuf::Message
     return reinterpret_cast<const Obstacle*>(
         &_Obstacle_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(Obstacle& a, Obstacle& b) { a.Swap(&b); }
   inline void Swap(Obstacle* other) {
     if (other == this) return;
@@ -1096,7 +895,7 @@ class Item final : public ::google::protobuf::Message
     return reinterpret_cast<const Item*>(
         &_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(Item& a, Item& b) { a.Swap(&b); }
   inline void Swap(Item* other) {
     if (other == this) return;
@@ -1744,7 +1543,7 @@ class BytePrefix final : public ::google::protobuf::Message
     return reinterpret_cast<const BytePrefix*>(
         &_BytePrefix_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(BytePrefix& a, BytePrefix& b) { a.Swap(&b); }
   inline void Swap(BytePrefix* other) {
     if (other == this) return;
@@ -1932,7 +1731,7 @@ class Player final : public ::google::protobuf::Message
     return reinterpret_cast<const Player*>(
         &_Player_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(Player& a, Player& b) { a.Swap(&b); }
   inline void Swap(Player* other) {
     if (other == this) return;
@@ -2370,7 +2169,7 @@ class Enemy final : public ::google::protobuf::Message
     return reinterpret_cast<const Enemy*>(
         &_Enemy_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(Enemy& a, Enemy& b) { a.Swap(&b); }
   inline void Swap(Enemy* other) {
     if (other == this) return;
@@ -2677,7 +2476,7 @@ class StateUpdate final : public ::google::protobuf::Message
     return reinterpret_cast<const StateUpdate*>(
         &_StateUpdate_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 0;
   friend void swap(StateUpdate& a, StateUpdate& b) { a.Swap(&b); }
   inline void Swap(StateUpdate* other) {
     if (other == this) return;
@@ -3202,7 +3001,7 @@ class InitialInfo final : public ::google::protobuf::Message
     return reinterpret_cast<const InitialInfo*>(
         &_InitialInfo_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(InitialInfo& a, InitialInfo& b) { a.Swap(&b); }
   inline void Swap(InitialInfo* other) {
     if (other == this) return;
@@ -3444,7 +3243,7 @@ class StateUpdateSeries final : public ::google::protobuf::Message
     return reinterpret_cast<const StateUpdateSeries*>(
         &_StateUpdateSeries_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 1;
   friend void swap(StateUpdateSeries& a, StateUpdateSeries& b) { a.Swap(&b); }
   inline void Swap(StateUpdateSeries* other) {
     if (other == this) return;
@@ -3639,7 +3438,7 @@ class MovementUpdate final : public ::google::protobuf::Message
     return reinterpret_cast<const MovementUpdate*>(
         &_MovementUpdate_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 0;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(MovementUpdate& a, MovementUpdate& b) { a.Swap(&b); }
   inline void Swap(MovementUpdate* other) {
     if (other == this) return;
@@ -3921,453 +3720,6 @@ class MovementUpdate final : public ::google::protobuf::Message
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// MovementUpdate
-
-// uint32 entity_id = 1;
-inline void MovementUpdate::clear_entity_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.entity_id_ = 0u;
-}
-inline ::uint32_t MovementUpdate::entity_id() const {
-  // @@protoc_insertion_point(field_get:comm.MovementUpdate.entity_id)
-  return _internal_entity_id();
-}
-inline void MovementUpdate::set_entity_id(::uint32_t value) {
-  _internal_set_entity_id(value);
-  // @@protoc_insertion_point(field_set:comm.MovementUpdate.entity_id)
-}
-inline ::uint32_t MovementUpdate::_internal_entity_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.entity_id_;
-}
-inline void MovementUpdate::_internal_set_entity_id(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.entity_id_ = value;
-}
-
-// .comm.MovementVariant variant = 2;
-inline void MovementUpdate::clear_variant() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.variant_ = 0;
-}
-inline ::comm::MovementVariant MovementUpdate::variant() const {
-  // @@protoc_insertion_point(field_get:comm.MovementUpdate.variant)
-  return _internal_variant();
-}
-inline void MovementUpdate::set_variant(::comm::MovementVariant value) {
-  _internal_set_variant(value);
-  // @@protoc_insertion_point(field_set:comm.MovementUpdate.variant)
-}
-inline ::comm::MovementVariant MovementUpdate::_internal_variant() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::comm::MovementVariant>(_impl_.variant_);
-}
-inline void MovementUpdate::_internal_set_variant(::comm::MovementVariant value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.variant_ = value;
-}
-
-// float position_x = 3;
-inline void MovementUpdate::clear_position_x() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.position_x_ = 0;
-}
-inline float MovementUpdate::position_x() const {
-  // @@protoc_insertion_point(field_get:comm.MovementUpdate.position_x)
-  return _internal_position_x();
-}
-inline void MovementUpdate::set_position_x(float value) {
-  _internal_set_position_x(value);
-  // @@protoc_insertion_point(field_set:comm.MovementUpdate.position_x)
-}
-inline float MovementUpdate::_internal_position_x() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.position_x_;
-}
-inline void MovementUpdate::_internal_set_position_x(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.position_x_ = value;
-}
-
-// float position_y = 4;
-inline void MovementUpdate::clear_position_y() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.position_y_ = 0;
-}
-inline float MovementUpdate::position_y() const {
-  // @@protoc_insertion_point(field_get:comm.MovementUpdate.position_y)
-  return _internal_position_y();
-}
-inline void MovementUpdate::set_position_y(float value) {
-  _internal_set_position_y(value);
-  // @@protoc_insertion_point(field_set:comm.MovementUpdate.position_y)
-}
-inline float MovementUpdate::_internal_position_y() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.position_y_;
-}
-inline void MovementUpdate::_internal_set_position_y(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.position_y_ = value;
-}
-
-// float weapon_pivot_x = 5;
-inline void MovementUpdate::clear_weapon_pivot_x() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.weapon_pivot_x_ = 0;
-}
-inline float MovementUpdate::weapon_pivot_x() const {
-  // @@protoc_insertion_point(field_get:comm.MovementUpdate.weapon_pivot_x)
-  return _internal_weapon_pivot_x();
-}
-inline void MovementUpdate::set_weapon_pivot_x(float value) {
-  _internal_set_weapon_pivot_x(value);
-  // @@protoc_insertion_point(field_set:comm.MovementUpdate.weapon_pivot_x)
-}
-inline float MovementUpdate::_internal_weapon_pivot_x() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.weapon_pivot_x_;
-}
-inline void MovementUpdate::_internal_set_weapon_pivot_x(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.weapon_pivot_x_ = value;
-}
-
-// float weapon_pivot_y = 6;
-inline void MovementUpdate::clear_weapon_pivot_y() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.weapon_pivot_y_ = 0;
-}
-inline float MovementUpdate::weapon_pivot_y() const {
-  // @@protoc_insertion_point(field_get:comm.MovementUpdate.weapon_pivot_y)
-  return _internal_weapon_pivot_y();
-}
-inline void MovementUpdate::set_weapon_pivot_y(float value) {
-  _internal_set_weapon_pivot_y(value);
-  // @@protoc_insertion_point(field_set:comm.MovementUpdate.weapon_pivot_y)
-}
-inline float MovementUpdate::_internal_weapon_pivot_y() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.weapon_pivot_y_;
-}
-inline void MovementUpdate::_internal_set_weapon_pivot_y(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.weapon_pivot_y_ = value;
-}
-
-// float direction = 7;
-inline void MovementUpdate::clear_direction() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.direction_ = 0;
-}
-inline float MovementUpdate::direction() const {
-  // @@protoc_insertion_point(field_get:comm.MovementUpdate.direction)
-  return _internal_direction();
-}
-inline void MovementUpdate::set_direction(float value) {
-  _internal_set_direction(value);
-  // @@protoc_insertion_point(field_set:comm.MovementUpdate.direction)
-}
-inline float MovementUpdate::_internal_direction() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.direction_;
-}
-inline void MovementUpdate::_internal_set_direction(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.direction_ = value;
-}
-
-// bool attack = 8;
-inline void MovementUpdate::clear_attack() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.attack_ = false;
-}
-inline bool MovementUpdate::attack() const {
-  // @@protoc_insertion_point(field_get:comm.MovementUpdate.attack)
-  return _internal_attack();
-}
-inline void MovementUpdate::set_attack(bool value) {
-  _internal_set_attack(value);
-  // @@protoc_insertion_point(field_set:comm.MovementUpdate.attack)
-}
-inline bool MovementUpdate::_internal_attack() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.attack_;
-}
-inline void MovementUpdate::_internal_set_attack(bool value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.attack_ = value;
-}
-
-// .comm.Room curr_room = 9;
-inline bool MovementUpdate::has_curr_room() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.curr_room_ != nullptr);
-  return value;
-}
-inline void MovementUpdate::clear_curr_room() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.curr_room_ != nullptr) _impl_.curr_room_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline const ::comm::Room& MovementUpdate::_internal_curr_room() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::comm::Room* p = _impl_.curr_room_;
-  return p != nullptr ? *p : reinterpret_cast<const ::comm::Room&>(::comm::_Room_default_instance_);
-}
-inline const ::comm::Room& MovementUpdate::curr_room() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.MovementUpdate.curr_room)
-  return _internal_curr_room();
-}
-inline void MovementUpdate::unsafe_arena_set_allocated_curr_room(::comm::Room* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.curr_room_);
-  }
-  _impl_.curr_room_ = reinterpret_cast<::comm::Room*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.MovementUpdate.curr_room)
-}
-inline ::comm::Room* MovementUpdate::release_curr_room() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::comm::Room* released = _impl_.curr_room_;
-  _impl_.curr_room_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::comm::Room* MovementUpdate::unsafe_arena_release_curr_room() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:comm.MovementUpdate.curr_room)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::comm::Room* temp = _impl_.curr_room_;
-  _impl_.curr_room_ = nullptr;
-  return temp;
-}
-inline ::comm::Room* MovementUpdate::_internal_mutable_curr_room() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.curr_room_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::Room>(GetArena());
-    _impl_.curr_room_ = reinterpret_cast<::comm::Room*>(p);
-  }
-  return _impl_.curr_room_;
-}
-inline ::comm::Room* MovementUpdate::mutable_curr_room() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  ::comm::Room* _msg = _internal_mutable_curr_room();
-  // @@protoc_insertion_point(field_mutable:comm.MovementUpdate.curr_room)
-  return _msg;
-}
-inline void MovementUpdate::set_allocated_curr_room(::comm::Room* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.curr_room_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.curr_room_ = reinterpret_cast<::comm::Room*>(value);
-  // @@protoc_insertion_point(field_set_allocated:comm.MovementUpdate.curr_room)
-}
-
-// repeated .comm.Enemy enemy_positions = 10;
-inline int MovementUpdate::_internal_enemy_positions_size() const {
-  return _internal_enemy_positions().size();
-}
-inline int MovementUpdate::enemy_positions_size() const {
-  return _internal_enemy_positions_size();
-}
-inline void MovementUpdate::clear_enemy_positions() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.enemy_positions_.Clear();
-}
-inline ::comm::Enemy* MovementUpdate::mutable_enemy_positions(int index)
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:comm.MovementUpdate.enemy_positions)
-  return _internal_mutable_enemy_positions()->Mutable(index);
-}
-inline ::google::protobuf::RepeatedPtrField<::comm::Enemy>* MovementUpdate::mutable_enemy_positions()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:comm.MovementUpdate.enemy_positions)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_enemy_positions();
-}
-inline const ::comm::Enemy& MovementUpdate::enemy_positions(int index) const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.MovementUpdate.enemy_positions)
-  return _internal_enemy_positions().Get(index);
-}
-inline ::comm::Enemy* MovementUpdate::add_enemy_positions() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::comm::Enemy* _add = _internal_mutable_enemy_positions()->Add();
-  // @@protoc_insertion_point(field_add:comm.MovementUpdate.enemy_positions)
-  return _add;
-}
-inline const ::google::protobuf::RepeatedPtrField<::comm::Enemy>& MovementUpdate::enemy_positions() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:comm.MovementUpdate.enemy_positions)
-  return _internal_enemy_positions();
-}
-inline const ::google::protobuf::RepeatedPtrField<::comm::Enemy>&
-MovementUpdate::_internal_enemy_positions() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.enemy_positions_;
-}
-inline ::google::protobuf::RepeatedPtrField<::comm::Enemy>*
-MovementUpdate::_internal_mutable_enemy_positions() {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.enemy_positions_;
-}
-
-// .comm.MapPositionsUpdate map_positions_update = 11;
-inline bool MovementUpdate::has_map_positions_update() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.map_positions_update_ != nullptr);
-  return value;
-}
-inline void MovementUpdate::clear_map_positions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.map_positions_update_ != nullptr) _impl_.map_positions_update_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000002u;
-}
-inline const ::comm::MapPositionsUpdate& MovementUpdate::_internal_map_positions_update() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::comm::MapPositionsUpdate* p = _impl_.map_positions_update_;
-  return p != nullptr ? *p : reinterpret_cast<const ::comm::MapPositionsUpdate&>(::comm::_MapPositionsUpdate_default_instance_);
-}
-inline const ::comm::MapPositionsUpdate& MovementUpdate::map_positions_update() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.MovementUpdate.map_positions_update)
-  return _internal_map_positions_update();
-}
-inline void MovementUpdate::unsafe_arena_set_allocated_map_positions_update(::comm::MapPositionsUpdate* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.map_positions_update_);
-  }
-  _impl_.map_positions_update_ = reinterpret_cast<::comm::MapPositionsUpdate*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.MovementUpdate.map_positions_update)
-}
-inline ::comm::MapPositionsUpdate* MovementUpdate::release_map_positions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::comm::MapPositionsUpdate* released = _impl_.map_positions_update_;
-  _impl_.map_positions_update_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  if (GetArena() == nullptr) {
-    delete old;
-  }
-#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArena() != nullptr) {
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return released;
-}
-inline ::comm::MapPositionsUpdate* MovementUpdate::unsafe_arena_release_map_positions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:comm.MovementUpdate.map_positions_update)
-
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  ::comm::MapPositionsUpdate* temp = _impl_.map_positions_update_;
-  _impl_.map_positions_update_ = nullptr;
-  return temp;
-}
-inline ::comm::MapPositionsUpdate* MovementUpdate::_internal_mutable_map_positions_update() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.map_positions_update_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::MapPositionsUpdate>(GetArena());
-    _impl_.map_positions_update_ = reinterpret_cast<::comm::MapPositionsUpdate*>(p);
-  }
-  return _impl_.map_positions_update_;
-}
-inline ::comm::MapPositionsUpdate* MovementUpdate::mutable_map_positions_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000002u;
-  ::comm::MapPositionsUpdate* _msg = _internal_mutable_map_positions_update();
-  // @@protoc_insertion_point(field_mutable:comm.MovementUpdate.map_positions_update)
-  return _msg;
-}
-inline void MovementUpdate::set_allocated_map_positions_update(::comm::MapPositionsUpdate* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.map_positions_update_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-
-  _impl_.map_positions_update_ = reinterpret_cast<::comm::MapPositionsUpdate*>(value);
-  // @@protoc_insertion_point(field_set_allocated:comm.MovementUpdate.map_positions_update)
-}
-
-// -------------------------------------------------------------------
-
-// BytePrefix
-
-// uint32 bytes = 1;
-inline void BytePrefix::clear_bytes() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.bytes_ = 0u;
-}
-inline ::uint32_t BytePrefix::bytes() const {
-  // @@protoc_insertion_point(field_get:comm.BytePrefix.bytes)
-  return _internal_bytes();
-}
-inline void BytePrefix::set_bytes(::uint32_t value) {
-  _internal_set_bytes(value);
-  // @@protoc_insertion_point(field_set:comm.BytePrefix.bytes)
-}
-inline ::uint32_t BytePrefix::_internal_bytes() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.bytes_;
-}
-inline void BytePrefix::_internal_set_bytes(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.bytes_ = value;
-}
-
 // -------------------------------------------------------------------
 
 // StateUpdate
@@ -5028,6 +4380,427 @@ StateUpdateSeries::_internal_mutable_updates() {
 
 // -------------------------------------------------------------------
 
+// MovementUpdate
+
+// uint32 entity_id = 1;
+inline void MovementUpdate::clear_entity_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.entity_id_ = 0u;
+}
+inline ::uint32_t MovementUpdate::entity_id() const {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.entity_id)
+  return _internal_entity_id();
+}
+inline void MovementUpdate::set_entity_id(::uint32_t value) {
+  _internal_set_entity_id(value);
+  // @@protoc_insertion_point(field_set:comm.MovementUpdate.entity_id)
+}
+inline ::uint32_t MovementUpdate::_internal_entity_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.entity_id_;
+}
+inline void MovementUpdate::_internal_set_entity_id(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.entity_id_ = value;
+}
+
+// .comm.MovementVariant variant = 2;
+inline void MovementUpdate::clear_variant() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.variant_ = 0;
+}
+inline ::comm::MovementVariant MovementUpdate::variant() const {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.variant)
+  return _internal_variant();
+}
+inline void MovementUpdate::set_variant(::comm::MovementVariant value) {
+  _internal_set_variant(value);
+  // @@protoc_insertion_point(field_set:comm.MovementUpdate.variant)
+}
+inline ::comm::MovementVariant MovementUpdate::_internal_variant() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::comm::MovementVariant>(_impl_.variant_);
+}
+inline void MovementUpdate::_internal_set_variant(::comm::MovementVariant value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.variant_ = value;
+}
+
+// float position_x = 3;
+inline void MovementUpdate::clear_position_x() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.position_x_ = 0;
+}
+inline float MovementUpdate::position_x() const {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.position_x)
+  return _internal_position_x();
+}
+inline void MovementUpdate::set_position_x(float value) {
+  _internal_set_position_x(value);
+  // @@protoc_insertion_point(field_set:comm.MovementUpdate.position_x)
+}
+inline float MovementUpdate::_internal_position_x() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.position_x_;
+}
+inline void MovementUpdate::_internal_set_position_x(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.position_x_ = value;
+}
+
+// float position_y = 4;
+inline void MovementUpdate::clear_position_y() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.position_y_ = 0;
+}
+inline float MovementUpdate::position_y() const {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.position_y)
+  return _internal_position_y();
+}
+inline void MovementUpdate::set_position_y(float value) {
+  _internal_set_position_y(value);
+  // @@protoc_insertion_point(field_set:comm.MovementUpdate.position_y)
+}
+inline float MovementUpdate::_internal_position_y() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.position_y_;
+}
+inline void MovementUpdate::_internal_set_position_y(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.position_y_ = value;
+}
+
+// float weapon_pivot_x = 5;
+inline void MovementUpdate::clear_weapon_pivot_x() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.weapon_pivot_x_ = 0;
+}
+inline float MovementUpdate::weapon_pivot_x() const {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.weapon_pivot_x)
+  return _internal_weapon_pivot_x();
+}
+inline void MovementUpdate::set_weapon_pivot_x(float value) {
+  _internal_set_weapon_pivot_x(value);
+  // @@protoc_insertion_point(field_set:comm.MovementUpdate.weapon_pivot_x)
+}
+inline float MovementUpdate::_internal_weapon_pivot_x() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.weapon_pivot_x_;
+}
+inline void MovementUpdate::_internal_set_weapon_pivot_x(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.weapon_pivot_x_ = value;
+}
+
+// float weapon_pivot_y = 6;
+inline void MovementUpdate::clear_weapon_pivot_y() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.weapon_pivot_y_ = 0;
+}
+inline float MovementUpdate::weapon_pivot_y() const {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.weapon_pivot_y)
+  return _internal_weapon_pivot_y();
+}
+inline void MovementUpdate::set_weapon_pivot_y(float value) {
+  _internal_set_weapon_pivot_y(value);
+  // @@protoc_insertion_point(field_set:comm.MovementUpdate.weapon_pivot_y)
+}
+inline float MovementUpdate::_internal_weapon_pivot_y() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.weapon_pivot_y_;
+}
+inline void MovementUpdate::_internal_set_weapon_pivot_y(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.weapon_pivot_y_ = value;
+}
+
+// float direction = 7;
+inline void MovementUpdate::clear_direction() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.direction_ = 0;
+}
+inline float MovementUpdate::direction() const {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.direction)
+  return _internal_direction();
+}
+inline void MovementUpdate::set_direction(float value) {
+  _internal_set_direction(value);
+  // @@protoc_insertion_point(field_set:comm.MovementUpdate.direction)
+}
+inline float MovementUpdate::_internal_direction() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.direction_;
+}
+inline void MovementUpdate::_internal_set_direction(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.direction_ = value;
+}
+
+// bool attack = 8;
+inline void MovementUpdate::clear_attack() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.attack_ = false;
+}
+inline bool MovementUpdate::attack() const {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.attack)
+  return _internal_attack();
+}
+inline void MovementUpdate::set_attack(bool value) {
+  _internal_set_attack(value);
+  // @@protoc_insertion_point(field_set:comm.MovementUpdate.attack)
+}
+inline bool MovementUpdate::_internal_attack() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.attack_;
+}
+inline void MovementUpdate::_internal_set_attack(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.attack_ = value;
+}
+
+// .comm.Room curr_room = 9;
+inline bool MovementUpdate::has_curr_room() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.curr_room_ != nullptr);
+  return value;
+}
+inline void MovementUpdate::clear_curr_room() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.curr_room_ != nullptr) _impl_.curr_room_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::comm::Room& MovementUpdate::_internal_curr_room() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::comm::Room* p = _impl_.curr_room_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::Room&>(::comm::_Room_default_instance_);
+}
+inline const ::comm::Room& MovementUpdate::curr_room() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.curr_room)
+  return _internal_curr_room();
+}
+inline void MovementUpdate::unsafe_arena_set_allocated_curr_room(::comm::Room* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.curr_room_);
+  }
+  _impl_.curr_room_ = reinterpret_cast<::comm::Room*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.MovementUpdate.curr_room)
+}
+inline ::comm::Room* MovementUpdate::release_curr_room() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::comm::Room* released = _impl_.curr_room_;
+  _impl_.curr_room_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::comm::Room* MovementUpdate::unsafe_arena_release_curr_room() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:comm.MovementUpdate.curr_room)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::comm::Room* temp = _impl_.curr_room_;
+  _impl_.curr_room_ = nullptr;
+  return temp;
+}
+inline ::comm::Room* MovementUpdate::_internal_mutable_curr_room() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.curr_room_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::Room>(GetArena());
+    _impl_.curr_room_ = reinterpret_cast<::comm::Room*>(p);
+  }
+  return _impl_.curr_room_;
+}
+inline ::comm::Room* MovementUpdate::mutable_curr_room() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::comm::Room* _msg = _internal_mutable_curr_room();
+  // @@protoc_insertion_point(field_mutable:comm.MovementUpdate.curr_room)
+  return _msg;
+}
+inline void MovementUpdate::set_allocated_curr_room(::comm::Room* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.curr_room_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.curr_room_ = reinterpret_cast<::comm::Room*>(value);
+  // @@protoc_insertion_point(field_set_allocated:comm.MovementUpdate.curr_room)
+}
+
+// repeated .comm.Enemy enemy_positions = 10;
+inline int MovementUpdate::_internal_enemy_positions_size() const {
+  return _internal_enemy_positions().size();
+}
+inline int MovementUpdate::enemy_positions_size() const {
+  return _internal_enemy_positions_size();
+}
+inline void MovementUpdate::clear_enemy_positions() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.enemy_positions_.Clear();
+}
+inline ::comm::Enemy* MovementUpdate::mutable_enemy_positions(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:comm.MovementUpdate.enemy_positions)
+  return _internal_mutable_enemy_positions()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::comm::Enemy>* MovementUpdate::mutable_enemy_positions()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:comm.MovementUpdate.enemy_positions)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_enemy_positions();
+}
+inline const ::comm::Enemy& MovementUpdate::enemy_positions(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.enemy_positions)
+  return _internal_enemy_positions().Get(index);
+}
+inline ::comm::Enemy* MovementUpdate::add_enemy_positions() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::comm::Enemy* _add = _internal_mutable_enemy_positions()->Add();
+  // @@protoc_insertion_point(field_add:comm.MovementUpdate.enemy_positions)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::comm::Enemy>& MovementUpdate::enemy_positions() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:comm.MovementUpdate.enemy_positions)
+  return _internal_enemy_positions();
+}
+inline const ::google::protobuf::RepeatedPtrField<::comm::Enemy>&
+MovementUpdate::_internal_enemy_positions() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.enemy_positions_;
+}
+inline ::google::protobuf::RepeatedPtrField<::comm::Enemy>*
+MovementUpdate::_internal_mutable_enemy_positions() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.enemy_positions_;
+}
+
+// .comm.MapPositionsUpdate map_positions_update = 11;
+inline bool MovementUpdate::has_map_positions_update() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.map_positions_update_ != nullptr);
+  return value;
+}
+inline void MovementUpdate::clear_map_positions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.map_positions_update_ != nullptr) _impl_.map_positions_update_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::comm::MapPositionsUpdate& MovementUpdate::_internal_map_positions_update() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::comm::MapPositionsUpdate* p = _impl_.map_positions_update_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::MapPositionsUpdate&>(::comm::_MapPositionsUpdate_default_instance_);
+}
+inline const ::comm::MapPositionsUpdate& MovementUpdate::map_positions_update() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.MovementUpdate.map_positions_update)
+  return _internal_map_positions_update();
+}
+inline void MovementUpdate::unsafe_arena_set_allocated_map_positions_update(::comm::MapPositionsUpdate* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.map_positions_update_);
+  }
+  _impl_.map_positions_update_ = reinterpret_cast<::comm::MapPositionsUpdate*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.MovementUpdate.map_positions_update)
+}
+inline ::comm::MapPositionsUpdate* MovementUpdate::release_map_positions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::comm::MapPositionsUpdate* released = _impl_.map_positions_update_;
+  _impl_.map_positions_update_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::comm::MapPositionsUpdate* MovementUpdate::unsafe_arena_release_map_positions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:comm.MovementUpdate.map_positions_update)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::comm::MapPositionsUpdate* temp = _impl_.map_positions_update_;
+  _impl_.map_positions_update_ = nullptr;
+  return temp;
+}
+inline ::comm::MapPositionsUpdate* MovementUpdate::_internal_mutable_map_positions_update() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.map_positions_update_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::MapPositionsUpdate>(GetArena());
+    _impl_.map_positions_update_ = reinterpret_cast<::comm::MapPositionsUpdate*>(p);
+  }
+  return _impl_.map_positions_update_;
+}
+inline ::comm::MapPositionsUpdate* MovementUpdate::mutable_map_positions_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::comm::MapPositionsUpdate* _msg = _internal_mutable_map_positions_update();
+  // @@protoc_insertion_point(field_mutable:comm.MovementUpdate.map_positions_update)
+  return _msg;
+}
+inline void MovementUpdate::set_allocated_map_positions_update(::comm::MapPositionsUpdate* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.map_positions_update_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.map_positions_update_ = reinterpret_cast<::comm::MapPositionsUpdate*>(value);
+  // @@protoc_insertion_point(field_set_allocated:comm.MovementUpdate.map_positions_update)
+}
+
+// -------------------------------------------------------------------
+
 // Player
 
 // uint32 id = 1;
@@ -5554,50 +5327,28 @@ inline void Room::_internal_set_y(::int32_t value) {
 
 // -------------------------------------------------------------------
 
-// Obstacle
+// BytePrefix
 
-// float left = 1;
-inline void Obstacle::clear_left() {
+// uint32 bytes = 1;
+inline void BytePrefix::clear_bytes() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.left_ = 0;
+  _impl_.bytes_ = 0u;
 }
-inline float Obstacle::left() const {
-  // @@protoc_insertion_point(field_get:comm.Obstacle.left)
-  return _internal_left();
+inline ::uint32_t BytePrefix::bytes() const {
+  // @@protoc_insertion_point(field_get:comm.BytePrefix.bytes)
+  return _internal_bytes();
 }
-inline void Obstacle::set_left(float value) {
-  _internal_set_left(value);
-  // @@protoc_insertion_point(field_set:comm.Obstacle.left)
+inline void BytePrefix::set_bytes(::uint32_t value) {
+  _internal_set_bytes(value);
+  // @@protoc_insertion_point(field_set:comm.BytePrefix.bytes)
 }
-inline float Obstacle::_internal_left() const {
+inline ::uint32_t BytePrefix::_internal_bytes() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.left_;
+  return _impl_.bytes_;
 }
-inline void Obstacle::_internal_set_left(float value) {
+inline void BytePrefix::_internal_set_bytes(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.left_ = value;
-}
-
-// float top = 2;
-inline void Obstacle::clear_top() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.top_ = 0;
-}
-inline float Obstacle::top() const {
-  // @@protoc_insertion_point(field_get:comm.Obstacle.top)
-  return _internal_top();
-}
-inline void Obstacle::set_top(float value) {
-  _internal_set_top(value);
-  // @@protoc_insertion_point(field_set:comm.Obstacle.top)
-}
-inline float Obstacle::_internal_top() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.top_;
-}
-inline void Obstacle::_internal_set_top(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.top_ = value;
+  _impl_.bytes_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -6004,6 +5755,54 @@ inline void Enemy::set_allocated_collision_data(::comm::CollisionData* value) {
 
   _impl_.collision_data_ = reinterpret_cast<::comm::CollisionData*>(value);
   // @@protoc_insertion_point(field_set_allocated:comm.Enemy.collision_data)
+}
+
+// -------------------------------------------------------------------
+
+// Obstacle
+
+// float left = 1;
+inline void Obstacle::clear_left() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.left_ = 0;
+}
+inline float Obstacle::left() const {
+  // @@protoc_insertion_point(field_get:comm.Obstacle.left)
+  return _internal_left();
+}
+inline void Obstacle::set_left(float value) {
+  _internal_set_left(value);
+  // @@protoc_insertion_point(field_set:comm.Obstacle.left)
+}
+inline float Obstacle::_internal_left() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.left_;
+}
+inline void Obstacle::_internal_set_left(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.left_ = value;
+}
+
+// float top = 2;
+inline void Obstacle::clear_top() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.top_ = 0;
+}
+inline float Obstacle::top() const {
+  // @@protoc_insertion_point(field_get:comm.Obstacle.top)
+  return _internal_top();
+}
+inline void Obstacle::set_top(float value) {
+  _internal_set_top(value);
+  // @@protoc_insertion_point(field_set:comm.Obstacle.top)
+}
+inline float Obstacle::_internal_top() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.top_;
+}
+inline void Obstacle::_internal_set_top(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.top_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -6419,55 +6218,6 @@ inline ::google::protobuf::RepeatedPtrField<::comm::Obstacle>*
 MapDimensionsUpdate::_internal_mutable_obstacles() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.obstacles_;
-}
-
-// -------------------------------------------------------------------
-
-// SpawningEnemiesResponse
-
-// repeated uint32 enemy_id = 1;
-inline int SpawningEnemiesResponse::_internal_enemy_id_size() const {
-  return _internal_enemy_id().size();
-}
-inline int SpawningEnemiesResponse::enemy_id_size() const {
-  return _internal_enemy_id_size();
-}
-inline void SpawningEnemiesResponse::clear_enemy_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.enemy_id_.Clear();
-}
-inline ::uint32_t SpawningEnemiesResponse::enemy_id(int index) const {
-  // @@protoc_insertion_point(field_get:comm.SpawningEnemiesResponse.enemy_id)
-  return _internal_enemy_id().Get(index);
-}
-inline void SpawningEnemiesResponse::set_enemy_id(int index, ::uint32_t value) {
-  _internal_mutable_enemy_id()->Set(index, value);
-  // @@protoc_insertion_point(field_set:comm.SpawningEnemiesResponse.enemy_id)
-}
-inline void SpawningEnemiesResponse::add_enemy_id(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_enemy_id()->Add(value);
-  // @@protoc_insertion_point(field_add:comm.SpawningEnemiesResponse.enemy_id)
-}
-inline const ::google::protobuf::RepeatedField<::uint32_t>& SpawningEnemiesResponse::enemy_id() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:comm.SpawningEnemiesResponse.enemy_id)
-  return _internal_enemy_id();
-}
-inline ::google::protobuf::RepeatedField<::uint32_t>* SpawningEnemiesResponse::mutable_enemy_id()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:comm.SpawningEnemiesResponse.enemy_id)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_enemy_id();
-}
-inline const ::google::protobuf::RepeatedField<::uint32_t>&
-SpawningEnemiesResponse::_internal_enemy_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.enemy_id_;
-}
-inline ::google::protobuf::RepeatedField<::uint32_t>* SpawningEnemiesResponse::_internal_mutable_enemy_id() {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.enemy_id_;
 }
 
 #ifdef __GNUC__
