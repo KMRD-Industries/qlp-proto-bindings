@@ -16,6 +16,7 @@ enum StateVariant {
     MAP_DIMENSIONS_UPDATE = 10;
     SPAWN_ENEMY_REQUEST = 11;
     ENEMY_GOT_HIT_UPDATE = 12;
+    ENEMY_DIED = 13;
 }
 
 message StateUpdate {
@@ -25,7 +26,7 @@ message StateUpdate {
     Room room = 4;
     repeated Enemy enemy_spawner_positions = 5;
     MapDimensionsUpdate map_dimensions_update = 6;
-    EnemyGotHitUpdate enemy_got_hit_update = 7;
+    Enemy enemy_id = 7;
     bytes compressed_map_dimensions_update = 8;
 }
 
@@ -34,8 +35,9 @@ message StateUpdateSeries {
 }
 
 enum MovementVariant {
-    PLAYER_MOVEMENT_UPDATE = 0;
-    MAP_UPDATE = 1;
+    NO_MOVEMENT = 0;
+    PLAYER_MOVEMENT_UPDATE = 1;
+    MAP_UPDATE = 2;
 }
 
 // sent via UDP
@@ -121,11 +123,6 @@ message CollisionData {
     float height = 3;
     float x_offset = 4;
     float y_offset = 5;
-}
-
-message EnemyGotHitUpdate {
-    uint32 player_id = 1;
-    uint32 enemy_id = 2;
 }
 
 message MapPositionsUpdate {

@@ -60,9 +60,6 @@ extern CollisionDataDefaultTypeInternal _CollisionData_default_instance_;
 class Enemy;
 struct EnemyDefaultTypeInternal;
 extern EnemyDefaultTypeInternal _Enemy_default_instance_;
-class EnemyGotHitUpdate;
-struct EnemyGotHitUpdateDefaultTypeInternal;
-extern EnemyGotHitUpdateDefaultTypeInternal _EnemyGotHitUpdate_default_instance_;
 class InitialInfo;
 struct InitialInfoDefaultTypeInternal;
 extern InitialInfoDefaultTypeInternal _InitialInfo_default_instance_;
@@ -117,6 +114,7 @@ enum StateVariant : int {
   MAP_DIMENSIONS_UPDATE = 10,
   SPAWN_ENEMY_REQUEST = 11,
   ENEMY_GOT_HIT_UPDATE = 12,
+  ENEMY_DIED = 13,
   StateVariant_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   StateVariant_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -126,8 +124,8 @@ enum StateVariant : int {
 bool StateVariant_IsValid(int value);
 extern const uint32_t StateVariant_internal_data_[];
 constexpr StateVariant StateVariant_MIN = static_cast<StateVariant>(0);
-constexpr StateVariant StateVariant_MAX = static_cast<StateVariant>(12);
-constexpr int StateVariant_ARRAYSIZE = 12 + 1;
+constexpr StateVariant StateVariant_MAX = static_cast<StateVariant>(13);
+constexpr int StateVariant_ARRAYSIZE = 13 + 1;
 const ::google::protobuf::EnumDescriptor*
 StateVariant_descriptor();
 template <typename T>
@@ -140,7 +138,7 @@ const std::string& StateVariant_Name(T value) {
 template <>
 inline const std::string& StateVariant_Name(StateVariant value) {
   return ::google::protobuf::internal::NameOfDenseEnum<StateVariant_descriptor,
-                                                 0, 12>(
+                                                 0, 13>(
       static_cast<int>(value));
 }
 inline bool StateVariant_Parse(absl::string_view name, StateVariant* value) {
@@ -148,8 +146,9 @@ inline bool StateVariant_Parse(absl::string_view name, StateVariant* value) {
       StateVariant_descriptor(), name, value);
 }
 enum MovementVariant : int {
-  PLAYER_MOVEMENT_UPDATE = 0,
-  MAP_UPDATE = 1,
+  NO_MOVEMENT = 0,
+  PLAYER_MOVEMENT_UPDATE = 1,
+  MAP_UPDATE = 2,
   MovementVariant_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   MovementVariant_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -159,8 +158,8 @@ enum MovementVariant : int {
 bool MovementVariant_IsValid(int value);
 extern const uint32_t MovementVariant_internal_data_[];
 constexpr MovementVariant MovementVariant_MIN = static_cast<MovementVariant>(0);
-constexpr MovementVariant MovementVariant_MAX = static_cast<MovementVariant>(1);
-constexpr int MovementVariant_ARRAYSIZE = 1 + 1;
+constexpr MovementVariant MovementVariant_MAX = static_cast<MovementVariant>(2);
+constexpr int MovementVariant_ARRAYSIZE = 2 + 1;
 const ::google::protobuf::EnumDescriptor*
 MovementVariant_descriptor();
 template <typename T>
@@ -173,7 +172,7 @@ const std::string& MovementVariant_Name(T value) {
 template <>
 inline const std::string& MovementVariant_Name(MovementVariant value) {
   return ::google::protobuf::internal::NameOfDenseEnum<MovementVariant_descriptor,
-                                                 0, 1>(
+                                                 0, 2>(
       static_cast<int>(value));
 }
 inline bool MovementVariant_Parse(absl::string_view name, MovementVariant* value) {
@@ -1052,206 +1051,6 @@ class Item final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class EnemyGotHitUpdate final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:comm.EnemyGotHitUpdate) */ {
- public:
-  inline EnemyGotHitUpdate() : EnemyGotHitUpdate(nullptr) {}
-  ~EnemyGotHitUpdate() PROTOBUF_FINAL;
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR EnemyGotHitUpdate(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline EnemyGotHitUpdate(const EnemyGotHitUpdate& from) : EnemyGotHitUpdate(nullptr, from) {}
-  inline EnemyGotHitUpdate(EnemyGotHitUpdate&& from) noexcept
-      : EnemyGotHitUpdate(nullptr, std::move(from)) {}
-  inline EnemyGotHitUpdate& operator=(const EnemyGotHitUpdate& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline EnemyGotHitUpdate& operator=(EnemyGotHitUpdate&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const EnemyGotHitUpdate& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const EnemyGotHitUpdate* internal_default_instance() {
-    return reinterpret_cast<const EnemyGotHitUpdate*>(
-        &_EnemyGotHitUpdate_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 12;
-  friend void swap(EnemyGotHitUpdate& a, EnemyGotHitUpdate& b) { a.Swap(&b); }
-  inline void Swap(EnemyGotHitUpdate* other) {
-    if (other == this) return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(EnemyGotHitUpdate* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  EnemyGotHitUpdate* New(::google::protobuf::Arena* arena = nullptr) const PROTOBUF_FINAL {
-    return ::google::protobuf::Message::DefaultConstruct<EnemyGotHitUpdate>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const EnemyGotHitUpdate& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const EnemyGotHitUpdate& from) { EnemyGotHitUpdate::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(EnemyGotHitUpdate* other);
- private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "comm.EnemyGotHitUpdate"; }
-
- protected:
-  explicit EnemyGotHitUpdate(::google::protobuf::Arena* arena);
-  EnemyGotHitUpdate(::google::protobuf::Arena* arena, const EnemyGotHitUpdate& from);
-  EnemyGotHitUpdate(::google::protobuf::Arena* arena, EnemyGotHitUpdate&& from) noexcept
-      : EnemyGotHitUpdate(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::Message::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static const ::google::protobuf::Message::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kPlayerIdFieldNumber = 1,
-    kEnemyIdFieldNumber = 2,
-  };
-  // uint32 player_id = 1;
-  void clear_player_id() ;
-  ::uint32_t player_id() const;
-  void set_player_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_player_id() const;
-  void _internal_set_player_id(::uint32_t value);
-
-  public:
-  // uint32 enemy_id = 2;
-  void clear_enemy_id() ;
-  ::uint32_t enemy_id() const;
-  void set_enemy_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_enemy_id() const;
-  void _internal_set_enemy_id(::uint32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:comm.EnemyGotHitUpdate)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      0, 2>
-      _table_;
-
-  static constexpr const void* _raw_default_instance_ =
-      &_EnemyGotHitUpdate_default_instance_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const EnemyGotHitUpdate& from_msg);
-    ::uint32_t player_id_;
-    ::uint32_t enemy_id_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_comm_2eproto;
-};
-// -------------------------------------------------------------------
-
 class CollisionData final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:comm.CollisionData) */ {
  public:
@@ -1974,7 +1773,7 @@ class MapDimensionsUpdate final : public ::google::protobuf::Message
     return reinterpret_cast<const MapDimensionsUpdate*>(
         &_MapDimensionsUpdate_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(MapDimensionsUpdate& a, MapDimensionsUpdate& b) { a.Swap(&b); }
   inline void Swap(MapDimensionsUpdate* other) {
     if (other == this) return;
@@ -2568,7 +2367,7 @@ class StateUpdate final : public ::google::protobuf::Message
     kItemFieldNumber = 2,
     kRoomFieldNumber = 4,
     kMapDimensionsUpdateFieldNumber = 6,
-    kEnemyGotHitUpdateFieldNumber = 7,
+    kEnemyIdFieldNumber = 7,
     kVariantFieldNumber = 3,
   };
   // repeated .comm.Enemy enemy_spawner_positions = 5;
@@ -2664,19 +2463,19 @@ class StateUpdate final : public ::google::protobuf::Message
   ::comm::MapDimensionsUpdate* _internal_mutable_map_dimensions_update();
 
   public:
-  // .comm.EnemyGotHitUpdate enemy_got_hit_update = 7;
-  bool has_enemy_got_hit_update() const;
-  void clear_enemy_got_hit_update() ;
-  const ::comm::EnemyGotHitUpdate& enemy_got_hit_update() const;
-  PROTOBUF_NODISCARD ::comm::EnemyGotHitUpdate* release_enemy_got_hit_update();
-  ::comm::EnemyGotHitUpdate* mutable_enemy_got_hit_update();
-  void set_allocated_enemy_got_hit_update(::comm::EnemyGotHitUpdate* value);
-  void unsafe_arena_set_allocated_enemy_got_hit_update(::comm::EnemyGotHitUpdate* value);
-  ::comm::EnemyGotHitUpdate* unsafe_arena_release_enemy_got_hit_update();
+  // .comm.Enemy enemy_id = 7;
+  bool has_enemy_id() const;
+  void clear_enemy_id() ;
+  const ::comm::Enemy& enemy_id() const;
+  PROTOBUF_NODISCARD ::comm::Enemy* release_enemy_id();
+  ::comm::Enemy* mutable_enemy_id();
+  void set_allocated_enemy_id(::comm::Enemy* value);
+  void unsafe_arena_set_allocated_enemy_id(::comm::Enemy* value);
+  ::comm::Enemy* unsafe_arena_release_enemy_id();
 
   private:
-  const ::comm::EnemyGotHitUpdate& _internal_enemy_got_hit_update() const;
-  ::comm::EnemyGotHitUpdate* _internal_mutable_enemy_got_hit_update();
+  const ::comm::Enemy& _internal_enemy_id() const;
+  ::comm::Enemy* _internal_mutable_enemy_id();
 
   public:
   // .comm.StateVariant variant = 3;
@@ -2723,7 +2522,7 @@ class StateUpdate final : public ::google::protobuf::Message
     ::comm::Item* item_;
     ::comm::Room* room_;
     ::comm::MapDimensionsUpdate* map_dimensions_update_;
-    ::comm::EnemyGotHitUpdate* enemy_got_hit_update_;
+    ::comm::Enemy* enemy_id_;
     int variant_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2787,7 +2586,7 @@ class MapPositionsUpdate final : public ::google::protobuf::Message
     return reinterpret_cast<const MapPositionsUpdate*>(
         &_MapPositionsUpdate_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(MapPositionsUpdate& a, MapPositionsUpdate& b) { a.Swap(&b); }
   inline void Swap(MapPositionsUpdate* other) {
     if (other == this) return;
@@ -4179,45 +3978,45 @@ inline void StateUpdate::set_allocated_map_dimensions_update(::comm::MapDimensio
   // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.map_dimensions_update)
 }
 
-// .comm.EnemyGotHitUpdate enemy_got_hit_update = 7;
-inline bool StateUpdate::has_enemy_got_hit_update() const {
+// .comm.Enemy enemy_id = 7;
+inline bool StateUpdate::has_enemy_id() const {
   bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.enemy_got_hit_update_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.enemy_id_ != nullptr);
   return value;
 }
-inline void StateUpdate::clear_enemy_got_hit_update() {
+inline void StateUpdate::clear_enemy_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.enemy_got_hit_update_ != nullptr) _impl_.enemy_got_hit_update_->Clear();
+  if (_impl_.enemy_id_ != nullptr) _impl_.enemy_id_->Clear();
   _impl_._has_bits_[0] &= ~0x00000010u;
 }
-inline const ::comm::EnemyGotHitUpdate& StateUpdate::_internal_enemy_got_hit_update() const {
+inline const ::comm::Enemy& StateUpdate::_internal_enemy_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::comm::EnemyGotHitUpdate* p = _impl_.enemy_got_hit_update_;
-  return p != nullptr ? *p : reinterpret_cast<const ::comm::EnemyGotHitUpdate&>(::comm::_EnemyGotHitUpdate_default_instance_);
+  const ::comm::Enemy* p = _impl_.enemy_id_;
+  return p != nullptr ? *p : reinterpret_cast<const ::comm::Enemy&>(::comm::_Enemy_default_instance_);
 }
-inline const ::comm::EnemyGotHitUpdate& StateUpdate::enemy_got_hit_update() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:comm.StateUpdate.enemy_got_hit_update)
-  return _internal_enemy_got_hit_update();
+inline const ::comm::Enemy& StateUpdate::enemy_id() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:comm.StateUpdate.enemy_id)
+  return _internal_enemy_id();
 }
-inline void StateUpdate::unsafe_arena_set_allocated_enemy_got_hit_update(::comm::EnemyGotHitUpdate* value) {
+inline void StateUpdate::unsafe_arena_set_allocated_enemy_id(::comm::Enemy* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.enemy_got_hit_update_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.enemy_id_);
   }
-  _impl_.enemy_got_hit_update_ = reinterpret_cast<::comm::EnemyGotHitUpdate*>(value);
+  _impl_.enemy_id_ = reinterpret_cast<::comm::Enemy*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000010u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000010u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.enemy_got_hit_update)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:comm.StateUpdate.enemy_id)
 }
-inline ::comm::EnemyGotHitUpdate* StateUpdate::release_enemy_got_hit_update() {
+inline ::comm::Enemy* StateUpdate::release_enemy_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000010u;
-  ::comm::EnemyGotHitUpdate* released = _impl_.enemy_got_hit_update_;
-  _impl_.enemy_got_hit_update_ = nullptr;
+  ::comm::Enemy* released = _impl_.enemy_id_;
+  _impl_.enemy_id_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
   released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -4231,34 +4030,34 @@ inline ::comm::EnemyGotHitUpdate* StateUpdate::release_enemy_got_hit_update() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::comm::EnemyGotHitUpdate* StateUpdate::unsafe_arena_release_enemy_got_hit_update() {
+inline ::comm::Enemy* StateUpdate::unsafe_arena_release_enemy_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:comm.StateUpdate.enemy_got_hit_update)
+  // @@protoc_insertion_point(field_release:comm.StateUpdate.enemy_id)
 
   _impl_._has_bits_[0] &= ~0x00000010u;
-  ::comm::EnemyGotHitUpdate* temp = _impl_.enemy_got_hit_update_;
-  _impl_.enemy_got_hit_update_ = nullptr;
+  ::comm::Enemy* temp = _impl_.enemy_id_;
+  _impl_.enemy_id_ = nullptr;
   return temp;
 }
-inline ::comm::EnemyGotHitUpdate* StateUpdate::_internal_mutable_enemy_got_hit_update() {
+inline ::comm::Enemy* StateUpdate::_internal_mutable_enemy_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.enemy_got_hit_update_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::EnemyGotHitUpdate>(GetArena());
-    _impl_.enemy_got_hit_update_ = reinterpret_cast<::comm::EnemyGotHitUpdate*>(p);
+  if (_impl_.enemy_id_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::comm::Enemy>(GetArena());
+    _impl_.enemy_id_ = reinterpret_cast<::comm::Enemy*>(p);
   }
-  return _impl_.enemy_got_hit_update_;
+  return _impl_.enemy_id_;
 }
-inline ::comm::EnemyGotHitUpdate* StateUpdate::mutable_enemy_got_hit_update() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::comm::Enemy* StateUpdate::mutable_enemy_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000010u;
-  ::comm::EnemyGotHitUpdate* _msg = _internal_mutable_enemy_got_hit_update();
-  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.enemy_got_hit_update)
+  ::comm::Enemy* _msg = _internal_mutable_enemy_id();
+  // @@protoc_insertion_point(field_mutable:comm.StateUpdate.enemy_id)
   return _msg;
 }
-inline void StateUpdate::set_allocated_enemy_got_hit_update(::comm::EnemyGotHitUpdate* value) {
+inline void StateUpdate::set_allocated_enemy_id(::comm::Enemy* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete (_impl_.enemy_got_hit_update_);
+    delete (_impl_.enemy_id_);
   }
 
   if (value != nullptr) {
@@ -4271,8 +4070,8 @@ inline void StateUpdate::set_allocated_enemy_got_hit_update(::comm::EnemyGotHitU
     _impl_._has_bits_[0] &= ~0x00000010u;
   }
 
-  _impl_.enemy_got_hit_update_ = reinterpret_cast<::comm::EnemyGotHitUpdate*>(value);
-  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.enemy_got_hit_update)
+  _impl_.enemy_id_ = reinterpret_cast<::comm::Enemy*>(value);
+  // @@protoc_insertion_point(field_set_allocated:comm.StateUpdate.enemy_id)
 }
 
 // bytes compressed_map_dimensions_update = 8;
@@ -6015,54 +5814,6 @@ inline float CollisionData::_internal_y_offset() const {
 inline void CollisionData::_internal_set_y_offset(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.y_offset_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// EnemyGotHitUpdate
-
-// uint32 player_id = 1;
-inline void EnemyGotHitUpdate::clear_player_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.player_id_ = 0u;
-}
-inline ::uint32_t EnemyGotHitUpdate::player_id() const {
-  // @@protoc_insertion_point(field_get:comm.EnemyGotHitUpdate.player_id)
-  return _internal_player_id();
-}
-inline void EnemyGotHitUpdate::set_player_id(::uint32_t value) {
-  _internal_set_player_id(value);
-  // @@protoc_insertion_point(field_set:comm.EnemyGotHitUpdate.player_id)
-}
-inline ::uint32_t EnemyGotHitUpdate::_internal_player_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.player_id_;
-}
-inline void EnemyGotHitUpdate::_internal_set_player_id(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.player_id_ = value;
-}
-
-// uint32 enemy_id = 2;
-inline void EnemyGotHitUpdate::clear_enemy_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.enemy_id_ = 0u;
-}
-inline ::uint32_t EnemyGotHitUpdate::enemy_id() const {
-  // @@protoc_insertion_point(field_get:comm.EnemyGotHitUpdate.enemy_id)
-  return _internal_enemy_id();
-}
-inline void EnemyGotHitUpdate::set_enemy_id(::uint32_t value) {
-  _internal_set_enemy_id(value);
-  // @@protoc_insertion_point(field_set:comm.EnemyGotHitUpdate.enemy_id)
-}
-inline ::uint32_t EnemyGotHitUpdate::_internal_enemy_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.enemy_id_;
-}
-inline void EnemyGotHitUpdate::_internal_set_enemy_id(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.enemy_id_ = value;
 }
 
 // -------------------------------------------------------------------
