@@ -34,11 +34,11 @@ message StateUpdateSeries {
 }
 
 enum MovementVariant {
-    PLAYER_MOVEMENT_UPDATE = 0;
-    MAP_UPDATE = 1;
+    NO_MOVEMENT = 0;
+    PLAYER_MOVEMENT_UPDATE = 1;
+    MAP_UPDATE = 2;
 }
 
-// sent via UDP
 message MovementUpdate {
     uint32 entity_id = 1;
     MovementVariant variant = 2;
@@ -53,7 +53,6 @@ message MovementUpdate {
     MapPositionsUpdate map_positions_update = 11;
 }
 
-// sent via TCP
 message Player {
     uint32 id = 1;
     repeated Item items = 2;
