@@ -80,6 +80,32 @@ struct RoomDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RoomDefaultTypeInternal _Room_default_instance_;
 
+inline constexpr Position::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : x_{0},
+        y_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Position::Position(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PositionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PositionDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PositionDefaultTypeInternal() {}
+  union {
+    Position _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PositionDefaultTypeInternal _Position_default_instance_;
+
 inline constexpr Obstacle::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : left_{0},
@@ -250,13 +276,13 @@ inline constexpr Enemy::Impl_::Impl_(
         name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        vector_{nullptr},
+        position_{nullptr},
         texture_data_{nullptr},
         collision_data_{nullptr},
-        id_{0u},
-        position_x_{0},
         hp_{0},
         damage_{0},
-        position_y_{0} {}
+        id_{0u} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR Enemy::Enemy(::_pbi::ConstantInitialized)
@@ -563,8 +589,8 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::comm::Enemy, _impl_.id_),
-        PROTOBUF_FIELD_OFFSET(::comm::Enemy, _impl_.position_x_),
-        PROTOBUF_FIELD_OFFSET(::comm::Enemy, _impl_.position_y_),
+        PROTOBUF_FIELD_OFFSET(::comm::Enemy, _impl_.vector_),
+        PROTOBUF_FIELD_OFFSET(::comm::Enemy, _impl_.position_),
         PROTOBUF_FIELD_OFFSET(::comm::Enemy, _impl_.type_),
         PROTOBUF_FIELD_OFFSET(::comm::Enemy, _impl_.name_),
         PROTOBUF_FIELD_OFFSET(::comm::Enemy, _impl_.hp_),
@@ -572,14 +598,24 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::comm::Enemy, _impl_.texture_data_),
         PROTOBUF_FIELD_OFFSET(::comm::Enemy, _impl_.collision_data_),
         ~0u,
-        ~0u,
-        ~0u,
-        ~0u,
-        ~0u,
-        ~0u,
-        ~0u,
         0,
         1,
+        ~0u,
+        ~0u,
+        ~0u,
+        ~0u,
+        2,
+        3,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::comm::Position, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::comm::Position, _impl_.x_),
+        PROTOBUF_FIELD_OFFSET(::comm::Position, _impl_.y_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::comm::Obstacle, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -646,11 +682,12 @@ static const ::_pbi::MigrationSchema
         {103, -1, -1, sizeof(::comm::Room)},
         {113, -1, -1, sizeof(::comm::BytePrefix)},
         {122, 139, -1, sizeof(::comm::Enemy)},
-        {148, -1, -1, sizeof(::comm::Obstacle)},
-        {158, -1, -1, sizeof(::comm::TextureData)},
-        {169, -1, -1, sizeof(::comm::CollisionData)},
-        {182, -1, -1, sizeof(::comm::MapPositionsUpdate)},
-        {192, -1, -1, sizeof(::comm::MapDimensionsUpdate)},
+        {148, -1, -1, sizeof(::comm::Position)},
+        {158, -1, -1, sizeof(::comm::Obstacle)},
+        {168, -1, -1, sizeof(::comm::TextureData)},
+        {179, -1, -1, sizeof(::comm::CollisionData)},
+        {192, -1, -1, sizeof(::comm::MapPositionsUpdate)},
+        {202, -1, -1, sizeof(::comm::MapDimensionsUpdate)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::comm::_StateUpdate_default_instance_._instance,
@@ -662,6 +699,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::comm::_Room_default_instance_._instance,
     &::comm::_BytePrefix_default_instance_._instance,
     &::comm::_Enemy_default_instance_._instance,
+    &::comm::_Position_default_instance_._instance,
     &::comm::_Obstacle_default_instance_._instance,
     &::comm::_TextureData_default_instance_._instance,
     &::comm::_CollisionData_default_instance_._instance,
@@ -697,45 +735,47 @@ const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "ext_item\030\003 \001(\0132\n.comm.Item\022\'\n\021connected_"
     "players\030\004 \003(\0132\014.comm.Player\"\034\n\004Room\022\t\n\001x"
     "\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"\033\n\nBytePrefix\022\r\n\005bytes"
-    "\030\001 \001(\r\"\311\001\n\005Enemy\022\n\n\002id\030\001 \001(\r\022\022\n\nposition"
-    "_x\030\002 \001(\002\022\022\n\nposition_y\030\003 \001(\002\022\014\n\004type\030\004 \001"
-    "(\t\022\014\n\004name\030\005 \001(\t\022\n\n\002hp\030\006 \001(\001\022\016\n\006damage\030\007"
-    " \001(\001\022\'\n\014texture_data\030\010 \001(\0132\021.comm.Textur"
-    "eData\022+\n\016collision_data\030\t \001(\0132\023.comm.Col"
-    "lisionData\"%\n\010Obstacle\022\014\n\004left\030\001 \001(\002\022\013\n\003"
-    "top\030\002 \001(\002\"D\n\013TextureData\022\017\n\007tile_id\030\001 \001("
-    "\r\022\020\n\010tile_set\030\002 \001(\t\022\022\n\ntile_layer\030\003 \001(\005\""
-    "`\n\rCollisionData\022\014\n\004type\030\001 \001(\005\022\r\n\005width\030"
-    "\002 \001(\002\022\016\n\006height\030\003 \001(\002\022\020\n\010x_offset\030\004 \001(\002\022"
-    "\020\n\010y_offset\030\005 \001(\002\"Q\n\022MapPositionsUpdate\022"
-    "\035\n\007players\030\001 \003(\0132\014.comm.Player\022\034\n\007enemie"
-    "s\030\002 \003(\0132\013.comm.Enemy\"8\n\023MapDimensionsUpd"
-    "ate\022!\n\tobstacles\030\001 \003(\0132\016.comm.Obstacle*\240"
-    "\002\n\014StateVariant\022\010\n\004NONE\020\000\022\r\n\tCONNECTED\020\001"
-    "\022\020\n\014DISCONNECTED\020\002\022\020\n\014ROOM_CHANGED\020\003\022\020\n\014"
-    "ROOM_CLEARED\020\004\022\021\n\rLEVEL_CHANGED\020\005\022\020\n\014CHE"
-    "ST_OPENED\020\006\022\032\n\026REQUEST_ITEM_GENERATOR\020\007\022"
-    "\021\n\rITEM_EQUIPPED\020\010\022\017\n\013PLAYER_DIED\020\t\022\031\n\025M"
-    "AP_DIMENSIONS_UPDATE\020\n\022\027\n\023SPAWN_ENEMY_RE"
-    "QUEST\020\013\022\030\n\024ENEMY_GOT_HIT_UPDATE\020\014\022\016\n\nENE"
-    "MY_DIED\020\r*N\n\017MovementVariant\022\017\n\013NO_MOVEM"
-    "ENT\020\000\022\032\n\026PLAYER_MOVEMENT_UPDATE\020\001\022\016\n\nMAP"
-    "_UPDATE\020\002*G\n\010ItemType\022\013\n\007UNKNOWN\020\000\022\n\n\006WE"
-    "APON\020\001\022\n\n\006ARMOUR\020\002\022\n\n\006POTION\020\003\022\n\n\006HELMET"
-    "\020\004B6Z4github.com/kmrd-industries/qlp-pro"
-    "to-bindings/gen/gob\006proto3"
+    "\030\001 \001(\r\"\343\001\n\005Enemy\022\n\n\002id\030\001 \001(\r\022\036\n\006vector\030\002"
+    " \001(\0132\016.comm.Position\022 \n\010position\030\003 \001(\0132\016"
+    ".comm.Position\022\014\n\004type\030\004 \001(\t\022\014\n\004name\030\005 \001"
+    "(\t\022\n\n\002hp\030\006 \001(\001\022\016\n\006damage\030\007 \001(\001\022\'\n\014textur"
+    "e_data\030\010 \001(\0132\021.comm.TextureData\022+\n\016colli"
+    "sion_data\030\t \001(\0132\023.comm.CollisionData\" \n\010"
+    "Position\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\"%\n\010Obstac"
+    "le\022\014\n\004left\030\001 \001(\002\022\013\n\003top\030\002 \001(\002\"D\n\013Texture"
+    "Data\022\017\n\007tile_id\030\001 \001(\r\022\020\n\010tile_set\030\002 \001(\t\022"
+    "\022\n\ntile_layer\030\003 \001(\005\"`\n\rCollisionData\022\014\n\004"
+    "type\030\001 \001(\005\022\r\n\005width\030\002 \001(\002\022\016\n\006height\030\003 \001("
+    "\002\022\020\n\010x_offset\030\004 \001(\002\022\020\n\010y_offset\030\005 \001(\002\"Q\n"
+    "\022MapPositionsUpdate\022\035\n\007players\030\001 \003(\0132\014.c"
+    "omm.Player\022\034\n\007enemies\030\002 \003(\0132\013.comm.Enemy"
+    "\"8\n\023MapDimensionsUpdate\022!\n\tobstacles\030\001 \003"
+    "(\0132\016.comm.Obstacle*\240\002\n\014StateVariant\022\010\n\004N"
+    "ONE\020\000\022\r\n\tCONNECTED\020\001\022\020\n\014DISCONNECTED\020\002\022\020"
+    "\n\014ROOM_CHANGED\020\003\022\020\n\014ROOM_CLEARED\020\004\022\021\n\rLE"
+    "VEL_CHANGED\020\005\022\020\n\014CHEST_OPENED\020\006\022\032\n\026REQUE"
+    "ST_ITEM_GENERATOR\020\007\022\021\n\rITEM_EQUIPPED\020\010\022\017"
+    "\n\013PLAYER_DIED\020\t\022\031\n\025MAP_DIMENSIONS_UPDATE"
+    "\020\n\022\027\n\023SPAWN_ENEMY_REQUEST\020\013\022\030\n\024ENEMY_GOT"
+    "_HIT_UPDATE\020\014\022\016\n\nENEMY_DIED\020\r*N\n\017Movemen"
+    "tVariant\022\017\n\013NO_MOVEMENT\020\000\022\032\n\026PLAYER_MOVE"
+    "MENT_UPDATE\020\001\022\016\n\nMAP_UPDATE\020\002*G\n\010ItemTyp"
+    "e\022\013\n\007UNKNOWN\020\000\022\n\n\006WEAPON\020\001\022\n\n\006ARMOUR\020\002\022\n"
+    "\n\006POTION\020\003\022\n\n\006HELMET\020\004B6Z4github.com/kmr"
+    "d-industries/qlp-proto-bindings/gen/gob\006"
+    "proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    2146,
+    2206,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
     nullptr,
     0,
-    14,
+    15,
     schemas,
     file_default_instances,
     TableStruct_comm_2eproto::offsets,
@@ -3394,19 +3434,25 @@ Enemy::Enemy(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.texture_data_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::comm::TextureData>(
+  _impl_.vector_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::comm::Position>(
+                              arena, *from._impl_.vector_)
+                        : nullptr;
+  _impl_.position_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::comm::Position>(
+                              arena, *from._impl_.position_)
+                        : nullptr;
+  _impl_.texture_data_ = (cached_has_bits & 0x00000004u) ? ::google::protobuf::Message::CopyConstruct<::comm::TextureData>(
                               arena, *from._impl_.texture_data_)
                         : nullptr;
-  _impl_.collision_data_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::comm::CollisionData>(
+  _impl_.collision_data_ = (cached_has_bits & 0x00000008u) ? ::google::protobuf::Message::CopyConstruct<::comm::CollisionData>(
                               arena, *from._impl_.collision_data_)
                         : nullptr;
   ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, id_),
+               offsetof(Impl_, hp_),
            reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, id_),
-           offsetof(Impl_, position_y_) -
-               offsetof(Impl_, id_) +
-               sizeof(Impl_::position_y_));
+               offsetof(Impl_, hp_),
+           offsetof(Impl_, id_) -
+               offsetof(Impl_, hp_) +
+               sizeof(Impl_::id_));
 
   // @@protoc_insertion_point(copy_constructor:comm.Enemy)
 }
@@ -3420,11 +3466,11 @@ inline PROTOBUF_NDEBUG_INLINE Enemy::Impl_::Impl_(
 inline void Enemy::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, texture_data_),
+               offsetof(Impl_, vector_),
            0,
-           offsetof(Impl_, position_y_) -
-               offsetof(Impl_, texture_data_) +
-               sizeof(Impl_::position_y_));
+           offsetof(Impl_, id_) -
+               offsetof(Impl_, vector_) +
+               sizeof(Impl_::id_));
 }
 Enemy::~Enemy() {
   // @@protoc_insertion_point(destructor:comm.Enemy)
@@ -3435,6 +3481,8 @@ inline void Enemy::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.type_.Destroy();
   _impl_.name_.Destroy();
+  delete _impl_.vector_;
+  delete _impl_.position_;
   delete _impl_.texture_data_;
   delete _impl_.collision_data_;
   _impl_.~Impl_();
@@ -3469,7 +3517,7 @@ const ::google::protobuf::MessageLite::ClassData* Enemy::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 9, 2, 35, 2> Enemy::_table_ = {
+const ::_pbi::TcParseTable<4, 9, 4, 35, 2> Enemy::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Enemy, _impl_._has_bits_),
     0, // no _extensions_
@@ -3478,7 +3526,7 @@ const ::_pbi::TcParseTable<4, 9, 2, 35, 2> Enemy::_table_ = {
     4294966784,  // skipmap
     offsetof(decltype(_table_), field_entries),
     9,  // num_field_entries
-    2,  // num_aux_entries
+    4,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
@@ -3491,12 +3539,12 @@ const ::_pbi::TcParseTable<4, 9, 2, 35, 2> Enemy::_table_ = {
     // uint32 id = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Enemy, _impl_.id_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(Enemy, _impl_.id_)}},
-    // float position_x = 2;
-    {::_pbi::TcParser::FastF32S1,
-     {21, 63, 0, PROTOBUF_FIELD_OFFSET(Enemy, _impl_.position_x_)}},
-    // float position_y = 3;
-    {::_pbi::TcParser::FastF32S1,
-     {29, 63, 0, PROTOBUF_FIELD_OFFSET(Enemy, _impl_.position_y_)}},
+    // .comm.Position vector = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(Enemy, _impl_.vector_)}},
+    // .comm.Position position = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 1, 1, PROTOBUF_FIELD_OFFSET(Enemy, _impl_.position_)}},
     // string type = 4;
     {::_pbi::TcParser::FastUS1,
      {34, 63, 0, PROTOBUF_FIELD_OFFSET(Enemy, _impl_.type_)}},
@@ -3511,10 +3559,10 @@ const ::_pbi::TcParseTable<4, 9, 2, 35, 2> Enemy::_table_ = {
      {57, 63, 0, PROTOBUF_FIELD_OFFSET(Enemy, _impl_.damage_)}},
     // .comm.TextureData texture_data = 8;
     {::_pbi::TcParser::FastMtS1,
-     {66, 0, 0, PROTOBUF_FIELD_OFFSET(Enemy, _impl_.texture_data_)}},
+     {66, 2, 2, PROTOBUF_FIELD_OFFSET(Enemy, _impl_.texture_data_)}},
     // .comm.CollisionData collision_data = 9;
     {::_pbi::TcParser::FastMtS1,
-     {74, 1, 1, PROTOBUF_FIELD_OFFSET(Enemy, _impl_.collision_data_)}},
+     {74, 3, 3, PROTOBUF_FIELD_OFFSET(Enemy, _impl_.collision_data_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -3527,12 +3575,12 @@ const ::_pbi::TcParseTable<4, 9, 2, 35, 2> Enemy::_table_ = {
     // uint32 id = 1;
     {PROTOBUF_FIELD_OFFSET(Enemy, _impl_.id_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // float position_x = 2;
-    {PROTOBUF_FIELD_OFFSET(Enemy, _impl_.position_x_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float position_y = 3;
-    {PROTOBUF_FIELD_OFFSET(Enemy, _impl_.position_y_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // .comm.Position vector = 2;
+    {PROTOBUF_FIELD_OFFSET(Enemy, _impl_.vector_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .comm.Position position = 3;
+    {PROTOBUF_FIELD_OFFSET(Enemy, _impl_.position_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // string type = 4;
     {PROTOBUF_FIELD_OFFSET(Enemy, _impl_.type_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -3546,12 +3594,14 @@ const ::_pbi::TcParseTable<4, 9, 2, 35, 2> Enemy::_table_ = {
     {PROTOBUF_FIELD_OFFSET(Enemy, _impl_.damage_), -1, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
     // .comm.TextureData texture_data = 8;
-    {PROTOBUF_FIELD_OFFSET(Enemy, _impl_.texture_data_), _Internal::kHasBitsOffset + 0, 0,
+    {PROTOBUF_FIELD_OFFSET(Enemy, _impl_.texture_data_), _Internal::kHasBitsOffset + 2, 2,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // .comm.CollisionData collision_data = 9;
-    {PROTOBUF_FIELD_OFFSET(Enemy, _impl_.collision_data_), _Internal::kHasBitsOffset + 1, 1,
+    {PROTOBUF_FIELD_OFFSET(Enemy, _impl_.collision_data_), _Internal::kHasBitsOffset + 3, 3,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
+    {::_pbi::TcParser::GetTable<::comm::Position>()},
+    {::_pbi::TcParser::GetTable<::comm::Position>()},
     {::_pbi::TcParser::GetTable<::comm::TextureData>()},
     {::_pbi::TcParser::GetTable<::comm::CollisionData>()},
   }}, {{
@@ -3572,19 +3622,27 @@ PROTOBUF_NOINLINE void Enemy::Clear() {
   _impl_.type_.ClearToEmpty();
   _impl_.name_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
+  if (cached_has_bits & 0x0000000fu) {
     if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.vector_ != nullptr);
+      _impl_.vector_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.position_ != nullptr);
+      _impl_.position_->Clear();
+    }
+    if (cached_has_bits & 0x00000004u) {
       ABSL_DCHECK(_impl_.texture_data_ != nullptr);
       _impl_.texture_data_->Clear();
     }
-    if (cached_has_bits & 0x00000002u) {
+    if (cached_has_bits & 0x00000008u) {
       ABSL_DCHECK(_impl_.collision_data_ != nullptr);
       _impl_.collision_data_->Clear();
     }
   }
-  ::memset(&_impl_.id_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.position_y_) -
-      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.position_y_));
+  ::memset(&_impl_.hp_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.id_) -
+      reinterpret_cast<char*>(&_impl_.hp_)) + sizeof(_impl_.id_));
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -3611,18 +3669,19 @@ PROTOBUF_NOINLINE void Enemy::Clear() {
                 1, this_._internal_id(), target);
           }
 
-          // float position_x = 2;
-          if (::absl::bit_cast<::uint32_t>(this_._internal_position_x()) != 0) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteFloatToArray(
-                2, this_._internal_position_x(), target);
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .comm.Position vector = 2;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                2, *this_._impl_.vector_, this_._impl_.vector_->GetCachedSize(), target,
+                stream);
           }
 
-          // float position_y = 3;
-          if (::absl::bit_cast<::uint32_t>(this_._internal_position_y()) != 0) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteFloatToArray(
-                3, this_._internal_position_y(), target);
+          // .comm.Position position = 3;
+          if (cached_has_bits & 0x00000002u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                3, *this_._impl_.position_, this_._impl_.position_->GetCachedSize(), target,
+                stream);
           }
 
           // string type = 4;
@@ -3655,16 +3714,15 @@ PROTOBUF_NOINLINE void Enemy::Clear() {
                 7, this_._internal_damage(), target);
           }
 
-          cached_has_bits = this_._impl_._has_bits_[0];
           // .comm.TextureData texture_data = 8;
-          if (cached_has_bits & 0x00000001u) {
+          if (cached_has_bits & 0x00000004u) {
             target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
                 8, *this_._impl_.texture_data_, this_._impl_.texture_data_->GetCachedSize(), target,
                 stream);
           }
 
           // .comm.CollisionData collision_data = 9;
-          if (cached_has_bits & 0x00000002u) {
+          if (cached_has_bits & 0x00000008u) {
             target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
                 9, *this_._impl_.collision_data_, this_._impl_.collision_data_->GetCachedSize(), target,
                 stream);
@@ -3707,28 +3765,29 @@ PROTOBUF_NOINLINE void Enemy::Clear() {
             }
           }
           cached_has_bits = this_._impl_._has_bits_[0];
-          if (cached_has_bits & 0x00000003u) {
-            // .comm.TextureData texture_data = 8;
+          if (cached_has_bits & 0x0000000fu) {
+            // .comm.Position vector = 2;
             if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.vector_);
+            }
+            // .comm.Position position = 3;
+            if (cached_has_bits & 0x00000002u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.position_);
+            }
+            // .comm.TextureData texture_data = 8;
+            if (cached_has_bits & 0x00000004u) {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.texture_data_);
             }
             // .comm.CollisionData collision_data = 9;
-            if (cached_has_bits & 0x00000002u) {
+            if (cached_has_bits & 0x00000008u) {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.collision_data_);
             }
           }
            {
-            // uint32 id = 1;
-            if (this_._internal_id() != 0) {
-              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_id());
-            }
-            // float position_x = 2;
-            if (::absl::bit_cast<::uint32_t>(this_._internal_position_x()) != 0) {
-              total_size += 5;
-            }
             // double hp = 6;
             if (::absl::bit_cast<::uint64_t>(this_._internal_hp()) != 0) {
               total_size += 9;
@@ -3737,9 +3796,10 @@ PROTOBUF_NOINLINE void Enemy::Clear() {
             if (::absl::bit_cast<::uint64_t>(this_._internal_damage()) != 0) {
               total_size += 9;
             }
-            // float position_y = 3;
-            if (::absl::bit_cast<::uint32_t>(this_._internal_position_y()) != 0) {
-              total_size += 5;
+            // uint32 id = 1;
+            if (this_._internal_id() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_id());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -3762,8 +3822,26 @@ void Enemy::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::p
     _this->_internal_set_name(from._internal_name());
   }
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
+  if (cached_has_bits & 0x0000000fu) {
     if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.vector_ != nullptr);
+      if (_this->_impl_.vector_ == nullptr) {
+        _this->_impl_.vector_ =
+            ::google::protobuf::Message::CopyConstruct<::comm::Position>(arena, *from._impl_.vector_);
+      } else {
+        _this->_impl_.vector_->MergeFrom(*from._impl_.vector_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(from._impl_.position_ != nullptr);
+      if (_this->_impl_.position_ == nullptr) {
+        _this->_impl_.position_ =
+            ::google::protobuf::Message::CopyConstruct<::comm::Position>(arena, *from._impl_.position_);
+      } else {
+        _this->_impl_.position_->MergeFrom(*from._impl_.position_);
+      }
+    }
+    if (cached_has_bits & 0x00000004u) {
       ABSL_DCHECK(from._impl_.texture_data_ != nullptr);
       if (_this->_impl_.texture_data_ == nullptr) {
         _this->_impl_.texture_data_ =
@@ -3772,7 +3850,7 @@ void Enemy::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::p
         _this->_impl_.texture_data_->MergeFrom(*from._impl_.texture_data_);
       }
     }
-    if (cached_has_bits & 0x00000002u) {
+    if (cached_has_bits & 0x00000008u) {
       ABSL_DCHECK(from._impl_.collision_data_ != nullptr);
       if (_this->_impl_.collision_data_ == nullptr) {
         _this->_impl_.collision_data_ =
@@ -3782,20 +3860,14 @@ void Enemy::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::p
       }
     }
   }
-  if (from._internal_id() != 0) {
-    _this->_impl_.id_ = from._impl_.id_;
-  }
-  if (::absl::bit_cast<::uint32_t>(from._internal_position_x()) != 0) {
-    _this->_impl_.position_x_ = from._impl_.position_x_;
-  }
   if (::absl::bit_cast<::uint64_t>(from._internal_hp()) != 0) {
     _this->_impl_.hp_ = from._impl_.hp_;
   }
   if (::absl::bit_cast<::uint64_t>(from._internal_damage()) != 0) {
     _this->_impl_.damage_ = from._impl_.damage_;
   }
-  if (::absl::bit_cast<::uint32_t>(from._internal_position_y()) != 0) {
-    _this->_impl_.position_y_ = from._impl_.position_y_;
+  if (from._internal_id() != 0) {
+    _this->_impl_.id_ = from._impl_.id_;
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
@@ -3818,14 +3890,245 @@ void Enemy::InternalSwap(Enemy* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.type_, &other->_impl_.type_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Enemy, _impl_.position_y_)
-      + sizeof(Enemy::_impl_.position_y_)
-      - PROTOBUF_FIELD_OFFSET(Enemy, _impl_.texture_data_)>(
-          reinterpret_cast<char*>(&_impl_.texture_data_),
-          reinterpret_cast<char*>(&other->_impl_.texture_data_));
+      PROTOBUF_FIELD_OFFSET(Enemy, _impl_.id_)
+      + sizeof(Enemy::_impl_.id_)
+      - PROTOBUF_FIELD_OFFSET(Enemy, _impl_.vector_)>(
+          reinterpret_cast<char*>(&_impl_.vector_),
+          reinterpret_cast<char*>(&other->_impl_.vector_));
 }
 
 ::google::protobuf::Metadata Enemy::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Position::_Internal {
+ public:
+};
+
+Position::Position(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:comm.Position)
+}
+Position::Position(
+    ::google::protobuf::Arena* arena, const Position& from)
+    : Position(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE Position::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void Position::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, x_),
+           0,
+           offsetof(Impl_, y_) -
+               offsetof(Impl_, x_) +
+               sizeof(Impl_::y_));
+}
+Position::~Position() {
+  // @@protoc_insertion_point(destructor:comm.Position)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void Position::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::MessageLite::ClassDataFull
+    Position::_class_data_ = {
+        ::google::protobuf::Message::ClassData{
+            &_Position_default_instance_._instance,
+            &_table_.header,
+            nullptr,  // OnDemandRegisterArenaDtor
+            nullptr,  // IsInitialized
+            &Position::MergeImpl,
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+            ::google::protobuf::Message::GetDeleteImpl<Position>(),
+            ::google::protobuf::Message::GetNewImpl<Position>(),
+            ::google::protobuf::Message::GetClearImpl<Position>(), &Position::ByteSizeLong,
+                &Position::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+            PROTOBUF_FIELD_OFFSET(Position, _impl_._cached_size_),
+            false,
+        },
+        &Position::kDescriptorMethods,
+        &descriptor_table_comm_2eproto,
+        nullptr,  // tracker
+};
+const ::google::protobuf::MessageLite::ClassData* Position::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> Position::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::comm::Position>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // float y = 2;
+    {::_pbi::TcParser::FastF32S1,
+     {21, 63, 0, PROTOBUF_FIELD_OFFSET(Position, _impl_.y_)}},
+    // float x = 1;
+    {::_pbi::TcParser::FastF32S1,
+     {13, 63, 0, PROTOBUF_FIELD_OFFSET(Position, _impl_.x_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // float x = 1;
+    {PROTOBUF_FIELD_OFFSET(Position, _impl_.x_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // float y = 2;
+    {PROTOBUF_FIELD_OFFSET(Position, _impl_.y_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void Position::Clear() {
+// @@protoc_insertion_point(message_clear_start:comm.Position)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.x_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.y_) -
+      reinterpret_cast<char*>(&_impl_.x_)) + sizeof(_impl_.y_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* Position::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const Position& this_ = static_cast<const Position&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* Position::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const Position& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:comm.Position)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // float x = 1;
+          if (::absl::bit_cast<::uint32_t>(this_._internal_x()) != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteFloatToArray(
+                1, this_._internal_x(), target);
+          }
+
+          // float y = 2;
+          if (::absl::bit_cast<::uint32_t>(this_._internal_y()) != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteFloatToArray(
+                2, this_._internal_y(), target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:comm.Position)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t Position::ByteSizeLong(const MessageLite& base) {
+          const Position& this_ = static_cast<const Position&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t Position::ByteSizeLong() const {
+          const Position& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:comm.Position)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+           {
+            // float x = 1;
+            if (::absl::bit_cast<::uint32_t>(this_._internal_x()) != 0) {
+              total_size += 5;
+            }
+            // float y = 2;
+            if (::absl::bit_cast<::uint32_t>(this_._internal_y()) != 0) {
+              total_size += 5;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void Position::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Position*>(&to_msg);
+  auto& from = static_cast<const Position&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:comm.Position)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (::absl::bit_cast<::uint32_t>(from._internal_x()) != 0) {
+    _this->_impl_.x_ = from._impl_.x_;
+  }
+  if (::absl::bit_cast<::uint32_t>(from._internal_y()) != 0) {
+    _this->_impl_.y_ = from._impl_.y_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Position::CopyFrom(const Position& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:comm.Position)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Position::InternalSwap(Position* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Position, _impl_.y_)
+      + sizeof(Position::_impl_.y_)
+      - PROTOBUF_FIELD_OFFSET(Position, _impl_.x_)>(
+          reinterpret_cast<char*>(&_impl_.x_),
+          reinterpret_cast<char*>(&other->_impl_.x_));
+}
+
+::google::protobuf::Metadata Position::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
