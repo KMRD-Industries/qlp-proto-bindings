@@ -96,14 +96,19 @@ message BytePrefix {
 
 message Enemy {
     uint32 id = 1;
-    float position_x = 2;
-    float position_y = 3;
+    Position vector = 2;
+    Position position = 3;
     string type = 4;
     string name = 5;
     double hp = 6;
     double damage = 7;
     TextureData texture_data = 8;
     CollisionData collision_data = 9;
+}
+
+message Position {
+    float x = 1;
+    float y = 2;
 }
 
 message Obstacle {
