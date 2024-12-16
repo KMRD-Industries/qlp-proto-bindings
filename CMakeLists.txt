@@ -16,6 +16,7 @@ set(protobuf_INSTALL OFF)
 set(protobuf_BUILD_PROTOC_BINARIES OFF)
 set(protobuf_BUILD_TESTS OFF)
 set(protobuf_BUILD_LIBUPB OFF)
+set(protobuf_BUILD_SHARED_LIBS OFF)
 FetchContent_Declare(protobuf
     GIT_REPOSITORY https://github.com/protocolbuffers/protobuf
     GIT_TAG v28.2)
