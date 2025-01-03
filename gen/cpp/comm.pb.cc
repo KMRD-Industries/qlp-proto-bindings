@@ -757,18 +757,19 @@ const char descriptor_table_protodef_comm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "HEST_OPENED\020\006\022\032\n\026REQUEST_ITEM_GENERATOR\020"
     "\007\022\021\n\rITEM_EQUIPPED\020\010\022\017\n\013PLAYER_DIED\020\t\022\031\n"
     "\025MAP_DIMENSIONS_UPDATE\020\n\022\027\n\023SPAWN_ENEMY_"
-    "REQUEST\020\013\022\030\n\024ENEMY_GOT_HIT_UPDATE\020\014*=\n\017M"
-    "ovementVariant\022\032\n\026PLAYER_MOVEMENT_UPDATE"
-    "\020\000\022\016\n\nMAP_UPDATE\020\001*G\n\010ItemType\022\013\n\007UNKNOW"
-    "N\020\000\022\n\n\006WEAPON\020\001\022\n\n\006ARMOUR\020\002\022\n\n\006POTION\020\003\022"
-    "\n\n\006HELMET\020\004B6Z4github.com/kmrd-industrie"
-    "s/qlp-proto-bindings/gen/gob\006proto3"
+    "REQUEST\020\013\022\030\n\024ENEMY_GOT_HIT_UPDATE\020\014*N\n\017M"
+    "ovementVariant\022\017\n\013NO_MOVEMENT\020\000\022\032\n\026PLAYE"
+    "R_MOVEMENT_UPDATE\020\001\022\016\n\nMAP_UPDATE\020\002*G\n\010I"
+    "temType\022\013\n\007UNKNOWN\020\000\022\n\n\006WEAPON\020\001\022\n\n\006ARMO"
+    "UR\020\002\022\n\n\006POTION\020\003\022\n\n\006HELMET\020\004B6Z4github.c"
+    "om/kmrd-industries/qlp-proto-bindings/ge"
+    "n/gob\006proto3"
 };
 static ::absl::once_flag descriptor_table_comm_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_comm_2eproto = {
     false,
     false,
-    2195,
+    2212,
     descriptor_table_protodef_comm_2eproto,
     "comm.proto",
     &descriptor_table_comm_2eproto_once,
@@ -796,9 +797,9 @@ const ::google::protobuf::EnumDescriptor* MovementVariant_descriptor() {
   return file_level_enum_descriptors_comm_2eproto[1];
 }
 PROTOBUF_CONSTINIT const uint32_t MovementVariant_internal_data_[] = {
-    131072u, 0u, };
+    196608u, 0u, };
 bool MovementVariant_IsValid(int value) {
-  return 0 <= value && value <= 1;
+  return 0 <= value && value <= 2;
 }
 const ::google::protobuf::EnumDescriptor* ItemType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_comm_2eproto);

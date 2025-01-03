@@ -148,8 +148,9 @@ inline bool StateVariant_Parse(absl::string_view name, StateVariant* value) {
       StateVariant_descriptor(), name, value);
 }
 enum MovementVariant : int {
-  PLAYER_MOVEMENT_UPDATE = 0,
-  MAP_UPDATE = 1,
+  NO_MOVEMENT = 0,
+  PLAYER_MOVEMENT_UPDATE = 1,
+  MAP_UPDATE = 2,
   MovementVariant_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   MovementVariant_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -159,8 +160,8 @@ enum MovementVariant : int {
 bool MovementVariant_IsValid(int value);
 extern const uint32_t MovementVariant_internal_data_[];
 constexpr MovementVariant MovementVariant_MIN = static_cast<MovementVariant>(0);
-constexpr MovementVariant MovementVariant_MAX = static_cast<MovementVariant>(1);
-constexpr int MovementVariant_ARRAYSIZE = 1 + 1;
+constexpr MovementVariant MovementVariant_MAX = static_cast<MovementVariant>(2);
+constexpr int MovementVariant_ARRAYSIZE = 2 + 1;
 const ::google::protobuf::EnumDescriptor*
 MovementVariant_descriptor();
 template <typename T>
@@ -173,7 +174,7 @@ const std::string& MovementVariant_Name(T value) {
 template <>
 inline const std::string& MovementVariant_Name(MovementVariant value) {
   return ::google::protobuf::internal::NameOfDenseEnum<MovementVariant_descriptor,
-                                                 0, 1>(
+                                                 0, 2>(
       static_cast<int>(value));
 }
 inline bool MovementVariant_Parse(absl::string_view name, MovementVariant* value) {
