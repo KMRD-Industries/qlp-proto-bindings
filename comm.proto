@@ -2,22 +2,63 @@ syntax = "proto3";
 package comm;
 option go_package = "github.com/kmrd-industries/qlp-proto-bindings/gen/go";
 
-// sent via UDP
-message MovementUpdate {
-    uint32 entity_id = 1;
-    float position_x = 2;
-    float position_y = 3;
-    float weapon_pivot_x = 4;
-    float weapon_pivot_y = 5;
-    float direction = 6;
-    bool attack = 7;
-    Room curr_room = 8;
+enum StateVariant {
+    NONE = 0;
+    CONNECTED = 1;
+    DISCONNECTED = 2;
+    ROOM_CHANGED = 3;
+    ROOM_CLEARED = 4;
+    LEVEL_CHANGED = 5;
+    CHEST_OPENED = 6;
+    REQUEST_ITEM_GENERATOR = 7;
+    ITEM_EQUIPPED = 8;
+    PLAYER_DIED = 9;
+    MAP_DIMENSIONS_UPDATE = 10;
+    SPAWN_ENEMY_REQUEST = 11;
+    ENEMY_GOT_HIT_UPDATE = 12;
 }
 
-// sent via TCP
+message StateUpdate {
+    Player player = 1;
+    Item item = 2;
+    StateVariant variant = 3;
+    Room room = 4;
+    repeated Enemy enemy_spawner_positions = 5;
+    MapDimensionsUpdate map_dimensions_update = 6;
+    EnemyGotHitUpdate enemy_got_hit_update = 7;
+    bytes compressed_map_dimensions_update = 8;
+}
+
+message StateUpdateSeries {
+    repeated StateUpdate updates = 1;
+}
+
+enum MovementVariant {
+    NO_MOVEMENT = 0;
+    PLAYER_MOVEMENT_UPDATE = 1;
+    MAP_UPDATE = 2;
+}
+
+message MovementUpdate {
+    uint32 entity_id = 1;
+    MovementVariant variant = 2;
+    float position_x = 3;
+    float position_y = 4;
+    float weapon_pivot_x = 5;
+    float weapon_pivot_y = 6;
+    float direction = 7;
+    bool attack = 8;
+    Room curr_room = 9;
+    repeated Enemy enemy_positions = 10;
+    MapPositionsUpdate map_positions_update = 11;
+}
+
 message Player {
     uint32 id = 1;
     repeated Item items = 2;
+    float position_x = 3;
+    float position_y = 4;
+    double player_attack_damage = 5;
 }
 
 enum ItemType {
@@ -46,32 +87,52 @@ message Room {
     int32 y = 2;
 }
 
-enum StateVariant {
-    NONE = 0;
-    CONNECTED = 1;
-    DISCONNECTED = 2;
-    ROOM_CHANGED = 3;
-    ROOM_CLEARED = 4;
-    LEVEL_CHANGED = 5;
-    CHEST_OPENED = 6;
-    REQUEST_ITEM_GENERATOR = 7;
-    ITEM_EQUIPPED = 8;
-    PLAYER_DIED = 9;
-}
-
-
 message BytePrefix {
     uint32 bytes = 1;
 }
 
-message StateUpdate {
-    Player player = 1;
-    Item item = 2;
-    StateVariant variant = 3;
-    Room room = 4;
+message Enemy {
+    uint32 id = 1;
+    float position_x = 2;
+    float position_y = 3;
+    string type = 4;
+    string name = 5;
+    double hp = 6;
+    double damage = 7;
+    TextureData texture_data = 8;
+    CollisionData collision_data = 9;
 }
 
-message StateUpdateSeries {
-    repeated StateUpdate updates = 1;
+message Obstacle {
+    float left = 1;
+    float top = 2;
+}
+
+message TextureData {
+    uint32 tile_id = 1;
+    string tile_set = 2;
+    int32 tile_layer = 3;
+}
+
+message CollisionData {
+    int32 type = 1;
+    float width = 2;
+    float height = 3;
+    float x_offset = 4;
+    float y_offset = 5;
+}
+
+message EnemyGotHitUpdate {
+    uint32 player_id = 1;
+    uint32 enemy_id = 2;
+}
+
+message MapPositionsUpdate {
+    repeated Player players = 1;
+    repeated Enemy enemies = 2;
+}
+
+message MapDimensionsUpdate {
+    repeated Obstacle obstacles = 1;
 }
 
